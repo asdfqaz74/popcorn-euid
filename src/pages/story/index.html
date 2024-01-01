@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/pages/story/story.js"></script>
   </head>
+
   <body>
     <header class="sticky top-0 bg-background">
       <div class="flex justify-between w-full px-5 py-2">
@@ -41,14 +42,20 @@
     <div class="w-full h-40 bg-gray-400">
       <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
     </div>
-    <div
+    <nav
       class="sticky flex justify-between gap-2 p-2 text-base font-semibold leading-4 top-11 bg-primary font-pretendard text-background"
     >
-      <span class="is-active">선배님 스토리</span>
-      <span class="text-Contents-contentTertiary">기기 거래</span>
-      <span class="text-Contents-contentTertiary">질의 응답</span>
-      <span class="text-Contents-contentTertiary">같이 해요</span>
-    </div>
+      <a class="is-active" href="/src/pages/story/">선배님 스토리</a>
+      <a class="text-Contents-contentTertiary" href="/src/pages/story/"
+        >기기 거래</a
+      >
+      <a class="text-Contents-contentTertiary" href="/src/pages/story/"
+        >질의 응답</a
+      >
+      <a class="text-Contents-contentTertiary" href="/src/pages/story/"
+        >같이 해요</a
+      >
+    </nav>
 
     <div class="grid grid-cols-2 px-3 pt-4 pb-20 gap-y-7 gap-x-3">
       <div class="flex-col text-sm font-normal font-pretendard">
@@ -204,7 +211,7 @@
       </div>
     </div>
 
-    <div class="fixed bottom-0 w-full px-3 pt-2 pb-6 bg-background">
+    <nav class="fixed bottom-0 w-full px-3 pt-2 pb-6 bg-background">
       <div class="flex justify-around text-sm font-normal font-pretendard">
         <div class="flex-col text-center">
           <img src="/public/images/fullHome.svg" class="mx-auto mb-1" alt="" />
@@ -227,6 +234,6 @@
           <span>나의 이듬</span>
         </div>
       </div>
-    </div>
+    </nav>
   </body>
 </html>
