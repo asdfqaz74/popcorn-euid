@@ -2,7 +2,11 @@
 export default {
   content: ['./index.html', './src/**/*.html'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        pretendard: ['Pretendard', 'sans-serif'],
+      },
+    },
     colors: {
       primary: '#373f67',
       secondary: '#5a85ee',
@@ -78,9 +82,6 @@ export default {
       xl: '1.5547499656677246rem',
       '2xl': '2.072499990463257rem',
       '3xl': '2.762624979019165rem',
-    },
-    fontFamily: {
-      pretendard: 'Pretendard',
     },
     borderRadius: {
       none: '0',
