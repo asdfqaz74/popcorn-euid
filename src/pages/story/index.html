@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Vite - Tailwindcss</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/pages/story/story.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="flex justify-between w-full px-5 py-2">
+        <div class="flex flex-shrink-0 select-wrapper">
+          <select
+            class="w-32 text-lg font-semibold appearance-none font-pretendard"
+          >
+            <option value="">남가좌제2동</option>
+            <option value="">호원2동</option>
+          </select>
+          <img
+            src="/public/images/direction.png"
+            class="w-4 h-4 -translate-x-5 translate-y-1 pointer-events-none"
+            alt=""
+          />
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="/src/pages/story/" class="flex-shrink-0">
+            <img src="/public/images/alramBell.png" alt="" />
+          </a>
+          <a href="/src/pages/story/" class="flex-shrink-0">
+            <img src="/public/images/hamburger.png" alt="" />
+          </a>
+          <a href="/src/pages/story/" class="flex-shrink-0">
+            <img src="/public/images/search.png" alt="" />
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <div>
+      <span> 슬라이드 이미지 </span>
+    </div>
+    <div>
+      <span>선배님 스토리</span>
+      <span>기기 거래</span>
+      <span>질의 응답</span>
+      <span>같이 해요</span>
+    </div>
+    <div>
+      <span>이미지</span>
+      <span>제목</span>
+      <span>관심사</span>
+      <span>누구누구누구</span>
+    </div>
+    <div>
+      <span>홈</span>
+      <span>게시판</span>
+      <span>내 근처</span>
+      <span>채팅</span>
+      <span>나의 이듬</span>
+    </div>
+  </body>
+</html>
