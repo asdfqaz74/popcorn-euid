@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/pages/board/board.js"></script>
   </head>
-  <body>
-    <header>
-      <div class="flex justify-between w-full px-5 py-2">
+  <body class="min-w-80">
+    <header class="region-nav sticky top-0 bg-background">
+      <div class="region-nav__wrapper flex justify-between w-full px-5 py-2">
         <div class="flex flex-shrink-0 select-wrapper">
           <select
             class="w-32 text-lg font-semibold appearance-none font-pretendard"
@@ -19,69 +19,352 @@
             <option value="">호원2동</option>
           </select>
           <img
-            src="/public/images/direction.png"
-            class="w-4 h-4 -translate-x-5 translate-y-1 pointer-events-none"
+            src="/public/images/direction.svg"
+            class="w-4 h-4 translate-y-1 pointer-events-none -translate-x-7"
             alt=""
           />
         </div>
         <div class="flex items-center gap-2">
           <a href="/src/pages/story/" class="flex-shrink-0">
-            <img src="/public/images/alramBell.png" alt="" />
+            <img src="/public/images/search.svg" alt="" />
           </a>
           <a href="/src/pages/story/" class="flex-shrink-0">
-            <img src="/public/images/hamburger.png" alt="" />
+            <img src="/public/images/hamburger.svg" alt="" />
           </a>
           <a href="/src/pages/story/" class="flex-shrink-0">
-            <img src="/public/images/search.png" alt="" />
+            <img src="/public/images/alramBell.svg" alt="" />
           </a>
         </div>
       </div>
     </header>
 
-    <nav class="py-2">
+    <nav class="py-2 border-t-2">
       <ul class="flex justify-around">
         <li>
           <button
             type="button"
-            class="text-xs py-1.5 px-2.5 rounded-full border border-black"
+            class="text-xs py-1 px-2 rounded-full border border-black flex items-center"
           >
-            <img src="/public/images/hamburger.svg" alt="주제 메뉴 버튼" />주제
+            <img
+              src="/public/images/board-hamburger.svg"
+              alt="주제 메뉴 버튼"
+            />주제
             <!-- 이미지를 사용하는 파일에서 경로는 /public을 기준으로 설정됩니다. 이미지 경로 주의  -->
           </button>
         </li>
         <li>
-          <button
-            type="button"
-            class="text-xs py-1.5 px-2.5 rounded-full border border-black"
+          <a
+            class="text-xs py-1.5 px-2 rounded-full border border-black"
+            href="/"
           >
-            인기글
-          </button>
+            인기글</a
+          >
         </li>
         <li>
-          <button
-            type="button"
-            class="text-xs py-1.5 px-2.5 rounded-full border border-black"
+          <a
+            class="text-xs py-1.5 px-2 rounded-full border border-black"
+            href="/"
           >
-            같이해요
-          </button>
+            같이해요</a
+          >
         </li>
         <li>
-          <button
-            type="button"
-            class="text-xs py-1.5 px-2.5 rounded-full border border-black"
+          <a
+            class="text-xs py-1.5 px-2 rounded-full border border-black"
+            href="/"
           >
-            질의응답
-          </button>
+            질의응답</a
+          >
         </li>
         <li>
-          <button
-            type="button"
-            class="text-xs py-1.5 px-2.5 rounded-full border border-black"
+          <a
+            class="text-xs py-1.5 px-2 rounded-full border border-black"
+            href="/"
           >
-            자유게시판
-          </button>
+            자유게시판</a
+          >
         </li>
       </ul>
+    </nav>
+
+    <section class="flex-col">
+      <div
+        class="text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+      >
+        <div class="col-start-1 row-start-1 row-end-3 col-end-3">
+          <span
+            class="p-1 border border-black rounded-default bg-bluegray-300 text-background"
+          >
+            같이해요
+          </span>
+          <p
+            class="my-1 text-base whitespace-nowrap text-ellipsis overflow-hidden text-Contents-contentPrimary"
+          >
+            youtube 클론 프젝 같이 하실분~!
+          </p>
+          <div class="my-1 flex">
+            <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+            <span> 누구나 참여가능 </span>
+          </div>
+          <div class="my-1 flex">
+            <img src="/public/images/calender.svg" alt="날짜" />
+            <span>내일,</span>
+            <span>오후 7:00</span>
+          </div>
+          <div class="my-1">
+            <span>음암제 3동</span>
+            <span>·</span>
+            <span> 9분전 </span>
+          </div>
+        </div>
+
+        <div class="col-end-4 self-center">
+          <img
+            class="h-[60px] w-[60px]"
+            src="/public/images/my.svg"
+            alt="게시물 미리보기 사진"
+          />
+        </div>
+        <div class="col-end-4 self-end justify-end flex">
+          <img src="/public/images/people.svg" alt="참가 인원수" />
+          <span>1/3명</span>
+        </div>
+      </div>
+      <div
+        class="text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+      >
+        <div class="col-start-1 row-start-1 row-end-3 col-end-3">
+          <span
+            class="p-1 border border-black rounded-default bg-bluegray-300 text-background"
+          >
+            같이해요
+          </span>
+          <p
+            class="my-1 text-base whitespace-nowrap text-ellipsis overflow-hidden text-Contents-contentPrimary"
+          >
+            youtube 클론 프젝 같이 하실분~!
+          </p>
+          <div class="my-1 flex">
+            <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+            <span> 누구나 참여가능 </span>
+          </div>
+          <div class="my-1 flex">
+            <img src="/public/images/calender.svg" alt="날짜" />
+            <span>내일,</span>
+            <span>오후 7:00</span>
+          </div>
+          <div class="my-1">
+            <span>음암제 3동</span>
+            <span>·</span>
+            <span> 9분전 </span>
+          </div>
+        </div>
+
+        <div class="col-end-4 self-center">
+          <img
+            class="h-[60px] w-[60px]"
+            src="/public/images/my.svg"
+            alt="게시물 미리보기 사진"
+          />
+        </div>
+        <div class="col-end-4 self-end justify-end flex">
+          <img src="/public/images/people.svg" alt="참가 인원수" />
+          <span>1/3명</span>
+        </div>
+      </div>
+      <div
+        class="text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+      >
+        <div class="col-start-1 row-start-1 row-end-3 col-end-3">
+          <span
+            class="p-1 border border-black rounded-default bg-bluegray-300 text-background"
+          >
+            같이해요
+          </span>
+          <p
+            class="my-1 text-base whitespace-nowrap text-ellipsis overflow-hidden text-Contents-contentPrimary"
+          >
+            youtube 클론 프젝 같이 하실분~!
+          </p>
+          <div class="my-1 flex">
+            <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+            <span> 누구나 참여가능 </span>
+          </div>
+          <div class="my-1 flex">
+            <img src="/public/images/calender.svg" alt="날짜" />
+            <span>내일,</span>
+            <span>오후 7:00</span>
+          </div>
+          <div class="my-1">
+            <span>음암제 3동</span>
+            <span>·</span>
+            <span> 9분전 </span>
+          </div>
+        </div>
+
+        <div class="col-end-4 self-center">
+          <img
+            class="h-[60px] w-[60px]"
+            src="/public/images/my.svg"
+            alt="게시물 미리보기 사진"
+          />
+        </div>
+        <div class="col-end-4 self-end justify-end flex">
+          <img src="/public/images/people.svg" alt="참가 인원수" />
+          <span>1/3명</span>
+        </div>
+      </div>
+      <div
+        class="text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+      >
+        <div class="col-start-1 row-start-1 row-end-3 col-end-3">
+          <span
+            class="p-1 border border-black rounded-default bg-bluegray-300 text-background"
+          >
+            같이해요
+          </span>
+          <p
+            class="my-1 text-base whitespace-nowrap text-ellipsis overflow-hidden text-Contents-contentPrimary"
+          >
+            youtube 클론 프젝 같이 하실분~!
+          </p>
+          <div class="my-1 flex">
+            <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+            <span> 누구나 참여가능 </span>
+          </div>
+          <div class="my-1 flex">
+            <img src="/public/images/calender.svg" alt="날짜" />
+            <span>내일,</span>
+            <span>오후 7:00</span>
+          </div>
+          <div class="my-1">
+            <span>음암제 3동</span>
+            <span>·</span>
+            <span> 9분전 </span>
+          </div>
+        </div>
+
+        <div class="col-end-4 self-center">
+          <img
+            class="h-[60px] w-[60px]"
+            src="/public/images/my.svg"
+            alt="게시물 미리보기 사진"
+          />
+        </div>
+        <div class="col-end-4 self-end justify-end flex">
+          <img src="/public/images/people.svg" alt="참가 인원수" />
+          <span>1/3명</span>
+        </div>
+      </div>
+      <div
+        class="text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+      >
+        <div class="col-start-1 row-start-1 row-end-3 col-end-3">
+          <span
+            class="p-1 border border-black rounded-default bg-bluegray-300 text-background"
+          >
+            같이해요
+          </span>
+          <p
+            class="my-1 text-base whitespace-nowrap text-ellipsis overflow-hidden text-Contents-contentPrimary"
+          >
+            youtube 클론 프젝 같이 하실분~!
+          </p>
+          <div class="my-1 flex">
+            <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+            <span> 누구나 참여가능 </span>
+          </div>
+          <div class="my-1 flex">
+            <img src="/public/images/calender.svg" alt="날짜" />
+            <span>내일,</span>
+            <span>오후 7:00</span>
+          </div>
+          <div class="my-1">
+            <span>음암제 3동</span>
+            <span>·</span>
+            <span> 9분전 </span>
+          </div>
+        </div>
+
+        <div class="col-end-4 self-center">
+          <img
+            class="h-[60px] w-[60px]"
+            src="/public/images/my.svg"
+            alt="게시물 미리보기 사진"
+          />
+        </div>
+        <div class="col-end-4 self-end justify-end flex">
+          <img src="/public/images/people.svg" alt="참가 인원수" />
+          <span>1/3명</span>
+        </div>
+      </div>
+      <div
+        class="text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+      >
+        <div class="col-start-1 row-start-1 row-end-3 col-end-3">
+          <span
+            class="p-1 border border-black rounded-default bg-bluegray-300 text-background"
+          >
+            같이해요
+          </span>
+          <p
+            class="my-1 text-base whitespace-nowrap text-ellipsis overflow-hidden text-Contents-contentPrimary"
+          >
+            youtube 클론 프젝 같이 하실분~!
+          </p>
+          <div class="my-1 flex">
+            <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+            <span> 누구나 참여가능 </span>
+          </div>
+          <div class="my-1 flex">
+            <img src="/public/images/calender.svg" alt="날짜" />
+            <span>내일,</span>
+            <span>오후 7:00</span>
+          </div>
+          <div class="my-1">
+            <span>음암제 3동</span>
+            <span>·</span>
+            <span> 9분전 </span>
+          </div>
+        </div>
+
+        <div class="col-end-4 self-center">
+          <img
+            class="h-[60px] w-[60px]"
+            src="/public/images/my.svg"
+            alt="게시물 미리보기 사진"
+          />
+        </div>
+        <div class="col-end-4 self-end justify-end flex">
+          <img src="/public/images/people.svg" alt="참가 인원수" />
+          <span>1/3명</span>
+        </div>
+      </div>
+    </section>
+
+    <nav class="fixed bottom-0 w-full px-3 pt-2 pb-6 bg-background">
+      <div class="flex justify-around text-sm font-normal font-pretendard">
+        <div class="flex-col text-center">
+          <img src="/public/images/fullHome.svg" class="mx-auto mb-1" alt="" />
+          <span class>홈</span>
+        </div>
+        <div class="flex-col items-center justify-center">
+          <img src="/public/images/life.svg" class="mx-auto mb-1" alt="" />
+          <span>게시판</span>
+        </div>
+        <div class="flex-col items-center justify-center">
+          <img src="/public/images/map.svg" class="mx-auto mb-1" alt="" />
+          <span>내 근처</span>
+        </div>
+        <div class="flex-col items-center justify-center">
+          <img src="/public/images/chat.svg" class="mx-auto mb-1" alt="" />
+          <span>채팅</span>
+        </div>
+        <div class="flex-col items-center justify-center">
+          <img src="/public/images/my.svg" class="mx-auto mb-1" alt="" />
+          <span>나의 이듬</span>
+        </div>
+      </div>
     </nav>
   </body>
 </html>
