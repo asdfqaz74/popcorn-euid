@@ -10,6 +10,7 @@ export default defineConfig({
         board: resolve(__dirname, 'src/pages/board/index.html'),
         togetherBoard: resolve(__dirname, 'src/pages/togetherBoard/index.html'),
         story: resolve(__dirname, 'src/pages/story/index.html'),
+        start: resolve(__dirname, 'src/pages/start/index.html'),
       },
     },
   },
