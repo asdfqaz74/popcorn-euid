@@ -6,3 +6,19 @@
   font-family: 'Pretendard';
   src: url('/public/fonts/PretendardVariable.ttf');
 }
+
+@layer components {
+  .profile-detail {
+    @apply border-b-2
+  }
+  .profile-detail-inner {
+    @apply flex justify-between w-full py-4 px-5
+  }
+  .profile-detail-active{
+    @apply flex flex-col gap-3 pb-4 px-2.5
+  }
+  .profile-detail-textBox{
+    @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2
+  }
+
+}
