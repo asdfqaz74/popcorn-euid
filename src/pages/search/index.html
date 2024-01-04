@@ -8,5 +8,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/pages/search/search.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div
+      class="flex font-pretendard text-base text-Contents-contentTertiary items-center mt-1 mb-4"
+    >
+      <a href="/src/pages/search/" class="mx-4">
+        <img src="/public/images/directionL.svg" alt="뒤로가기" />
+      </a>
+      <form action="#" method="get">
+        <label for="searchInput" class="sr-only">검색창</label>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="어디동 근처에서 검색"
+          aria-label="검색할 품목을 입력해주세요"
+          class="bg-gray-100 rounded-2xl w-[15.625rem] h-[1.875rem] pl-[0.625rem] text-Contents-contentPrimary"
+        />
+      </form>
+    </div>
+
+    <div class="ml-3 font-pretendard text-base font-semibold leading-normal">
+      <span>친구들이 많이 찾고 있어요!</span>
+
+      <nav class="overflow-hidden mt-3">
+        <ul class="flex text-sm gap-1">
+          <li
+            tabindex="0"
+            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
+          >
+            노트북
+          </li>
+          <li
+            tabindex="0"
+            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
+          >
+            노트북 거치대
+          </li>
+          <li
+            tabindex="0"
+            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
+          >
+            키보드
+          </li>
+          <li
+            tabindex="0"
+            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
+          >
+            마우스
+          </li>
+          <li
+            tabindex="0"
+            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
+          >
+            헤드셋
+          </li>
+          <li
+            tabindex="0"
+            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
+          >
+            기타등등
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </body>
 </html>
