@@ -26,6 +26,7 @@
             alt=""
           />
         </div>
+
         <div class="flex items-center gap-2">
           <a href="/src/pages/story/" class="flex-shrink-0">
             <img src="/public/images/search.svg" alt="" />
@@ -50,22 +51,22 @@
 
     <nav>
       <ul
-        class="flex justify-between gap-2 p-2 text-base font-semibold leading-4 top-11 bg-primary font-pretendard text-background"
+        class="flex gap-1 p-2 text-base font-semibold leading-4 top-11 bg-primary font-pretendard text-background"
       >
-        <li class="border-b border-tertiary">
+        <li class="border-b border-tertiary mx-auto">
           <a class="is-active" href="/src/pages/story/">선배님 스토리</a>
         </li>
-        <li>
+        <li class="mx-auto">
           <a class="text-Contents-contentTertiary" href="/src/pages/story/"
             >기기 거래</a
           >
         </li>
-        <li>
+        <li class="mx-auto">
           <a class="text-Contents-contentTertiary" href="/src/pages/story/"
             >질의 응답</a
           >
         </li>
-        <li>
+        <li class="mx-auto">
           <a class="text-Contents-contentTertiary" href="/src/pages/story/"
             >같이 해요</a
           >
@@ -73,15 +74,19 @@
       </ul>
     </nav>
 
-    <div class="font-pretendard text-sm">
-      <section class="flex flex-wrap">
+    <div class="font-pretendard text-sm px-3 mx-auto mt-3">
+      <section class="flex flex-wrap mx-auto gap-5">
         <h2 class="sr-only">선배님 스토리 칼럼</h2>
 
-        <figure class="w-full sm:w-1/2 md:w-1/3 p-2">
-          <div class="max-w-[12.5rem] h-auto">
-            <img src="/public/images/hooray.png" alt="스토리 사진" />
+        <figure class="max-w-[8.625rem] mx-auto">
+          <div class="max-h-[6.5rem] bg-Contents-contentSecondary rounded-3xl">
+            <img
+              src="/public/images/hooray.png"
+              alt="스토리 사진"
+              class="w-full h-full object-cover"
+            />
           </div>
-          <figcaption class="">
+          <figcaption class="w-full">
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
           </figcaption>
           <div class="text-Contents-contentSecondary">
@@ -90,11 +95,11 @@
           </div>
         </figure>
 
-        <figure class="w-full sm:w-1/2 md:w-1/3 p-2">
-          <div class="max-w-[12.5rem] h-auto">
+        <figure class="max-w-[9.375rem] mx-auto">
+          <div class="h-auto bg-Contents-contentSecondary rounded-3xl">
             <img src="/public/images/hooray.png" alt="스토리 사진" />
           </div>
-          <figcaption class="">
+          <figcaption class="w-full">
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
           </figcaption>
           <div class="text-Contents-contentSecondary">
@@ -103,11 +108,11 @@
           </div>
         </figure>
 
-        <figure class="w-full sm:w-1/2 md:w-1/3">
-          <div class="max-w-[12.5rem] h-auto">
+        <figure class="max-w-[9.375rem] mx-auto">
+          <div class="h-auto bg-Contents-contentSecondary rounded-3xl">
             <img src="/public/images/hooray.png" alt="스토리 사진" />
           </div>
-          <figcaption class="">
+          <figcaption class="w-full">
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
           </figcaption>
           <div class="text-Contents-contentSecondary">
@@ -116,11 +121,11 @@
           </div>
         </figure>
 
-        <figure class="w-full sm:w-1/2 md:w-1/3">
-          <div class="max-w-[12.5rem] h-auto">
+        <figure class="max-w-[9.375rem] mx-auto">
+          <div class="h-auto bg-Contents-contentSecondary rounded-3xl">
             <img src="/public/images/hooray.png" alt="스토리 사진" />
           </div>
-          <figcaption class="">
+          <figcaption class="w-full">
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
           </figcaption>
           <div class="text-Contents-contentSecondary">
@@ -131,7 +136,7 @@
       </section>
     </div>
 
-    <nav class="fixed bottom-0 w-full px-3 pt-2 pb-6 bg-background">
+    <nav class="sticky bottom-0 w-full px-3 pt-2 pb-6 bg-background">
       <div class="flex justify-around text-sm font-normal font-pretendard">
         <div class="flex-col text-center">
           <img src="/public/images/fullHome.svg" class="mx-auto mb-1" alt="" />
