@@ -8,5 +8,169 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script type="module" src="/src/pages/chat/chat.js"></script>
   </head>
-  <body></body>
+  <body>
+    <div class="flex justify-between px-3 items-center font-pretendard">
+      <a href="/src/pages/chat/">
+        <img src="/public/images/directionL.svg" alt="" />
+      </a>
+
+      <div class="flex-col text-center translate-x-2">
+        <span class="block text-base font-semibold">카페인조아</span>
+        <span class="block text-sm text-Contents-contentSecondary"
+          >보통 3일 내 응답</span
+        >
+      </div>
+
+      <div class="flex gap-[0.4375rem]">
+        <a href="/src/pages/chat/">
+          <img src="/public/images/call.svg" alt="" />
+        </a>
+        <a href="/src/pages/chat/">
+          <img src="/public/images/more.svg" alt="" />
+        </a>
+      </div>
+    </div>
+
+    <div class="flex font-pretendard gap-2 pl-3 pt-3 pb-1 items-center">
+      <div
+        class="w-[2.125rem] h-[2.125rem] rounded-sm bg-Contents-contentSecondary"
+      >
+        <img
+          src="/public/images/hooray.png"
+          class="w-full h-full object-cover"
+          alt=""
+        />
+      </div>
+      <div>
+        <div>
+          <span class="text-sm font-semibold">판매중</span>
+          <span class="text-sm font-normal">intel mac 2017</span>
+        </div>
+        <span class="text-sm font-semibold">800,000원</span>
+      </div>
+    </div>
+
+    <div class="pl-3 font-pretendard text-sm">
+      <ul class="flex gap-1">
+        <li class="border px-3 py-1 rounded-xl bg-background flex">
+          <a href="/src/pages/chat/" class="flex items-center">
+            <img
+              src="/public/images/calender.svg"
+              class="mr-[0.125rem]"
+              alt=""
+            />
+            약속 잡기
+          </a>
+        </li>
+        <li class="border px-3 py-1 rounded-xl bg-background flex">
+          <a href="/src/pages/chat/" class="flex items-center">
+            <img src="/public/images/won.svg" class="mr-[0.125rem]" alt="" />
+            송금 하기
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="chatBox font-pretendard border-t border-Contents-contentTertiary pt-2 mt-2"
+    >
+      <div
+        class="chatbox__info border-none rounded-3xl bg-Bluelight-400 text-background text-sm mx-[0.84375rem] py-3 px-4"
+      >
+        <span
+          ><em class="font-semibold not-italic">
+            💸 카페인조아님은 우수판매자에요.
+          </em>
+          개인정보유도와 명예훼손 내용은 차단될 수 있어요.
+          <a href="/src/pages/chat/" class="underline"> 자세히 보기</a>.</span
+        >
+      </div>
+
+      <div class="chatBox__main text-base">
+        <div
+          class="chatBox__date text-center my-3 text-sm text-Contents-contentSecondary"
+        >
+          <span class="mx-auto">2023년 2월 21일</span>
+        </div>
+
+        <div class="flex mb-2 text-right justify-end items-end gap-1">
+          <span class="text-sm text-Contents-contentSecondary">오후 4:30</span>
+          <div
+            class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]"
+          >
+            <span>가격 네고 가능한가요?</span>
+          </div>
+        </div>
+
+        <div class="flex mb-2 text-right justify-end items-end gap-1">
+          <span class="text-sm text-Contents-contentSecondary">오후 5:32</span>
+          <div
+            class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]"
+          >
+            <span>목요일 거래 가능할까요?</span>
+          </div>
+        </div>
+
+        <div
+          class="chatBox__date text-center my-3 text-sm text-Contents-contentSecondary"
+        >
+          <span class="mx-auto">2023년 2월 22일</span>
+        </div>
+
+        <div class="flex mb-2 text-right justify-end items-end gap-1">
+          <span class="text-sm text-Contents-contentSecondary">오후 9:16</span>
+          <div
+            class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]"
+          >
+            <span>판매 안하시나요?ㅠㅠ</span>
+          </div>
+        </div>
+
+        <div
+          class="chatBox__date text-center my-3 text-sm text-Contents-contentSecondary"
+        >
+          <span class="mx-auto">2023년 3월 6일</span>
+        </div>
+
+        <div class="flex mb-2 items-end gap-1">
+          <div
+            class="text-right border-none px-[0.875rem] py-2 ml-3 rounded-6xl bg-bluegray-100 text-Contents-contentPrimary max-w-[15.5rem]"
+          >
+            <span
+              >죄송해요ㅠㅠ 제가 핸드폰을 바꿔서 지금봤네요ㅠㅠ 판매는 안됐는데
+              먼저 연락하신분이 있어서 답장 기다리고 있습니다ㅠㅠ</span
+            >
+          </div>
+          <span class="text-sm text-Contents-contentSecondary">오후 7:14</span>
+        </div>
+      </div>
+
+      <div
+        class="chatBox__send-chat sticky bottom-0 ml-2 mx-3 mt-3 pt-2 pb-2 bg-background"
+      >
+        <form action="#" method="post" class="flex">
+          <img src="/public/images/plus.svg" alt="" />
+          <label for="message" class="sr-only">메세지</label>
+          <textarea
+            name="message"
+            id="message"
+            cols="30"
+            rows="10"
+            placeholder="메세지 보내기"
+            class="w-[15.25rem] h-[2.375rem] border-none bg-bluegray-100 rounded-6xl mx-auto pt-2 pl-3 text-base"
+          ></textarea>
+          <button type="button">
+            <img
+              src="/public/images/Group.svg"
+              alt=""
+              class="-translate-x-7 pointer-events-none"
+            />
+          </button>
+          <button type="submit">
+            <img src="/public/images/send.svg" alt="" />
+          </button>
+        </form>
+      </div>
+    </div>
+  </body>
 </html>
