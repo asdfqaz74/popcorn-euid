@@ -49,4 +49,12 @@
   .profile-detail-textBox {
     @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2;
   }
+
+  .signUp-verify-valid {
+    @apply bg-gray-500 text-background font-bold
+  }
+
+  .signUp-agree-valid{
+    @apply bg-tertiary
+  }
 }
