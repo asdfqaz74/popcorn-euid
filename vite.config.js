@@ -8,6 +8,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         story: resolve(__dirname, 'src/pages/story/index.html'),
+        exchangeBoard: resolve(__dirname, 'src/pages/exchangeBoard/index.html'),
       },
     },
   },

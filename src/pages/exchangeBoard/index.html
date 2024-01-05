@@ -12,26 +12,26 @@
     ></script>
   </head>
   <body class="font-pretendard">
-    <h1 class="sr-only">거래 게시판</h1>
+    <h1 class="sr-only">이듬 거래글</h1>
 
     <nav
       class="exchangeBoard-nav sticky flex justify-around px-[1.125rem] py-2 top-0 bg-background"
     >
       <div class="flex gap-2 -translate-x-11 items-center">
         <a href="/src/pages/exchangeBoard/index.html">
-          <img src="/public/images/directionL.svg" alt="뒤로가기" />
+          <img src="/public/images/directionL.svg" alt="뒤로가기 버튼" />
         </a>
         <a href="/src/pages/exchangeBoard/index.html">
-          <img src="/public/images/home.svg" alt="홈으로" />
+          <img src="/public/images/home.svg" alt="홈으로 가기 버튼" />
         </a>
       </div>
       <div class="flex gap-3 translate-x-10">
-        <a href="/src/pages/exchangeBoard/index.html">
-          <img src="/public/images/share.svg" alt="공유하기" />
-        </a>
-        <a href="/src/pages/exchangeBoard/index.html">
-          <img src="/public/images/more.svg" alt="더보기" />
-        </a>
+        <button type="button" class="exchangeBoard-share" aria-label="공유하기">
+          <img src="/public/images/share.svg" alt="공유하기 아이콘" />
+        </button>
+        <button type="button" class="exchangeBoard-more" aria-label="더보기">
+          <img src="/public/images/more.svg" alt="더보기 아이콘" />
+        </button>
       </div>
     </nav>
 
@@ -100,7 +100,7 @@
           <img
             src="/public/images/heart.svg"
             class="w-[1.25rem] h-[1.25rem]"
-            alt=""
+            alt="좋아요"
           />
         </button>
         <div
@@ -126,65 +126,91 @@
       </div>
     </div>
 
-    <div class="border-t border-Contents-contentSecondary font-pretendard pb-4">
-      <span class="block py-3 px-[0.875rem] text-base font-semibold"
-        >이 글과 함께 봤어요</span
-      >
+    <div
+      class="exchangeBoard-another border-t border-Contents-contentSecondary font-pretendard pb-4"
+    >
+      <h2 class="block py-3 px-[0.875rem] text-base font-semibold">
+        이 글과 함께 봤어요
+      </h2>
 
-      <div class="flex justify-center items-center gap-5 px-2 flex-wrap">
+      <div class="grid grid-cols-2 place-items-center">
         <figure
-          class="min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl"
+          class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
         >
           <img
             src="/public/images/macbook20.png"
             class="w-full h-full object-cover rounded-2xl"
-            alt=""
+            alt="물건"
           />
-          <figcaption class="">
-            <span>스타벅스 아메리카노</span>
-            <span>10,000원</span>
+          <figcaption class="text-sm block">
+            <a href="/src/pages/exchangeBoard/">
+              <p class="exchangeBoard-another-text block truncate">
+                스타벅스 아메리카노
+              </p>
+            </a>
+            <span class="exchangeBoard-another-price font-semibold"
+              >10,000원</span
+            >
           </figcaption>
         </figure>
 
         <figure
-          class="min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl"
+          class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
         >
           <img
             src="/public/images/macbook20.png"
             class="w-full h-full object-cover rounded-2xl"
-            alt=""
+            alt="물건"
           />
-          <figcaption class="">
-            <span>스타벅스 아메리카노</span>
-            <span>10,000원</span>
+          <figcaption class="text-sm block">
+            <a href="/src/pages/exchangeBoard/">
+              <p class="exchangeBoard-another-text block truncate">
+                스타벅스 아메리카노
+              </p>
+            </a>
+            <span class="exchangeBoard-another-price font-semibold"
+              >10,000원</span
+            >
           </figcaption>
         </figure>
 
         <figure
-          class="min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl"
+          class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
         >
           <img
             src="/public/images/macbook20.png"
             class="w-full h-full object-cover rounded-2xl"
-            alt=""
+            alt="물건"
           />
-          <figcaption class="text-sm">
-            <span class="block">스타벅스 아메리카노</span>
-            <span class="font-semibold">10,000원</span>
+          <figcaption class="text-sm block">
+            <a href="/src/pages/exchangeBoard/">
+              <p class="exchangeBoard-another-text block truncate">
+                스타벅스 아메리카노
+              </p>
+            </a>
+            <span class="exchangeBoard-another-price font-semibold"
+              >10,000원</span
+            >
           </figcaption>
         </figure>
 
         <figure
-          class="min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl"
+          class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
         >
           <img
             src="/public/images/macbook20.png"
             class="w-full h-full object-cover rounded-2xl"
-            alt=""
+            alt="물건"
           />
-          <figcaption class="">
-            <span>스타벅스 아메리카노</span>
-            <span>10,000원</span>
+          <figcaption class="text-sm block">
+            <a href="/src/pages/exchangeBoard/">
+              <p class="exchangeBoard-another-text block truncate">
+                스타벅스 아메리카노
+              </p>
+            </a>
+            <span class="exchangeBoard-another-price font-semibold"
+              >10,000원</span
+            >
           </figcaption>
         </figure>
       </div>
