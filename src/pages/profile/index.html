@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>euid profile</title>
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <script type="module" src="/src/pages/profile/profile.js"></script>
+  </head>
+  <body class="font-pretendard">
+    <h1 class="sr-only">이듬엔터 프로필</h1>
+    <main class="py-[2.625rem] px-8">
+      <h2 class="sr-only">나의 프로필</h2>
+      <figure class="w-full flex flex-col items-center">
+        <div
+          class=" w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden"
+        >
+          <img
+            class="w-full h-full object-center"
+            src="/src/assets/profileTest.jpg"
+            alt="프로필 사진"
+          />
+        </div>
+        <figcaption>
+          <span class="text-lg font-semibold">hobby</span>
+          <span
+            class="text-sm text-secondary inline-block border border-secondary rounded-full px-1"
+            >4기</span
+          >
+        </figcaption>
+      </figure>
+
+      <div class="text-center text-sm text-Contents-contentSecondary">
+        <a class="" href=""> 답변 35 </a>
+      </div>
+      <ul class="flex justify-between mt-[0.9375rem] text-sm font-semibold">
+        <li>
+          <a class="" href="/">
+            <figure class="flex flex-col justify-between h-full">
+              <img class="mx-auto" src="/public/images/Q&A.svg" alt="" />
+              <figcaption>나의 Q&A</figcaption>
+            </figure>
+          </a>
+        </li>
+        <li>
+          <a class="" href="/">
+            <figure class="flex flex-col justify-between h-full">
+              <img class="mx-auto" src="/public/images/profile.svg" alt="" />
+              <figcaption>나의 프로필</figcaption>
+            </figure>
+          </a>
+        </li>
+        <li>
+          <a class="" href="/">
+            <figure class="flex flex-col justify-between h-full">
+              <img class="mx-auto" src="/public/images/alramBell.svg" alt="" />
+              <figcaption>내소식</figcaption>
+            </figure>
+          </a>
+        </li>
+      </ul>
+    </main>
+    <div class="px-3">
+      <p class="text-base flex items-center gap-0.5">
+        열정온도
+        <a href="/">
+          <img src="/public/images/information.svg" alt="열정온도 정보" />
+        </a>
+      </p>
+      <div class="py-3">
+        <div class="flex">
+          <span
+            class="profile-temperture-start text-sm ml-[35%] text-Contents-contentSecondary after:bg-temperatureAngle after:w-[0.625rem] after:h-[0.375rem] after:inline-block after:absolute after:bottom-0 after:left-[50%] after:bg-no-repeat relative"
+          >
+            첫 온도 36.5
+          </span>
+          <span
+            class="profile-temperature-now text-secondary text-base font-semibold ml-auto inline-block"
+            >41.2🥰</span
+          >
+        </div>
+        <div
+          class="profile-temperature-box w-full h-2 bg-Contents-contentSecondary rounded-full overflow-hidden mt-1"
+        >
+          <div class="profile-temperture-bar h-full w-[40%] bg-primary"></div>
+        </div>
+      </div>
+      <div class="flex items-start px-2 py-4">
+        <div class="flex items-start gap-1 w-[50%]">
+          <img src="/public/images/heart.svg" alt="" />
+          <div class="">
+            <p class="profile-like text-base">받은 좋아요 100%</p>
+            <p class="profile- text-base text-Contents-contentSecondary">
+              11개 중 11명이 만족
+            </p>
+          </div>
+        </div>
+        <div class="w-[50%] flex items-start gap-1">
+          <img src="/public/images/chat.svg" alt="" />
+          <div class="temperature--response-text">
+            <p class="text-base">응답률 -%</p>
+            <p class="text-base text-Contents-contentSecondary">
+              표시될만큼 충분히 채팅하지 않았어요
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="">
+      <ul>
+        <li class="profile-detail">
+          <div class="profile-detail-inner">
+            <span class="font-semibold">활동배지 10개</span>
+            <span>
+              <img src="/public/images/direction.svg" alt="" />
+            </span>
+          </div>
+          <div class="profile-detail-active hidden flex-row"></div>
+        </li>
+        <li class="profile-detail">
+          <div class="profile-detail-inner">
+            <span class="font-semibold">판매상품 3개</span>
+            <span>
+              <img src="/public/images/right.svg" alt="" />
+            </span>
+          </div>
+          <div class="profile-detail-active hidden flex-row"></div>
+        </li>
+        <li class="profile-detail">
+          <div class="profile-detail-inner">
+            <span class="font-semibold">받은 매너 평가</span>
+            <span>
+              <img src="/public/images/right.svg" alt="" />
+            </span>
+          </div>
+          <ul class="profile-detail-active">
+            <li class="flex gap-2 items-start">
+              <img src="/public/images/people.svg" alt="" />
+              <span class="w-4">9</span>
+              <div class="profile-detail-textBox">시간 약속을 잘 지켜요</div>
+            </li>
+            <li class="flex gap-2 items-start">
+              <img src="/public/images/people.svg" alt="" />
+              <span class="w-4">10</span>
+              <div class="profile-detail-textBox">친절하고 매너가 좋아요</div>
+            </li>
+            <li class="flex gap-2 items-start">
+              <img src="/public/images/people.svg" alt="" />
+              <span class="w-4">8</span>
+              <div class="profile-detail-textBox">
+                제가 있는 곳까지 와서 거래했어요
+              </div>
+            </li>
+          </ul>
+        </li>
+        <li class="profile-detail">
+          <div class="profile-detail-inner">
+            <span class="font-semibold">받은 거래 후기 1개</span>
+            <span>
+              <img src="/public/images/right.svg" alt="" />
+            </span>
+          </div>
+          <div class="profile-detail-active flex-row">
+            <div
+              class="profile-review_user bg-Contents-contentSecondary w-[1.75rem] h-[1.75rem] rounded-full overflow-hidden"
+            ></div>
+            <div>
+              <p class="text-base font-semibold">유저네임</p>
+              <p
+                class="text-base text-Contents-contentSecondary flex items-center gap-1"
+              >
+                <span class="">구매자 </span>
+                <span
+                  class="w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
+                ></span>
+                <span>사는 지역</span>
+                <span
+                  class="w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
+                ></span>
+                <span>시간</span>
+              </p>
+              <p class="">후기 내용</p>
+            </div>
+            <div class="ml-auto">
+              <img src="/public/images/more.svg" alt="" />
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="mydetail--container pb-5">
+      <ul class="flex flex-col p-4 gap-5">
+        <li>
+          <a href="/">보관 질문</a>
+        </li>
+        <li>
+          <a href="/">설정</a>
+        </li>
+        <li>
+          <a href="/">지식 IN 공식 블로그</a>
+        </li>
+        <li>
+          <a href="/">서비스 정보</a>
+        </li>
+        <li>
+          <a href="/">공지사항</a>
+        </li>
+        <li class="flex justify-between">
+          <a class="text-negative" href="/">로그아웃 </a>
+          <span class="text-Bluelight-500">userId</span>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
