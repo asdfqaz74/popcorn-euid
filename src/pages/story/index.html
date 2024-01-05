@@ -10,6 +10,7 @@
   </head>
 
   <body>
+    <h1 class="sr-only">메인 홈</h1>
     <header class="region-nav sticky top-0 bg-background">
       <div class="region-nav__wrapper flex justify-between w-full px-5 py-2">
         <div class="flex flex-shrink-0 select-wrapper">
@@ -25,6 +26,7 @@
             alt=""
           />
         </div>
+
         <div class="flex items-center gap-2">
           <a href="/src/pages/story/" class="flex-shrink-0">
             <img src="/public/images/search.svg" alt="" />
@@ -39,180 +41,116 @@
       </div>
     </header>
 
-    <div class="w-full h-40 bg-gray-400">
-      <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
+    <div class="story-adv-container w-full h-48 bg-gray-400">
+      <img
+        src="/public/images/hooray.png"
+        class="story-adv w-full h-full object-contain"
+        alt="광고이미지"
+      />
     </div>
 
-    <nav
-      class="sticky flex justify-between gap-2 p-2 text-base font-semibold leading-4 top-11 bg-primary font-pretendard text-background"
-    >
-      <a class="is-active" href="/src/pages/story/">선배님 스토리</a>
-      <a class="text-Contents-contentTertiary" href="/src/pages/exchange/"
-        >기기 거래</a
+    <nav>
+      <ul
+        class="flex gap-1 p-2 text-base font-semibold leading-4 top-11 bg-primary font-pretendard text-background"
       >
-      <a class="text-Contents-contentTertiary" href="/src/pages/story/"
-        >질의 응답</a
-      >
-      <a class="text-Contents-contentTertiary" href="/src/pages/story/"
-        >같이 해요</a
-      >
+        <li class="border-b border-tertiary mx-auto">
+          <a class="is-active" href="/src/pages/story/">선배님 스토리</a>
+        </li>
+        <li class="mx-auto">
+          <a class="text-Contents-contentTertiary" href="/src/pages/story/"
+            >기기 거래</a
+          >
+        </li>
+        <li class="mx-auto">
+          <a class="text-Contents-contentTertiary" href="/src/pages/story/"
+            >질의 응답</a
+          >
+        </li>
+        <li class="mx-auto">
+          <a class="text-Contents-contentTertiary" href="/src/pages/story/"
+            >같이 해요</a
+          >
+        </li>
+      </ul>
     </nav>
 
-    <div class="grid grid-cols-2 px-3 pt-4 pb-20 gap-y-7 gap-x-3">
-      <div class="flex-col text-sm font-normal font-pretendard">
-        <a href="/src/pages/story/">
-          <div
-            class="w-[8.625rem] h-[6.5rem] rounded-default bg-Contents-contentSecondary gap-y-3"
-          >
-            <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
-          </div>
-          <span class="block mt-3 mb-1">
+    <div class="font-pretendard text-sm px-3 mx-auto mt-3">
+      <section
+        class="grid grid-cols-1 xs:flex xs:flex-wrap sm:grid sm:grid-cols-2 place-items-center justify-around"
+      >
+        <h2 class="sr-only">선배님 스토리 칼럼</h2>
+
+        <figure
+          class="w-[60%] xs:w-[40%] sm:w-[50%] md:w-[50%] xs:min-w-[8.75rem] xs:max-w-[13rem] sm:max-w-[12.5rem] bg-Contents-contentSecondary rounded-3xl h-[6.5rem] md:h-[8rem] mb-20"
+        >
+          <img
+            src="/public/images/hooray.png"
+            alt="스토리 사진"
+            class="w-full h-full object-contain"
+          />
+          <figcaption class="py-1">
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-          </span>
+            <div class="text-Contents-contentSecondary">
+              <span class="border-r pr-1">EUID</span>
+              <span class="pl-1">8기 수강생 강진성</span>
+            </div>
+          </figcaption>
+        </figure>
 
-          <div class="text-Contents-contentSecondary">
-            <span>EUID</span>
-            <span class="select-none">l</span>
-            <span>8기 수강생 강진성</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="flex-col text-sm font-normal font-pretendard">
-        <a href="/src/pages/story/">
-          <div
-            class="w-[8.625rem] h-[6.5rem] rounded-default bg-Contents-contentSecondary gap-y-3"
-          >
-            <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
-          </div>
-          <span class="block mt-3 mb-1">
+        <figure
+          class="w-[60%] xs:w-[40%] sm:w-[50%] md:w-[50%] xs:min-w-[8.75rem] xs:max-w-[13rem] sm:max-w-[12.5rem] bg-Contents-contentSecondary rounded-3xl h-[6.5rem] md:h-[8rem] mb-20"
+        >
+          <img
+            src="/public/images/hooray.png"
+            alt="스토리 사진"
+            class="w-full h-full object-contain"
+          />
+          <figcaption class="py-1">
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-          </span>
+            <div class="text-Contents-contentSecondary">
+              <span class="border-r pr-1">EUID</span>
+              <span class="pl-1">8기 수강생 강진성</span>
+            </div>
+          </figcaption>
+        </figure>
 
-          <div class="text-Contents-contentSecondary">
-            <span>EUID</span>
-            <span class="select-none">l</span>
-            <span>8기 수강생 강진성</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="flex-col text-sm font-normal font-pretendard">
-        <a href="/src/pages/story/">
-          <div
-            class="w-[8.625rem] h-[6.5rem] rounded-default bg-Contents-contentSecondary gap-y-3"
-          >
-            <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
-          </div>
-          <span class="block mt-3 mb-1">
+        <figure
+          class="w-[60%] xs:w-[40%] sm:w-[50%] md:w-[50%] xs:min-w-[8.75rem] xs:max-w-[13rem] sm:max-w-[12.5rem] bg-Contents-contentSecondary rounded-3xl h-[6.5rem] md:h-[8rem] mb-20"
+        >
+          <img
+            src="/public/images/hooray.png"
+            alt="스토리 사진"
+            class="w-full h-full object-contain"
+          />
+          <figcaption class="py-1">
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-          </span>
+            <div class="text-Contents-contentSecondary">
+              <span class="border-r pr-1">EUID</span>
+              <span class="pl-1">8기 수강생 강진성</span>
+            </div>
+          </figcaption>
+        </figure>
 
-          <div class="text-Contents-contentSecondary">
-            <span>EUID</span>
-            <span class="select-none">l</span>
-            <span>8기 수강생 강진성</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="flex-col text-sm font-normal font-pretendard">
-        <a href="/src/pages/story/">
-          <div
-            class="w-[8.625rem] h-[6.5rem] rounded-default bg-Contents-contentSecondary gap-y-3"
-          >
-            <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
-          </div>
-          <span class="block mt-3 mb-1">
+        <figure
+          class="w-[60%] xs:w-[40%] sm:w-[50%] md:w-[50%] xs:min-w-[8.75rem] xs:max-w-[13rem] sm:max-w-[12.5rem] bg-Contents-contentSecondary rounded-3xl h-[6.5rem] md:h-[8rem] mb-20"
+        >
+          <img
+            src="/public/images/hooray.png"
+            alt="스토리 사진"
+            class="w-full h-full object-contain"
+          />
+          <figcaption class="py-1">
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-          </span>
-
-          <div class="text-Contents-contentSecondary">
-            <span>EUID</span>
-            <span class="select-none">l</span>
-            <span>8기 수강생 강진성</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="flex-col text-sm font-normal font-pretendard">
-        <a href="/src/pages/story/">
-          <div
-            class="w-[8.625rem] h-[6.5rem] rounded-default bg-Contents-contentSecondary gap-y-3"
-          >
-            <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
-          </div>
-          <span class="block mt-3 mb-1">
-            디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-          </span>
-
-          <div class="text-Contents-contentSecondary">
-            <span>EUID</span>
-            <span class="select-none">l</span>
-            <span>8기 수강생 강진성</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="flex-col text-sm font-normal font-pretendard">
-        <a href="/src/pages/story/">
-          <div
-            class="w-[8.625rem] h-[6.5rem] rounded-default bg-Contents-contentSecondary gap-y-3"
-          >
-            <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
-          </div>
-          <span class="block mt-3 mb-1">
-            디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-          </span>
-
-          <div class="text-Contents-contentSecondary">
-            <span>EUID</span>
-            <span class="select-none">l</span>
-            <span>8기 수강생 강진성</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="flex-col text-sm font-normal font-pretendard">
-        <a href="/src/pages/story/">
-          <div
-            class="w-[8.625rem] h-[6.5rem] rounded-default bg-Contents-contentSecondary gap-y-3"
-          >
-            <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
-          </div>
-          <span class="block mt-3 mb-1">
-            디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-          </span>
-
-          <div class="text-Contents-contentSecondary">
-            <span>EUID</span>
-            <span class="select-none">l</span>
-            <span>8기 수강생 강진성</span>
-          </div>
-        </a>
-      </div>
-
-      <div class="flex-col text-sm font-normal font-pretendard">
-        <a href="/src/pages/story/">
-          <div
-            class="w-[8.625rem] h-[6.5rem] rounded-default bg-Contents-contentSecondary gap-y-3"
-          >
-            <img src="/public/images/hooray.png" class="w-full h-full" alt="" />
-          </div>
-          <span class="block mt-3 mb-1">
-            디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-          </span>
-
-          <div class="text-Contents-contentSecondary">
-            <span>EUID</span>
-            <span class="select-none">l</span>
-            <span>8기 수강생 강진성</span>
-          </div>
-        </a>
-      </div>
+            <div class="text-Contents-contentSecondary">
+              <span class="border-r pr-1">EUID</span>
+              <span class="pl-1">8기 수강생 강진성</span>
+            </div>
+          </figcaption>
+        </figure>
+      </section>
     </div>
 
-    <nav class="sticky bottom-0 w-full px-3 pt-2 bg-background">
+    <nav class="sticky bottom-0 w-full px-3 pt-2 pb-6 bg-background">
       <div class="flex justify-around text-sm font-normal font-pretendard">
         <div class="flex-col text-center">
           <img src="/public/images/fullHome.svg" class="mx-auto mb-1" alt="" />
