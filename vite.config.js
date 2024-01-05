@@ -12,6 +12,7 @@ export default defineConfig({
         story: resolve(__dirname, 'src/pages/story/index.html'),
         start: resolve(__dirname, 'src/pages/start/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
+        writeBoardSecond: resolve(__dirname, 'src/pages/profile/index.html'),
       },
     },
   },
