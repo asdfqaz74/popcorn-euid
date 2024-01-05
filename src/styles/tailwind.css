@@ -49,7 +49,5 @@
   .profile-detail-textBox {
     @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2;
   }
-  .profileDetails-button-valid{
-    @apply border border-secondary rounded-lg bg-background text-secondary
-  }
+  
 }
