@@ -10,7 +10,7 @@
   </head>
   <body>
     <div
-      class="flex font-pretendard text-base text-Contents-contentTertiary items-center mt-1 mb-4"
+      class="flex text-base text-Contents-contentTertiary items-center mt-1 mb-4"
     >
       <a href="/src/pages/search/" class="mx-4">
         <img src="/public/images/directionL.svg" alt="뒤로가기" />
@@ -22,52 +22,22 @@
           id="searchInput"
           placeholder="어디동 근처에서 검색"
           aria-label="검색할 품목을 입력해주세요"
-          class="bg-gray-100 rounded-2xl w-[15.625rem] h-[1.875rem] pl-[0.625rem] text-Contents-contentPrimary"
+          class="search-input bg-gray-100 rounded-2xl w-[15.625rem] h-[1.875rem] pl-[0.625rem] text-Contents-contentPrimary"
         />
       </form>
     </div>
 
-    <div class="font-pretendard text-base font-semibold leading-normal">
+    <div class="text-base font-semibold leading-normal">
       <span class="ml-3">친구들이 많이 찾고 있어요!</span>
 
       <nav class="pl-3 overflow-x-scroll no-scrollbar mt-3">
-        <ul class="flex text-sm gap-1">
-          <li
-            tabindex="0"
-            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
-          >
-            노트북
-          </li>
-          <li
-            tabindex="0"
-            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
-          >
-            노트북 거치대
-          </li>
-          <li
-            tabindex="0"
-            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
-          >
-            키보드
-          </li>
-          <li
-            tabindex="0"
-            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
-          >
-            마우스
-          </li>
-          <li
-            tabindex="0"
-            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
-          >
-            헤드셋
-          </li>
-          <li
-            tabindex="0"
-            class="flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]"
-          >
-            기타등등
-          </li>
+        <ul class="search-ul flex text-sm gap-1">
+          <li tabindex="0" class="search-ul-li">노트북</li>
+          <li tabindex="0" class="search-ul-li">노트북 거치대</li>
+          <li tabindex="0" class="search-ul-li">키보드</li>
+          <li tabindex="0" class="search-ul-li">마우스</li>
+          <li tabindex="0" class="search-ul-li">헤드셋</li>
+          <li tabindex="0" class="search-ul-li">기타등등</li>
         </ul>
       </nav>
     </div>

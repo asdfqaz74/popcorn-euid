@@ -18,3 +18,9 @@
     scrollbar-width: none; /* Firefox */
   }
 }
+
+@layer components {
+  .search-ul-li {
+    @apply flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]
+  }
+}

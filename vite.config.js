@@ -8,6 +8,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         story: resolve(__dirname, 'src/pages/story/index.html'),
+        search: resolve(__dirname, 'src/pages/search/index.html'),
       },
     },
   },
