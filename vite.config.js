@@ -14,6 +14,7 @@ export default defineConfig({
         start: resolve(__dirname, 'src/pages/start/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
         writeBoardSecond: resolve(__dirname, 'src/pages/profile/index.html'),
+        boardContet: resolve(__dirname, 'src/pages/boardContent/index.html'),
       },
     },
   },
