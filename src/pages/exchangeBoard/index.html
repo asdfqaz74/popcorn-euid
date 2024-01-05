@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>Vite - Tailwindcss</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="module"
+      src="/src/pages/exchangeBoard/exchangeBoard.js"
+    ></script>
+  </head>
+  <body class="font-pretendard">
+    <h1 class="sr-only">이듬 거래글</h1>
+
+    <nav
+      class="exchangeBoard-nav sticky flex justify-around px-[1.125rem] py-2 top-0 bg-background"
+    >
+      <div class="flex gap-2 -translate-x-11 items-center">
+        <a href="/src/pages/exchangeBoard/index.html">
+          <img src="/public/images/directionL.svg" alt="뒤로가기 버튼" />
+        </a>
+        <a href="/src/pages/exchangeBoard/index.html">
+          <img src="/public/images/home.svg" alt="홈으로 가기 버튼" />
+        </a>
+      </div>
+      <div class="flex gap-3 translate-x-10">
+        <button type="button" class="exchangeBoard-share" aria-label="공유하기">
+          <img src="/public/images/share.svg" alt="공유하기 아이콘" />
+        </button>
+        <button type="button" class="exchangeBoard-more" aria-label="더보기">
+          <img src="/public/images/more.svg" alt="더보기 아이콘" />
+        </button>
+      </div>
+    </nav>
+
+    <div class="exchangeBoard-img image-box w-full h-[17.75rem]">
+      <img
+        src="/public/images/macbook20.png"
+        class="w-full h-full object-cover"
+        alt="2020 맥북 에어 M1"
+      />
+    </div>
+
+    <div class="flex py-[0.625rem] px-4 justify-between">
+      <div class="flex">
+        <div
+          class="exchangeBoard-profile-wrapper w-[2.5rem] h-[2.5rem] relative bg-Contents-contentSecondary rounded-7xl"
+        >
+          <img
+            src="/public/images/macbook20.png"
+            class="exchangeBoard-profile overflow-hidden absolute top-0 left-0 w-full h-full object-cover rounded-7xl"
+            alt="프로필"
+          />
+        </div>
+        <div class="flex-col ml-[0.375rem]">
+          <span
+            class="exchangeBoard-user block text-base font-semibold leading-normal"
+            >맥이뜸</span
+          >
+          <span class="exchangeBoard-user-location text-sm font-normal"
+            >응암동</span
+          >
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <span
+            class="exchangeBoard-degree text-base text-secondary font-semibold leading-normal"
+            >41.2<sup>&deg;</sup>C</span
+          >
+          <span class="exchangeBoard-degree-state">😀</span>
+        </div>
+        <span class="block text-right text-Contents-contentSecondary text-sm"
+          >매너온도</span
+        >
+      </div>
+    </div>
+
+    <div class="p-3 mb-6">
+      <h2 class="text-lg font-semibold mb-1">2020 MacBook Air M1</h2>
+      <div class="block text-sm text-Contents-contentSecondary mb-3">
+        <span class="exchangeBoard-thing">컴퓨터</span>
+        <span class="exchangeBoard-time">17분전</span>
+      </div>
+      <div class="exchangeBoard-textBox-wrapper">
+        <span class="block text-base">상태 깨끗하고 좋아요</span>
+        <span class="block text-base font-normal"
+          >왜냐하면 맥을 사용할 줄 몰라서 넷플릭스용으로만 봤어요. 집근처에서
+          거래 희망합니다.</span
+        >
+      </div>
+    </div>
+
+    <div class="flex justify-between px-3 mb-9">
+      <div class="flex items-center">
+        <button type="button" class="exchangeBoard-heart">
+          <img
+            src="/public/images/heart.svg"
+            class="w-[1.25rem] h-[1.25rem]"
+            alt="좋아요"
+          />
+        </button>
+        <div
+          class="flex-col border-l border-Contents-contentSecondary ml-[0.8125rem] pl-[0.8125rem]"
+        >
+          <span class="exchangeBoard-price block text-base font-semibold"
+            >820,000원</span
+          >
+          <a
+            class="exchangeBoard-price-link block text-sm text-secondary font-semibold"
+            href="/src/pages/exchangeBoard/index.html"
+            >가격 제안하기</a
+          >
+        </div>
+      </div>
+
+      <div>
+        <a
+          href="/src/pages/exchangeBoard/"
+          class="exchangeBoard-chat-link w-[4.8125rem] h-[2.3125rem] bg-secondary px-[0.875rem] py-2 rounded-2xl text-background text-base font-semibold"
+          >채팅하기</a
+        >
+      </div>
+    </div>
+
+    <div
+      class="exchangeBoard-another border-t border-Contents-contentSecondary font-pretendard pb-4"
+    >
+      <h2 class="block py-3 px-[0.875rem] text-base font-semibold">
+        이 글과 함께 봤어요
+      </h2>
+
+      <div class="grid grid-cols-2 place-items-center">
+        <figure
+          class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
+        >
+          <img
+            src="/public/images/macbook20.png"
+            class="w-full h-full object-cover rounded-2xl"
+            alt="물건"
+          />
+          <figcaption class="text-sm block">
+            <a href="/src/pages/exchangeBoard/">
+              <p class="exchangeBoard-another-text block truncate">
+                스타벅스 아메리카노
+              </p>
+            </a>
+            <span class="exchangeBoard-another-price font-semibold"
+              >10,000원</span
+            >
+          </figcaption>
+        </figure>
+
+        <figure
+          class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
+        >
+          <img
+            src="/public/images/macbook20.png"
+            class="w-full h-full object-cover rounded-2xl"
+            alt="물건"
+          />
+          <figcaption class="text-sm block">
+            <a href="/src/pages/exchangeBoard/">
+              <p class="exchangeBoard-another-text block truncate">
+                스타벅스 아메리카노
+              </p>
+            </a>
+            <span class="exchangeBoard-another-price font-semibold"
+              >10,000원</span
+            >
+          </figcaption>
+        </figure>
+
+        <figure
+          class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
+        >
+          <img
+            src="/public/images/macbook20.png"
+            class="w-full h-full object-cover rounded-2xl"
+            alt="물건"
+          />
+          <figcaption class="text-sm block">
+            <a href="/src/pages/exchangeBoard/">
+              <p class="exchangeBoard-another-text block truncate">
+                스타벅스 아메리카노
+              </p>
+            </a>
+            <span class="exchangeBoard-another-price font-semibold"
+              >10,000원</span
+            >
+          </figcaption>
+        </figure>
+
+        <figure
+          class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
+        >
+          <img
+            src="/public/images/macbook20.png"
+            class="w-full h-full object-cover rounded-2xl"
+            alt="물건"
+          />
+          <figcaption class="text-sm block">
+            <a href="/src/pages/exchangeBoard/">
+              <p class="exchangeBoard-another-text block truncate">
+                스타벅스 아메리카노
+              </p>
+            </a>
+            <span class="exchangeBoard-another-price font-semibold"
+              >10,000원</span
+            >
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </body>
+</html>
