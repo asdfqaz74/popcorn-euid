@@ -12,6 +12,11 @@ export default defineConfig({
         story: resolve(__dirname, 'src/pages/story/index.html'),
         start: resolve(__dirname, 'src/pages/start/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
+        profileCard: resolve(__dirname, 'src/pages/profileCard/index.html'),
+        profileDetails: resolve(
+          __dirname,
+          'src/pages/profileDetails/index.html'
+        ),
       },
     },
   },
