@@ -59,11 +59,17 @@
     @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2;
   }
 
+  .profileDetails-button-valid{
+    @apply border border-secondary rounded-lg bg-background text-secondary
+
+
   .signUp-verify-valid {
     @apply bg-gray-500 text-background font-bold
   }
 
   .signUp-agree-valid{
     @apply bg-tertiary
+
   }
+}
 }

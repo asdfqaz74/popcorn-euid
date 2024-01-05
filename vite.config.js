@@ -14,7 +14,12 @@ export default defineConfig({
         start: resolve(__dirname, 'src/pages/start/index.html'),
         signUP: resolve(__dirname, 'src/pages/signUp/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
-
+        profileCard: resolve(__dirname, 'src/pages/profileCard/index.html'),
+        profileDetails: resolve(
+          __dirname,
+          'src/pages/profileDetails/index.html'
+        ),
+        board: resolve(__dirname, 'src/pages/board/index.html'),
         writeBoardSecond: resolve(
           __dirname,
           'src/pages/writeBoardSecond/index.html'
