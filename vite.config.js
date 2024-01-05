@@ -9,6 +9,7 @@ export default defineConfig({
         main: resolve(__dirname, 'index.html'),
         togetherBoard: resolve(__dirname, 'src/pages/togetherBoard/index.html'),
         story: resolve(__dirname, 'src/pages/story/index.html'),
+        search: resolve(__dirname, 'src/pages/search/index.html'),
         exchangeBoard: resolve(__dirname, 'src/pages/exchangeBoard/index.html'),
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
         start: resolve(__dirname, 'src/pages/start/index.html'),
