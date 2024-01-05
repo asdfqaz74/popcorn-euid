@@ -9,6 +9,9 @@ export default {
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'],
       },
+      screens: {
+        xs: '320px',
+      },
     },
     colors: {
       primary: '#373f67',
