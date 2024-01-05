@@ -59,6 +59,9 @@
     @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2;
   }
 
+  .profileCard-form {
+    @apply flex justify-between items-center px-3
+
   .profileDetails-button-valid{
     @apply border border-secondary rounded-lg bg-background text-secondary
 
