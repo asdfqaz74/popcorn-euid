@@ -3,8 +3,14 @@ export default {
   content: ['./index.html', './src/**/*.html'],
   theme: {
     extend: {
+      backgroundImage: {
+        temperatureAngle: "url('/public/images/temperatureAngle.svg')",
+      },
       fontFamily: {
         pretendard: ['Pretendard', 'sans-serif'],
+      },
+      screens: {
+        xs: '320px',
       },
     },
     colors: {
