@@ -10,11 +10,14 @@ export default defineConfig({
         board: resolve(__dirname, 'src/pages/board/index.html'),
         togetherBoard: resolve(__dirname, 'src/pages/togetherBoard/index.html'),
         story: resolve(__dirname, 'src/pages/story/index.html'),
+        exchangeBoard: resolve(__dirname, 'src/pages/exchangeBoard/index.html'),
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
         start: resolve(__dirname, 'src/pages/start/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
-        writeBoardSecond: resolve(__dirname, 'src/pages/profile/index.html'),
+        writeBoardSecond: resolve(__dirname, 'src/pages/writeBoardSecond/index.html'),
         chatScreen: resolve(__dirname, 'src/pages/chatScreen/index.html'),
+
+    
       },
     },
   },
