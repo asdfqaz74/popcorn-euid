@@ -30,9 +30,7 @@ export default defineConfig({
         ),
         boardContet: resolve(__dirname, 'src/pages/boardContent/index.html'),
         chatScreen: resolve(__dirname, 'src/pages/chatScreen/index.html'),
-           writeBoard: resolve(__dirname, 'src/pages/writeBoard/index.html'),
-              board: resolve(__dirname, 'src/pages/board/index.html'),
-
+        writeBoard: resolve(__dirname, 'src/pages/writeBoard/index.html'),
       },
     },
   },
