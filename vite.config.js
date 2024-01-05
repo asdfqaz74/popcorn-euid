@@ -15,8 +15,9 @@ export default defineConfig({
         start: resolve(__dirname, 'src/pages/start/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
         writeBoardSecond: resolve(__dirname, 'src/pages/writeBoardSecond/index.html'),
-        writeBoardThird: resolve(__dirname, 'src/pages/profile/index.html'),
+        chatScreen: resolve(__dirname, 'src/pages/chatScreen/index.html'),
 
+    
       },
     },
   },
