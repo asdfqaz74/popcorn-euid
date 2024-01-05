@@ -3,6 +3,11 @@
 @tailwind utilities;
 
 @layer base {
+  @font-face {
+    font-family: 'Pretendard';
+    src: url('/public/fonts/PretendardVariable.ttf') format('truetype');
+  }
+
   html {
     font-family: 'Pretendard', sans-serif;
     /* font-size: 16px; */
@@ -36,6 +41,10 @@
   .category--box__textTitle {
     @apply text-lg leading-7 font-semibold;
   }
+  
+  .exchange-li-button {
+    @apply bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1
+  }
 
   .profile-detail {
     @apply border-b-2;
@@ -49,5 +58,18 @@
   .profile-detail-textBox {
     @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2;
   }
-  
+
+  .profileDetails-button-valid{
+    @apply border border-secondary rounded-lg bg-background text-secondary
+
+
+  .signUp-verify-valid {
+    @apply bg-gray-500 text-background font-bold
+  }
+
+  .signUp-agree-valid{
+    @apply bg-tertiary
+
+  }
+}
 }
