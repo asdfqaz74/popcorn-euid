@@ -14,7 +14,6 @@ export default defineConfig({
         start: resolve(__dirname, 'src/pages/start/index.html'),
         signUP: resolve(__dirname, 'src/pages/signUp/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
-
         profileCard: resolve(__dirname, 'src/pages/profileCard/index.html'),
         profileDetails: resolve(
           __dirname,
@@ -31,6 +30,9 @@ export default defineConfig({
         ),
         boardContet: resolve(__dirname, 'src/pages/boardContent/index.html'),
         chatScreen: resolve(__dirname, 'src/pages/chatScreen/index.html'),
+           writeBoard: resolve(__dirname, 'src/pages/writeBoard/index.html'),
+              board: resolve(__dirname, 'src/pages/board/index.html'),
+
       },
     },
   },
