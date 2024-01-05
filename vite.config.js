@@ -14,8 +14,9 @@ export default defineConfig({
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
         start: resolve(__dirname, 'src/pages/start/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
-        writeBoardSecond: resolve(__dirname, 'src/pages/profile/index.html'),
+        writeBoardSecond: resolve(__dirname, 'src/pages/writeBoardSecond/index.html'),
         writeBoardThird: resolve(__dirname, 'src/pages/profile/index.html'),
+
       },
     },
   },
