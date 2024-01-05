@@ -6,3 +6,9 @@
   font-family: 'Pretendard';
   src: url('/public/fonts/PretendardVariable.ttf');
 }
+
+@layer components {
+  .exchange-li-button {
+    @apply bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1
+  }
+}
