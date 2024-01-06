@@ -9,8 +9,12 @@
     <script type="module" src="/src/pages/homeNav/homeNav.js"></script>
   </head>
   <body>
-    <nav class="fixed bottom-0 w-full px-3 pt-2 pb-6 bg-background">
-      <div class="flex justify-around text-sm font-normal font-pretendard">
+    <!-- 사용시 주의점 -->
+    <!-- nav 전의 box 에 mb-[3.75rem] class 꼭 추가! -->
+    <nav
+      class="fixed h-[3.75rem] border-t border-t-Contents-contentSecondary bottom-0 w-full px-3 pt-2 pb-2 bg-background"
+    >
+      <div class="flex justify-around text-sm font-normal">
         <div class="flex-col text-center">
           <img src="/public/images/fullHome.svg" class="mx-auto mb-1" alt="" />
           <span class>홈</span>
