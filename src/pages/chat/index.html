@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Vite - Tailwindcss</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="stylesheet" href="/src/styles/tailwind.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="/src/pages/chat/chat.js"></script>
+  </head>
+  <body>
+    <h1 class="sr-only">이듬 채팅창</h1>
+    <div class="flex justify-between px-3 items-center pt-4">
+      <a href="/src/pages/chat/">
+        <img src="/public/images/directionL.svg" alt="" />
+      </a>
+
+      <div class="flex-col text-center translate-x-2">
+        <span class="chat-user block text-base font-semibold">카페인조아</span>
+        <span class="chat-feedback block text-sm text-Contents-contentSecondary"
+          >보통 3일 내 응답</span
+        >
+      </div>
+
+      <div class="flex gap-[0.4375rem]">
+        <a href="tel:010-0000-0000">
+          <img src="/public/images/call.svg" alt="전화걸기" />
+        </a>
+
+        <button type="button" aria-label="더보기">
+          <img src="/public/images/more.svg" alt="" />
+        </button>
+      </div>
+    </div>
+
+    <div class="flex gap-2 pl-3 pt-3 pb-1 items-center">
+      <div
+        class="w-[2.125rem] h-[2.125rem] rounded-sm bg-Contents-contentSecondary"
+      >
+        <img
+          src="/public/images/hooray.png"
+          class="chat-profile w-full h-full object-cover"
+          alt="프로필"
+        />
+      </div>
+      <div>
+        <div>
+          <span class="chat-item-state text-sm font-semibold">판매중</span>
+          <span class="chat-item-title text-sm font-normal"
+            >intel mac 2017</span
+          >
+        </div>
+        <span class="chat-item-price text-sm font-semibold">800,000원</span>
+      </div>
+    </div>
+
+    <div class="pl-3 text-sm">
+      <ul class="flex gap-1">
+        <li class="border px-3 py-1 rounded-xl bg-background flex">
+          <a href="/src/pages/chat/" class="flex items-center">
+            <img
+              src="/public/images/calender.svg"
+              class="mr-[0.125rem]"
+              alt=""
+            />
+            약속 잡기
+          </a>
+        </li>
+        <li class="border px-3 py-1 rounded-xl bg-background flex">
+          <a href="/src/pages/chat/" class="flex items-center">
+            <img src="/public/images/won.svg" class="mr-[0.125rem]" alt="" />
+            송금 하기
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div
+      class="chat-wrapper border-t border-Contents-contentTertiary pt-2 mt-2"
+    >
+      <div
+        class="border-none rounded-3xl bg-Bluelight-400 text-background text-sm mx-[0.84375rem] py-3 px-4"
+      >
+        <span
+          ><em class="chat-user-class font-semibold not-italic">
+            💸 카페인조아님은 우수판매자에요.
+          </em>
+          개인정보유도와 명예훼손 내용은 차단될 수 있어요.
+          <a href="/src/pages/chat/" class="underline"> 자세히 보기</a>.</span
+        >
+      </div>
+
+      <div class="text-base pb-14">
+        <div class="text-center my-3 text-sm text-Contents-contentSecondary">
+          <span class="chat-date mx-auto">2023년 2월 21일</span>
+        </div>
+
+        <div class="chat-me flex mb-2 justify-end items-end gap-1">
+          <span class="chat-time text-sm text-Contents-contentSecondary"
+            >오후 4:30</span
+          >
+          <div
+            class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]"
+          >
+            <span class="chat-text">가격 네고 가능한가요?</span>
+          </div>
+        </div>
+
+        <div class="chat-me flex mb-2 justify-end items-end gap-1">
+          <span class="chat-time text-sm text-Contents-contentSecondary"
+            >오후 5:32</span
+          >
+          <div
+            class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]"
+          >
+            <span class="chat-text">목요일 거래 가능할까요?</span>
+          </div>
+        </div>
+
+        <div class="text-center my-3 text-sm text-Contents-contentSecondary">
+          <span class="chat-date mx-auto">2023년 2월 22일</span>
+        </div>
+
+        <div class="chat-me flex mb-2 justify-end items-end gap-1">
+          <span class="chat-time text-sm text-Contents-contentSecondary"
+            >오후 9:16</span
+          >
+          <div
+            class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]"
+          >
+            <span class="chat-text">님, 전화받으삼</span>
+          </div>
+        </div>
+
+        <div class="text-center my-3 text-sm text-Contents-contentSecondary">
+          <span class="chat-date mx-auto">2023년 3월 6일</span>
+        </div>
+
+        <div class="chat-you flex mb-2 items-end gap-1">
+          <div
+            class="border-none px-[0.875rem] py-2 ml-3 rounded-6xl bg-bluegray-100 text-Contents-contentPrimary max-w-[15.5rem]"
+          >
+            <span class="chat-text"
+              >죄송해요ㅠㅠ 제가 핸드폰을 바꿔서 지금봤네요ㅠㅠ 판매는 안됐는데
+              먼저 연락하신분이 있어서 답장 기다리고 있습니다ㅠㅠ
+            </span>
+          </div>
+          <span class="chat-time text-sm text-Contents-contentSecondary"
+            >오후 7:14</span
+          >
+        </div>
+      </div>
+
+      <div
+        class="fixed text-base items-center flex gap-[0.375rem] bottom-0 w-full px-3 py-2 bg-background"
+      >
+        <button class="chat-option" type="button">
+          <img src="/public/images/plus.svg" alt="추가옵션" />
+        </button>
+        <form action="#" method="post" class="w-full relative flex">
+          <label for="message" class="sr-only">메세지</label>
+          <textarea
+            class="chat-input h-10 relative text-nowrap rounded-full px-3 py-2.5 w-full bg-bluegray-100 resize-none no-scrollbar"
+            id="message"
+            name="message"
+            placeholder="메시지 보내기"
+          ></textarea>
+          <button
+            class="chat-emoji-button absolute inset-y-2 right-4"
+            type="button"
+          >
+            <img src="/public/images/Group.svg" alt="이모지 선택" />
+          </button>
+        </form>
+        <button
+          class="chat-send-button h-[1.875rem] w-[1.5625rem]"
+          type="button"
+        >
+          <img
+            src="/public/images/send.svg"
+            class="object-center"
+            alt="메세지 보내기"
+          />
+        </button>
+      </div>
+    </div>
+  </body>
+</html>
