@@ -12,31 +12,36 @@
     <h1 class="sr-only">이듬엔터 프로필</h1>
     <main class="py-[2.625rem] px-8">
       <h2 class="sr-only">나의 프로필</h2>
-      <figure class="w-full flex flex-col items-center">
-        <div
-          class=" w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden"
-        >
-          <img
-            class="w-full h-full object-center"
-            src="/src/assets/profileTest.jpg"
-            alt="프로필 사진"
-          />
-        </div>
-        <figcaption>
+      <div class="w-full flex flex-col items-center gap-1">
+        <a href="/src/pages/profileCard/" class="relative block">
+          <div
+            class="w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden shadow-sm"
+          >
+            <img
+              class="w-full h-full object-center"
+              src="/src/assets/profileTest.jpg"
+              alt="프로필 사진"
+            />
+          </div>
+          <span
+            class="block bg-pencil w-5 h-5 absolute bottom-0 bg-no-repeat bg-contain right-0 bg-background rounded-full shadow-md"
+          ></span>
+        </a>
+        <div>
           <span class="text-lg font-semibold">hobby</span>
           <span
             class="text-sm text-secondary inline-block border border-secondary rounded-full px-1"
             >4기</span
           >
-        </figcaption>
-      </figure>
+        </div>
+      </div>
 
       <div class="text-center text-sm text-Contents-contentSecondary">
-        <a class="" href=""> 답변 35 </a>
+        <a class="" href="/src/pages/profileCard/"> 답변 35 </a>
       </div>
       <ul class="flex justify-between mt-[0.9375rem] text-sm font-semibold">
         <li>
-          <a class="" href="/">
+          <a class="" href="/src/pages/story/">
             <figure class="flex flex-col justify-between h-full">
               <img class="mx-auto" src="/public/images/Q&A.svg" alt="" />
               <figcaption>나의 Q&A</figcaption>
@@ -44,7 +49,7 @@
           </a>
         </li>
         <li>
-          <a class="" href="/">
+          <a class="" href="/src/pages/profile/">
             <figure class="flex flex-col justify-between h-full">
               <img class="mx-auto" src="/public/images/profile.svg" alt="" />
               <figcaption>나의 프로필</figcaption>
@@ -52,7 +57,7 @@
           </a>
         </li>
         <li>
-          <a class="" href="/">
+          <a class="" href="/src/pages/profile/">
             <figure class="flex flex-col justify-between h-full">
               <img class="mx-auto" src="/public/images/alramBell.svg" alt="" />
               <figcaption>내소식</figcaption>
@@ -64,7 +69,7 @@
     <div class="px-3">
       <p class="text-base flex items-center gap-0.5">
         열정온도
-        <a href="/">
+        <a href="#none">
           <img src="/public/images/information.svg" alt="열정온도 정보" />
         </a>
       </p>
@@ -207,8 +212,11 @@
           <a href="/">공지사항</a>
         </li>
         <li class="flex justify-between">
-          <a class="text-negative" href="/">로그아웃 </a>
+          <button class="profile-button-logOut text-negative">로그아웃</button>
           <span class="text-Bluelight-500">userId</span>
+        </li>
+        <li class="text-right text-base">
+          <button class="profile-delete-button">탈퇴하기</button>
         </li>
       </ul>
     </div>
