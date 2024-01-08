@@ -48,202 +48,169 @@
         관심분야를 선택해주세요!
       </p>
 
-      <div class="category-container grid grid-cols-2">
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">프로그래밍</p>
-              <p class="category-item-textTitle">프론트엔드</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+      <!-- 카테고리 감싸는 div -->
+      <div class="category-container flex justify-between flex-wrap">
+        <!-- 카테고리 아이템 -->
+        <div
+          data-category="프론트엔드"
+          class="category-button-selected category-item"
+        >
+          <div>
+            <p class="category-item-textType">프로그래밍</p>
+            <p class="category-item-textTitle text-nowrap">프론트엔드</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">프로그래밍</p>
-              <p class="category-item-textTitle">백엔드</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="백엔드"
+          class="category-button-selected category-item"
+        >
+          <div>
+            <p class="category-item-textType">프로그래밍</p>
+            <p class="category-item-textTitle text-nowrap">백엔드</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">프로그래밍</p>
-              <p class="category-item-textTitle">리액트</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="리액트"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">프로그래밍</p>
+            <p class="category-item-textTitle text-nowrap">리액트</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">프로그래밍</p>
-              <p class="category-item-textTitle">풀스택</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="풀스택"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">프로그래밍</p>
+            <p class="category-item-textTitle text-nowrap">풀스택</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">프로그래밍</p>
-              <p class="category-item-textTitle">알고리즘</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="알고리즘"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">프로그래밍</p>
+            <p class="category-item-textTitle text-nowrap">알고리즘</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">프로그래밍</p>
-              <p class="category-item-textTitle">기초지식</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="기초지식"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">프로그래밍</p>
+            <p class="category-item-textTitle text-nowrap">기초지식</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">디자인</p>
-              <p class="category-item-textTitle">UI디자인</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="UI디자인"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">디자인</p>
+            <p class="category-item-textTitle text-nowrap">UI디자인</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">디자인</p>
-              <p class="category-item-textTitle">UX디자인</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="UX디자인"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">디자인</p>
+            <p class="category-item-textTitle text-nowrap">UX디자인</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">디자인</p>
-              <p class="category-item-textTitle">UI·UX</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="UI • UX"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">디자인</p>
+            <p class="category-item-textTitle text-nowrap">UI • UX</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">데이터</p>
-              <p class="category-item-textTitle">데이터분석</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="데이터분석"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">데이터</p>
+            <p class="category-item-textTitle text-nowrap">데이터분석</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">데이터</p>
-              <p class="category-item-textTitle">통계분석</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="통계분석"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">데이터</p>
+            <p class="category-item-textTitle text-nowrap">통계분석</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
 
-        <form class="category-item category-item-active" method="post">
-          <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
-          >
-            <div>
-              <p class="category-item-textType">데이터</p>
-              <p class="category-item-textTitle">시각화</p>
-            </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
-          </label>
-        </form>
+        <div
+          data-category="시각화"
+          class="category-button-selected category-item mt-3"
+        >
+          <div>
+            <p class="category-item-textType">데이터</p>
+            <p class="category-item-textTitle text-nowrap">시각화</p>
+          </div>
+          <span
+            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
+          ></span>
+        </div>
       </div>
+
       <a
-        class="category-button-save block text-center w-full mt-[0.625rem] py-[0.5rem] bg-primary rounded-2xl border-primary text-background text-base font-bold leading-5"
-        href="/"
+        class="category-button-save block text-center w-full mt-[1.125rem] py-[0.5rem] bg-primary rounded-2xl border-primary text-background text-base font-bold leading-5"
+        href="/src/pages/signUp/index.html"
         aria-label="저장하기"
         >이대로 저장할래요</a
       >
