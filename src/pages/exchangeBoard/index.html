@@ -6,6 +6,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script
       type="module"
       src="/src/pages/exchangeBoard/exchangeBoard.js"
@@ -15,12 +16,12 @@
     <h1 class="sr-only">이듬 거래글</h1>
 
     <nav
-      class="exchangeBoard-nav sticky flex gap-48 justify-around px-[1.125rem] py-2 top-0 bg-background"
+      class="exchangeBoard-nav sticky flex gap-48 justify-around px-[1.125rem] py-2 top-0 bg-background z-10"
     >
-      <div class="flex gap-2">
-        <a href="/src/pages/exchange/">
+      <div class="flex gap-3">
+        <button type="button" class="exchangeBoard-back">
           <img src="/public/images/directionL.svg" alt="뒤로가기 버튼" />
-        </a>
+        </button>
         <a href="/src/pages/story/">
           <img src="/public/images/home.svg" alt="홈으로 가기 버튼" />
         </a>
@@ -109,10 +110,9 @@
           <span class="exchangeBoard-price block text-base font-semibold"
             >820,000원</span
           >
-          <a
+          <span
             class="exchangeBoard-price-link block text-sm text-secondary font-semibold"
-            href="/src/pages/exchangeBoard/index.html"
-            >가격 제안하기</a
+            >가격 제안하기</span
           >
         </div>
       </div>
@@ -127,7 +127,7 @@
     </div>
 
     <div
-      class="exchangeBoard-another border-t border-Contents-contentSecondary font-pretendard pb-4"
+      class="exchangeBoard-another border-t border-Contents-contentSecondary font-pretendard pb-4 mb-[3.75rem]"
     >
       <h2 class="block py-3 px-[0.875rem] text-base font-semibold">
         이 글과 함께 봤어요
@@ -215,5 +215,38 @@
         </figure>
       </div>
     </div>
+
+    <nav
+      class="fixed h-[3.75rem] border-t border-t-Contents-contentSecondary bottom-0 w-full px-3 pt-2 pb-2 bg-background"
+    >
+      <div class="flex justify-around text-sm font-normal">
+        <div class="flex-col text-center">
+          <a href="/src/pages/story/">
+            <img src="/public/images/home.svg" class="mx-auto mb-1" alt="" />
+            <span class>홈</span>
+          </a>
+        </div>
+        <div class="flex-col items-center justify-center">
+          <a href="/src/pages/board/">
+            <img src="/public/images/life.svg" class="mx-auto mb-1" alt="" />
+            <span>게시판</span>
+          </a>
+        </div>
+        <div class="flex-col items-center justify-center">
+          <a href="/src/pages/exchange/">
+            <img src="/public/images/fullMap.svg" class="mx-auto mb-1" alt="" />
+            <span>내 근처</span>
+          </a>
+        </div>
+        <div class="flex-col items-center justify-center">
+          <img src="/public/images/chat.svg" class="mx-auto mb-1" alt="" />
+          <span>채팅</span>
+        </div>
+        <div class="flex-col items-center justify-center">
+          <img src="/public/images/my.svg" class="mx-auto mb-1" alt="" />
+          <span>나의 이듬</span>
+        </div>
+      </div>
+    </nav>
   </body>
 </html>

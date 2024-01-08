@@ -6,6 +6,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script type="module" src="/src/pages/exchange/exchange.js"></script>
   </head>
   <body>
@@ -55,7 +56,7 @@
           <li class="mx-auto">
             <a href="/src/pages/story/">선배님 스토리</a>
           </li>
-          <li class="boardNav-active mx-auto">
+          <li class="text-background mx-auto">
             <a class="" href="/src/pages/exchange/">기기 거래</a>
           </li>
           <li class="mx-auto">
@@ -68,45 +69,11 @@
       </nav>
     </div>
 
-    <!-- 버튼 눌리기 전 -->
-    <!-- <button
-      type="button"
-      class="exchange-button"
+    <button type="button" class="exchange-button exchange-button-no z-10">
       <img src="/public/images/plusTap.svg" alt="" />
     </button>
-    > -->
-    <button type="button" class="exchange-button-active">
-      <img src="/public/images/plusTapActive.svg" alt="" />
-    </button>
-    <div class="fixed bottom-44 right-5">
-      <ul>
-        <li class="exchange-headset exchange-li-button">
-          <button type="button" aria-label="헤드셋 품목만 정렬">
-            🎧헤드셋
-          </button>
-        </li>
-        <li class="exchange-keyboard exchange-li-button">
-          <button type="button" aria-label="키보드 품목만 정렬">
-            ⌨️키보드
-          </button>
-        </li>
-        <li class="exchange-mouse exchange-li-button">
-          <button type="button" aria-label="마우스 품목만 정렬">
-            🖱️마우스
-          </button>
-        </li>
-        <li class="exchange-computer exchange-li-button">
-          <button type="button" aria-label="컴퓨터 품목만 정렬">
-            💻컴퓨터
-          </button>
-        </li>
-        <li class="exchange-etc exchange-li-button">
-          <button type="button" aria-label="기타 품목만 정렬">
-            🎈기타 등등
-          </button>
-        </li>
-      </ul>
-    </div>
+
+    <div class="exchange-button-ul fixed bottom-44 right-5"></div>
 
     <section class="mb-[3.75rem]">
       <h2 class="sr-only">기기 거래 게시판</h2>
@@ -150,14 +117,14 @@
               >
             </div>
           </div>
-          <div class="flex flex-grow items-center justify-end self-end pr-3">
-            <button type="button">
-              <img
-                src="/public/images/fullheart.svg"
-                class="exchange-board-heart w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
+          <div
+            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
+          >
+            <img
+              src="/public/images/heart.svg"
+              class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
+              alt=""
+            />
             <span class="exchange-board-like text-sm sm:text-lg">4</span>
           </div>
         </div>
@@ -202,14 +169,15 @@
               >
             </div>
           </div>
-          <div class="flex flex-grow items-center justify-end self-end pr-3">
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="exchange-board-heart w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
+          <div
+            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
+          >
+            <img
+              src="/public/images/heart.svg"
+              class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
+              alt=""
+            />
+
             <span class="exchange-board-like text-sm sm:text-lg">4</span>
           </div>
         </div>
@@ -223,7 +191,7 @@
         >
           <a href="/src/pages/exchangeBoard/">
             <img
-              src="/public/images/hooray.png"
+              src="/public/images/hello.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
               alt=""
             />
@@ -254,14 +222,15 @@
               >
             </div>
           </div>
-          <div class="flex flex-grow items-center justify-end self-end pr-3">
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="exchange-board-heart w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
+          <div
+            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
+          >
+            <img
+              src="/public/images/heart.svg"
+              class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
+              alt=""
+            />
+
             <span class="exchange-board-like text-sm sm:text-lg">4</span>
           </div>
         </div>
@@ -275,7 +244,7 @@
         >
           <a href="/src/pages/exchangeBoard/">
             <img
-              src="/public/images/hooray.png"
+              src="/public/images/hello.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
               alt=""
             />
@@ -306,14 +275,15 @@
               >
             </div>
           </div>
-          <div class="flex flex-grow items-center justify-end self-end pr-3">
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="exchange-board-heart w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
+          <div
+            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
+          >
+            <img
+              src="/public/images/heart.svg"
+              class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
+              alt=""
+            />
+
             <span class="exchange-board-like text-sm sm:text-lg">4</span>
           </div>
         </div>
@@ -327,7 +297,7 @@
         >
           <a href="/src/pages/exchangeBoard/">
             <img
-              src="/public/images/hooray.png"
+              src="/public/images/hello.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
               alt=""
             />
@@ -358,14 +328,15 @@
               >
             </div>
           </div>
-          <div class="flex flex-grow items-center justify-end self-end pr-3">
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="exchange-board-heart w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
+          <div
+            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
+          >
+            <img
+              src="/public/images/heart.svg"
+              class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
+              alt=""
+            />
+
             <span class="exchange-board-like text-sm sm:text-lg">4</span>
           </div>
         </div>
@@ -379,7 +350,7 @@
         >
           <a href="/src/pages/exchangeBoard/">
             <img
-              src="/public/images/hooray.png"
+              src="/public/images/hello.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
               alt=""
             />
@@ -410,14 +381,15 @@
               >
             </div>
           </div>
-          <div class="flex flex-grow items-center justify-end self-end pr-3">
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="exchange-board-heart w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
+          <div
+            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
+          >
+            <img
+              src="/public/images/heart.svg"
+              class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
+              alt=""
+            />
+
             <span class="exchange-board-like text-sm sm:text-lg">4</span>
           </div>
         </div>
@@ -429,16 +401,22 @@
     >
       <div class="flex justify-around text-sm font-normal">
         <div class="flex-col text-center">
-          <img src="/public/images/fullHome.svg" class="mx-auto mb-1" alt="" />
-          <span class>홈</span>
+          <a href="/src/pages/story/">
+            <img src="/public/images/home.svg" class="mx-auto mb-1" alt="" />
+            <span class>홈</span>
+          </a>
         </div>
         <div class="flex-col items-center justify-center">
-          <img src="/public/images/life.svg" class="mx-auto mb-1" alt="" />
-          <span>게시판</span>
+          <a href="/src/pages/board/">
+            <img src="/public/images/life.svg" class="mx-auto mb-1" alt="" />
+            <span>게시판</span>
+          </a>
         </div>
         <div class="flex-col items-center justify-center">
-          <img src="/public/images/map.svg" class="mx-auto mb-1" alt="" />
-          <span>내 근처</span>
+          <a href="/src/pages/exchange/">
+            <img src="/public/images/fullMap.svg" class="mx-auto mb-1" alt="" />
+            <span>내 근처</span>
+          </a>
         </div>
         <div class="flex-col items-center justify-center">
           <img src="/public/images/chat.svg" class="mx-auto mb-1" alt="" />
