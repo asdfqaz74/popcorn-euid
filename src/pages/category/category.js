@@ -23,9 +23,9 @@ function toggleImage(e) {
   }
 }
 
-for (let i = 0; i < category.length; i++) {
-  category[i].addEventListener('click', toggleImage);
-}
+// for (let i = 0; i < category.length; i++) {
+//   category[i].addEventListener('click', toggleImage);
+// }
 // category.forEach(function (plus) {
 //   plus.addEventListener('click', toggleImage);
 // });
