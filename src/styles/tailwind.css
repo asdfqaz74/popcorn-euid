@@ -58,6 +58,10 @@
     @apply bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1;
   }
 
+  .exchange-li-write {
+    @apply bg-secondary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1;
+  }
+
   .profile-detail {
     @apply border-b-2;
   }
