@@ -5,6 +5,7 @@ export default defineConfig({
   build: {
     outDir: 'docs',
     target: 'esnext', //browsers can handle the latest ES features
+    base: '/popcorn-euid/',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
