@@ -1,14 +1,56 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko-KR">
   <head>
-    <title>Vite - Tailwindcss</title>
+    <title>당신 곁에 엔터이듬</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="/main.js"></script>
+    <script type="module" src="/src/pages/start/start.js"></script>
   </head>
-  <body>
-    <div id="app" class="text-Blue-500 ">hi tailwind!</div>
+  <body class="font-pretendard">
+    <div
+      class="start--container relative flex flex-col justify-center items-center p-[0.625rem] h-screen max-w-[47.9375rem] mx-auto"
+    >
+      <h1 class="start--logo">
+        <a href="/" aria-label="메인페이지로 이동">
+          <img
+            class="w-[5.3rem] h-[1.86rem]"
+            src="/public/images/logo.svg"
+            alt="엔터이듬"
+        /></a>
+      </h1>
+      <div
+        class="start--text mt-[3.125rem] flex flex-col justify-center items-center"
+      >
+        <p class="text-lg font-bold text-primary leading-7">
+          당신 곁에 엔터이듬
+        </p>
+        <p class="mt-[0.6875rem] text-base font-normal text-primary leading-6">
+          With EUID’s 함께 성장하기
+        </p>
+        <p class="text-base font-normal text-primary leading-6">
+          함께 배우고 적용하며 성장해보세요!
+        </p>
+      </div>
+
+      <div class="w-full px-3 absolute bottom-14">
+        <a
+          class="start--button w-full mx-auto block text-center py-[0.5rem] bg-primary rounded-2xl border-primary text-background text-base font-bold leading-5"
+          href="/src/pages/category/index.html"
+          aria-label="시작하기"
+          >시작하기</a
+        >
+        <!-- max-w-[21.5625rem] -->
+        <div
+          class="start--goLogin flex flex-row justify-center items-center gap-3.5 text-base mt-[1.25rem] font-sm font-normal leading-4"
+        >
+          <p class="text-gray-500">이미 계정이 있나요?</p>
+          <a class="font-bold text-primary" href="/src/pages/login/index.html"
+            >로그인</a
+          >
+        </div>
+      </div>
+    </div>
   </body>
 </html>
