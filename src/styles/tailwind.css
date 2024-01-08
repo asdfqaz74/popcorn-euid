@@ -29,6 +29,7 @@
 }
 
 @layer components {
+
    .category-item {
     @apply flex flex-row justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl w-[49%] h-[3.8125rem];
   }
@@ -40,8 +41,20 @@
   }
 
   
+  .search-ul-li {
+    @apply flex-shrink-0 border border-Contents-contentTertiary bg-background rounded-6xl px-3 py-[0.375rem]
+  }
+
+  .exchange-button {
+    @apply fixed bottom-28 right-5 bg-primary p-3 rounded-full shadow-Contents-contentPrimary shadow-md
+  }
+
+  .exchange-button-active {
+    @apply fixed bottom-28 right-5 p-3 rounded-full bg-background shadow-Contents-contentPrimary shadow-md
+  }
+  
   .exchange-li-button {
-    @apply bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1
+    @apply bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1;
   }
 
   .profile-detail {
@@ -56,12 +69,21 @@
   .profile-detail-textBox {
     @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2;
   }
+  .profileDetails-button-valid {
+    @apply border border-secondary rounded-lg bg-background text-secondary;
+  }
+  .profileCard-form {
+    @apply flex justify-between items-center px-3
+      }
+  .profileDetails-button-valid{
+    @apply border border-secondary rounded-lg bg-background text-secondary
+      }
 
   .signUp-verify-valid {
-    @apply bg-gray-500 text-background font-bold
+    @apply bg-gray-500 text-background font-bold;
   }
 
-  .signUp-agree-valid{
-    @apply bg-tertiary
+  .signUp-agree-valid {
+    @apply bg-tertiary;
   }
 }

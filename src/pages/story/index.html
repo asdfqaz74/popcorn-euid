@@ -11,7 +11,7 @@
 
   <body>
     <h1 class="sr-only">메인 홈</h1>
-    <header class="region-nav sticky top-0 bg-background">
+    <header class="region-nav sticky top-0 bg-background h-[2.8125rem]">
       <div class="region-nav__wrapper flex justify-between w-full px-5 py-2">
         <div class="flex flex-shrink-0 select-wrapper">
           <select
@@ -28,14 +28,22 @@
         </div>
 
         <div class="flex items-center gap-2">
-          <a href="/src/pages/story/" class="flex-shrink-0">
-            <img src="/public/images/search.svg" alt="" />
+          <a href="/src/pages/search/" class="flex-shrink-0">
+            <img
+              src="/public/images/search.svg"
+              class="w-[1.625rem] h-[1.625rem]"
+              alt=""
+            />
           </a>
           <a href="/src/pages/story/" class="flex-shrink-0">
             <img src="/public/images/hamburger.svg" alt="" />
           </a>
-          <a href="/src/pages/story/" class="flex-shrink-0">
-            <img src="/public/images/alramBell.svg" alt="" />
+          <a href="#none" class="flex-shrink-0">
+            <img
+              src="/public/images/alramBell.svg"
+              class="w-[1.25rem] h-[1.25rem]"
+              alt=""
+            />
           </a>
         </div>
       </div>
@@ -49,32 +57,26 @@
       />
     </div>
 
-    <nav>
+    <nav class="sticky top-[2.8125rem]">
       <ul
-        class="flex gap-1 p-2 text-base font-semibold leading-4 top-11 bg-primary font-pretendard text-background"
+        class="flex gap-1 p-2 text-base font-semibold leading-4 top-11 bg-primary text-Contents-contentTertiary"
       >
-        <li class="border-b border-tertiary mx-auto">
-          <a class="is-active" href="/src/pages/story/">선배님 스토리</a>
+        <li class="boardNav-active mx-auto">
+          <a href="/src/pages/story/">선배님 스토리</a>
         </li>
         <li class="mx-auto">
-          <a class="text-Contents-contentTertiary" href="/src/pages/story/"
-            >기기 거래</a
-          >
+          <a class="" href="/src/pages/exchange/">기기 거래</a>
         </li>
         <li class="mx-auto">
-          <a class="text-Contents-contentTertiary" href="/src/pages/story/"
-            >질의 응답</a
-          >
+          <a class="" href="/src/pages/story/">질의 응답</a>
         </li>
         <li class="mx-auto">
-          <a class="text-Contents-contentTertiary" href="/src/pages/story/"
-            >같이 해요</a
-          >
+          <a class="" href="/src/pages/story/">같이 해요</a>
         </li>
       </ul>
     </nav>
 
-    <div class="font-pretendard text-sm px-3 mx-auto mt-3">
+    <div class="font-pretendard text-sm px-3 mx-auto mt-3 mb-[3.75rem]">
       <section
         class="grid grid-cols-1 xs:flex xs:flex-wrap sm:grid sm:grid-cols-2 place-items-center justify-around"
       >
@@ -150,8 +152,10 @@
       </section>
     </div>
 
-    <nav class="sticky bottom-0 w-full px-3 pt-2 pb-6 bg-background">
-      <div class="flex justify-around text-sm font-normal font-pretendard">
+    <nav
+      class="fixed h-[3.75rem] border-t border-t-Contents-contentSecondary bottom-0 w-full px-3 pt-2 pb-2 bg-background"
+    >
+      <div class="flex justify-around text-sm font-normal">
         <div class="flex-col text-center">
           <img src="/public/images/fullHome.svg" class="mx-auto mb-1" alt="" />
           <span class>홈</span>

@@ -10,55 +10,74 @@
   </head>
   <body>
     <h1 class="sr-only">이듬 기기 거래</h1>
-    <header class="region-nav sticky top-0 bg-background z-10">
-      <div class="region-nav__wrapper flex justify-between w-full px-5 py-2">
-        <div class="flex flex-shrink-0 select-wrapper">
-          <select class="w-32 text-lg font-semibold appearance-none">
-            <option value="">남가좌제2동</option>
-            <option value="">호원2동</option>
-          </select>
-          <img
-            src="/public/images/direction.svg"
-            class="w-4 h-4 translate-y-1 pointer-events-none -translate-x-7"
-            alt=""
-          />
-        </div>
-        <div class="flex items-center gap-2">
-          <a href="/src/pages/story/" class="flex-shrink-0">
-            <img src="/public/images/search.svg" alt="" />
-          </a>
-          <a href="/src/pages/story/" class="flex-shrink-0">
-            <img src="/public/images/hamburger.svg" alt="" />
-          </a>
-          <a href="/src/pages/story/" class="flex-shrink-0">
-            <img src="/public/images/alramBell.svg" alt="" />
-          </a>
-        </div>
-      </div>
-    </header>
+    <div class="sticky top-0 z-10">
+      <header class="region-nav sticky top-0 bg-background h-[2.8125rem]">
+        <div class="region-nav__wrapper flex justify-between w-full px-5 py-2">
+          <div class="flex flex-shrink-0 select-wrapper">
+            <select
+              class="w-32 text-lg font-semibold appearance-none font-pretendard"
+            >
+              <option value="">남가좌제2동</option>
+              <option value="">호원2동</option>
+            </select>
+            <img
+              src="/public/images/direction.svg"
+              class="w-4 h-4 translate-y-1 pointer-events-none -translate-x-7"
+              alt=""
+            />
+          </div>
 
-    <nav
-      class="sticky flex justify-between gap-2 p-2 text-base font-semibold leading-4 top-11 bg-primary text-background z-10"
-    >
-      <a class="text-Contents-contentTertiary" href="/src/pages/story/"
-        >선배님 스토리</a
-      >
-      <a class="is-active" href="/src/pages/story/">기기 거래</a>
-      <a class="text-Contents-contentTertiary" href="/src/pages/story/"
-        >질의 응답</a
-      >
-      <a class="text-Contents-contentTertiary" href="/src/pages/story/"
-        >같이 해요</a
-      >
-    </nav>
+          <div class="flex items-center gap-2">
+            <a href="/src/pages/search/" class="flex-shrink-0">
+              <img
+                src="/public/images/search.svg"
+                class="w-[1.625rem] h-[1.625rem]"
+                alt=""
+              />
+            </a>
+            <a href="/src/pages/story/" class="flex-shrink-0">
+              <img src="/public/images/hamburger.svg" alt="" />
+            </a>
+            <a href="#none" class="flex-shrink-0">
+              <img
+                src="/public/images/alramBell.svg"
+                class="w-[1.25rem] h-[1.25rem]"
+                alt=""
+              />
+            </a>
+          </div>
+        </div>
+      </header>
+      <nav>
+        <ul
+          class="flex gap-1 p-2 text-base font-semibold leading-4 top-11 bg-primary text-Contents-contentTertiary"
+        >
+          <li class="mx-auto">
+            <a href="/src/pages/story/">선배님 스토리</a>
+          </li>
+          <li class="boardNav-active mx-auto">
+            <a class="" href="/src/pages/exchange/">기기 거래</a>
+          </li>
+          <li class="mx-auto">
+            <a class="" href="/src/pages/story/">질의 응답</a>
+          </li>
+          <li class="mx-auto">
+            <a class="" href="/src/pages/story/">같이 해요</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
 
-    <button
+    <!-- 버튼 눌리기 전 -->
+    <!-- <button
       type="button"
-      class="exchange-button fixed bottom-28 right-5 bg-primary p-3 rounded-full shadow-Contents-contentPrimary shadow-md"
-    >
-      <img class="" src="/public/images/plusTap.svg" alt="" />
+      class="exchange-button"
+      <img src="/public/images/plusTap.svg" alt="" />
     </button>
-
+    > -->
+    <button type="button" class="exchange-button-active">
+      <img src="/public/images/plusTapActive.svg" alt="" />
+    </button>
     <div class="fixed bottom-44 right-5">
       <ul>
         <li class="exchange-headset exchange-li-button">
@@ -89,7 +108,7 @@
       </ul>
     </div>
 
-    <section>
+    <section class="mb-[3.75rem]">
       <h2 class="sr-only">기기 거래 게시판</h2>
 
       <div
@@ -98,7 +117,7 @@
         <div
           class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
         >
-          <a href="/src/pages/exchange/">
+          <a href="/src/pages/exchangeBoard/">
             <img
               src="/public/images/hooray.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
@@ -110,7 +129,7 @@
         <div
           class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
         >
-          <a href="/src/pages/exchange/" class="exchange-board-link"
+          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
             >2017 mac pro</a
           >
           <div class="flex flex-col">
@@ -134,7 +153,7 @@
           <div class="flex flex-grow items-center justify-end self-end pr-3">
             <button type="button">
               <img
-                src="/public/images/heart.svg"
+                src="/public/images/fullheart.svg"
                 class="exchange-board-heart w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
                 alt=""
               />
@@ -150,7 +169,7 @@
         <div
           class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
         >
-          <a href="/src/pages/exchange/">
+          <a href="/src/pages/exchangeBoard/">
             <img
               src="/public/images/hello.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
@@ -162,7 +181,7 @@
         <div
           class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
         >
-          <a href="/src/pages/exchange/" class="exchange-board-link"
+          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
             >2017 mac pro</a
           >
           <div class="flex flex-col">
@@ -202,7 +221,7 @@
         <div
           class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
         >
-          <a href="/src/pages/exchange/">
+          <a href="/src/pages/exchangeBoard/">
             <img
               src="/public/images/hooray.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
@@ -214,7 +233,7 @@
         <div
           class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
         >
-          <a href="/src/pages/exchange/" class="exchange-board-link"
+          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
             >2017 mac pro</a
           >
           <div class="flex flex-col">
@@ -254,7 +273,7 @@
         <div
           class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
         >
-          <a href="/src/pages/exchange/">
+          <a href="/src/pages/exchangeBoard/">
             <img
               src="/public/images/hooray.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
@@ -266,7 +285,7 @@
         <div
           class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
         >
-          <a href="/src/pages/exchange/" class="exchange-board-link"
+          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
             >2017 mac pro</a
           >
           <div class="flex flex-col">
@@ -306,7 +325,7 @@
         <div
           class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
         >
-          <a href="/src/pages/exchange/">
+          <a href="/src/pages/exchangeBoard/">
             <img
               src="/public/images/hooray.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
@@ -318,7 +337,7 @@
         <div
           class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
         >
-          <a href="/src/pages/exchange/" class="exchange-board-link"
+          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
             >2017 mac pro</a
           >
           <div class="flex flex-col">
@@ -358,7 +377,7 @@
         <div
           class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
         >
-          <a href="/src/pages/exchange/">
+          <a href="/src/pages/exchangeBoard/">
             <img
               src="/public/images/hooray.png"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
@@ -370,7 +389,7 @@
         <div
           class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
         >
-          <a href="/src/pages/exchange/" class="exchange-board-link"
+          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
             >2017 mac pro</a
           >
           <div class="flex flex-col">
@@ -405,7 +424,9 @@
       </div>
     </section>
 
-    <nav class="sticky bottom-0 w-full px-3 pt-2 pb-2 bg-background">
+    <nav
+      class="fixed h-[3.75rem] border-t border-t-Contents-contentSecondary bottom-0 w-full px-3 pt-2 pb-2 bg-background"
+    >
       <div class="flex justify-around text-sm font-normal">
         <div class="flex-col text-center">
           <img src="/public/images/fullHome.svg" class="mx-auto mb-1" alt="" />
