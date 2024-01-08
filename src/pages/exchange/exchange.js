@@ -12,14 +12,22 @@ function handleButton() {
     gsap.to('.exchange-button-ul > ul > li', {
       y: 30,
       opacity: 0,
-      stagger: 0.1,
+      stagger: 0.05,
       onComplete: () => {
-        removeList();
         plusButton.classList.add('exchange-button-no');
+        gsap.to(plusButton, {
+          backgroundColor: 'rgb(55 63 103)',
+          duration: 0.2,
+        });
+        removeList();
         plusButton.classList.remove('exchange-button-active');
       },
     });
   } else {
+    gsap.to(plusButton, {
+      backgroundColor: 'rgb(255 255 255)',
+      duration: 0.6,
+    });
     plusButton.classList.remove('exchange-button-no');
     plusButton.classList.add('exchange-button-active');
     addList();
@@ -27,7 +35,7 @@ function handleButton() {
       y: 30,
       opacity: 0,
       stagger: {
-        each: 0.1,
+        each: 0.05,
         from: 'end',
       },
     });
@@ -68,6 +76,11 @@ function addList() {
       🎈기타 등등
       </button>
     </li>
+    <li class="exchange-write exchange-li-write">
+      <button type="button" aria-label="글쓰기">
+      📃작성하기
+      </button>
+    </li>
   </ul>
   `;
 
@@ -83,67 +96,3 @@ function removeList() {
 }
 
 plusButton.addEventListener('click', handleButton);
-
-/* -------------------------------------------------------------------------- */
-/*                                toggle heart                                */
-/* -------------------------------------------------------------------------- */
-
-// 모든 게시글의 좋아요 버튼을 선택합니다.
-const likeButtons = getNodes('.exchange-board-heart button');
-
-// 클릭 이벤트 리스너를 등록합니다.
-likeButtons.forEach((button) => {
-  button.addEventListener('click', handleLikeButtonClick);
-});
-
-// 클릭 이벤트 핸들러 함수를 정의합니다.
-function handleLikeButtonClick(event) {
-  // 현재 클릭된 버튼을 가져옵니다.
-  const heartButton = event.currentTarget;
-
-  // 버튼 내부의 이미지 엘리먼트를 찾습니다.
-  const heartImage = heartButton.querySelector('img');
-
-  // 현재 이미지의 src와 새로운 이미지의 src를 비교하여 이미지를 토글합니다.
-  const currentSrc = heartImage.src;
-  const newSrc = '/public/images/heart.svg';
-  const fullheartSrc = '/public/images/fullheart.svg';
-
-  if (currentSrc.includes(newSrc)) {
-    // 이미지가 'heart.svg'인 경우, 'fullheart.svg'로 변경
-    gsap.from(heartImage, {
-      scale: 0.8, // 축소된 크기에서 시작
-      duration: 0.1, // 애니메이션 기간
-      onComplete: () => {
-        heartImage.src = fullheartSrc;
-        gsap.to(heartImage, {
-          scale: 1, // 원래 크기로 복원
-          duration: 0.1,
-        });
-      },
-    });
-  } else {
-    // 이미지가 'fullheart.svg'가 아닌 경우, 'heart.svg'로 변경
-    gsap.from(heartImage, {
-      scale: 1.2, // 확대된 크기에서 시작
-      duration: 0.1,
-      onComplete: () => {
-        heartImage.src = newSrc;
-        gsap.to(heartImage, {
-          scale: 1,
-          duration: 0.1,
-        });
-      },
-    });
-  }
-
-  // 좋아요 갯수 업데이트
-  const likeCountSpan = heartButton.nextElementSibling;
-  const currentLikeCount = parseInt(likeCountSpan.innerText, 10);
-
-  if (heartImage.src.includes('full')) {
-    likeCountSpan.innerText = currentLikeCount - 1;
-  } else {
-    likeCountSpan.innerText = currentLikeCount + 1;
-  }
-}
