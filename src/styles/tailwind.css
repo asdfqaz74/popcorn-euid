@@ -87,4 +87,8 @@
   .signUp-agree-valid {
     @apply bg-tertiary;
   }
+
+  .category-button-selected{
+    @apply bg-primary text-background
+  }
 }

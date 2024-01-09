@@ -1,32 +1,34 @@
-import { getNode } from '/src/lib/';
+import { getNode, addClass } from '/src/lib/';
 
 // 뒤로가기 버튼 클릭 시 이전 페이지로 이동
 const goBack = getNode('.button-goback');
 
 function handleButton() {
-  window.location.href = '/src/pages/start/';
+  history.back();
 }
 
 goBack.addEventListener('click', handleButton);
 
-// 플러스 버튼 클릭 시 호버 효과
-const category = document.querySelectorAll('.category-item-button');
+// 플러스 버튼 클릭 시 배경 변경
+const categoryItems = document.querySelectorAll('.category-item');
 
-function toggleImage() {
-  const plusImage = this.querySelector('.category-item-image');
-  const isChecked = document.getElementById('checkbox').checked;
+function changeItem() {
+  this.classList.toggle('category-button-selected');
 
-  if (isChecked) {
-    plusImage.style.backgroundImage = "url('/public/images/checked.svg')";
-  } else {
-    plusImage.style.backgroundImage = "url('/public/images/plus.svg')";
+  const image = this.querySelector('.category-item-image');
+
+  if (image) {
+    const currentImage = image.style.backgroundImage;
+
+    image.style.backgroundImage = currentImage.includes('checked.svg')
+      ? "url('/public/images/plus.svg')" // 이미 'checked.svg'라면 'plus.svg'로 변경
+      : "url('/public/images/checked.svg')"; // 그렇지 않으면 'checked.svg'로 변경
+
+    image.style.backgroundRepeat = 'no-repeat';
   }
 }
+categoryItems.forEach(function (item) {
+  item.addEventListener('click', changeItem);
+});
 
-for (let i = 0; i < category.length; i++) {
-  category[i].addEventListener('click', toggleImage);
-}
-
-// category.forEach(function (plus) {
-//   plus.addEventListener('click', toggleImage);
-// });
+// localStorage 에 선택된 값 저장하기
