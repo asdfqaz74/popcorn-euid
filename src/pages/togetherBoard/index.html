@@ -23,61 +23,66 @@
     <nav
       class="px-5 py-2 flex gap-3 font-semibold text-sm text-center overflow-x-scroll no-scrollbar"
     >
-      <button class="togetherBoard-all w-fit" type="button">
+      <button class="togetherBoard w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-emogi.svg"
             alt="관심사 선택하기,전체"
           />
         </div>
-        <p class="mt-2">전체</p>
+        <p class="togetherTitle mt-2">전체</p>
       </button>
 
-      <button class="togetherBoard-project w-fit" type="button">
+      <button class="togetherBoard w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-project.svg"
             alt="관심사 선택하기 프로젝트"
           />
         </div>
-        <p class="mt-2">프로젝트</p>
+        <p class="togetherTitle mt-2">프로젝트</p>
       </button>
-      <button class="togetherBoard-study w-fit" type="button">
+      <button class="togetherBoard w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-study.svg"
             alt="관심사 선택하기 스터디"
           />
         </div>
-        <p class="mt-2">스터디</p>
+        <p class="togetherTitle mt-2">스터디</p>
       </button>
-      <button class="togetherBoard-offline w-fit" type="button">
+      <button class="togetherBoard w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-offline.svg"
             alt="관심사 선택하기 오프라인"
           />
         </div>
-        <p class="mt-2">오프라인</p>
+        <p class="togetherTitle mt-2">오프라인</p>
       </button>
       <button class="togetherBoard-contest w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-contest.svg"
             alt="관심사 선택하기 공모전"
           />
         </div>
-        <p class="mt-2">공모전</p>
+        <p class="togetherTitlemt-2">공모전</p>
       </button>
     </nav>
 
@@ -184,7 +189,7 @@
 
     <div class="hidden togetherBoard-plus-menu fixed bottom-44 right-5">
       <ul>
-        <li
+        <!-- <li
           class="bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1"
         >
           <button type="button" aria-label="헤드셋 품목만 정렬">
@@ -211,7 +216,7 @@
           <button type="button" aria-label="컴퓨터 품목만 정렬">
             💻컴퓨터
           </button>
-        </li>
+        </li> -->
         <li
           class="write-button whitespace-nowrap bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal"
         >
