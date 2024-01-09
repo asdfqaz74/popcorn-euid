@@ -6,9 +6,7 @@ const writeOnButton = getNode('.togetherBoard-write-on');
 const plusMenu = getNode('.togetherBoard-plus-menu');
 const writeBoard = getNode('.write-button');
 const togetherBoardButton = getNodes('.togetherBoard');
-const togetherTitle = getNode('.together-title');
-
-const buttonStates = {};
+const togetherTitle = getNode('.togetherTitle');
 
 function handleMove() {
   window.location.href = '/src/pages/writeBoard/index.html';
@@ -41,15 +39,24 @@ function handleClickOutside(event) {
 
 function handleClickMenu(event) {
   const button = event.target;
+  // console.log(button);
+  const pElement = button.querySelector('.togetherTitle');
+  console.log(button.lastElementChild);
 
   if (event.target.className.includes('togetherBoard-border')) {
     button.style.color = '#5a85ee';
     button.style.borderColor = '#5a85ee';
     button.style.borderStyle = 'solid';
     button.style.borderWidth = '2px';
-  }
-  if (event.target.className.includes('togetherTitle')) {
-    button.style.color = '#5a85ee';
+    // togetherTitle.classList.add('text-secondary');
+    // const pElement = button.querySelector('.togetherTitle');
+    // if (pElement) {
+    //   pElement.classList.add('text-secondary');
+    // }
+
+    if (pElement) {
+      pElement.style.color = '#5a85ee'; // Add your desired color for the <p> tag here
+    }
   }
 }
 
