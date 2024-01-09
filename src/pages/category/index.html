@@ -11,7 +11,7 @@
   <body>
     <h1 class="sr-only">관심분야 저장하기</h1>
     <div
-      class="category-container py-[1.125rem] px-[0.8125rem] h-screen max-w-[47.9375rem] mx-auto"
+      class="category-container py-[1.125rem] px-[0.8125rem] h-screen min-w-[17.5rem] max-w-[47.9375rem] mx-auto"
     >
       <div
         class="category-goBack flex flex-row justify-center items-center gap-2"
@@ -54,130 +54,220 @@
         method="post"
       >
         <!-- 카테고리 아이템 -->
-        <div class="category-item">
+        <div class="w-[49%]">
           <label
-            for="checkbox"
-            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
+            for="frontEnd"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
-            <div>
+            <div class="flex flex-col">
               <p class="category-item-textType">프로그래밍</p>
               <p class="category-item-textTitle">프론트엔드</p>
             </div>
-            <input type="checkbox" id="checkbox" class="hidden" />
-            <span
-              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
-            ></span>
+
+            <input
+              type="checkbox"
+              id="frontEnd"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
           </label>
         </div>
 
-        <div data-category="백엔드" class="category-item">
-          <div>
-            <p class="category-item-textType">프로그래밍</p>
-            <p class="category-item-textTitle text-nowrap">백엔드</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%]">
+          <label
+            for="backEnd"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">프로그래밍</p>
+              <p class="category-item-textTitle">백엔드</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="backEnd"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="리액트" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">프로그래밍</p>
-            <p class="category-item-textTitle text-nowrap">리액트</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="react"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">프로그래밍</p>
+              <p class="category-item-textTitle">리액트</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="react"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="풀스택" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">프로그래밍</p>
-            <p class="category-item-textTitle text-nowrap">풀스택</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="fullStack"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">프로그래밍</p>
+              <p class="category-item-textTitle">풀스택</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="fullStack"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="알고리즘" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">프로그래밍</p>
-            <p class="category-item-textTitle text-nowrap">알고리즘</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="algorithm"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">프로그래밍</p>
+              <p class="category-item-textTitle">알고리즘</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="algorithm"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="기초지식" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">프로그래밍</p>
-            <p class="category-item-textTitle text-nowrap">기초지식</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="basicKnowledge"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">프로그래밍</p>
+              <p class="category-item-textTitle">기초지식</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="basicKnowledge"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="UI디자인" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">디자인</p>
-            <p class="category-item-textTitle text-nowrap">UI디자인</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="uiDesign"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">디자인</p>
+              <p class="category-item-textTitle">UI디자인</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="uiDesign"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="UX디자인" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">디자인</p>
-            <p class="category-item-textTitle text-nowrap">UX디자인</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="uxDesign"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">디자인</p>
+              <p class="category-item-textTitle">UX디자인</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="uxDesign"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="UI • UX" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">디자인</p>
-            <p class="category-item-textTitle text-nowrap">UI • UX</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="uiuxDesign"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">디자인</p>
+              <p class="category-item-textTitle">UI • UX</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="uiuxDesign"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="데이터분석" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">데이터</p>
-            <p class="category-item-textTitle text-nowrap">데이터분석</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="dataAnalysis"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">데이터</p>
+              <p class="category-item-textTitle">데이터분석</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="dataAnalysis"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="통계분석" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">데이터</p>
-            <p class="category-item-textTitle text-nowrap">통계분석</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="statisticalAnalysis"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">데이터</p>
+              <p class="category-item-textTitle">통계분석</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="statisticalAnalysis"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
 
-        <div data-category="시각화" class="category-item mt-3">
-          <div>
-            <p class="category-item-textType">데이터</p>
-            <p class="category-item-textTitle text-nowrap">시각화</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="w-[49%] mt-3">
+          <label
+            for="visualization"
+            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+          >
+            <div class="flex flex-col">
+              <p class="category-item-textType">데이터</p>
+              <p class="category-item-textTitle">시각화</p>
+            </div>
+
+            <input
+              type="checkbox"
+              id="visualization"
+              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+            />
+          </label>
         </div>
       </form>
 
