@@ -15,9 +15,7 @@
       <header class="region-nav sticky top-0 bg-background h-[2.8125rem]">
         <div class="region-nav__wrapper flex justify-between w-full px-5 py-2">
           <div class="flex flex-shrink-0 select-wrapper">
-            <select
-              class="w-32 text-lg font-semibold appearance-none font-pretendard"
-            >
+            <select class="w-32 text-lg font-semibold appearance-none">
               <option value="">남가좌제2동</option>
               <option value="">호원2동</option>
             </select>
@@ -28,22 +26,22 @@
             />
           </div>
 
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-4">
             <a href="/src/pages/search/" class="flex-shrink-0">
               <img
                 src="/public/images/search.svg"
                 class="w-[1.625rem] h-[1.625rem]"
-                alt=""
+                alt="검색"
               />
             </a>
             <a href="/src/pages/story/" class="flex-shrink-0">
-              <img src="/public/images/hamburger.svg" alt="" />
+              <img src="/public/images/hamburger.svg" alt="메뉴" />
             </a>
             <a href="#none" class="flex-shrink-0">
               <img
                 src="/public/images/alramBell.svg"
                 class="w-[1.25rem] h-[1.25rem]"
-                alt=""
+                alt="알림"
               />
             </a>
           </div>
@@ -70,10 +68,45 @@
     </div>
 
     <button type="button" class="exchange-button exchange-button-no z-10">
-      <img src="/public/images/plusTap.svg" alt="" />
+      <img
+        src="/public/images/plusTap.svg"
+        class="exchange-button-img"
+        alt=""
+      />
     </button>
 
-    <div class="exchange-button-ul fixed bottom-44 right-5"></div>
+    <div class="exchange-button-ul hidden fixed bottom-44 right-5">
+      <ul>
+        <li class="exchange-headset exchange-li-button">
+          <button type="button" aria-label="헤드셋 품목만 정렬">
+            🎧헤드셋
+          </button>
+        </li>
+        <li class="exchange-keyboard exchange-li-button">
+          <button button type="button" aria-label="키보드 품목만 정렬">
+            ⌨키보드
+          </button>
+        </li>
+        <li class="exchange-mouse exchange-li-button">
+          <button type="button" aria-label="마우스 품목만 정렬">
+            🖱️마우스
+          </button>
+        </li>
+        <li class="exchange-computer exchange-li-button">
+          <button type="button" aria-label="컴퓨터 품목만 정렬">
+            💻컴퓨터
+          </button>
+        </li>
+        <li class="exchange-etc exchange-li-button">
+          <button type="button" aria-label="기타 품목만 정렬">
+            🎈기타 등등
+          </button>
+        </li>
+        <li class="exchange-write exchange-li-write">
+          <button type="button" aria-label="글쓰기">📃작성하기</button>
+        </li>
+      </ul>
+    </div>
 
     <section class="mb-[3.75rem]">
       <h2 class="sr-only">기기 거래 게시판</h2>
