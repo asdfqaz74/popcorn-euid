@@ -1,36 +1,40 @@
-import { getNode, getNodes, insertFirst } from '/src/lib/';
+import { getNode } from '/src/lib/';
+import plusTapSvg from '/public/images/plusTap.svg';
+import plusTapActiveSvg from '/public/images/plusTapActive.svg';
+import { gsap } from 'gsap';
 
 /* -------------------------------------------------------------------------- */
 /*                             toggle plus button                             */
 /* -------------------------------------------------------------------------- */
 
 const plusButton = getNode('.exchange-button');
-let isUlVisible = false;
+const imgButton = getNode('.exchange-button-img');
+const buttonHidden = getNode('.exchange-button-ul');
 
-function handleButton() {
-  if (isUlVisible) {
-    gsap.to('.exchange-button-ul > ul > li', {
-      y: 30,
-      opacity: 0,
-      stagger: 0.05,
-      onComplete: () => {
-        plusButton.classList.add('exchange-button-no');
-        gsap.to(plusButton, {
-          backgroundColor: 'rgb(55 63 103)',
-          duration: 0.2,
-        });
-        removeList();
-        plusButton.classList.remove('exchange-button-active');
-      },
-    });
+function handleButtonImg(e) {
+  const image = e.currentTarget;
+
+  const currentSrc = image.src;
+  const plusImg = plusTapSvg;
+  const plusActiveImg = plusTapActiveSvg;
+
+  if (currentSrc.includes(plusImg)) {
+    image.src = plusActiveImg;
   } else {
-    gsap.to(plusButton, {
-      backgroundColor: 'rgb(255 255 255)',
-      duration: 0.6,
+    image.src = plusImg;
+  }
+}
+
+function handleButton(e) {
+  const button = e.currentTarget;
+
+  if (button.classList.contains('exchange-button-no')) {
+    gsap.to(button, {
+      background: 'rgb(255 255 255)',
+      duration: 0.3,
     });
-    plusButton.classList.remove('exchange-button-no');
-    plusButton.classList.add('exchange-button-active');
-    addList();
+    button.classList.remove('exchange-button-no');
+    button.classList.add('exchange-button-active');
     gsap.from('.exchange-button-ul > ul > li', {
       y: 30,
       opacity: 0,
@@ -39,60 +43,19 @@ function handleButton() {
         from: 'end',
       },
     });
+    buttonHidden.classList.remove('hidden');
+    buttonHidden.classList.add('block');
+  } else {
+    buttonHidden.classList.remove('block');
+    buttonHidden.classList.add('hidden');
+    gsap.to(button, {
+      background: 'rgb(55 63 103)',
+      duration: 0.3,
+    });
+    button.classList.remove('exchange-button-active');
+    button.classList.add('exchange-button-no');
   }
-
-  isUlVisible = !isUlVisible;
 }
 
-function addList() {
-  const img = /* html */ `
-  <img src="/public/images/plusTapActive.svg" alt="" />
-  `;
-
-  const ul = /* html */ `
-  <ul>
-    <li class="exchange-headset exchange-li-button">
-      <button type="button" aria-label="헤드셋 품목만 정렬">
-      🎧헤드셋
-      </button>
-    </li>
-    <li class="exchange-keyboard exchange-li-button">
-      <button type="button" aria-label="키보드 품목만 정렬">
-      ⌨키보드
-      </button>
-    </li>
-    <li class="exchange-mouse exchange-li-button">
-      <button type="button" aria-label="마우스 품목만 정렬">
-      🖱️마우스
-      </button>
-    </li>
-    <li class="exchange-computer exchange-li-button">
-      <button type="button" aria-label="컴퓨터 품목만 정렬">
-      💻컴퓨터
-      </button>
-    </li>
-    <li class="exchange-etc exchange-li-button">
-      <button type="button" aria-label="기타 품목만 정렬">
-      🎈기타 등등
-      </button>
-    </li>
-    <li class="exchange-write exchange-li-write">
-      <button type="button" aria-label="글쓰기">
-      📃작성하기
-      </button>
-    </li>
-  </ul>
-  `;
-
-  plusButton.innerHTML = img;
-  insertFirst('.exchange-button-ul', ul);
-}
-
-function removeList() {
-  const list = document.querySelector('.exchange-button-ul');
-
-  plusButton.innerHTML = '<img src="/public/images/plusTap.svg" alt="" />';
-  list.innerHTML = '';
-}
-
+imgButton.addEventListener('click', handleButtonImg);
 plusButton.addEventListener('click', handleButton);
