@@ -23,61 +23,66 @@
     <nav
       class="px-5 py-2 flex gap-3 font-semibold text-sm text-center overflow-x-scroll no-scrollbar"
     >
-      <button class="togetherBoard-all w-fit" type="button">
+      <button class="togetherBoard w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-emogi.svg"
             alt="관심사 선택하기,전체"
           />
         </div>
-        <p class="mt-2">전체</p>
+        <p class="togetherTitle mt-2">전체</p>
       </button>
 
-      <button class="togetherBoard-project w-fit" type="button">
+      <button class="togetherBoard w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-project.svg"
             alt="관심사 선택하기 프로젝트"
           />
         </div>
-        <p class="mt-2">프로젝트</p>
+        <p class="togetherTitle mt-2">프로젝트</p>
       </button>
-      <button class="togetherBoard-study w-fit" type="button">
+      <button class="togetherBoard w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-study.svg"
             alt="관심사 선택하기 스터디"
           />
         </div>
-        <p class="mt-2">스터디</p>
+        <p class="togetherTitle mt-2">스터디</p>
       </button>
-      <button class="togetherBoard-offline w-fit" type="button">
+      <button class="togetherBoard w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-offline.svg"
             alt="관심사 선택하기 오프라인"
           />
         </div>
-        <p class="mt-2">오프라인</p>
+        <p class="togetherTitle mt-2">오프라인</p>
       </button>
       <button class="togetherBoard-contest w-fit" type="button">
         <div
-          class="flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          class="togetherBoard-border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
         >
           <img
+            class="pointer-events-none"
             src="/public/images/board-contest.svg"
             alt="관심사 선택하기 공모전"
           />
         </div>
-        <p class="mt-2">공모전</p>
+        <p class="togetherTitle mt-2">공모전</p>
       </button>
     </nav>
 
@@ -169,9 +174,7 @@
     </section>
 
     <button
-
       class="hidden togetherBoard-write-on fixed bottom-28 right-5 p-3 bg-background rounded-full shadow-Contents-contentPrimary shadow-md"
-
       type="button"
     >
       <img class="" src="/public/images/plusTapActive.svg" alt="" />
@@ -186,7 +189,7 @@
 
     <div class="hidden togetherBoard-plus-menu fixed bottom-44 right-5">
       <ul>
-        <li
+        <!-- <li
           class="bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1"
         >
           <button type="button" aria-label="헤드셋 품목만 정렬">
@@ -213,7 +216,7 @@
           <button type="button" aria-label="컴퓨터 품목만 정렬">
             💻컴퓨터
           </button>
-        </li>
+        </li> -->
         <li
           class="write-button whitespace-nowrap bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal"
         >
@@ -228,25 +231,40 @@
       class="fixed h-[3.75rem] border-t-Contents-contentSecondary bottom-0 w-full px-3 pt-2 pb-2 bg-background"
     >
       <div class="flex justify-around text-sm font-normal">
-        <div class="movePageHome flex-col text-center">
-          <img src="/public/images/home.svg" class="mx-auto mb-1" alt="" />
-          <span class>홈</span>
+        <div class="flex-col text-center">
+          <a href="/src/pages/story/index.html">
+            <img src="/public/images/home.svg" class="mx-auto mb-1" alt="" />
+            <span class>홈</span>
+          </a>
         </div>
-        <div class="movePageBoard flex-col items-center justify-center">
-          <img src="/public/images/fullFile.svg" class="mx-auto mb-1" alt="" />
-          <span>게시판</span>
+        <div class="flex-col items-center justify-center">
+          <a href="#">
+            <img
+              src="/public/images/fullFile.svg"
+              class="mx-auto mb-1"
+              alt=""
+            />
+            <span>게시판</span>
+          </a>
         </div>
-        <div class="movePageLocation flex-col items-center justify-center">
-          <img src="/public/images/map.svg" class="mx-auto mb-1" alt="" />
-          <span>내 근처</span>
+        <div class="flex-col items-center justify-center">
+          <a href="#">
+            <img src="/public/images/map.svg" class="mx-auto mb-1" alt="" />
+            <span>내 근처</span>
+          </a>
         </div>
-        <div class="movePageChat flex-col items-center justify-center">
-          <img src="/public/images/chat.svg" class="mx-auto mb-1" alt="" />
-          <span>채팅</span>
+        <div class="flex-col items-center justify-center">
+          <a href="#">
+            <img src="/public/images/chat.svg" class="mx-auto mb-1" alt="" />
+            <span>채팅</span>
+          </a>
         </div>
-        <div class="movePageProfile flex-col items-center justify-center">
-          <img src="/public/images/my.svg" class="mx-auto mb-1" alt="" />
-          <span>나의 이듬</span>
+
+        <div class="flex-col items-center justify-center">
+          <a href="/src/pages/profile/index.html">
+            <img src="/public/images/my.svg" class="mx-auto mb-1" alt="" />
+            <span>나의 이듬</span>
+          </a>
         </div>
       </div>
     </nav>
