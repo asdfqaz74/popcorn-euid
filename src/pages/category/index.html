@@ -49,16 +49,25 @@
       </p>
 
       <!-- 카테고리 감싸는 div -->
-      <div class="category-container flex justify-between flex-wrap">
+      <form
+        class="category-container flex justify-between flex-wrap"
+        method="post"
+      >
         <!-- 카테고리 아이템 -->
-        <div data-category="프론트엔드" class="category-item">
-          <div>
-            <p class="category-item-textType">프로그래밍</p>
-            <p class="category-item-textTitle text-nowrap">프론트엔드</p>
-          </div>
-          <span
-            class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
-          ></span>
+        <div class="category-item">
+          <label
+            for="checkbox"
+            class="category-item-button flex flex-row justify-between items-center w-full h-[2.3125rem]"
+          >
+            <div>
+              <p class="category-item-textType">프로그래밍</p>
+              <p class="category-item-textTitle">프론트엔드</p>
+            </div>
+            <input type="checkbox" id="checkbox" class="hidden" />
+            <span
+              class="category-item-image w-[1.125rem] h-[1.1875rem] bg-[url('/public/images/plus.svg')]"
+            ></span>
+          </label>
         </div>
 
         <div data-category="백엔드" class="category-item">
@@ -170,7 +179,7 @@
             class="category-item-image inline-block w-[1.25rem] h-[1.25rem] bg-[url('/public/images/plus.svg')] bg-no-repeat"
           ></span>
         </div>
-      </div>
+      </form>
 
       <a
         class="category-button-save block text-center w-full mt-[1.125rem] py-[0.5rem] bg-primary rounded-2xl border-primary text-background text-base font-bold leading-5"
