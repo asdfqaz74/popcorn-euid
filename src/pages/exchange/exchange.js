@@ -59,3 +59,7 @@ function handleButton(e) {
 
 imgButton.addEventListener('click', handleButtonImg);
 plusButton.addEventListener('click', handleButton);
+
+/* -------------------------------------------------------------------------- */
+/*                                    post                                    */
+/* -------------------------------------------------------------------------- */
