@@ -30,10 +30,10 @@
 
 @layer components {
 
-   .category-item {
+   /* .category-item {
     @apply flex flex-row justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl w-[49%] h-[3.8125rem];
 
-  }
+  } */
   .category-item-textType {
     @apply text-[0.6875rem] leading-4 font-semibold text-gray-100;
   }
@@ -96,5 +96,9 @@
 
   .signUp-agree-valid {
     @apply bg-tertiary;
+  }
+
+  .category-button-selected{
+    @apply bg-primary text-background
   }
 }
