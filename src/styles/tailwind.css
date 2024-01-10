@@ -97,6 +97,7 @@
   .profileDetails-buttonAgree-valid{
     @apply  bg-secondary border border-secondary text-background
       }
+
       
   .signUp-verify-valid {
     @apply bg-gray-500 text-background font-bold;
