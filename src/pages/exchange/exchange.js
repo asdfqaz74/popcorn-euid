@@ -2,7 +2,6 @@ import {
   getNode,
   getPbImageURL,
   comma,
-  tiger,
   insertFirst,
   insertLast,
   timeAgo,
@@ -10,18 +9,18 @@ import {
 import plusTapSvg from '/public/images/plusTap.svg';
 import plusTapActiveSvg from '/public/images/plusTapActive.svg';
 import { gsap } from 'gsap';
-import pocketbase from 'pocketbase';
+import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
 /*                             toggle plus button                             */
 /* -------------------------------------------------------------------------- */
 
 const plusButton = getNode('.exchange-button');
-const imgButton = getNode('.exchange-button-img');
 const buttonHidden = getNode('.exchange-button-ul');
 
-function handleButtonImg(e) {
-  const image = e.currentTarget;
+function handleButton(e) {
+  const button = e.currentTarget;
+  const image = button.querySelector('.exchange-button-img');
 
   const currentSrc = image.src;
   const plusImg = plusTapSvg;
@@ -32,10 +31,6 @@ function handleButtonImg(e) {
   } else {
     image.src = plusImg;
   }
-}
-
-function handleButton(e) {
-  const button = e.currentTarget;
 
   if (button.classList.contains('exchange-button-no')) {
     gsap.to(button, {
@@ -66,44 +61,37 @@ function handleButton(e) {
   }
 }
 
-imgButton.addEventListener('click', handleButtonImg);
 plusButton.addEventListener('click', handleButton);
 
 /* -------------------------------------------------------------------------- */
-/*                                    post                                    */
+/*                                     get                                    */
 /* -------------------------------------------------------------------------- */
 
-/* const headset = getNode('.exchange-headset');
+const headset = getNode('.exchange-headset');
 const keyboard = getNode('.exchange-keyboard');
+const mouse = getNode('.exchange-mouse');
+const computer = getNode('.exchange-computer');
+const etc = getNode('.exchange-etc');
 
-function handleHeadset(e) {
-  const hand = e.currentTarget;
-  console.log(hand.classList);
+async function renderProduct(type) {
+  let productData;
 
-  if (hand.classList.contains('active')) {
-    gsap.to(hand, {
-      background: 'rgb(55 63 103)',
-      duration: 0.2,
+  // 매개변수에 type이 있는지
+  if (type) {
+    productData = await pb.collection('products').getFullList({
+      filter: `type="${type}"`,
     });
   } else {
-    gsap.to(hand, {
-      background: 'rgb(90 133 238)',
-      duration: 0.1,
-    });
+    productData = await pb.collection('products').getFullList();
   }
-  hand.classList.toggle('active');
-}
 
-headset.addEventListener('click', handleHeadset); */
+  // section 안에 있는 자식 요소들 전부 지우기
+  const removeTarget = getNode('section');
+  while (removeTarget.firstChild) {
+    removeTarget.removeChild(removeTarget.firstChild);
+  }
 
-async function renderProduct() {
-  const response = await tiger.get(
-    `${import.meta.env.VITE_PB_API}/collections/products/records`
-  );
-
-  const productData = response.data.items;
-  console.log(productData);
-
+  // template 생성
   productData.forEach((item) => {
     const template = /* html */ `
     <div
@@ -162,7 +150,9 @@ async function renderProduct() {
 
   `;
 
+    // 제일 앞 순서부터 template 뿌려주기
     insertFirst('section', template);
+    // products state
     productState(item.state);
   });
 
@@ -186,5 +176,61 @@ function productState(item) {
     insertLast(currentState, '거래 완료');
   }
 }
+
+// 버튼이 눌렸는지 안눌렸는지 상태 초기화
+let headsetFilterActive = false;
+let keyboardFilterActive = false;
+let mouseFilterActive = false;
+let computerFilterActive = false;
+let etcFilterActive = false;
+
+// 필터링 EventListener
+headset.addEventListener('click', async () => {
+  if (headsetFilterActive) {
+    await renderProduct();
+  } else {
+    await renderProduct('headset');
+  }
+  // 버튼 누를 때 마다 배경색 변경
+  headset.classList.toggle('bg-secondary');
+  // 버튼이 눌렸는지 상태 관리
+  headsetFilterActive = !headsetFilterActive;
+});
+keyboard.addEventListener('click', async () => {
+  if (keyboardFilterActive) {
+    await renderProduct();
+  } else {
+    await renderProduct('keyboard');
+  }
+  keyboard.classList.toggle('bg-secondary');
+  keyboardFilterActive = !keyboardFilterActive;
+});
+mouse.addEventListener('click', async () => {
+  if (mouseFilterActive) {
+    await renderProduct();
+  } else {
+    await renderProduct('mouse');
+  }
+  mouse.classList.toggle('bg-secondary');
+  mouseFilterActive = !mouseFilterActive;
+});
+computer.addEventListener('click', async () => {
+  if (computerFilterActive) {
+    await renderProduct();
+  } else {
+    await renderProduct('computer');
+  }
+  computer.classList.toggle('bg-secondary');
+  computerFilterActive = !computerFilterActive;
+});
+etc.addEventListener('click', async () => {
+  if (etcFilterActive) {
+    await renderProduct();
+  } else {
+    await renderProduct('etc');
+  }
+  etc.classList.toggle('bg-secondary');
+  etcFilterActive = !etcFilterActive;
+});
 
 renderProduct();
