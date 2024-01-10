@@ -21,12 +21,11 @@ function handleWrite() {
 function toggleMenu() {
   plusMenu.style.display = 'block';
 
-  const tl = gsap.timeline({
-    defaults: {
-      opacity: 0,
-    },
+  gsap.from(plusMenu, {
+    y: 30,
+    opacity: 0,
+    stagger: 0.1,
   });
-  tl.from(plusMenu, { y: 30 }).from('form > *', { y: 30, stagger: 0.1 });
 }
 function handleClickOutside(event) {
   if (!writeButton.contains(event.target) && !plusMenu.contains(event.target)) {

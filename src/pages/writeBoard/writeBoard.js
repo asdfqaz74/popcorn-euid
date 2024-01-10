@@ -2,6 +2,7 @@ import { getNode } from '/src/lib/';
 import gsap from 'gsap';
 
 const nextButton = getNode('.writeBoardSecond-next-button');
+const backButton = getNode('.writeBoard-back-button');
 
 function handleNext(event) {
   event.preventDefault();
@@ -23,9 +24,6 @@ function handleNext(event) {
       //   gsap.to('.w-screen', { x: -screenWidth, ease: 'power2.inOut' });
     }
 
-    if (currentIndex === 1) {
-      nextButton.textContent = '일정 만들기';
-    }
     if (currentIndex === 2) {
       moveChatPage();
       nextButton.textContent = '채팅방으로 이동';
@@ -39,5 +37,9 @@ function moveChatPage() {
     window.location.href = '/src/pages/chatScreen/index.html';
   });
 }
+function handleBack() {
+  window.history.back();
+}
 
 nextButton.addEventListener('click', handleNext);
+backButton.addEventListener('click', handleBack);
