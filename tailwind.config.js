@@ -4,6 +4,8 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
+        categoryPlus: "url('/public/images/plus.svg')",
+        categoryCheck: "url('/public/images/checked.svg')",
         temperatureAngle: "url('/public/images/temperatureAngle.svg')",
         pencil: "url('/public/images/pencil.svg')",
         checkbox: "url('/public/images/checkBox.svg')",

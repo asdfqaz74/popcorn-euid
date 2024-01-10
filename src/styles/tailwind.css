@@ -30,10 +30,10 @@
 
 @layer components {
 
-   .category-item {
+   /* .category-item {
     @apply flex flex-row justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl w-[49%] h-[3.8125rem];
 
-  }
+  } */
   .category-item-textType {
     @apply text-[0.6875rem] leading-4 font-semibold text-gray-100;
   }
@@ -60,6 +60,14 @@
 
   .exchange-li-write {
     @apply bg-secondary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1;
+  }
+
+  .exchange-reservation {
+    @apply w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg
+  }
+
+  .exchange-done {
+    @apply w-[2.25rem] h-[1.25rem] bg-Contents-contentTertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg
   }
 
   .profile-detail {
@@ -96,5 +104,9 @@
 
   .signUp-agree-valid {
     @apply bg-tertiary;
+  }
+
+  .category-button-selected{
+    @apply bg-primary text-background
   }
 }
