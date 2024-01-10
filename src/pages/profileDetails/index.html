@@ -24,25 +24,100 @@
     <div
       class="profileDetails-container bg-background flex flex-col gap-[1.875rem] py-2 px-3"
     >
-      <div class="">
+      <div class="profile-activeBox h-[88px] ease-in-out overflow-hidden">
         <p>하는 일</p>
         <button
-          class="mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
+          class="profile-button-active mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
           type="button"
         >
           <img src="/public/images/plusProfile.svg" alt="" />
           <span> 본인이 하는 일을 추가해보세요 </span>
         </button>
+        <div class="mt-3">
+          <label for="profileDetail-search"></label>
+          <input
+            class="border border-gray-200 w-full p-1 focus:outline-bluegray-200 px-3 rounded-full"
+            type="search"
+            id="profileDetail-search"
+          />
+          <div class="profileDetails-list-box py-3">
+            <div class="flex flex-wrap gap-2">
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="">
+
+      <div class="profile-activeBox overflow-hidden h-[88px]">
         <p>프로필 키워드</p>
         <button
-          class="mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
+          class="profile-button-active mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
           type="button"
         >
           <img src="/public/images/plusProfile.svg" alt="" />
           <span> 프로필 키워드를 추가해보세요 </span>
         </button>
+        <div class="mt-3">
+          <label for="profileDetail-search"></label>
+          <input
+            class="border border-gray-200 w-full p-1 focus:outline-bluegray-200 px-3 rounded-full"
+            type="search"
+            id="profileDetail-search"
+          />
+          <div class="profileDetails-list-box py-3">
+            <div class="flex flex-wrap gap-2">
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="">
         <p>성별</p>
@@ -54,12 +129,14 @@
         >
           <button
             type="button"
-            class="profileDetails-button-valid w-[50%] flex justify-center items-center gap-1 py-1.5"
+            class="profileDetails-button-left profileDetails-button-valid w-[50%] flex justify-center items-center gap-1 py-1.5"
           >
             <img src="/public/images/passwordDetails.svg" alt="" />비공개
           </button>
-          <button class="w-[50%] flex justify-center items-center gap-1 py-1.5">
-            <img src="/public/images/peoplePublic.svg" hidden alt="" />전체공개
+          <button
+            class="profileDetails-button-right w-[50%] flex justify-center items-center gap-1 py-1.5"
+          >
+            <img src="" alt="" />전체공개
           </button>
         </div>
       </div>
@@ -73,30 +150,33 @@
         >
           <button
             type="button"
-            class="profileDetails-button-valid w-[50%] flex justify-center items-center gap-1 py-1.5"
+            class="profileDetails-button-left profileDetails-button-valid w-[50%] flex justify-center items-center gap-1 py-1.5"
           >
             <img src="/public/images/passwordDetails.svg" alt="" />비공개
           </button>
-          <button class="w-[50%] flex justify-center items-center gap-1 py-1.5">
-            <img src="/public/images/peoplePublic.svg" hidden alt="" />전체공개
+          <button
+            class="profileDetails-button-right w-[50%] flex justify-center items-center gap-1 py-1.5"
+          >
+            <img src=" " alt="" />전체공개
           </button>
         </div>
       </div>
       <div class="">
         <p>회사</p>
 
-        <div class="profileDetails-buttonWrap flex w-full mt-2 gap-1.5">
+        <div class="flex w-full mt-2 gap-1.5">
           <button
             type="button"
-            class="w-[50%] flex justify-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg"
+            class="profile-button-active w-[50%] flex justify-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg"
           >
             <img src="/public/images/search.svg" alt="" />검색하기
           </button>
+
           <label for="input-company"></label>
           <input
             type="text"
             id="input-company"
-            class="w-[50%] flex justify-center text-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg bg-pencil bg-no-repeat bg-[center_left_20%] placeholder:text-bluegray-900"
+            class="w-[50%] flex justify-center text-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg bg-pencil bg-no-repeat bg-[center_left_15%] placeholder:text-bluegray-900 focus:bg-none"
             placeholder="직접 입력"
           />
         </div>
@@ -104,10 +184,10 @@
       <div class="">
         <p>학교</p>
 
-        <div class="profileDetails-buttonWrap flex w-full mt-2 gap-1.5">
+        <div class="flex w-full mt-2 gap-1.5">
           <button
             type="button"
-            class="w-[50%] flex justify-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg"
+            class="profile-button-active w-[50%] flex justify-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg outline-gray-200"
           >
             <img src="/public/images/search.svg" alt="" />검색하기
           </button>
@@ -115,7 +195,7 @@
           <input
             type="text"
             id="input-company"
-            class="w-[50%] flex justify-center text-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg bg-pencil bg-no-repeat bg-[center_left_20%] placeholder:text-bluegray-900"
+            class="w-[50%] flex justify-center text-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg bg-pencil bg-no-repeat bg-[center_left_15%] placeholder:text-bluegray-900 focus:bg-none"
             placeholder="직접 입력"
           />
         </div>
@@ -126,7 +206,7 @@
         <input
           type="text"
           id="profile-keyword"
-          class="mt-2 flex w-full text-center items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer bg-pencil bg-no-repeat bg-[center_left_30%] placeholder:text-bluegray-900"
+          class="mt-2 flex w-full text-center items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer bg-pencil bg-no-repeat bg-[center_left_30%] placeholder:text-bluegray-900 focus:bg-none"
           placeholder="직접 입력하기"
         />
       </div>
@@ -150,25 +230,27 @@
       <form action="/" method="get">
         <div class="p-3 border-b flex justify-between items-center">
           <div class="font-semibold relative pl-7">
-            <label for="agree-all" class=""> </label>
+            <label for="agree-all" class=""
+              >아래 내용에 전체 동의합니다.
+            </label>
             <input
               class="absolute left-0 w-4 h-4 appearance-none bg-checkbox-uncheck top-0.5 checked:appearance-none checked:bg-checkbox"
               type="checkbox"
               id="agree-all"
             />
-            아래 내용에 전체 동의합니다.
           </div>
           <span class="text-negative text-sm">필수동의</span>
         </div>
         <div class="p-3 justify-between items-center">
           <div class="text-base font-semibold relative pl-7">
-            <label for="agree-personal" class=""> </label>
+            <label for="agree-personal" class=""
+              >[ 필수 ] 개인 정보 수집 및 이용 동의
+            </label>
             <input
               class="absolute left-0 w-4 h-4 appearance-none bg-checkbox-uncheck top-0.5 checked:appearance-none checked:bg-checkbox"
               type="checkbox"
               id="agree-personal"
             />
-            [ 필수 ] 개인 정보 수집 및 이용 동의
           </div>
           <p class="pl-6 text-Contents-contentSecondary text-sm">
             입력한 별명, 프로필 사진, 하는 일, 프로필 키워드, 성별, 연령, 회 사,
@@ -182,13 +264,14 @@
         </div>
         <div class="p-3 flex justify-between items-center">
           <div class="text-base font-semibold relative pl-7">
-            <label for="aree-profile" class=""> </label>
+            <label for="agree-profile" class="">
+              [ 필수 ] 프로필 정보 노출 영역 확인
+            </label>
             <input
               class="absolute left-0 w-4 h-4 appearance-none bg-checkbox-uncheck top-0.5 checked:appearance-none checked:bg-checkbox"
               type="checkbox"
-              id="aree-profile"
+              id="agree-profile"
             />
-            [ 필수 ] 프로필 정보 노출 영역 확인
           </div>
           <button type="button" class="text-sm opacity-50">
             자세히
@@ -201,26 +284,28 @@
         </div>
         <div class="p-3 flex justify-between items-center">
           <div class="text-base font-semibold relative pl-7">
-            <label for="aree-profile" class=""> </label>
+            <label for="agree-problem" class=""
+              >[ 필수 ] 사실과 다른 정보를 기재하여 발생한 문제에 대해서는
+              본인이 일체의 책임을 부담하겠습니다.
+            </label>
             <input
               class="absolute left-0 w-4 h-4 appearance-none bg-checkbox-uncheck top-0.5 checked:appearance-none checked:bg-checkbox"
               type="checkbox"
-              id="aree-profile"
+              id="agree-problem"
             />
-            [ 필수 ] 사실과 다른 정보를 기재하여 발생한 문제에 대해서는 본인이
-            일체의 책임을 부담하겠습니다.
           </div>
         </div>
         <div class="px-3 flex gap-2">
           <button
-            type="button"
+            type="reset"
             class="w-[50%] py-2 bg-gray-100 border-gray-200 border rounded-lg"
           >
             취소
           </button>
           <button
             type="submit"
-            class="profileDetails-buttonAgree-invalid w-[50%] py-2 rounded-lg"
+            submit="disable"
+            class="profileDetails-button-submit profileDetails-buttonAgree-invalid w-[50%] py-2 rounded-lg"
           >
             저장
           </button>
@@ -233,7 +318,7 @@
         </button>
       </form>
     </div>
-    <dialog class="p-5 b;text-center bg-background rounded-3xl">
+    <dialog class="agree-modal p-5 b;text-center bg-background rounded-3xl">
       <p class="">저장 완료!</p>
       <p class="break-words py-5 text-sm text-Contents-contentSecondary">
         내 질문&답변의 프로필 카드, 프로필 홈에서 변 경된 프로필 정보를 확인 할
@@ -241,7 +326,8 @@
       </p>
       <button
         type="button"
-        class="bg-primary rounded-lg w-full py-2 text-background"
+        value="default"
+        class="modal-close bg-primary rounded-lg w-full py-2 text-background"
       >
         확인
       </button>
