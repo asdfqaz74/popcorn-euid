@@ -52,4 +52,6 @@ categoryInputs.forEach(function (item) {
   item.addEventListener('click', saveInterest);
 });
 
-//
+// 검색하면 해당 값이 보이는 함수
+let search = document.querySelector('category-search-input');
+console.log(search);
