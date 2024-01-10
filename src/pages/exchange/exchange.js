@@ -102,6 +102,7 @@ async function renderProduct() {
   );
 
   const productData = response.data.items;
+  console.log(productData);
 
   productData.forEach((item) => {
     const template = /* html */ `
@@ -111,7 +112,7 @@ async function renderProduct() {
         <div
           class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
         >
-          <a href="/src/pages/exchangeBoard/">
+          <a href="${`/src/pages/exchangeBoard/index.html#${item.id}`}">
             <img
               src="${getPbImageURL(item, 'images')}"
               class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
@@ -123,7 +124,7 @@ async function renderProduct() {
         <div
           class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
         >
-          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
+          <a href="${`/src/pages/exchangeBoard/index.html#${item.id}`}" class="exchange-board-link"
             >${item.title}</a
           >
           <div class="flex flex-col">
