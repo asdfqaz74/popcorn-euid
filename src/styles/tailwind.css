@@ -58,16 +58,28 @@
     @apply bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1;
   }
 
-  .profile-detail {
-    @apply border-b-2;
+  .exchange-li-write {
+    @apply bg-secondary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1;
   }
-  .profile-detail-inner {
+
+  .exchange-reservation {
+    @apply w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg
+  }
+
+  .exchange-done {
+    @apply w-[2.25rem] h-[1.25rem] bg-Contents-contentTertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg
+  }
+
+  .profile-listBox {
+    @apply border-b;
+  }
+  .profile-listBox-button {
     @apply flex justify-between w-full py-4 px-5;
   }
-  .profile-detail-active {
+  .profile-listBox-hiddenArea{
     @apply flex flex-col gap-3 pb-4 px-2.5;
   }
-  .profile-detail-textBox {
+  .profile-listBox-textBox {
     @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2;
   }
   .profileDetails-button-valid {
@@ -79,7 +91,14 @@
   .profileDetails-button-valid{
     @apply border border-secondary rounded-lg bg-background text-secondary
       }
+  .profileDetails-buttonAgree-invalid{
+    @apply  bg-bluegray-200 border-gray-200  border
+      }
+  .profileDetails-buttonAgree-valid{
+    @apply  bg-secondary border border-secondary text-background
+      }
 
+      
   .signUp-verify-valid {
     @apply bg-gray-500 text-background font-bold;
   }

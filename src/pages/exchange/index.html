@@ -15,9 +15,7 @@
       <header class="region-nav sticky top-0 bg-background h-[2.8125rem]">
         <div class="region-nav__wrapper flex justify-between w-full px-5 py-2">
           <div class="flex flex-shrink-0 select-wrapper">
-            <select
-              class="w-32 text-lg font-semibold appearance-none font-pretendard"
-            >
+            <select class="w-32 text-lg font-semibold appearance-none">
               <option value="">남가좌제2동</option>
               <option value="">호원2동</option>
             </select>
@@ -28,22 +26,22 @@
             />
           </div>
 
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-4">
             <a href="/src/pages/search/" class="flex-shrink-0">
               <img
                 src="/public/images/search.svg"
                 class="w-[1.625rem] h-[1.625rem]"
-                alt=""
+                alt="검색"
               />
             </a>
             <a href="/src/pages/story/" class="flex-shrink-0">
-              <img src="/public/images/hamburger.svg" alt="" />
+              <img src="/public/images/hamburger.svg" alt="메뉴" />
             </a>
             <a href="#none" class="flex-shrink-0">
               <img
                 src="/public/images/alramBell.svg"
                 class="w-[1.25rem] h-[1.25rem]"
-                alt=""
+                alt="알림"
               />
             </a>
           </div>
@@ -63,344 +61,55 @@
             <a class="" href="/src/pages/story/">질의 응답</a>
           </li>
           <li class="mx-auto">
-            <a class="" href="/src/pages/story/">같이 해요</a>
+            <a class="" href="/src/pages/togetherBoard/">같이 해요</a>
           </li>
         </ul>
       </nav>
     </div>
 
     <button type="button" class="exchange-button exchange-button-no z-10">
-      <img src="/public/images/plusTap.svg" alt="" />
+      <img
+        src="/public/images/plusTap.svg"
+        class="exchange-button-img"
+        alt=""
+      />
     </button>
 
-    <div class="exchange-button-ul fixed bottom-44 right-5"></div>
+    <div class="exchange-button-ul hidden fixed bottom-44 right-5 z-10">
+      <ul>
+        <li class="exchange-headset exchange-li-button">
+          <button type="button" aria-label="헤드셋 품목만 정렬">
+            🎧헤드셋
+          </button>
+        </li>
+        <li class="exchange-keyboard exchange-li-button">
+          <button button type="button" aria-label="키보드 품목만 정렬">
+            ⌨키보드
+          </button>
+        </li>
+        <li class="exchange-mouse exchange-li-button">
+          <button type="button" aria-label="마우스 품목만 정렬">
+            🖱️마우스
+          </button>
+        </li>
+        <li class="exchange-computer exchange-li-button">
+          <button type="button" aria-label="컴퓨터 품목만 정렬">
+            💻컴퓨터
+          </button>
+        </li>
+        <li class="exchange-etc exchange-li-button">
+          <button type="button" aria-label="기타 품목만 정렬">
+            🎈기타 등등
+          </button>
+        </li>
+        <li class="exchange-write exchange-li-write">
+          <button type="button" aria-label="글쓰기">📃작성하기</button>
+        </li>
+      </ul>
+    </div>
 
     <section class="mb-[3.75rem]">
       <h2 class="sr-only">기기 거래 게시판</h2>
-
-      <div
-        class="exchange-board border-t border-Contents-contentSecondary flex items-center py-3 pl-3"
-      >
-        <div
-          class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
-        >
-          <a href="/src/pages/exchangeBoard/">
-            <img
-              src="/public/images/hooray.png"
-              class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
-              alt=""
-            />
-          </a>
-        </div>
-
-        <div
-          class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
-        >
-          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
-            >2017 mac pro</a
-          >
-          <div class="flex flex-col">
-            <div
-              class="text-sm text-Contents-contentTertiary font-normal sm:text-lg mb-1"
-            >
-              <span class="exchange-board-location">마포구 신수동</span>
-              <span class="exchange-board-time">44분전</span>
-            </div>
-            <div class="mb-2">
-              <span
-                class="exchange-board-state w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg"
-                >예약중</span
-              >
-              <span
-                class="exchange-board-price text-base font-semibold leading-normal sm:text-xl"
-                >800,000원</span
-              >
-            </div>
-          </div>
-          <div
-            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
-          >
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
-            <span class="exchange-board-like text-sm sm:text-lg">4</span>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="exchange-board border-t border-Contents-contentSecondary flex items-center py-3 pl-3"
-      >
-        <div
-          class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
-        >
-          <a href="/src/pages/exchangeBoard/">
-            <img
-              src="/public/images/hello.png"
-              class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
-              alt=""
-            />
-          </a>
-        </div>
-
-        <div
-          class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
-        >
-          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
-            >2017 mac pro</a
-          >
-          <div class="flex flex-col">
-            <div
-              class="text-sm text-Contents-contentTertiary font-normal sm:text-lg mb-1"
-            >
-              <span class="exchange-board-location">마포구 신수동</span>
-              <span class="exchange-board-time">44분전</span>
-            </div>
-            <div class="mb-2">
-              <span
-                class="exchange-board-state w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg"
-                >예약중</span
-              >
-              <span
-                class="exchange-board-price text-base font-semibold leading-normal sm:text-xl"
-                >800,000원</span
-              >
-            </div>
-          </div>
-          <div
-            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
-          >
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
-            <span class="exchange-board-like text-sm sm:text-lg">4</span>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="exchange-board border-t border-Contents-contentSecondary flex items-center py-3 pl-3"
-      >
-        <div
-          class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
-        >
-          <a href="/src/pages/exchangeBoard/">
-            <img
-              src="/public/images/hooray.png"
-              class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
-              alt=""
-            />
-          </a>
-        </div>
-
-        <div
-          class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
-        >
-          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
-            >2017 mac pro</a
-          >
-          <div class="flex flex-col">
-            <div
-              class="text-sm text-Contents-contentTertiary font-normal sm:text-lg mb-1"
-            >
-              <span class="exchange-board-location">마포구 신수동</span>
-              <span class="exchange-board-time">44분전</span>
-            </div>
-            <div class="mb-2">
-              <span
-                class="exchange-board-state w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg"
-                >예약중</span
-              >
-              <span
-                class="exchange-board-price text-base font-semibold leading-normal sm:text-xl"
-                >800,000원</span
-              >
-            </div>
-          </div>
-          <div
-            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
-          >
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
-            <span class="exchange-board-like text-sm sm:text-lg">4</span>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="exchange-board border-t border-Contents-contentSecondary flex items-center py-3 pl-3"
-      >
-        <div
-          class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
-        >
-          <a href="/src/pages/exchangeBoard/">
-            <img
-              src="/public/images/hooray.png"
-              class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
-              alt=""
-            />
-          </a>
-        </div>
-
-        <div
-          class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
-        >
-          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
-            >2017 mac pro</a
-          >
-          <div class="flex flex-col">
-            <div
-              class="text-sm text-Contents-contentTertiary font-normal sm:text-lg mb-1"
-            >
-              <span class="exchange-board-location">마포구 신수동</span>
-              <span class="exchange-board-time">44분전</span>
-            </div>
-            <div class="mb-2">
-              <span
-                class="exchange-board-state w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg"
-                >예약중</span
-              >
-              <span
-                class="exchange-board-price text-base font-semibold leading-normal sm:text-xl"
-                >800,000원</span
-              >
-            </div>
-          </div>
-          <div
-            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
-          >
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
-            <span class="exchange-board-like text-sm sm:text-lg">4</span>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="exchange-board border-t border-Contents-contentSecondary flex items-center py-3 pl-3"
-      >
-        <div
-          class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
-        >
-          <a href="/src/pages/exchangeBoard/">
-            <img
-              src="/public/images/hooray.png"
-              class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
-              alt=""
-            />
-          </a>
-        </div>
-
-        <div
-          class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
-        >
-          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
-            >2017 mac pro</a
-          >
-          <div class="flex flex-col">
-            <div
-              class="text-sm text-Contents-contentTertiary font-normal sm:text-lg mb-1"
-            >
-              <span class="exchange-board-location">마포구 신수동</span>
-              <span class="exchange-board-time">44분전</span>
-            </div>
-            <div class="mb-2">
-              <span
-                class="exchange-board-state w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg"
-                >예약중</span
-              >
-              <span
-                class="exchange-board-price text-base font-semibold leading-normal sm:text-xl"
-                >800,000원</span
-              >
-            </div>
-          </div>
-          <div
-            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
-          >
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
-            <span class="exchange-board-like text-sm sm:text-lg">4</span>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="exchange-board border-t border-Contents-contentSecondary flex items-center py-3 pl-3"
-      >
-        <div
-          class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
-        >
-          <a href="/src/pages/exchangeBoard/">
-            <img
-              src="/public/images/hooray.png"
-              class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
-              alt=""
-            />
-          </a>
-        </div>
-
-        <div
-          class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
-        >
-          <a href="/src/pages/exchangeBoard/" class="exchange-board-link"
-            >2017 mac pro</a
-          >
-          <div class="flex flex-col">
-            <div
-              class="text-sm text-Contents-contentTertiary font-normal sm:text-lg mb-1"
-            >
-              <span class="exchange-board-location">마포구 신수동</span>
-              <span class="exchange-board-time">44분전</span>
-            </div>
-            <div class="mb-2">
-              <span
-                class="exchange-board-state w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg"
-                >예약중</span
-              >
-              <span
-                class="exchange-board-price text-base font-semibold leading-normal sm:text-xl"
-                >800,000원</span
-              >
-            </div>
-          </div>
-          <div
-            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
-          >
-            <button type="button">
-              <img
-                src="/public/images/heart.svg"
-                class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
-                alt=""
-              />
-            </button>
-            <span class="exchange-board-like text-sm sm:text-lg">4</span>
-          </div>
-        </div>
-      </div>
     </section>
 
     <nav
