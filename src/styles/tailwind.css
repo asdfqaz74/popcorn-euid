@@ -70,16 +70,16 @@
     @apply w-[2.25rem] h-[1.25rem] bg-Contents-contentTertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg
   }
 
-  .profile-detail {
-    @apply border-b-2;
+  .profile-listBox {
+    @apply border-b;
   }
-  .profile-detail-inner {
+  .profile-listBox-button {
     @apply flex justify-between w-full py-4 px-5;
   }
-  .profile-detail-active {
+  .profile-listBox-hiddenArea{
     @apply flex flex-col gap-3 pb-4 px-2.5;
   }
-  .profile-detail-textBox {
+  .profile-listBox-textBox {
     @apply rounded-r-lg rounded-bl-lg bg-tertiary p-2;
   }
   .profileDetails-button-valid {

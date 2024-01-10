@@ -1,6 +1,6 @@
 import { getNode, getNodes } from '/src/lib/';
 
-const ProfileDetailsClose = getNode('.profileDetails-button-close');
+const profileDetailsClose = getNode('.profileDetails-button-close');
 const profileToggleButtonWraps = getNodes('.profileDetails-buttonWrap');
 const profileActiveButton = getNodes('.profile-button-active');
 const agreeCheckbox = getNodes('.profileDtails-agreement-container input');
@@ -12,10 +12,9 @@ const closeModal = getNode('.modal-close');
 function closeHandler() {
   history.back();
 }
-ProfileDetailsClose.addEventListener('click', closeHandler);
+profileDetailsClose.addEventListener('click', closeHandler);
 
 //jobButton
-// active div에 높이를 제한을 주고 button에 closest로 div 부모요소를 가져와 할 수 있도록 함
 
 function activeHandler() {
   const activeBox = this.closest('.profile-activeBox');
@@ -95,4 +94,5 @@ agreeSubmitButton.addEventListener('click', sumitHandler);
 closeModal.addEventListener('click', () => {
   agreeModal.close();
 });
+
 //pocketbase 세팅
