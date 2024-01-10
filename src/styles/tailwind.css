@@ -62,6 +62,14 @@
     @apply bg-secondary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal mb-1;
   }
 
+  .exchange-reservation {
+    @apply w-[2.25rem] h-[1.25rem] bg-tertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg
+  }
+
+  .exchange-done {
+    @apply w-[2.25rem] h-[1.25rem] bg-Contents-contentTertiary rounded-default text-sm font-semibold text-background px-1 py-[0.125rem] leading-normal sm:text-lg
+  }
+
   .profile-detail {
     @apply border-b-2;
   }
