@@ -34,11 +34,9 @@
             placeholder="분야 (이름)로 검색 (ex.프론트)"
             class="category-search-input w-full h-[1.125rem] placeholder:text-base appearance-none outline-none"
           />
-          <img
-            src="/public/images/search.svg"
-            alt="검색"
-            class="category-search-img w-[1.25rem] h-[1.25rem]"
-          />
+          <button class="category-search-button w-[1.25rem] h-[1.25rem]">
+            <img src="/public/images/search.svg" alt="검색" />
+          </button>
         </div>
       </div>
 
@@ -51,10 +49,11 @@
       <!-- 카테고리 감싸는 div -->
       <form
         class="category-container flex justify-between flex-wrap"
+        id="category-form"
+        action="#none"
         method="post"
       >
         <!-- 카테고리 아이템 -->
-
         <div class="w-[49%]">
           <label
             for="frontEnd"
@@ -62,17 +61,18 @@
           >
             <div class="flex flex-col">
               <p class="category-item-textType">프로그래밍</p>
-              <p class="category-item-textTitle">프론트엔드</p>
+              <p class="category-item-textTitle text-nowrap">프론트엔드</p>
             </div>
             <input
+              value="프론트엔드"
               type="checkbox"
               id="frontEnd"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%]">
+        <div class="w-[49%] category-item">
           <label
             for="backEnd"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -83,14 +83,15 @@
             </div>
 
             <input
+              value="백엔드"
               type="checkbox"
               id="backEnd"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="react"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -101,14 +102,15 @@
             </div>
 
             <input
+              value="리액트"
               type="checkbox"
               id="react"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="fullStack"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -119,14 +121,15 @@
             </div>
 
             <input
+              value="풀스택"
               type="checkbox"
               id="fullStack"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="algorithm"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -137,14 +140,15 @@
             </div>
 
             <input
+              value="알고리즘"
               type="checkbox"
               id="algorithm"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="basicKnowledge"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -155,14 +159,15 @@
             </div>
 
             <input
+              value="기초지식"
               type="checkbox"
               id="basicKnowledge"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="uiDesign"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -173,14 +178,15 @@
             </div>
 
             <input
+              value="UI디자인"
               type="checkbox"
               id="uiDesign"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="uxDesign"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -191,50 +197,53 @@
             </div>
 
             <input
+              value="UX디자인"
               type="checkbox"
               id="uxDesign"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="uiuxDesign"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">디자인</p>
-              <p class="category-item-textTitle">UI • UX</p>
+              <p class="category-item-textTitle">UI/UX</p>
             </div>
 
             <input
+              value="UI/UX"
               type="checkbox"
               id="uiuxDesign"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="dataAnalysis"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">데이터</p>
-              <p class="category-item-textTitle">데이터분석</p>
+              <p class="category-item-textTitle text-nowrap">데이터분석</p>
             </div>
 
             <input
+              value="데이터분석"
               type="checkbox"
               id="dataAnalysis"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="statisticalAnalysis"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -245,14 +254,15 @@
             </div>
 
             <input
+              value="통계분석"
               type="checkbox"
               id="statisticalAnalysis"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
 
-        <div class="w-[49%] mt-3">
+        <div class="w-[49%] category-item mt-3">
           <label
             for="visualization"
             class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
@@ -263,20 +273,23 @@
             </div>
 
             <input
+              value="시각화"
               type="checkbox"
               id="visualization"
-              class="save category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
+              class="category-checkbox appearance-none w-[1.25rem] h-[1.25rem] bg-categoryPlus bg-no-repeat bg-right checked:bg-categoryCheck"
             />
           </label>
         </div>
       </form>
 
-      <a
+      <button
+        form="category-form"
         class="category-button-save block text-center w-full mt-[1.125rem] py-[0.5rem] bg-primary rounded-2xl border-primary text-background text-base font-bold leading-5"
         href="/src/pages/signUp/index.html"
         aria-label="저장하기"
-        >이대로 저장할래요</a
       >
+        이대로 저장할래요
+      </button>
     </div>
   </body>
 </html>
