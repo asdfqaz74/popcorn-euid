@@ -2,7 +2,6 @@ import {
   getNode,
   getPbImageURL,
   comma,
-  tiger,
   insertFirst,
   insertLast,
   timeAgo,
@@ -10,18 +9,18 @@ import {
 import plusTapSvg from '/public/images/plusTap.svg';
 import plusTapActiveSvg from '/public/images/plusTapActive.svg';
 import { gsap } from 'gsap';
-import pocketbase from 'pocketbase';
+import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
 /*                             toggle plus button                             */
 /* -------------------------------------------------------------------------- */
 
 const plusButton = getNode('.exchange-button');
-const imgButton = getNode('.exchange-button-img');
 const buttonHidden = getNode('.exchange-button-ul');
 
-function handleButtonImg(e) {
-  const image = e.currentTarget;
+function handleButton(e) {
+  const button = e.currentTarget;
+  const image = button.querySelector('.exchange-button-img');
 
   const currentSrc = image.src;
   const plusImg = plusTapSvg;
@@ -32,10 +31,6 @@ function handleButtonImg(e) {
   } else {
     image.src = plusImg;
   }
-}
-
-function handleButton(e) {
-  const button = e.currentTarget;
 
   if (button.classList.contains('exchange-button-no')) {
     gsap.to(button, {
@@ -66,44 +61,31 @@ function handleButton(e) {
   }
 }
 
-imgButton.addEventListener('click', handleButtonImg);
 plusButton.addEventListener('click', handleButton);
 
 /* -------------------------------------------------------------------------- */
-/*                                    post                                    */
+/*                                     get                                    */
 /* -------------------------------------------------------------------------- */
 
-/* const headset = getNode('.exchange-headset');
-const keyboard = getNode('.exchange-keyboard');
+async function renderProduct(type) {
+  let productData;
 
-function handleHeadset(e) {
-  const hand = e.currentTarget;
-  console.log(hand.classList);
-
-  if (hand.classList.contains('active')) {
-    gsap.to(hand, {
-      background: 'rgb(55 63 103)',
-      duration: 0.2,
+  // 매개변수에 type이 있는지
+  if (type) {
+    productData = await pb.collection('products').getFullList({
+      filter: `type="${type}"`,
     });
   } else {
-    gsap.to(hand, {
-      background: 'rgb(90 133 238)',
-      duration: 0.1,
-    });
+    productData = await pb.collection('products').getFullList();
   }
-  hand.classList.toggle('active');
-}
 
-headset.addEventListener('click', handleHeadset); */
+  // section 안에 있는 자식 요소들 전부 지우기
+  const removeTarget = getNode('section');
+  while (removeTarget.firstChild) {
+    removeTarget.removeChild(removeTarget.firstChild);
+  }
 
-async function renderProduct() {
-  const response = await tiger.get(
-    `${import.meta.env.VITE_PB_API}/collections/products/records`
-  );
-
-  const productData = response.data.items;
-  console.log(productData);
-
+  // template 생성
   productData.forEach((item) => {
     const template = /* html */ `
     <div
@@ -162,7 +144,9 @@ async function renderProduct() {
 
   `;
 
+    // 제일 앞 순서부터 template 뿌려주기
     insertFirst('section', template);
+    // products state
     productState(item.state);
   });
 
@@ -186,5 +170,30 @@ function productState(item) {
     insertLast(currentState, '거래 완료');
   }
 }
+
+// 버튼이 눌렸는지 안눌렸는지 상태 초기화
+const filterActive = {
+  headset: false,
+  keyboard: false,
+  mouse: false,
+  computer: false,
+  etc: false,
+};
+
+const buttonTypes = ['headset', 'keyboard', 'mouse', 'computer', 'etc'];
+
+buttonTypes.forEach((type) => {
+  const button = getNode(`.exchange-${type}`);
+
+  button.addEventListener('click', async () => {
+    if (filterActive[type]) {
+      await renderProduct();
+    } else {
+      await renderProduct(type);
+    }
+    button.classList.toggle('bg-secondary');
+    filterActive[type] = !filterActive[type];
+  });
+});
 
 renderProduct();

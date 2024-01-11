@@ -12,6 +12,7 @@ import fullHeartSvg from '/public/images/fullheart.svg';
 import { gsap } from 'gsap';
 import pb from '/src/api/pocketbase';
 
+setDocumentTitle('EUID / 상품정보');
 /* -------------------------------------------------------------------------- */
 /*                                history back                                */
 /* -------------------------------------------------------------------------- */
@@ -23,8 +24,6 @@ back.addEventListener('click', () => history.back());
 /* -------------------------------------------------------------------------- */
 /*                                    post                                    */
 /* -------------------------------------------------------------------------- */
-
-setDocumentTitle('EUID / 상품정보');
 
 async function renderProduct() {
   const hash = window.location.hash.slice(1);
