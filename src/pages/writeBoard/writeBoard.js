@@ -1,45 +1,54 @@
-import { getNode } from '/src/lib/';
+import { getNode, insertLast } from '/src/lib/';
 import gsap from 'gsap';
 
 const nextButton = getNode('.writeBoardSecond-next-button');
 const backButton = getNode('.writeBoard-back-button');
+const titleInput = getNode('.writeBoard-input');
+const category = getNode('.writeBoard-category');
 
 function handleNext(event) {
   event.preventDefault();
 
-  //  window.innerWidth는 현재 창의 너비를 나타내는 JavaScript의 내장 속성
-  const screens = document.querySelectorAll('.w-screen'); // 모든 w-screen 요소 선택
+  const screens = document.querySelectorAll('.w-screen');
+  const inputValue = titleInput.value;
+
+  if (!inputValue) {
+    gsap.to('.warningText', { x: -10, duration: 0.1, repeat: 3, yoyo: true });
+    insertLast('.warningText', '제목을 입력해주세요.');
+    return;
+  }
+  insertLast('.writeBoardSecond-title', inputValue);
 
   if (screens.length >= 2) {
-    const currentScreen = document.querySelector('.w-screen:not(.hidden)'); // 현재 띄워져 있는 화면 선택
+    const currentScreen = document.querySelector('.w-screen:not(.hidden)');
 
-    const currentIndex = Array.from(screens).indexOf(currentScreen); // 현재 화면의 인덱스 찾기
+    const currentIndex = Array.from(screens).indexOf(currentScreen);
 
     if (currentIndex >= 0 && currentIndex < screens.length - 1) {
-      const nextScreen = screens[currentIndex + 1]; // 다음 화면 선택
-      currentScreen.classList.add('hidden'); // 현재 화면에 hidden 클래스 추가
-      nextScreen.classList.remove('hidden'); // 다음 화면에서 hidden 클래스 제거
-
-      const screenWidth = window.innerWidth;
-      //   gsap.to('.w-screen', { x: -screenWidth, ease: 'power2.inOut' });
+      const nextScreen = screens[currentIndex + 1];
+      currentScreen.classList.add('hidden');
+      nextScreen.classList.remove('hidden');
     }
 
     if (currentIndex === 2) {
+      console.log('currentIndex');
       moveChatPage();
-      nextButton.textContent = '채팅방으로 이동';
     }
   }
 }
 
 function moveChatPage() {
-  const moveChatPage = getNode('.writeBoardSecond-next-button');
-  moveChatPage.addEventListener('click', () => {
-    window.location.href = '/src/pages/chatScreen/index.html';
-  });
+  window.location.href = '/src/pages/boardContent/index.html';
 }
 function handleBack() {
+  console.log('dd');
   window.history.back();
+}
+
+function handleCategory() {
+  console.log('sdf');
 }
 
 nextButton.addEventListener('click', handleNext);
 backButton.addEventListener('click', handleBack);
+category.addEventListener('click', handleCategory);
