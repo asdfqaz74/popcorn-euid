@@ -37,14 +37,14 @@ agree.addEventListener('click', () => {
 // 1. input.value랑 정규식 활용하여 유효성 검사
 // 2. 조건에 충족하면 버튼에 'signUp-verify-valid' 클래스 추가
 
-const phoneNumberInput = document.getElementById('PhoneNumber');
+const phoneNumberInput = document.getElementById('phonenumber');
 const verifyButton = getNode('.signUp-button-verify');
 const agreeButton = document.getElementById('agree');
+const regex = /^\d{3}\d{4}\d{4}$/;
 
 function validCheckPhoneNumber(e) {
   const phoneNumber = e.target.value;
   console.log(phoneNumber);
-  const regex = /^\d{3}\d{4}\d{4}$/;
   const isValidPhoneNumber = regex.test(phoneNumber);
 
   if (isValidPhoneNumber) {
@@ -56,6 +56,24 @@ function validCheckPhoneNumber(e) {
 }
 
 phoneNumberInput.addEventListener('input', validCheckPhoneNumber);
+
+/* -------------------------------------------------------------------------- */
+/*                              인증번호 받아오기                                 */
+/* -------------------------------------------------------------------------- */
+const randomNumber = Math.floor(Math.random() * 900000) + 100000;
+
+function handelverifyNumber() {
+  const buttonValid = Array.from(verifyButton.classList).includes(
+    'signUp-verify-valid'
+  );
+
+  if (buttonValid) {
+    localStorage.setItem('verifyNumber', randomNumber);
+    alert(randomNumber);
+  }
+}
+
+verifyButton.addEventListener('click', handelverifyNumber);
 
 /* -------------------------------------------------------------------------- */
 /*              입력한 휴대폰 번호값 localStorage에 저장하고 화면에 랜더링               */
@@ -77,5 +95,5 @@ function validPhoneNumber() {
 verifyButton.addEventListener('click', validPhoneNumber);
 
 /* -------------------------------------------------------------------------- */
-/*                              인증번호 받아오기                                 */
+/*                             입력번호 유효성 검사                                */
 /* -------------------------------------------------------------------------- */
