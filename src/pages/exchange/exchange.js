@@ -64,6 +64,16 @@ function handleButton(e) {
 plusButton.addEventListener('click', handleButton);
 
 /* -------------------------------------------------------------------------- */
+/*                                write button                                */
+/* -------------------------------------------------------------------------- */
+
+const writeButton = getNode('.exchange-write');
+writeButton.addEventListener(
+  'click',
+  () => (window.location.href = '/src/pages/exchangePost/')
+);
+
+/* -------------------------------------------------------------------------- */
 /*                                     get                                    */
 /* -------------------------------------------------------------------------- */
 
