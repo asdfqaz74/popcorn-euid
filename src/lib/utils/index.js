@@ -10,3 +10,4 @@ export * from './storage.js';
 export * from './getPbImageURL.js';
 export * from './setDocumentTitle.js';
 export * from './timeAgo.js';
+export * from './removeChild.js';
