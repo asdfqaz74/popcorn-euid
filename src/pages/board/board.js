@@ -1,6 +1,10 @@
 import pocketbase from 'pocketbase';
-import { insertLast, getPbImageURL, comma, timeAgo } from '/src/lib';
+import { insertLast, getPbImageURL, comma, timeAgo, getNode } from '/src/lib';
 import { gsap } from 'gsap';
+
+const subjectMenuButton = getNode('.subjectMenu');
+const subjectMenutoggle = getNode('.subject-menu-container');
+const closedSubjectMenu = getNode('.board-closedSubjectMenu-button');
 
 const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
 
@@ -8,13 +12,14 @@ async function renderProduct() {
   const responseCommunity = await pb.collection('community').getList(1, 50, {
     expand: 'SR_location',
   });
-  console.log(responseCommunity);
+
+  // console.log(responseCommunity);
   const communityData = responseCommunity.items;
 
   communityData.forEach((item) => {
     const template = /* html */ `
     <div
-          class="board-container text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+          class="  board-container text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
         >
      <div class="col-start-1 row-start-1 row-end-3 col-end-3">
             <span
@@ -49,6 +54,7 @@ async function renderProduct() {
               class="board-thumnail h-[60px] w-[60px]"
               src="${getPbImageURL(item)}"
               alt="게시물 미리보기 사진"
+              onerror="this.style.display='none';"
             />
           </div>
           <div class="gap-1 items-center col-end-4 self-end justify-end flex">
@@ -60,11 +66,86 @@ async function renderProduct() {
 
     insertLast('.template', template);
   });
+
+  /* -------------------------------------------------------------------------- */
+  /*    주제목록 랜더링은 User의 localStorage에 저장이 구현되면 불러와서 구현        */
+  /* -------------------------------------------------------------------------- */
+
+  const templateSubjecMenu = /* html */ `
+  <div class="p-3 flex justify-between">
+  <div class="flex items-center gap-2">
+    <img class="h-[34px] w-[34px]" src="/public/images/life.svg" alt="" />
+    <strong class="board-subject-name">전체</strong>
+  </div>
+  <div
+    class="board-participating py-1 text-secondary rounded-2xl px-5 border bg-bluegray-100"
+  >
+    참여중
+  </div>
+</div>
+<div class="p-3 flex justify-between">
+  <div class="flex items-center gap-2">
+    <img class="h-[34px] w-[34px]" src="/public/images/life.svg" alt="" />
+    <strong class="board-subject-name">전체</strong>
+  </div>
+  <div
+    class="board-participating py-1 text-secondary rounded-2xl px-5 border bg-bluegray-100"
+  >
+    참여중
+  </div>
+</div>
+
+  `;
+  insertLast('.templateSubjectContainer', templateSubjecMenu);
+
   gsap.from('.board-container', {
     y: 30,
     opacity: 0,
     stagger: 0.1,
   });
+
+  const boardContent = getNode('.board-container');
+  boardContent.addEventListener('click', handleMoveContent);
+}
+
+function handleSubjectToggle() {
+  const isClicked = this.classList.toggle('click');
+
+  if (this.className === closedSubjectMenu.className) {
+    console.log('dddd');
+    gsap.to(subjectMenutoggle, {
+      y: '100%',
+      ease: 'power2.out',
+      duration: 0.5,
+    });
+    subjectMenuButton.classList.remove('click');
+    return;
+  }
+
+  if (isClicked) {
+    gsap.to(subjectMenutoggle, { y: 0, ease: 'power2.out', duration: 0.5 });
+    return;
+  }
+  gsap.to(subjectMenutoggle, { y: '100%', ease: 'power2.out', duration: 0.5 });
+}
+
+function handleClickOutside(event) {
+  if (
+    event.target.closest('.subject-menu-container') ||
+    event.target.closest('.subjectMenu')
+  ) {
+    return;
+  }
+  gsap.to(subjectMenutoggle, { y: '100%', ease: 'power2.out', duration: 0.5 });
+  subjectMenuButton.classList.remove('click');
+}
+
+function handleMoveContent() {
+  window.location.href = '/src/pages/boardContent/';
 }
 
 renderProduct();
+
+subjectMenuButton.addEventListener('click', handleSubjectToggle);
+closedSubjectMenu.addEventListener('click', handleSubjectToggle);
+document.addEventListener('click', handleClickOutside);
