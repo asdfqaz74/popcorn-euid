@@ -1,4 +1,4 @@
-import { getNode, getNodes } from '/src/lib/';
+import { getNode, getNodes, tiger } from '/src/lib/';
 
 const profileDetailsClose = getNode('.profileDetails-button-close');
 const profileToggleButtonWraps = getNodes('.profileDetails-buttonWrap');
@@ -7,6 +7,8 @@ const agreeCheckbox = getNodes('.profileDtails-agreement-container input');
 const agreeSubmitButton = getNode('.profileDetails-button-submit');
 const agreeModal = getNode('.agree-modal');
 const closeModal = getNode('.modal-close');
+//database
+
 //profileDetails 닫힘 버튼
 
 function closeHandler() {
@@ -95,4 +97,18 @@ closeModal.addEventListener('click', () => {
   agreeModal.close();
 });
 
-//pocketbase 세팅
+//job api
+const url = `https://apis.data.go.kr/B490007/ncsJobBasCom/openapi25?serviceKey=9gWjghTB3CkqwuNqrdCnSrwDeZCbrgToaCbSyQnqaIujm0c0%2BtsQSSq5kR74LNSAGCAuY0W2rvgHaeB4uBnwDg%3D%3D&numOfRows=100&pageNo=1&returnType=xml&dutyCd=01010101`;
+
+var xmlChange = require('xml-js');
+
+const response = await fetch(url);
+var options = {
+  compact: true,
+  ignoreComment: true,
+  ignoreDeclaration: true,
+};
+
+var json = xmlChange.xml2json(response, options);
+
+console.log(json);
