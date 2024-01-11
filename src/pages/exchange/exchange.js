@@ -67,12 +67,6 @@ plusButton.addEventListener('click', handleButton);
 /*                                     get                                    */
 /* -------------------------------------------------------------------------- */
 
-const headset = getNode('.exchange-headset');
-const keyboard = getNode('.exchange-keyboard');
-const mouse = getNode('.exchange-mouse');
-const computer = getNode('.exchange-computer');
-const etc = getNode('.exchange-etc');
-
 async function renderProduct(type) {
   let productData;
 
@@ -178,59 +172,28 @@ function productState(item) {
 }
 
 // 버튼이 눌렸는지 안눌렸는지 상태 초기화
-let headsetFilterActive = false;
-let keyboardFilterActive = false;
-let mouseFilterActive = false;
-let computerFilterActive = false;
-let etcFilterActive = false;
+const filterActive = {
+  headset: false,
+  keyboard: false,
+  mouse: false,
+  computer: false,
+  etc: false,
+};
 
-// 필터링 EventListener
-headset.addEventListener('click', async () => {
-  if (headsetFilterActive) {
-    await renderProduct();
-  } else {
-    await renderProduct('headset');
-  }
-  // 버튼 누를 때 마다 배경색 변경
-  headset.classList.toggle('bg-secondary');
-  // 버튼이 눌렸는지 상태 관리
-  headsetFilterActive = !headsetFilterActive;
-});
-keyboard.addEventListener('click', async () => {
-  if (keyboardFilterActive) {
-    await renderProduct();
-  } else {
-    await renderProduct('keyboard');
-  }
-  keyboard.classList.toggle('bg-secondary');
-  keyboardFilterActive = !keyboardFilterActive;
-});
-mouse.addEventListener('click', async () => {
-  if (mouseFilterActive) {
-    await renderProduct();
-  } else {
-    await renderProduct('mouse');
-  }
-  mouse.classList.toggle('bg-secondary');
-  mouseFilterActive = !mouseFilterActive;
-});
-computer.addEventListener('click', async () => {
-  if (computerFilterActive) {
-    await renderProduct();
-  } else {
-    await renderProduct('computer');
-  }
-  computer.classList.toggle('bg-secondary');
-  computerFilterActive = !computerFilterActive;
-});
-etc.addEventListener('click', async () => {
-  if (etcFilterActive) {
-    await renderProduct();
-  } else {
-    await renderProduct('etc');
-  }
-  etc.classList.toggle('bg-secondary');
-  etcFilterActive = !etcFilterActive;
+const buttonTypes = ['headset', 'keyboard', 'mouse', 'computer', 'etc'];
+
+buttonTypes.forEach((type) => {
+  const button = getNode(`.exchange-${type}`);
+
+  button.addEventListener('click', async () => {
+    if (filterActive[type]) {
+      await renderProduct();
+    } else {
+      await renderProduct(type);
+    }
+    button.classList.toggle('bg-secondary');
+    filterActive[type] = !filterActive[type];
+  });
 });
 
 renderProduct();
