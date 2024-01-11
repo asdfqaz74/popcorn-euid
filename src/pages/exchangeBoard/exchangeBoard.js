@@ -3,9 +3,9 @@ import {
   setDocumentTitle,
   getPbImageURL,
   comma,
-  insertAfter,
   insertLast,
   timeAgo,
+  removeChild,
 } from '/src/lib';
 import heartSvg from '/public/images/heart.svg';
 import fullHeartSvg from '/public/images/fullheart.svg';
@@ -29,6 +29,9 @@ setDocumentTitle('EUID / 상품정보');
 async function renderProduct() {
   const hash = window.location.hash.slice(1);
 
+  removeChild('.exchangeBoard-img');
+  removeChild('.exchangeBoard-another');
+
   const productData = await pb.collection('products').getOne(hash);
   const resultList = await pb.collection('products').getList(1, 4);
 
@@ -39,7 +42,6 @@ async function renderProduct() {
   // console.log(test);
 
   const productInfo = /* html */ `
-  <div class="exchangeBoard-img image-box w-full">
       <img
         src="${getPbImageURL(productData, 'images')}"
         class="w-full h-full object-cover"
@@ -127,9 +129,9 @@ async function renderProduct() {
         >채팅하기</a
         >
         </div>
-        </div>
+
         `;
-  insertAfter('.exchangeBoard-nav', productInfo);
+  insertLast('.exchangeBoard-img', productInfo);
 
   resultList.items.forEach((item) => {
     const withItem = /* html */ `
@@ -142,7 +144,7 @@ async function renderProduct() {
       alt="${item.alt}"
     />
     <figcaption class="text-sm block">
-      <a href="/src/pages/exchangeBoard/index.html#${item.id}}">
+      <a href="${`/src/pages/exchangeBoard/index.html#${item.id}`}" target="_self">
         <p class="exchangeBoard-another-text block truncate">
           ${item.title}
         </p>
@@ -195,3 +197,6 @@ async function renderProduct() {
 }
 
 renderProduct();
+
+// 이 글과 함께 봤어요 쪽 링크 인식
+window.addEventListener('hashchange', renderProduct);
