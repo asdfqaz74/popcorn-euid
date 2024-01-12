@@ -9,9 +9,9 @@
     <script type="module" src="/src/pages/story/story.js"></script>
   </head>
 
-  <body>
+  <body class="min-w-[17.5rem]">
     <h1 class="sr-only">메인 홈</h1>
-    <header class="region-nav sticky top-0 bg-background h-[2.8125rem]">
+    <header class="region-nav sticky top-0 bg-background h-[2.8125rem] z-10">
       <div class="region-nav__wrapper flex justify-between w-full px-5 py-2">
         <div class="flex flex-shrink-0 select-wrapper">
           <select
@@ -49,12 +49,48 @@
       </div>
     </header>
 
-    <div class="story-adv-container w-full h-48 bg-gray-400">
-      <img
-        src="/public/images/hooray.png"
-        class="story-adv w-full h-full object-contain"
-        alt="광고이미지"
-      />
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="h-64">
+            <img
+              src="/public/images/backlit.webp"
+              class="object-cover w-full h-full"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="h-64">
+            <img
+              src="/public/images/tower.jpg"
+              class="object-cover w-full h-full"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="h-64">
+            <img
+              src="/public/images/image.jpg"
+              class="object-cover w-full h-full"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="h-64">
+            <img
+              src="/public/images/perceptual-standard.jpg"
+              class="object-cover w-full h-full"
+              alt=""
+            />
+          </div>
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-pagination"></div>
     </div>
 
     <nav class="sticky top-[2.8125rem]">
@@ -91,10 +127,46 @@
             class="w-full h-full object-contain"
           />
           <figcaption class="py-1">
-            디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
+            주말 출근은 정말 즐거워 <br />
+            나머지는 너희들한테 맡기마
+            <div class="text-Contents-contentSecondary">
+              <span class="border-r pr-1">리더</span>
+              <span class="pl-1">강냉이박조 이경화</span>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure
+          class="w-[60%] xs:w-[40%] sm:w-[50%] md:w-[50%] xs:min-w-[8.75rem] xs:max-w-[13rem] sm:max-w-[12.5rem] bg-Contents-contentSecondary rounded-3xl h-[6.5rem] md:h-[8rem] mb-20"
+        >
+          <img
+            src="/public/images/hooray.png"
+            alt="스토리 사진"
+            class="w-full h-full object-contain"
+          />
+          <figcaption class="py-1">
+            스크럽마스터로써 생긴 힘든 썰<br />
+            푼다.ssul
+            <div class="text-Contents-contentSecondary">
+              <span class="border-r pr-1">스크럽마스터</span>
+              <span class="pl-1">강냉이박조 강태욱</span>
+            </div>
+          </figcaption>
+        </figure>
+
+        <figure
+          class="w-[60%] xs:w-[40%] sm:w-[50%] md:w-[50%] xs:min-w-[8.75rem] xs:max-w-[13rem] sm:max-w-[12.5rem] bg-Contents-contentSecondary rounded-3xl h-[6.5rem] md:h-[8rem] mb-20"
+        >
+          <img
+            src="/public/images/hooray.png"
+            alt="스토리 사진"
+            class="w-full h-full object-contain"
+          />
+          <figcaption class="py-1">
+            나는 잠을 4시간만 자도 충분해 zzzZZZZ...
             <div class="text-Contents-contentSecondary">
               <span class="border-r pr-1">EUID</span>
-              <span class="pl-1">8기 수강생 강진성</span>
+              <span class="pl-1">강냉이박조 강진성</span>
             </div>
           </figcaption>
         </figure>
@@ -111,41 +183,7 @@
             디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
             <div class="text-Contents-contentSecondary">
               <span class="border-r pr-1">EUID</span>
-              <span class="pl-1">8기 수강생 강진성</span>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure
-          class="w-[60%] xs:w-[40%] sm:w-[50%] md:w-[50%] xs:min-w-[8.75rem] xs:max-w-[13rem] sm:max-w-[12.5rem] bg-Contents-contentSecondary rounded-3xl h-[6.5rem] md:h-[8rem] mb-20"
-        >
-          <img
-            src="/public/images/hooray.png"
-            alt="스토리 사진"
-            class="w-full h-full object-contain"
-          />
-          <figcaption class="py-1">
-            디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-            <div class="text-Contents-contentSecondary">
-              <span class="border-r pr-1">EUID</span>
-              <span class="pl-1">8기 수강생 강진성</span>
-            </div>
-          </figcaption>
-        </figure>
-
-        <figure
-          class="w-[60%] xs:w-[40%] sm:w-[50%] md:w-[50%] xs:min-w-[8.75rem] xs:max-w-[13rem] sm:max-w-[12.5rem] bg-Contents-contentSecondary rounded-3xl h-[6.5rem] md:h-[8rem] mb-20"
-        >
-          <img
-            src="/public/images/hooray.png"
-            alt="스토리 사진"
-            class="w-full h-full object-contain"
-          />
-          <figcaption class="py-1">
-            디자인에 대해 하나도 알지 못했던 내가 취업할 수 있었던 이유
-            <div class="text-Contents-contentSecondary">
-              <span class="border-r pr-1">EUID</span>
-              <span class="pl-1">8기 수강생 강진성</span>
+              <span class="pl-1">강냉이박조 박지인</span>
             </div>
           </figcaption>
         </figure>
