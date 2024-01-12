@@ -1,9 +1,19 @@
 import { resolve } from 'node:path';
 import { defineConfig } from 'vite';
+import image from '@rollup/plugin-image';
 
 export default defineConfig({
+  plugins: [image()],
+
+  esbuild: {
+    supported: {
+      'top-level-await': true, //browsers can handle top-level-await features
+    },
+  },
   build: {
     outDir: 'docs',
+    target: 'esnext', //browsers can handle the latest ES features
+    base: '/popcorn-euid/',
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
@@ -13,6 +23,7 @@ export default defineConfig({
         exchangeBoard: resolve(__dirname, 'src/pages/exchangeBoard/index.html'),
         exchange: resolve(__dirname, 'src/pages/exchange/index.html'),
         start: resolve(__dirname, 'src/pages/start/index.html'),
+        chat: resolve(__dirname, 'src/pages/chat/index.html'),
         category: resolve(__dirname, 'src/pages/category/index.html'),
         signUP: resolve(__dirname, 'src/pages/signUp/index.html'),
         login: resolve(__dirname, 'src/pages/login/index.html'),
@@ -23,14 +34,6 @@ export default defineConfig({
           'src/pages/profileDetails/index.html'
         ),
         board: resolve(__dirname, 'src/pages/board/index.html'),
-        writeBoardSecond: resolve(
-          __dirname,
-          'src/pages/writeBoardSecond/index.html'
-        ),
-        writeBoardThird: resolve(
-          __dirname,
-          'src/pages/wirteBoardThird/index.html'
-        ),
         boardContet: resolve(__dirname, 'src/pages/boardContent/index.html'),
         chatScreen: resolve(__dirname, 'src/pages/chatScreen/index.html'),
         writeBoard: resolve(__dirname, 'src/pages/writeBoard/index.html'),

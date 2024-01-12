@@ -1,149 +1,207 @@
-import { getNode, getNodes, insertFirst } from '/src/lib/';
+import {
+  getNode,
+  getPbImageURL,
+  comma,
+  insertFirst,
+  insertLast,
+  timeAgo,
+  removeChild,
+} from '/src/lib/';
+import plusTapSvg from '/public/images/plusTap.svg';
+import plusTapActiveSvg from '/public/images/plusTapActive.svg';
+import { gsap } from 'gsap';
+import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
 /*                             toggle plus button                             */
 /* -------------------------------------------------------------------------- */
 
 const plusButton = getNode('.exchange-button');
-let isUlVisible = false;
+const buttonHidden = getNode('.exchange-button-ul');
 
-function handleButton() {
-  if (isUlVisible) {
-    gsap.to('.exchange-button-ul > ul > li', {
-      y: 30,
-      opacity: 0,
-      stagger: 0.1,
-      onComplete: () => {
-        removeList();
-        plusButton.classList.add('exchange-button-no');
-        plusButton.classList.remove('exchange-button-active');
-      },
-    });
+function handleButton(e) {
+  const button = e.currentTarget;
+  const image = button.querySelector('.exchange-button-img');
+
+  const currentSrc = image.src;
+  const plusImg = plusTapSvg;
+  const plusActiveImg = plusTapActiveSvg;
+
+  if (currentSrc.includes(plusImg)) {
+    image.src = plusActiveImg;
   } else {
-    plusButton.classList.remove('exchange-button-no');
-    plusButton.classList.add('exchange-button-active');
-    addList();
+    image.src = plusImg;
+  }
+
+  if (button.classList.contains('exchange-button-no')) {
+    gsap.to(button, {
+      background: 'rgb(255 255 255)',
+      duration: 0.3,
+    });
+    button.classList.remove('exchange-button-no');
+    button.classList.add('exchange-button-active');
     gsap.from('.exchange-button-ul > ul > li', {
       y: 30,
       opacity: 0,
       stagger: {
-        each: 0.1,
+        each: 0.05,
         from: 'end',
       },
     });
+    buttonHidden.classList.remove('hidden');
+    buttonHidden.classList.add('block');
+  } else {
+    buttonHidden.classList.remove('block');
+    buttonHidden.classList.add('hidden');
+    gsap.to(button, {
+      background: 'rgb(55 63 103)',
+      duration: 0.3,
+    });
+    button.classList.remove('exchange-button-active');
+    button.classList.add('exchange-button-no');
   }
-
-  isUlVisible = !isUlVisible;
-}
-
-function addList() {
-  const img = /* html */ `
-  <img src="/public/images/plusTapActive.svg" alt="" />
-  `;
-
-  const ul = /* html */ `
-  <ul>
-    <li class="exchange-headset exchange-li-button">
-      <button type="button" aria-label="헤드셋 품목만 정렬">
-      🎧헤드셋
-      </button>
-    </li>
-    <li class="exchange-keyboard exchange-li-button">
-      <button type="button" aria-label="키보드 품목만 정렬">
-      ⌨키보드
-      </button>
-    </li>
-    <li class="exchange-mouse exchange-li-button">
-      <button type="button" aria-label="마우스 품목만 정렬">
-      🖱️마우스
-      </button>
-    </li>
-    <li class="exchange-computer exchange-li-button">
-      <button type="button" aria-label="컴퓨터 품목만 정렬">
-      💻컴퓨터
-      </button>
-    </li>
-    <li class="exchange-etc exchange-li-button">
-      <button type="button" aria-label="기타 품목만 정렬">
-      🎈기타 등등
-      </button>
-    </li>
-  </ul>
-  `;
-
-  plusButton.innerHTML = img;
-  insertFirst('.exchange-button-ul', ul);
-}
-
-function removeList() {
-  const list = document.querySelector('.exchange-button-ul');
-
-  plusButton.innerHTML = '<img src="/public/images/plusTap.svg" alt="" />';
-  list.innerHTML = '';
 }
 
 plusButton.addEventListener('click', handleButton);
 
 /* -------------------------------------------------------------------------- */
-/*                                toggle heart                                */
+/*                                write button                                */
 /* -------------------------------------------------------------------------- */
 
-// 모든 게시글의 좋아요 버튼을 선택합니다.
-const likeButtons = getNodes('.exchange-board-heart button');
+const writeButton = getNode('.exchange-write');
+writeButton.addEventListener(
+  'click',
+  () => (window.location.href = '/src/pages/exchangePost/')
+);
 
-// 클릭 이벤트 리스너를 등록합니다.
-likeButtons.forEach((button) => {
-  button.addEventListener('click', handleLikeButtonClick);
-});
+/* -------------------------------------------------------------------------- */
+/*                                     get                                    */
+/* -------------------------------------------------------------------------- */
 
-// 클릭 이벤트 핸들러 함수를 정의합니다.
-function handleLikeButtonClick(event) {
-  // 현재 클릭된 버튼을 가져옵니다.
-  const heartButton = event.currentTarget;
+async function renderProduct(type) {
+  let productData;
 
-  // 버튼 내부의 이미지 엘리먼트를 찾습니다.
-  const heartImage = heartButton.querySelector('img');
-
-  // 현재 이미지의 src와 새로운 이미지의 src를 비교하여 이미지를 토글합니다.
-  const currentSrc = heartImage.src;
-  const newSrc = '/public/images/heart.svg';
-  const fullheartSrc = '/public/images/fullheart.svg';
-
-  if (currentSrc.includes(newSrc)) {
-    // 이미지가 'heart.svg'인 경우, 'fullheart.svg'로 변경
-    gsap.from(heartImage, {
-      scale: 0.8, // 축소된 크기에서 시작
-      duration: 0.1, // 애니메이션 기간
-      onComplete: () => {
-        heartImage.src = fullheartSrc;
-        gsap.to(heartImage, {
-          scale: 1, // 원래 크기로 복원
-          duration: 0.1,
-        });
-      },
+  // 매개변수에 type이 있는지
+  if (type) {
+    productData = await pb.collection('products').getFullList({
+      filter: `type="${type}"`,
     });
   } else {
-    // 이미지가 'fullheart.svg'가 아닌 경우, 'heart.svg'로 변경
-    gsap.from(heartImage, {
-      scale: 1.2, // 확대된 크기에서 시작
-      duration: 0.1,
-      onComplete: () => {
-        heartImage.src = newSrc;
-        gsap.to(heartImage, {
-          scale: 1,
-          duration: 0.1,
-        });
-      },
-    });
+    productData = await pb.collection('products').getFullList();
   }
 
-  // 좋아요 갯수 업데이트
-  const likeCountSpan = heartButton.nextElementSibling;
-  const currentLikeCount = parseInt(likeCountSpan.innerText, 10);
+  // section 안에 있는 자식 요소들 전부 지우기
+  removeChild('section');
 
-  if (heartImage.src.includes('full')) {
-    likeCountSpan.innerText = currentLikeCount - 1;
-  } else {
-    likeCountSpan.innerText = currentLikeCount + 1;
+  // template 생성
+  productData.forEach((item) => {
+    const template = /* html */ `
+    <div
+        class="exchange-board border-t border-Contents-contentSecondary flex items-center py-3 pl-3"
+      >
+        <div
+          class="exchange-img-wrapper relative w-[28.125%] pb-[28.125%] bg-gray-200 rounded-2xl"
+        >
+          <a href="${`/src/pages/exchangeBoard/index.html#${item.id}`}">
+            <img
+              src="${getPbImageURL(item, 'images')}"
+              class="exchange-board-img absolute top-0 left-0 w-full h-full object-cover"
+              alt="${item.alt}"
+            />
+          </a>
+        </div>
+
+        <div
+          class="exchange-board-contents ml-2 text-base sm:text-xl flex-grow"
+        >
+          <a href="${`/src/pages/exchangeBoard/index.html#${item.id}`}" class="exchange-board-link"
+            >${item.title}</a
+          >
+          <div class="flex flex-col">
+            <div
+              class="text-sm text-Contents-contentTertiary font-normal sm:text-lg mb-1"
+            >
+              <span class="exchange-board-location">마포구 신수동</span>
+              <span class="exchange-board-time">ㆍ${timeAgo(
+                item.created
+              )}</span>
+            </div>
+            <div class="mb-2">
+              <span
+                class="exchange-board-state"
+                ></span
+              >
+              <span
+                class="exchange-board-price text-base font-semibold leading-normal sm:text-xl"
+                >${comma(item.price)}원</span
+              >
+            </div>
+          </div>
+          <div
+            class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
+          >
+            <img
+              src="/public/images/heart.svg"
+              class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
+              alt=""
+            />
+            <span class="exchange-board-like text-sm sm:text-lg">4</span>
+          </div>
+        </div>
+      </div>
+
+  `;
+
+    // 제일 앞 순서부터 template 뿌려주기
+    insertFirst('section', template);
+    // products state
+    productState(item.state);
+  });
+
+  gsap.from('.exchange-board', {
+    y: 30,
+    opacity: 0,
+    stagger: 0.2,
+  });
+}
+
+// 물품 상태 관리
+function productState(item) {
+  const currentState = getNode('.exchange-board-state');
+  const states = item;
+
+  if (states === 'reservation') {
+    currentState.classList.add('exchange-reservation');
+    insertLast(currentState, '예약중');
+  } else if (states === 'done') {
+    currentState.classList.add('exchange-done');
+    insertLast(currentState, '거래 완료');
   }
 }
+
+// 버튼이 눌렸는지 안눌렸는지 상태 초기화
+const filterActive = {
+  headset: false,
+  keyboard: false,
+  mouse: false,
+  computer: false,
+  etc: false,
+};
+
+const buttonTypes = ['headset', 'keyboard', 'mouse', 'computer', 'etc'];
+
+buttonTypes.forEach((type) => {
+  const button = getNode(`.exchange-${type}`);
+
+  button.addEventListener('click', async () => {
+    if (filterActive[type]) {
+      await renderProduct();
+    } else {
+      await renderProduct(type);
+    }
+    button.classList.toggle('bg-secondary');
+    filterActive[type] = !filterActive[type];
+  });
+});
+
+renderProduct();

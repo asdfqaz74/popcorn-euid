@@ -10,19 +10,19 @@
   </head>
   <body>
     <div
-      class="flex text-base text-Contents-contentTertiary items-center mt-1 mb-4"
+      class="flex text-base text-Contents-contentTertiary items-center mt-3 mb-4"
     >
       <button type="button" class="search-back mx-4">
         <img src="/public/images/directionL.svg" alt="뒤로가기" />
       </button>
-      <form action="#" method="get">
+      <form action="#" method="get" class="w-full">
         <label for="searchInput" class="sr-only">검색창</label>
         <input
           type="search"
           id="searchInput"
           placeholder="어디동 근처에서 검색"
           aria-label="검색할 품목을 입력해주세요"
-          class="search-input bg-gray-100 rounded-2xl w-[15.625rem] h-[1.875rem] pl-[0.625rem] text-Contents-contentPrimary pr-[0.625rem]"
+          class="search-input bg-gray-100 rounded-2xl w-3/4 h-[1.875rem] pl-[0.625rem] text-Contents-contentPrimary pr-[0.625rem]"
         />
       </form>
     </div>
@@ -32,14 +32,49 @@
 
       <nav class="pl-3 overflow-x-scroll no-scrollbar mt-3">
         <ul class="search-ul flex text-sm gap-1">
-          <li tabindex="0" class="search-ul-li">노트북</li>
-          <li tabindex="0" class="search-ul-li">노트북 거치대</li>
-          <li tabindex="0" class="search-ul-li">키보드</li>
-          <li tabindex="0" class="search-ul-li">마우스</li>
-          <li tabindex="0" class="search-ul-li">헤드셋</li>
-          <li tabindex="0" class="search-ul-li">기타등등</li>
+          <li class="search-ul-li">
+            <button type="button" class="search-notebook">노트북</button>
+          </li>
+          <li class="search-ul-li">
+            <button type="button" class="search-notebookProp">
+              노트북 거치대
+            </button>
+          </li>
+          <li class="search-ul-li">
+            <button type="button" class="search-keyboard">키보드</button>
+          </li>
+          <li class="search-ul-li">
+            <button type="button" class="search-mouse">마우스</button>
+          </li>
+          <li class="search-ul-li">
+            <button type="button" class="search-headset">헤드셋</button>
+          </li>
+          <li class="search-ul-li">
+            <button type="button" class="search-etc">기타등등</button>
+          </li>
         </ul>
       </nav>
+    </div>
+
+    <div class="search-info mt-4 px-3">
+      <!-- <div>
+        <a
+          href="${`/src/pages/exchangeBoard/index.html#${item.id}`}"
+          class="flex border-b gap-2 mb-2"
+        >
+          <img src="/public/images/search.svg" alt="" />
+          <span>이걸 찾았어</span>
+        </a>
+      </div>
+      <div>
+        <a
+          href="${`/src/pages/exchangeBoard/index.html#${item.id}`}"
+          class="flex border-b gap-2 mb-2"
+        >
+          <img src="/public/images/search.svg" alt="" />
+          <span>이걸 찾았어</span>
+        </a>
+      </div> -->
     </div>
   </body>
 </html>
