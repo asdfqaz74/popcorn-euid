@@ -186,3 +186,59 @@ agreeButton.addEventListener('click', allValidCheck);
 // const ArrayPhoneNumber = test.map((row) => row.phoneNumber);
 // const duplicatePhoneNumber = ArrayPhoneNumber.includes(phoneNumberValue);
 // console.log(duplicatePhoneNumber);
+
+/* -------------------------------------------------------------------------- */
+/*                               인증번호 타이머                                  */
+/* -------------------------------------------------------------------------- */
+// 타이머 초기값 설정 (5분)
+let minutes = 0;
+let seconds = 5;
+
+// 타이머 업데이트 함수
+function updateTimer() {
+  // 남은 시간 표시 엘리먼트 가져오기
+  const remainingMin = document.getElementById('remaining__min');
+  const remainingSec = document.getElementById('remaining__sec');
+
+  // 남은 시간 갱신
+  if (seconds === 0) {
+    if (minutes === 0) {
+      clearInterval(timer);
+      // 타이머 종료 후 처리할 작업 추가하기 (예: 인증문자 재요청 처리)
+      const verifyAgainButton = getNode('.signUp-button-Reverify');
+      verifyButton.disabled = true; // 버튼 비활성화
+      addClass(agreeButton, 'bg-bluegray-500'); // 버튼 비활성화
+      addClass(verifyAgainButton, 'bg-gray-500'); // 버튼 색상 변경
+      addClass(verifyAgainButton, 'text-background'); // 버튼 색상 변경
+    } else {
+      minutes--;
+      seconds = 59;
+    }
+  } else {
+    seconds--;
+  }
+
+  // 남은 시간 표시 업데이트
+  remainingMin.textContent = `(${minutes.toString().padStart(2, '0')}`;
+  remainingSec.textContent = `${seconds.toString().padStart(2, '0')})`;
+}
+
+// 1초마다 타이머 업데이트
+const timer = setInterval(updateTimer, 1000);
+let isTimerEnded = false;
+
+// 타이머 종료 조건
+if (minutes === 0 && seconds === 0) {
+  clearInterval(timer);
+  // 타이머 종료 후 처리할 작업 추가하기 (예: 인증문자 재요청 처리)
+  // 여기에 작성해주세요
+  isTimerEnded = true;
+}
+
+verifyButton.addEventListener('click', function () {
+  if (isTimerEnded) {
+    alert('버튼이 클릭되었습니다!');
+  }
+});
+
+// verifyButton.addEventListener('click', updateTimer);
