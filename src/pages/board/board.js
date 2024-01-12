@@ -17,13 +17,14 @@ async function renderProduct() {
 
   // console.log(responseCommunity);
   const communityData = responseCommunity.items;
-
   communityData.forEach((item) => {
+    console.log(item);
     const template = /* html */ `
     <div
-          class="  board-container text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
-        >
+          class="board-container text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+        >    
      <div class="col-start-1 row-start-1 row-end-3 col-end-3">
+     <a href="/src/pages/boardContent/index.html#${item.id}" >
             <span
               class="board-keyword p-1 border border-black rounded-default bg-bluegray-300 text-background"
             >
@@ -50,6 +51,7 @@ async function renderProduct() {
               <span>·</span>
               <span class="board-writeTime"> ${timeAgo(item.created)} </span>
             </div>
+            </a>
           </div>
           <div class="col-end-4 self-center">
             <img
@@ -63,6 +65,7 @@ async function renderProduct() {
             <img src="/public/images/people.svg" alt="참가 인원수" />
             <span class="board-joinPeople">${item.headcount}/3명</span>
           </div> 
+          
               </div>
   `;
 
@@ -113,9 +116,6 @@ async function renderProduct() {
     opacity: 0,
     stagger: 0.1,
   });
-
-  const boardContent = getNode('.board-container');
-  boardContent.addEventListener('click', handleMoveContent);
 }
 
 function funcLocalStorage() {
@@ -154,10 +154,6 @@ function handleClickOutside(event) {
   }
   gsap.to(subjectMenutoggle, { y: '100%', ease: 'power2.out', duration: 0.5 });
   subjectMenuButton.classList.remove('click');
-}
-
-function handleMoveContent() {
-  window.location.href = '/src/pages/boardContent/';
 }
 
 renderProduct();

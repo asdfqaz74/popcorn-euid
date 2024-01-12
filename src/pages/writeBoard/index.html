@@ -5,6 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script type="module" src="/src/pages/writeBoard/writeBoard.js"></script>
     <title>writeBoard</title>
   </head>
@@ -34,6 +35,7 @@
                   id="message"
                   type="text"
                   placeholder="이웃과 어떤 활동을 할까요"
+                  autocomplete="off"
                 />
                 <p class="warningText text-negative text-sm"></p>
               </form>
@@ -92,37 +94,60 @@
                 <strong class="writeBoardSecond-title"></strong>
               </p>
             </div>
-            <div
-              class="writeBoard-category text-base px-3 py-4 flex justify-between"
+
+            <!-- ----------------------------------------------------------------------- -->
+            <!--     특정 그룹의 부모 요소에 group-focus-within 클래스가 추가되면 해당
+                 그룹 내부의 요소들에 대해 스타일을 지정할 수 있습니다.
+                group 클래스는 주로 버튼 요소에서 사용되는 클래스                              -->
+            <!-- ----------------------------------------------------------------------- -->
+            <button
+              class="w-full relative group writeBoard-category text-base px-3 py-4 flex justify-between"
             >
-              <p>카테고리를 선택해주세요</p>
-              <button class="writeBoardSecond-select-category" type="button">
+              <p class="selectCategory">카테고리를 선택해주세요</p>
+              <div class="writeBoardSecond-select-category">
                 <img
                   src="/public/images/directionDown.svg"
                   alt="카테고리 고르기 버튼"
                 />
-              </button>
-            </div>
-            <div class="dropdown relative hidden focus-within:block">
-              <button>Menü</button>
+              </div>
               <nav
-                class="absolute top-24 left-0 opacity-0 hidden rounded-sm w-[12.5rem] focus-within:opacity-100 focus-within:visible focus-within:-translate-y-1"
                 tabindex="0"
+                class="w-full border-2 bg-background invisible border-gray-800 rounded absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1"
               >
-                <!-- https://dev.to/tayfunerbilen/dropdown-with-css-tailwind-i7p -->
-                <ul class="py-[0.188rem]">
+                <ul class="py-1">
                   <li>
-                    <a class="block p-2 hover:bg-gray-100" href="#"> Edit </a>
+                    <div
+                      class="writeBoardCategory block px-4 py-2 hover:bg-gray-100"
+                    >
+                      프로젝트
+                    </div>
                   </li>
                   <li>
-                    <a href="#"> Delete </a>
+                    <div
+                      class="writeBoardCategory block px-4 py-2 hover:bg-gray-100"
+                    >
+                      스터디
+                    </div>
                   </li>
                   <li>
-                    <a href="#"> Reply </a>
+                    <div
+                      class="writeBoardCategory block px-4 py-2 hover:bg-gray-100"
+                    >
+                      오프라인
+                    </div>
+                  </li>
+                  <li>
+                    <div
+                      class="writeBoardCategory block px-4 py-2 hover:bg-gray-100"
+                    >
+                      공모전
+                    </div>
                   </li>
                 </ul>
               </nav>
-            </div>
+            </button>
+            <!-- https://dev.to/tayfunerbilen/dropdown-with-css-tailwind-i7p -->
+
             <div class="pt-4">
               <form action="/submit" method="post">
                 <label for="board-content"></label>
@@ -146,15 +171,15 @@
                 </div>
                 <div class="flex items-center gap-2">
                   <button
-                    class="writeBoardSecond-minus-button h-fit rounded-full border border-Contents-contentPrimary"
+                    class="minus writeBoardSecond-people-button h-fit rounded-full border border-Contents-contentPrimary"
                     type="button"
                     aria-label="인원 수 감소"
                   >
                     <img src="/public/images/minus-board-people.svg" alt="" />
                   </button>
-                  <span>4명</span>
+                  <span class="people">4명</span>
                   <button
-                    class="writeBoardSecond-plus-button inline-block h-fit rounded-full border border-Contents-contentPrimary"
+                    class="plus writeBoardSecond-people-button inline-block h-fit rounded-full border border-Contents-contentPrimary"
                     type="button"
                     aria-label="인원 수 증가"
                   >
@@ -165,19 +190,31 @@
               <div class="pt-3 flex justify-between">
                 <div class="flex gap-2">
                   <img src="/public/images/calenderBlack.svg" alt="날짜" />
+
                   <span>날짜</span>
                 </div>
+
                 <button class="writeboardSecond-calender-button" type="button">
-                  <span>오늘</span>
+                  <label for="return-date" class="sr-only">달력입력</label>
+                  <input
+                    type="date"
+                    id="return-date"
+                    min=""
+                    max=""
+                    class=""
+                    autocomplete="off"
+                  />
                 </button>
               </div>
               <div class="pt-3 flex justify-between">
                 <div class="flex gap-2">
                   <img src="/public/images/time.svg" alt="시간" />
+
                   <span>시간</span>
                 </div>
                 <button class="writeboardSecond-time-button" type="button">
-                  <span>오후 8:00</span>
+                  <label for="timeInput" class="sr-only">시간입력</label>
+                  <input type="time" id="timeInput" autocomplete="off" />
                 </button>
               </div>
               <div class="pt-1 flex justify-between items-center">
@@ -191,24 +228,12 @@
                   <button
                     class="writeBoardSecond-location-button bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4"
                     type="button"
-                    onclick="openDaumPostcode()"
                   >
                     주소검색
                   </button>
-                  <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-                  <script>
-                    function openDaumPostcode() {
-                      new daum.Postcode({
-                        oncomplete: function (data) {
-                          // 우선 다음 주소api 사용 js 로 구현
-                          // 여기에 팝업에서 검색결과 항목을 클릭했을 때 실행할 코드를 작성합니다.
-                          console.log(data);
-                        },
-                      }).open();
-                    }
-                  </script>
                 </div>
               </div>
+              <div class="locationValue py-3 text-right"></div>
             </div>
           </section>
           <section class="w-screen min-w-[17.5rem]">
@@ -223,7 +248,7 @@
                 <img src="/public/images/sex.svg" alt="날짜" />
                 <span>성별</span>
               </div>
-              <button class="writeboardThird-sex-button" type="button">
+              <button class="writeboardThird-gender-button" type="button">
                 <span>누구나</span>
               </button>
             </div>
@@ -231,21 +256,21 @@
               <p class="text-Contents-contentSecondary">
                 누구나 또는 같은 성별로 모임으로 설정해주세요.
               </p>
-              <div class="mt-2 flex gap-[0.4375rem]">
+              <div class="selectGenderMenuContainer mt-2 flex gap-[0.4375rem]">
                 <button
-                  class="border text-background bg-primary rounded-full px-3 py-2 border-gray-300"
+                  class="selectGenderbuttonMenu border text-background bg-primary rounded-full px-3 py-2 border-gray-300"
                   type="button"
                 >
                   누구나
                 </button>
                 <button
-                  class="border rounded-full px-3 py-2 border-gray-300"
+                  class="selectGenderbuttonMenu border rounded-full px-3 py-2 border-gray-300"
                   type="button"
                 >
                   여자만
                 </button>
                 <button
-                  class="border rounded-full px-3 py-2 border-gray-300"
+                  class="selectGenderbuttonMenu border rounded-full px-3 py-2 border-gray-300"
                   type="button"
                 >
                   남자만
@@ -257,18 +282,87 @@
                 <img src="/public/images/people.svg" alt="날짜" />
                 <span>나이</span>
               </div>
-              <button class="writeboardThird-age" type="button">
-                <span>누구나</span>
-              </button>
+              <div class="w-[60%] relative group">
+                <button class="writeboardThird-age" type="button">
+                  <span class="block felx">누구나</span>
+
+                  <nav
+                    tabindex="0"
+                    class="z-10 w-full border-2 bg-background invisible border-gray-800 rounded absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1"
+                  >
+                    <ul class="ageContainer py-1">
+                      <li class="ageInputFrom ageinputClass">
+                        <div class="block px-4 py-2 hover:bg-gray-100">
+                          <label for="ageInput" class="sr-only"
+                            >몇 살부터</label
+                          >
+                          <input
+                            id="ageInputFrom"
+                            class="w-full text-center"
+                            type="text"
+                            placeholder="몇 살부터"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </li>
+                      <li class="ageInputTo ageinputClass">
+                        <div class="block px-4 py-2 hover:bg-gray-100">
+                          <label for="ageInput" class="sr-only"
+                            >몇 살까지</label
+                          >
+                          <input
+                            id="ageInputTo"
+                            class="w-full text-center"
+                            type=" text"
+                            placeholder="몇 살까지"
+                            autocomplete="off"
+                          />
+                        </div>
+                      </li>
+                      <li class="ageFromToCheck ageinputClass">
+                        <div
+                          id="ageFromToCheck"
+                          class="m-auto border text-background bg-secondary border-Contents-contentPrimary block w-[80%] px-4 py-1 hover:bg-gray-100"
+                        >
+                          <label for="ageInput" class="sr-only"
+                            >나이 입력 후 확인버튼</label
+                          >
+
+                          확인
+                        </div>
+                      </li>
+                      <li class="ageinputClass">
+                        <div
+                          id="ageAll"
+                          class="block px-4 py-2 hover:bg-gray-100"
+                        >
+                          누구나
+                        </div>
+                      </li>
+                    </ul>
+                  </nav>
+                </button>
+              </div>
             </div>
             <div class="text-base p-3 flex justify-between">
               <div class="flex gap-2">
                 <img src="/public/images/passwordBoard.svg" alt="날짜" />
                 <span class="whitespace-nowrap">승인 후 참여</span>
               </div>
-              <button class="writeboardThird-approval-button" type="button">
+              <label class="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  value=""
+                  class="sr-only peer"
+                  autocomplete="off"
+                />
+                <div
+                  class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-Blue-300 dark:peer-focus:ring-Blue-800 ring-Blue-600 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-background after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-Blue-600"
+                ></div>
+              </label>
+              <!-- <button class="writeboardThird-approval-button" type="button">
                 <img src="/public/images/toggle.svg" alt="날짜" />
-              </button>
+              </button> -->
             </div>
           </section>
         </div>
