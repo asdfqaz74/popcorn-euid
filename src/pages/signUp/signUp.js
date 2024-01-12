@@ -1,4 +1,4 @@
-import { removeClass } from '../../lib/dom/css';
+import { addClass, removeClass } from '../../lib/dom/css';
 import { getNode, toggleClass } from '/src/lib/';
 import pb from '/src/api/pocketbase';
 
@@ -9,7 +9,6 @@ const goBack = getNode('.button-goBack');
 const moveBack = getNode('.button-moveBack');
 const signUpContainer = getNode('.signUp-container');
 const signUpFormBefore = getNode('.signUp-form-before');
-const agree = getNode('.signUp-button-agree');
 
 // 첫번째 페이지 뒤로가기
 function handleButton() {
@@ -27,9 +26,6 @@ signUpFormBefore.addEventListener('submit', (e) => {
   e.preventDefault();
   signUpContainer.style.transform = 'translateX(-50%)';
 });
-agree.addEventListener('click', () => {
-  window.location.href = '/src/pages/story/';
-});
 
 /* -------------------------------------------------------------------------- */
 /*                         휴대폰 번호 valid 상태로 변경                            */
@@ -37,14 +33,14 @@ agree.addEventListener('click', () => {
 // 1. input.value랑 정규식 활용하여 유효성 검사
 // 2. 조건에 충족하면 버튼에 'signUp-verify-valid' 클래스 추가
 
-const phoneNumberInput = document.getElementById('PhoneNumber');
+const phoneNumberInput = document.getElementById('phoneNumber');
 const verifyButton = getNode('.signUp-button-verify');
 const agreeButton = document.getElementById('agree');
+const regex = /^010\d{4}\d{4}$/;
 
 function validCheckPhoneNumber(e) {
   const phoneNumber = e.target.value;
   console.log(phoneNumber);
-  const regex = /^\d{3}\d{4}\d{4}$/;
   const isValidPhoneNumber = regex.test(phoneNumber);
 
   if (isValidPhoneNumber) {
@@ -58,26 +54,59 @@ function validCheckPhoneNumber(e) {
 phoneNumberInput.addEventListener('input', validCheckPhoneNumber);
 
 /* -------------------------------------------------------------------------- */
+/*                              인증번호 받아오기                                 */
+/* -------------------------------------------------------------------------- */
+const randomNumber = Math.floor(Math.random() * 900000) + 100000;
+const setVerifyNumber = sessionStorage.setItem('verifyNumber', randomNumber);
+const getVerifyNumber = sessionStorage.getItem('verifyNumber');
+
+function handelverifyNumber() {
+  const buttonValid = Array.from(verifyButton.classList).includes(
+    'signUp-verify-valid'
+  );
+
+  if (buttonValid) {
+    alert(getVerifyNumber);
+    // 인증번호 비교 위해 콘솔로 불러오기 -> 로컬이라 변수 설정 다시 하기!
+    console.log(getVerifyNumber);
+  }
+}
+
+// verifyButton.addEventListener('click', handelverifyNumber);
+
+/* -------------------------------------------------------------------------- */
 /*              입력한 휴대폰 번호값 localStorage에 저장하고 화면에 랜더링               */
 /* -------------------------------------------------------------------------- */
 
-function validPhoneNumber() {
+async function validPhoneNumber() {
   const phoneNumberValue = getNode('.signUp-input-phoneNumber').value;
-  // console.log(phoneNumberValue);
-  const sendPhoneNumber = JSON.stringify(phoneNumberValue);
+  console.log(phoneNumberValue);
 
-  localStorage.setItem('phoneNumber', sendPhoneNumber);
-  console.log('저장 완료');
+  const test = await pb.collection('users').getFullList('phoneNumber');
+  const ArrayPhoneNumber = test.map((row) => row.phoneNumber);
+  const duplicatePhoneNumber = ArrayPhoneNumber.includes(phoneNumberValue);
+  console.log(duplicatePhoneNumber);
 
-  const showPhoneNumber = getNode('.signUp-input-after');
-  const getPhoneNumber = localStorage.getItem('phoneNumber');
-  showPhoneNumber.textContent = JSON.parse(getPhoneNumber);
+  if (duplicatePhoneNumber === true) {
+    alert('이미 회원가입 된 번호입니다. 로그인 페이지로 이동합니다! 😃');
+    window.location.href = '/src/pages/login/';
+  } else {
+    handelverifyNumber();
+    const sendPhoneNumber = JSON.stringify(phoneNumberValue);
+
+    localStorage.setItem('phoneNumber', sendPhoneNumber);
+    console.log('저장 완료');
+
+    const showPhoneNumber = getNode('.signUp-input-after');
+    const getPhoneNumber = localStorage.getItem('phoneNumber');
+    showPhoneNumber.textContent = JSON.parse(getPhoneNumber);
+  }
 }
 
 verifyButton.addEventListener('click', validPhoneNumber);
 
 /* -------------------------------------------------------------------------- */
-/*                              인증번호 받아오기                                 */
+/*                             입력번호 유효성 검사                                */
 /* -------------------------------------------------------------------------- */
 
 const verifyNumberInput = getNode('.signUp-input-verifyNumber');
@@ -108,7 +137,7 @@ async function allValidCheck() {
   );
   if (agreeButtonValid) {
     const userName = Math.floor(Math.random() * 1000) + 1000;
-    const phoneNumber = localStorage.getItem('phoneNumber');
+    const phoneNumber = JSON.parse(localStorage.getItem('phoneNumber'));
 
     const data = {
       username: `${userName}`,
@@ -129,15 +158,24 @@ agreeButton.addEventListener('click', allValidCheck);
 /* -------------------------------------------------------------------------- */
 /*                              pb로 데이터 전송                                 */
 /* -------------------------------------------------------------------------- */
+// const userName = Math.floor(Math.random() * 1000) + 1000;
+// const phoneNumber = localStorage.getItem('phoneNumber');
+// console.log(userName);
+// console.log(phoneNumber);
 
-// const pb = new PocketBase('https://popcorns.pockethost.io');
+// async function sendData() {
+//   const data = {
+//     userName: `${userName}`,
+//     phoneNumber: phoneNumber,
+//     password: '12345678',
+//     passwordConfirm: '12345678',
+//   };
 
-// function sendData(){
-// const data = {
-//   userName: userName,
-//   phoneNumber: phoneNumber,
-// };
-
-// const record = await pb.collection('users').create(data);}
+//   const record = await pb.collection('users').create(data);
+// }
 
 // agreeButton.addEventListener('click', sendData);
+
+/* -------------------------------------------------------------------------- */
+/*                             휴대폰 번호 중복 검사                               */
+/* -------------------------------------------------------------------------- */
