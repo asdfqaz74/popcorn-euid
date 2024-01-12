@@ -57,11 +57,10 @@ async function renderProduct(dataArray) {
     title: title,
     time: time,
   };
-  // console.log('resultGender  : ' + resultGender);
-  // console.log('data : ' + data);
+  console.log(data);
   const record = await pb.collection('community').create(data);
 
-  console.log(record);
+  // console.log(record);
 }
 
 /* -------------------------------------------------------------------------- */
@@ -74,10 +73,12 @@ async function handleNext(event) {
   const currentIndex = Array.from(screens).indexOf(currentScreen);
   const date = 'date';
   const time = 'time';
-  const value = await getSeverUserId();
-  const nowUserId = checkedUserId(value);
 
   event.preventDefault();
+
+  const value = await getSeverUserId();
+  const nowUserId = await checkedUserId(value);
+
   let result = warningText(inputValue, text);
   if (!result) return;
 
@@ -113,11 +114,13 @@ async function checkedUserId(serverPhoneNumber) {
   const key = 'phoneNumber';
   const localvalue = await getStorage(key);
 
-  const severValue = serverPhoneNumber.find(
-    (item) => item.phoneNumber == localvalue
-  );
+  const severValue = serverPhoneNumber.find((item) => {
+    if (item.phoneNumber === localvalue);
+    return item.id;
+  });
   // setStorage(key, severValue.id);
-  return severValue;
+
+  return severValue.id;
 }
 
 async function getSeverUserId() {
@@ -212,9 +215,9 @@ function insertTitleSecondpage(secondPageValue, inputValue) {
 
 function moveBoardContentPage(dataArray) {
   renderProduct(dataArray);
-  setTimeout(() => {
-    window.location.href = '/src/pages/boardContent/index.html';
-  }, '300');
+  // setTimeout(() => {
+  //   window.location.href = '/src/pages/boardContent/index.html';
+  // }, '300');
 }
 
 function handleBack() {
