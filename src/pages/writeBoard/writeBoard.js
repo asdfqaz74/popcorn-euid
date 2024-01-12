@@ -1,31 +1,194 @@
-import { getNode, insertLast, getNodes } from '/src/lib/';
+import {
+  getNode,
+  insertLast,
+  getNodes,
+  formattedDate,
+  formattedTime,
+} from '/src/lib/';
 import gsap from 'gsap';
 import pocketbase from 'pocketbase';
+import { getStorage, setStorage } from '../../lib/utils';
 
 const nextButton = getNode('.writeBoardSecond-next-button');
 const backButton = getNode('.writeBoard-back-button');
 const titleInput = getNode('.writeBoard-input');
-const category = getNode('.writeBoard-category');
 const selectCategorySecondPage = getNodes('.writeBoardCategory');
 const titleSecondPage = document.querySelector('.writeBoardSecond-title');
 const peopleButton = getNodes('.writeBoardSecond-people-button');
 const locationButton = getNode('.writeBoardSecond-location-button');
-const genderButton = getNode('.writeboardThird-gender-button');
+
 const selectGenderbuttonMenu = getNode('.selectGenderMenuContainer');
-const ageinputClass = getNode('.ageinputClass');
-const ageContainer = getNode('.ageContainer');
 
 const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
 
-function handleNext(event) {
-  event.preventDefault();
-  const text = getNode('.warningText');
+/* -------------------------------------------------------------------------- */
+/*                             pocketbase post 작성                             */
+/* -------------------------------------------------------------------------- */
 
+async function renderProduct(dataArray) {
+  const [
+    SR_location,
+    activity,
+    category,
+    date,
+    meetingLocation,
+    gender,
+    approve,
+    headcount,
+    age,
+    title,
+    time,
+  ] = dataArray;
+
+  const resultCategory = category.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim();
+  const resultGender = gender.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim();
+  const resultAge = age.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim();
+
+  const data = {
+    SR_location: SR_location,
+    activity: activity,
+    category: resultCategory,
+    date: date,
+    meetingLocation: meetingLocation,
+    gender: resultGender,
+    approve: approve,
+    headcount: headcount,
+    age: resultAge,
+    title: title,
+    time: time,
+  };
+  // console.log('resultGender  : ' + resultGender);
+  // console.log('data : ' + data);
+  const record = await pb.collection('community').create(data);
+
+  console.log(record);
+}
+
+/* -------------------------------------------------------------------------- */
+
+async function handleNext(event) {
+  const text = getNode('.warningText');
   const screens = document.querySelectorAll('.w-screen');
   const inputValue = titleInput.value;
   const currentScreen = document.querySelector('.w-screen:not(.hidden)');
   const currentIndex = Array.from(screens).indexOf(currentScreen);
+  const date = 'date';
+  const time = 'time';
+  const value = await getSeverUserId();
+  const nowUserId = checkedUserId(value);
 
+  event.preventDefault();
+  let result = warningText(inputValue, text);
+  if (!result) return;
+
+  const dataArray = [
+    nowUserId,
+    getDataActivity(),
+    getDataCategory(),
+    getDataDate(date),
+    getDataMeetingLocation(),
+    getDataGender(),
+    getDataApprove(),
+    getDataHeadcount(),
+    getDataAge(),
+    insertTitleSecondpage(titleSecondPage, inputValue),
+    getDataDate(time),
+  ];
+
+  //writeBoard index=없음, writeBoard2 index=0, writeBoard3 index=1
+  if (screens.length >= 2) {
+    if (currentIndex >= 0 && currentIndex < screens.length - 1) {
+      const nextScreen = screens[currentIndex + 1];
+      currentScreen.classList.add('hidden');
+      nextScreen.classList.remove('hidden');
+    }
+
+    if (currentIndex === 2) {
+      moveBoardContentPage(dataArray);
+    }
+  }
+}
+
+async function checkedUserId(serverPhoneNumber) {
+  const key = 'phoneNumber';
+  const localvalue = await getStorage(key);
+
+  const severValue = serverPhoneNumber.find(
+    (item) => item.phoneNumber == localvalue
+  );
+  // setStorage(key, severValue.id);
+  return severValue;
+}
+
+async function getSeverUserId() {
+  const records = await pb.collection('users').getFullList();
+  return records;
+}
+
+function getDataApprove() {
+  const input = document.getElementById('myCheckbox');
+  const isToggled = input.checked;
+  return isToggled;
+}
+
+function getDataAge() {
+  const getDataAge = document.getElementById('ageAll');
+  const text = getDataAge.textContent;
+  return text;
+}
+function getDataGender() {
+  const value = Array.from(getNodes('.selectGenderbuttonMenu'));
+  let text = '';
+  value.forEach((item) => {
+    if (item.classList.contains('isClicked')) {
+      text = item.textContent;
+    }
+  });
+  return text;
+}
+
+function getDataDate(type) {
+  if (type === 'date') {
+    const date = document.getElementById('return-date');
+    const value = date.value;
+    const text = formattedDate(value);
+    return text;
+  }
+  if (type === 'time') {
+    const time = document.getElementById('timeInput');
+    const value = time.value;
+    const text = formattedTime(value);
+    return text;
+  }
+}
+
+function getDataMeetingLocation() {
+  const locationValue = getNode('.locationValue');
+  const text = locationValue.textContent;
+  return text;
+}
+
+function getDataHeadcount() {
+  const headcount = getNode('.people');
+  const number = headcount.textContent;
+  let text = parseInt(number);
+  return text;
+}
+
+function getDataCategory() {
+  const category = getNode('.selectCategory');
+  const text = category.textContent;
+
+  return text;
+}
+
+function getDataActivity() {
+  const textarea = document.getElementById('board-content');
+  const text = textarea.value;
+  return text;
+}
+
+function warningText(inputValue, text) {
   if (!inputValue && !text.textContent) {
     gsap.to('.warningText', { x: -10, duration: 0.1, repeat: 3, yoyo: true });
     insertLast('.warningText', '제목을 입력해주세요.');
@@ -35,37 +198,31 @@ function handleNext(event) {
     gsap.to('.warningText', { x: -10, duration: 0.1, repeat: 3, yoyo: true });
     return;
   }
-
-  if (titleSecondPage) {
-    titleSecondPage.textContent = '';
-    insertLast('.writeBoardSecond-title', inputValue);
-  }
-
-  if (screens.length >= 2) {
-    if (currentIndex >= 0 && currentIndex < screens.length - 1) {
-      const nextScreen = screens[currentIndex + 1];
-      currentScreen.classList.add('hidden');
-      nextScreen.classList.remove('hidden');
-    }
-
-    if (currentIndex === 2) {
-      moveBoardContentPage();
-    }
-  }
+  if (inputValue) text.textContent = '';
+  return true;
 }
 
-function titleData() {}
+function insertTitleSecondpage(secondPageValue, inputValue) {
+  if (secondPageValue) {
+    secondPageValue.textContent = '';
+    insertLast('.writeBoardSecond-title', inputValue);
+  }
+  return inputValue;
+}
 
-function moveBoardContentPage() {
-  renderProduct();
+function moveBoardContentPage(dataArray) {
+  renderProduct(dataArray);
   setTimeout(() => {
     window.location.href = '/src/pages/boardContent/index.html';
   }, '300');
 }
+
 function handleBack() {
   const screens = document.querySelectorAll('.w-screen');
   const currentScreen = document.querySelector('.w-screen:not(.hidden)');
   const currentIndex = Array.from(screens).indexOf(currentScreen);
+  const text = getNode('.warningText');
+  const inputValue = titleInput.value;
 
   if (currentIndex < 1) {
     window.history.back();
@@ -73,9 +230,7 @@ function handleBack() {
   }
   if (currentIndex > 0) {
     if (titleSecondPage && titleSecondPage.textContent) {
-      console.log(titleSecondPage);
-
-      // titleSecondPage.textContent = '';
+      warningText(inputValue, text);
     }
     const beforeScreen = screens[currentIndex - 1];
     currentScreen.classList.add('hidden');
@@ -84,13 +239,8 @@ function handleBack() {
   }
 }
 
-function handleCategorySecondPage() {
-  console.log('sdf');
-}
-
 function handleCategorySecondPageSubmenu() {
   const category = getNode('.selectCategory');
-  console.log(this.textContent);
 
   if (category.textContent) {
     category.textContent = '';
@@ -118,6 +268,7 @@ function handleCategorySecondPagePeople() {
     insertLast('.people', number + '명');
   }
   // content.innerText = number + '명';
+  return;
 }
 function handleOpenDaumPostcode() {
   new daum.Postcode({
@@ -135,50 +286,25 @@ function handleOpenDaumPostcode() {
 
 function handleSelectGenderMenu(e) {
   const isClicked = e.target.classList.toggle('isClicked');
-
+  const genderValue = getNode('.genderValue');
   Array.from(this.children).forEach((item) => {
-    if (this.children) {
+    if (item !== e.target) {
+      item.classList.remove('isClicked');
       item.classList.remove('bg-primary');
       item.classList.remove('text-background');
-
-      if (isClicked) {
-        e.target.classList.add('bg-primary');
-        e.target.classList.add('text-background');
-      }
-      if (!isClicked) {
-        e.target.classList.remove('bg-primary');
-        e.target.classList.remove('text-background');
-      }
     }
   });
-}
 
-/* -------------------------------------------------------------------------- */
-/*                             pocketbase post 작성                             */
-/* -------------------------------------------------------------------------- */
-
-async function renderProduct() {
-  // example create data
-  const data = {
-    SR_location: 'ctyys0rk89zqupi',
-    activity: 'test',
-    category: 'test',
-    date: '2022-01-01 10:00:00.123Z',
-    meetingLocation: 'test',
-    gender: 'test',
-    approve: true,
-    headcount: 123,
-    age: 'test',
-    title: 'test',
-  };
-
-  const record = await pb.collection('community').create(data);
-
-  console.log(record);
-  // const communityData = responseCommunity.items;
-  // communityData.forEach((item) => {
-  //   console.log(item);
-  // });
+  if (isClicked) {
+    e.target.classList.add('bg-primary');
+    e.target.classList.add('text-background');
+  } else {
+    e.target.classList.remove('bg-primary');
+    e.target.classList.remove('text-background');
+  }
+  genderValue.textContent = '';
+  insertLast('.genderValue', e.target.textContent);
+  return;
 }
 
 // function handleAgeSelect(e) {
@@ -211,7 +337,5 @@ selectCategorySecondPage.forEach((item) => {
 
 nextButton.addEventListener('click', handleNext);
 backButton.addEventListener('click', handleBack);
-category.addEventListener('click', handleCategorySecondPage);
 locationButton.addEventListener('click', handleOpenDaumPostcode);
 selectGenderbuttonMenu.addEventListener('click', handleSelectGenderMenu);
-// ageContainer.addEventListener('click', handleAgeSelect);

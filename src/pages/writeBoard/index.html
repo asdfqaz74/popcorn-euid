@@ -249,7 +249,7 @@
                 <span>성별</span>
               </div>
               <button class="writeboardThird-gender-button" type="button">
-                <span>누구나</span>
+                <span class="genderValue">누구나</span>
               </button>
             </div>
             <div class="p-3 text-sm">
@@ -349,8 +349,12 @@
                 <img src="/public/images/passwordBoard.svg" alt="날짜" />
                 <span class="whitespace-nowrap">승인 후 참여</span>
               </div>
-              <label class="relative inline-flex items-center cursor-pointer">
+              <label
+                for="myCheckbox"
+                class="relative inline-flex items-center cursor-pointer"
+              >
                 <input
+                  id="myCheckbox"
                   type="checkbox"
                   value=""
                   class="sr-only peer"
@@ -360,9 +364,6 @@
                   class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-Blue-300 dark:peer-focus:ring-Blue-800 ring-Blue-600 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-background after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-background after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-Blue-600"
                 ></div>
               </label>
-              <!-- <button class="writeboardThird-approval-button" type="button">
-                <img src="/public/images/toggle.svg" alt="날짜" />
-              </button> -->
             </div>
           </section>
         </div>
