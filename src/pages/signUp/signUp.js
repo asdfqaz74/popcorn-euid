@@ -72,23 +72,35 @@ function handelverifyNumber() {
   }
 }
 
-verifyButton.addEventListener('click', handelverifyNumber);
+// verifyButton.addEventListener('click', handelverifyNumber);
 
 /* -------------------------------------------------------------------------- */
 /*              입력한 휴대폰 번호값 localStorage에 저장하고 화면에 랜더링               */
 /* -------------------------------------------------------------------------- */
 
-function validPhoneNumber() {
+async function validPhoneNumber() {
   const phoneNumberValue = getNode('.signUp-input-phoneNumber').value;
   console.log(phoneNumberValue);
-  const sendPhoneNumber = JSON.stringify(phoneNumberValue);
 
-  localStorage.setItem('phoneNumber', sendPhoneNumber);
-  console.log('저장 완료');
+  const test = await pb.collection('users').getFullList('phoneNumber');
+  const ArrayPhoneNumber = test.map((row) => row.phoneNumber);
+  const duplicatePhoneNumber = ArrayPhoneNumber.includes(phoneNumberValue);
+  console.log(duplicatePhoneNumber);
 
-  const showPhoneNumber = getNode('.signUp-input-after');
-  const getPhoneNumber = localStorage.getItem('phoneNumber');
-  showPhoneNumber.textContent = JSON.parse(getPhoneNumber);
+  if (duplicatePhoneNumber === true) {
+    alert('이미 회원가입 된 번호입니다. 로그인 페이지로 이동합니다! 😃');
+    window.location.href = '/src/pages/login/';
+  } else {
+    handelverifyNumber();
+    const sendPhoneNumber = JSON.stringify(phoneNumberValue);
+
+    localStorage.setItem('phoneNumber', sendPhoneNumber);
+    console.log('저장 완료');
+
+    const showPhoneNumber = getNode('.signUp-input-after');
+    const getPhoneNumber = localStorage.getItem('phoneNumber');
+    showPhoneNumber.textContent = JSON.parse(getPhoneNumber);
+  }
 }
 
 verifyButton.addEventListener('click', validPhoneNumber);
@@ -125,7 +137,7 @@ async function allValidCheck() {
   );
   if (agreeButtonValid) {
     const userName = Math.floor(Math.random() * 1000) + 1000;
-    const phoneNumber = localStorage.getItem('phoneNumber');
+    const phoneNumber = JSON.parse(localStorage.getItem('phoneNumber'));
 
     const data = {
       username: `${userName}`,
@@ -163,3 +175,12 @@ agreeButton.addEventListener('click', allValidCheck);
 // }
 
 // agreeButton.addEventListener('click', sendData);
+
+/* -------------------------------------------------------------------------- */
+/*                             휴대폰 번호 중복 검사                               */
+/* -------------------------------------------------------------------------- */
+
+// const test = await pb.collection('users').getFullList('phoneNumber');
+// const ArrayPhoneNumber = test.map((row) => row.phoneNumber);
+// const duplicatePhoneNumber = ArrayPhoneNumber.includes(phoneNumberValue);
+// console.log(duplicatePhoneNumber);
