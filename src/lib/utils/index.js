@@ -11,3 +11,5 @@ export * from './getPbImageURL.js';
 export * from './setDocumentTitle.js';
 export * from './timeAgo.js';
 export * from './removeChild.js';
+export * from './formattedDate.js';
+export * from './formattedTime.js';

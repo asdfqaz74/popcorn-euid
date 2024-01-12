@@ -45,12 +45,12 @@ async function renderProduct() {
         <div class="my-2 px-1">
           <div class="flex">
             <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
-            <span class="togtherBoard-who"> ${item.created} </span>
+            <span class="togtherBoard-who"> ${item.date} </span>
           </div>
           <div class="mt-1 flex">
             <img src="/public/images/calender.svg" alt="날짜" />
             <span>내일,</span>
-            <span class="togtherBoard-time">오후 7:00</span>
+            <span class="togtherBoard-time">${item.time}</span>
           </div>
         </div>
       </div>
