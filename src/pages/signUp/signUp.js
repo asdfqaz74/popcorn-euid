@@ -37,7 +37,7 @@ signUpFormBefore.addEventListener('submit', (e) => {
 const phoneNumberInput = document.getElementById('phoneNumber');
 const verifyButton = getNode('.signUp-button-verify');
 const agreeButton = document.getElementById('agree');
-const regex = /^\d{3}\d{4}\d{4}$/;
+const regex = /^010\d{4}\d{4}$/;
 
 function validCheckPhoneNumber(e) {
   const phoneNumber = e.target.value;
@@ -120,7 +120,7 @@ verifyNumberInput.addEventListener('input', ValidVerifyNumber);
 /* -------------------------------------------------------------------------- */
 /*                            유효성 검사 끝나고 이동                               */
 /* -------------------------------------------------------------------------- */
-function allValidCheck() {
+async function allValidCheck() {
   const agreeButtonValid = Array.from(agreeButton.classList).includes(
     'signUp-agree-valid'
   );
@@ -130,11 +130,13 @@ function allValidCheck() {
     const phoneNumber = localStorage.getItem('phoneNumber');
 
     const data = {
-      username: userName,
-      phoneNumber: phoneNumber,
+      username: `${userName}`,
+      phoneNumber: `${phoneNumber}`,
+      password: '12345678',
+      passwordConfirm: '12345678',
     };
 
-    pb.collection('users').create(data);
+    await pb.collection('users').create(data);
     window.location.href = '/src/pages/story/';
   } else {
     alert('인증번호가 잘못되었습니다.');
@@ -146,15 +148,20 @@ agreeButton.addEventListener('click', allValidCheck);
 /* -------------------------------------------------------------------------- */
 /*                              pb로 데이터 전송                                 */
 /* -------------------------------------------------------------------------- */
+// const userName = Math.floor(Math.random() * 1000) + 1000;
+// const phoneNumber = localStorage.getItem('phoneNumber');
+// console.log(userName);
+// console.log(phoneNumber);
 
-// const pb = new PocketBase('https://popcorns.pockethost.io');
+// async function sendData() {
+//   const data = {
+//     userName: `${userName}`,
+//     phoneNumber: phoneNumber,
+//     password: '12345678',
+//     passwordConfirm: '12345678',
+//   };
 
-// function sendData(){
-// const data = {
-//   userName: userName,
-//   phoneNumber: phoneNumber,
-// };
-
-// const record = await pb.collection('users').create(data);}
+//   const record = await pb.collection('users').create(data);
+// }
 
 // agreeButton.addEventListener('click', sendData);
