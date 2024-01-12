@@ -179,8 +179,3 @@ agreeButton.addEventListener('click', allValidCheck);
 /* -------------------------------------------------------------------------- */
 /*                             휴대폰 번호 중복 검사                               */
 /* -------------------------------------------------------------------------- */
-
-// const test = await pb.collection('users').getFullList('phoneNumber');
-// const ArrayPhoneNumber = test.map((row) => row.phoneNumber);
-// const duplicatePhoneNumber = ArrayPhoneNumber.includes(phoneNumberValue);
-// console.log(duplicatePhoneNumber);
