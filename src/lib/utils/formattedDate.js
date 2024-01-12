@@ -13,3 +13,14 @@ export function formattedDate(date = '0000-00-00 00:00:00') {
 
   return formattedDate;
 }
+
+export function formattedDateShort(value) {
+  const dateString = value;
+  const date = new Date(dateString);
+
+  const month = (date.getMonth() + 1).toString().padStart(2, '0');
+  const day = date.getDate().toString().padStart(2, '0');
+
+  const formattedDate = `${month}월${day}일`;
+  return formattedDate;
+}
