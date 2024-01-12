@@ -6,6 +6,7 @@ import {
   getPbImageURL,
   insertLast,
   deleteStorage,
+  removeElement,
 } from '/src/lib/';
 import { gsap } from 'gsap';
 import pb from '/src/api/pocketbase';
@@ -44,7 +45,7 @@ commentMore.addEventListener('click', (e) => {
 /*                                   유저정보세팅                                   */
 /* -------------------------------------------------------------------------- */
 const records = await pb.collection('users').getFullList();
-const userLoginInfo = '01000000000'; //여기에 loginInput value 값이 들어가면 됩니다
+const userLoginInfo = '01011112222'; //여기에 loginInput value 값이 들어가면 됩니다
 async function loginSetting() {
   let userNow = records.find((item) => item.phoneNumber === userLoginInfo);
   setStorage('userId', userNow.id);
@@ -57,9 +58,9 @@ loginSetting();
 
 //현재 로그인한 유저id
 const userValid = await getStorage('userId');
+let userNow = records.find((item) => item.id === userValid);
 //프로필 랜더링
 async function renderProfile() {
-  let userNow = records.find((item) => item.id === userValid);
   const { username, company, locationFirst } = userNow;
   const template = /*html*/ `
   <div class="w-full flex flex-col items-center gap-1">
