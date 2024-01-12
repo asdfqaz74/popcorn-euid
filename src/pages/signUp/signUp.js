@@ -1,6 +1,5 @@
 import { addClass, removeClass } from '../../lib/dom/css';
 import { getNode, toggleClass } from '/src/lib/';
-import PocketBase from 'pocketbase';
 import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
@@ -124,7 +123,6 @@ async function allValidCheck() {
   const agreeButtonValid = Array.from(agreeButton.classList).includes(
     'signUp-agree-valid'
   );
-
   if (agreeButtonValid) {
     const userName = Math.floor(Math.random() * 1000) + 1000;
     const phoneNumber = localStorage.getItem('phoneNumber');
@@ -132,8 +130,8 @@ async function allValidCheck() {
     const data = {
       username: `${userName}`,
       phoneNumber: `${phoneNumber}`,
-      password: '12345678',
-      passwordConfirm: '12345678',
+      password: '123123qwe',
+      passwordConfirm: '123123qwe',
     };
 
     await pb.collection('users').create(data);
