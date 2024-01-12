@@ -1,4 +1,4 @@
-import { getNode, getNodes, tiger } from '/src/lib/';
+import { getNode, getNodes } from '/src/lib/';
 
 const profileDetailsClose = getNode('.profileDetails-button-close');
 const profileToggleButtonWraps = getNodes('.profileDetails-buttonWrap');
