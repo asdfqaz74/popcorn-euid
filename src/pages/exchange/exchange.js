@@ -5,6 +5,7 @@ import {
   insertFirst,
   insertLast,
   timeAgo,
+  removeChild,
 } from '/src/lib/';
 import plusTapSvg from '/public/images/plusTap.svg';
 import plusTapActiveSvg from '/public/images/plusTapActive.svg';
@@ -80,10 +81,7 @@ async function renderProduct(type) {
   }
 
   // section 안에 있는 자식 요소들 전부 지우기
-  const removeTarget = getNode('section');
-  while (removeTarget.firstChild) {
-    removeTarget.removeChild(removeTarget.firstChild);
-  }
+  removeChild('section');
 
   // template 생성
   productData.forEach((item) => {
