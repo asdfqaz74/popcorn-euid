@@ -1,5 +1,5 @@
 import { addClass, removeClass } from '../../lib/dom/css';
-import { getNode, toggleClass } from '/src/lib/';
+import { getNode, toggleClass, setStorage } from '/src/lib/';
 import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
@@ -87,7 +87,7 @@ async function validPhoneNumber() {
   const duplicatePhoneNumber = ArrayPhoneNumber.includes(phoneNumberValue);
   console.log(duplicatePhoneNumber);
 
-  if (duplicatePhoneNumber === true) {
+  if (duplicatePhoneNumber) {
     alert('이미 회원가입 된 번호입니다. 로그인 페이지로 이동합니다! 😃');
     window.location.href = '/src/pages/login/';
   } else {
@@ -132,9 +132,12 @@ verifyNumberInput.addEventListener('input', ValidVerifyNumber);
 /*                            유효성 검사 끝나고 이동                               */
 /* -------------------------------------------------------------------------- */
 async function allValidCheck() {
+  // pb로 새로운 핸드폰 번호 post
   const agreeButtonValid = Array.from(agreeButton.classList).includes(
     'signUp-agree-valid'
   );
+  const records = await pb.collection('users').getFullList();
+
   if (agreeButtonValid) {
     const userName = Math.floor(Math.random() * 1000) + 1000;
     const phoneNumber = JSON.parse(localStorage.getItem('phoneNumber'));
@@ -142,11 +145,21 @@ async function allValidCheck() {
     const data = {
       username: `${userName}`,
       phoneNumber: `${phoneNumber}`,
-      password: '123123qwe',
-      passwordConfirm: '123123qwe',
+      password: `${phoneNumber}`,
+      passwordConfirm: `${phoneNumber}`,
     };
 
     await pb.collection('users').create(data);
+
+    //pb 에서 로컬스토리지로 저장
+    let isAuth = { isAuth: true };
+    let userNow = records.find(
+      (item) => item.phoneNumber === phoneNumberInput.value
+    );
+    setStorage('userId', userNow.id);
+    setStorage('auth', isAuth);
+
+    //story 페이지로 이동
     window.location.href = '/src/pages/story/';
   } else {
     alert('인증번호가 잘못되었습니다.');
@@ -175,5 +188,3 @@ agreeButton.addEventListener('click', allValidCheck);
 // }
 
 // agreeButton.addEventListener('click', sendData);
-
-

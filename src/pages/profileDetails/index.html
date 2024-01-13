@@ -23,103 +23,70 @@
         </button>
       </div>
       <div
-        class="profileDetails-container bg-background flex flex-col gap-[1.875rem] py-2 px-3"
+        class="profileDetails-container bg-background flex flex-col py-2 px-3"
       >
-        <div class="profile-activeBox h-[88px] ease-in-out overflow-hidden">
+        <div class="profile-button-active ease-in-out overflow-hidden">
           <p>하는 일</p>
           <button
-            class="profile-button-active mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
+            class="mt-2 text-base flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
             type="button"
           >
             <img src="/public/images/plusProfile.svg" alt="" />
             <span> 본인이 하는 일을 추가해보세요 </span>
           </button>
-          <div class="mt-3">
-            <label for="profileDetail-search"></label>
-            <input
-              class="border border-gray-200 w-full p-1 focus:outline-bluegray-200 px-3 rounded-full"
-              type="search"
-              id="profileDetail-search"
-            />
-            <div class="profileDetails-list-box py-3">
-              <div class="flex flex-wrap gap-2">
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-              </div>
-            </div>
+        </div>
+        <div class="profile-activeBox mt-3">
+          <div class="profileDetails-job-selected"></div>
+          <div class="py-3">
+            <div class="profileDetails-jobList-box flex flex-wrap gap-2"></div>
           </div>
         </div>
-        <div class="profile-activeBox overflow-hidden h-[88px]">
+        <!-- <div class="profile-button-active overflow-hidden mt-5">
           <p>프로필 키워드</p>
           <button
-            class="profile-button-active mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
+            class="text-base mt-2 flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
             type="button"
           >
             <img src="/public/images/plusProfile.svg" alt="" />
             <span> 프로필 키워드를 추가해보세요 </span>
           </button>
-          <div class="mt-3">
-            <label for="profileDetail-search"></label>
-            <input
-              class="border border-gray-200 w-full p-1 focus:outline-bluegray-200 px-3 rounded-full"
-              type="search"
-              id="profileDetail-search"
-            />
-            <div class="profileDetails-list-box py-3">
-              <div class="flex flex-wrap gap-2">
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-                <button
-                  class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
-                >
-                  하는 일1
-                </button>
-              </div>
+        </div>
+        <div class="profile-activeBox">
+          <div
+            class="border border-gray-200 w-full p-1 focus:outline-bluegray-200 px-3 rounded-full mt-3"
+          ></div>
+
+          <div class="profileDetails-list-box py-3">
+            <div class="flex flex-wrap gap-2">
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
+              <button
+                class="bg-secondary text-background text-base px-2 py-0.5 rounded-full"
+              >
+                하는 일1
+              </button>
             </div>
           </div>
-        </div>
-        <div class="">
+        </div> -->
+        <div class="mt-5">
           <p>성별</p>
           <p class="text-sm text-Contents-contentSecondary">
             정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.
@@ -140,7 +107,7 @@
             </button>
           </div>
         </div>
-        <div class="">
+        <div class="mt-5">
           <p>연령</p>
           <p class="text-sm text-Contents-contentSecondary">
             정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.
@@ -161,7 +128,7 @@
             </button>
           </div>
         </div>
-        <div class="">
+        <div class="mt-5">
           <p>회사</p>
           <div class="flex w-full mt-2 gap-1.5">
             <button
@@ -179,36 +146,8 @@
             />
           </div>
         </div>
-        <div class="">
-          <p>학교</p>
-          <div class="flex w-full mt-2 gap-1.5">
-            <button
-              type="button"
-              class="profile-button-active w-[50%] flex justify-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg outline-gray-200"
-            >
-              <img src="/public/images/search.svg" alt="" />검색하기
-            </button>
-            <label for="input-company"></label>
-            <input
-              type="text"
-              id="input-company"
-              class="w-[50%] flex justify-center text-center items-center gap-1 py-1.5 border border-gray-200 rounded-lg bg-pencil bg-no-repeat bg-[center_left_15%] placeholder:text-bluegray-900 focus:bg-none"
-              placeholder="직접 입력"
-            />
-          </div>
-        </div>
-        <div class="">
-          <p>자격</p>
-          <label for="profile-keyword"></label>
-          <input
-            type="text"
-            id="profile-keyword"
-            class="mt-2 flex w-full text-center items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer bg-pencil bg-no-repeat bg-[center_left_30%] placeholder:text-bluegray-900 focus:bg-none"
-            placeholder="직접 입력하기"
-          />
-        </div>
         <div>
-          <p class="flex items-center gap-0.5">
+          <p class="flex items-center gap-0.5 mt-5">
             취득자격
             <a href="#none">
               <img src="/public/images/information.svg" alt="" />
@@ -231,7 +170,7 @@
                 >아래 내용에 전체 동의합니다.
               </label>
               <input
-                class="absolute left-0 w-4 h-4 appearance-none bg-checkbox-uncheck top-0.5 checked:appearance-none checked:bg-checkbox"
+                class="profileDetails-checkAll absolute left-0 w-4 h-4 appearance-none bg-checkbox-uncheck top-0.5 checked:appearance-none checked:bg-checkbox"
                 type="checkbox"
                 id="agree-all"
               />

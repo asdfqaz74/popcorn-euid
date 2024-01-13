@@ -92,7 +92,7 @@
   .profileDetails-button-valid {
     @apply border border-secondary rounded-lg bg-background text-secondary;
   }
-  .profileCard-form {
+  .profileCard-layout {
     @apply flex justify-between items-center px-3
       }
   .profileDetails-button-valid{
