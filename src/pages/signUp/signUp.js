@@ -51,7 +51,7 @@ function validCheckPhoneNumber(e) {
   }
 }
 
-phoneNumberInput.addEventListener('input', validCheckPhoneNumber);
+// phoneNumberInput.addEventListener('input', validCheckPhoneNumber);
 
 /* -------------------------------------------------------------------------- */
 /*                              인증번호 받아오기                                 */
@@ -73,6 +73,7 @@ function handelverifyNumber() {
 }
 
 // verifyButton.addEventListener('click', handelverifyNumber);
+// 아래 함수에 실행되게 설정해둠
 
 /* -------------------------------------------------------------------------- */
 /*              입력한 휴대폰 번호값 localStorage에 저장하고 화면에 랜더링               */
@@ -103,7 +104,7 @@ async function validPhoneNumber() {
   }
 }
 
-verifyButton.addEventListener('click', validPhoneNumber);
+// verifyButton.addEventListener('click', validPhoneNumber);
 
 /* -------------------------------------------------------------------------- */
 /*                             입력번호 유효성 검사                                */
@@ -188,3 +189,40 @@ agreeButton.addEventListener('click', allValidCheck);
 // }
 
 // agreeButton.addEventListener('click', sendData);
+
+/* -------------------------------------------------------------------------- */
+/*                                 타이머 설정                                   */
+/* -------------------------------------------------------------------------- */
+
+// 타이머에 필요한 변수들을 초기화합니다.
+let remainingMinutes = 5; // 남은 분
+let remainingSeconds = 0; // 남은 초
+
+// 타이머를 표시할 span 태그를 가져옵니다.
+const remainingMin = document.getElementById('remaining__min');
+const remainingSec = document.getElementById('remaining__sec');
+
+// 타이머를 업데이트하는 함수를 정의합니다.
+function updateTimer() {
+  // 남은 시간을 표시합니다.
+  remainingMin.textContent = remainingMinutes.toString() + '분';
+  remainingSec.textContent = remainingSeconds.toString() + '초';
+
+  // 1초씩 감소시킵니다.
+  if (remainingSeconds > 0) {
+    remainingSeconds--;
+  } else {
+    if (remainingMinutes > 0) {
+      remainingMinutes--;
+      remainingSeconds = 59;
+    }
+  }
+}
+
+verifyButton.addEventListener('click', () => {
+  setInterval(updateTimer, 1000);
+});
+
+/* -------------------------------------------------------------------------- */
+/*                       인증번호 다시 받기 클릭 시 재전송                            */
+/* -------------------------------------------------------------------------- */
