@@ -215,9 +215,9 @@ function insertTitleSecondpage(secondPageValue, inputValue) {
 
 function moveBoardContentPage(dataArray) {
   renderProduct(dataArray);
-  // setTimeout(() => {
-  //   window.location.href = '/src/pages/boardContent/index.html';
-  // }, '300');
+  setTimeout(() => {
+    window.location.href = '/src/pages/boardContent/index.html';
+  }, '300');
 }
 
 function handleBack() {

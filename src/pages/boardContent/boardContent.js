@@ -9,6 +9,7 @@ const moveButton = getNode('.boardContent-back');
 const button = document.getElementById('menu-button');
 const dropdownMenu = getNode('.moredropMenu');
 const deleteMenu = document.getElementById('menu-item-1');
+const updateMenu = document.getElementById('menu-item-0');
 
 async function renderProduct() {
   const hash = window.location.hash.slice(1);
@@ -174,12 +175,44 @@ function handleMoreDropDown(event) {
   }
 }
 
-async function handleDelete(event) {
+async function handleDelete() {
   const hash = window.location.hash.slice(1);
   if (this.id === deleteMenu.id) {
     const productId = await pocketbase.collection('community').getOne(hash);
-    console.log(productId);
-    await pocketbase.collection('community').delete(productId);
+    console.log(productId.id);
+    await pocketbase.collection('community').delete(productId.id);
+    handleBack();
+  }
+}
+
+async function handleUpdate() {
+  const hash = window.location.hash.slice(1);
+  if (this.id === updateMenu.id) {
+    const productData = await pocketbase.collection('community').getFullList({
+      expand: 'SR_location',
+    });
+
+    const nowData = productData.find((item) => {
+      if (item.id === hash) return true;
+    });
+
+    console.log(nowData.id);
+    const data = {
+      SR_location: 'RELATION_RECORD_ID',
+      activity: 'test',
+      category: 'test',
+      date: '2022-01-01 10:00:00.123Z',
+      meetingLocation: 'test',
+      gender: 'test',
+      approve: true,
+      headcount: 123,
+      age: 'test',
+      title: 'test',
+      time: 'test',
+    };
+
+    await pocketbase.collection('community').update('RECORD_ID', data);
+    // handleBack();
   }
 }
 
@@ -189,3 +222,4 @@ moveButton.addEventListener('click', handleBack);
 boardContentMore.addEventListener('click', handleDelete);
 button.addEventListener('click', handleMoreDropDown);
 deleteMenu.addEventListener('click', handleDelete);
+updateMenu.addEventListener('click', handleUpdate);
