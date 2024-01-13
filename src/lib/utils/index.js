@@ -8,6 +8,7 @@ export * from './delay.js';
 export * from './comma.js';
 export * from './typeOf.js';
 export * from './storage.js';
+export * from './rendering.js';
 export * from './getPbImageURL.js';
 export * from './setDocumentTitle.js';
 export * from './timeAgo.js';
