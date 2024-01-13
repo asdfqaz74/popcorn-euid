@@ -45,13 +45,15 @@ function validCheckPhoneNumber(e) {
 
   if (isValidPhoneNumber) {
     removeClass(verifyButton, 'text-gray-500');
-    toggleClass(verifyButton, 'signUp-verify-valid');
+    addClass(verifyButton, 'signUp-verify-valid');
+    verifyButton.removeAttribute('disabled');
   } else {
     removeClass(verifyButton, 'signUp-verify-valid');
+    verifyButton.setAttribute('disabled', '');
   }
 }
 
-// phoneNumberInput.addEventListener('input', validCheckPhoneNumber);
+phoneNumberInput.addEventListener('input', validCheckPhoneNumber);
 
 /* -------------------------------------------------------------------------- */
 /*                              인증번호 받아오기                                 */
@@ -104,10 +106,10 @@ async function validPhoneNumber() {
   }
 }
 
-// verifyButton.addEventListener('click', validPhoneNumber);
+verifyButton.addEventListener('click', validPhoneNumber);
 
 /* -------------------------------------------------------------------------- */
-/*                             입력번호 유효성 검사                                */
+/*                             인증번호 유효성 검사                                */
 /* -------------------------------------------------------------------------- */
 
 const verifyNumberInput = getNode('.signUp-input-verifyNumber');
@@ -119,10 +121,10 @@ function ValidVerifyNumber(e) {
   if (getVerifyNumber === verifyNumber) {
     console.log('성공!');
     removeClass(agreeButton, 'bg-gray-500');
-    toggleClass(agreeButton, 'signUp-agree-valid');
+    toggleClass(agreeButton, 'bg-tertiary');
   } else {
     console.log('실패!');
-    removeClass(agreeButton, 'signUp-agree-valid');
+    removeClass(agreeButton, 'bg-tertiary');
     addClass(agreeButton, 'bg-gray-500');
   }
 }
@@ -135,7 +137,7 @@ verifyNumberInput.addEventListener('input', ValidVerifyNumber);
 async function allValidCheck() {
   // pb로 새로운 핸드폰 번호 post
   const agreeButtonValid = Array.from(agreeButton.classList).includes(
-    'signUp-agree-valid'
+    'bg-tertiary'
   );
   const records = await pb.collection('users').getFullList();
 
@@ -159,7 +161,8 @@ async function allValidCheck() {
     );
     setStorage('userId', userNow.id);
     setStorage('auth', isAuth);
-
+    //로그인 성공
+    alert('로그인 성공!');
     //story 페이지로 이동
     window.location.href = '/src/pages/story/';
   } else {
@@ -193,10 +196,11 @@ agreeButton.addEventListener('click', allValidCheck);
 /* -------------------------------------------------------------------------- */
 /*                                 타이머 설정                                   */
 /* -------------------------------------------------------------------------- */
+const reVerifyButton = getNode('.signUp-button-Reverify');
 
 // 타이머에 필요한 변수들을 초기화합니다.
-let remainingMinutes = 5; // 남은 분
-let remainingSeconds = 0; // 남은 초
+let remainingMinutes = 0; // 남은 분
+let remainingSeconds = 5; // 남은 초
 
 // 타이머를 표시할 span 태그를 가져옵니다.
 const remainingMin = document.getElementById('remaining__min');
@@ -211,11 +215,14 @@ function updateTimer() {
   // 1초씩 감소시킵니다.
   if (remainingSeconds > 0) {
     remainingSeconds--;
+  } else if (remainingMinutes > 0) {
+    remainingMinutes--;
+    remainingSeconds = 59;
   } else {
-    if (remainingMinutes > 0) {
-      remainingMinutes--;
-      remainingSeconds = 59;
-    }
+    reVerifyButton.style.display = 'block';
+    addClass(reVerifyButton, 'bg-gray-500');
+    addClass(reVerifyButton, 'text-background');
+    reVerifyButton.removeAttribute('disabled');
   }
 }
 
@@ -226,3 +233,20 @@ verifyButton.addEventListener('click', () => {
 /* -------------------------------------------------------------------------- */
 /*                       인증번호 다시 받기 클릭 시 재전송                            */
 /* -------------------------------------------------------------------------- */
+
+function resendVerifyNumber() {
+  const reVerifyButtonValid =
+    Array.from(reVerifyButton.classList).includes('bg-gray-500') &&
+    Array.from(reVerifyButton.classList).includes('text-background');
+
+  if (reVerifyButtonValid) {
+    // 1. 새로운 인증번호 전송 (session에서 새로운 인증번호 받고 보내주기)
+    // 2. 인증번호랑 Input값이랑 일치하는지 확인
+    // 3. 일치하면 인증하기 버튼 활성화
+    // 4. 타이머 다시 실행
+    alert(getVerifyNumber);
+    clearInterval(updateTimer);
+    setInterval(updateTimer, 1000);
+  }
+}
+reVerifyButton.addEventListener('click', resendVerifyNumber);
