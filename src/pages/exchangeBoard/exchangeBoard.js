@@ -33,7 +33,6 @@ async function checkedOptions() {
 
   const nowUser = await getStorage('userId');
 
-  console.log(productData.userPost === nowUser);
   if (productData.userPost === nowUser) {
     deleteLi.classList.remove('hidden');
     updateLi.classList.remove('hidden');
@@ -104,7 +103,7 @@ function renderProduct(productData) {
             >${productData.expand.userPost.username}</span
           >
           <span class="exchangeBoard-user-location text-sm font-normal"
-          >응암동</span
+          >${productData.expand.userPost.locationFirst}</span
           >
           </div>
           </div>
@@ -113,7 +112,7 @@ function renderProduct(productData) {
           <div>
           <span
           class="exchangeBoard-degree text-base text-secondary font-semibold leading-normal"
-          >41.2<sup>&deg;</sup>C</span
+          >${productData.expand.userPost.mannerTemp}<sup>&deg;</sup>C</span
           >
           <span class="exchangeBoard-degree-state">😀</span>
           </div>

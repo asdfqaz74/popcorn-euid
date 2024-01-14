@@ -1,17 +1,27 @@
-import { getNode, insertLast, formattedDateShort } from '/src/lib';
+import {
+  getNode,
+  insertLast,
+  formattedDateShort,
+  addClass,
+  removeClass,
+  getNodes,
+  getPbImageURL,
+} from '/src/lib';
 import Pockbase from 'pocketbase';
 import gsap from 'gsap';
 
 const pocketbase = new Pockbase(`${import.meta.env.VITE_PB_URL}`);
 
+const container = getNode('.boardContentsContainer');
 const boardContentMore = getNode('.boardContent-more');
 const moveButton = getNode('.boardContent-back');
 const button = document.getElementById('menu-button');
-const dropdownMenu = getNode('.moredropMenu');
-const deleteMenu = document.getElementById('menu-item-1');
+const updateMenu = getNode('.updateMenu');
+const updateList = getNodes('.update-button');
 
 async function renderProduct() {
   const hash = window.location.hash.slice(1);
+
   const productData = await pocketbase.collection('community').getOne(hash, {
     expand: 'SR_location',
   });
@@ -31,7 +41,7 @@ async function renderProduct() {
     expand,
     id,
   } = productData;
-
+  console.log(productData);
   const template = /* html */ `
 
         <h2 class="sr-only">최종 모임 작성 페이지</h2>
@@ -41,7 +51,7 @@ async function renderProduct() {
             class="boardContent-category inline-block py-[0.125rem] px-2 border-none bg-bluegray-300 rounded-sm text-sm font-semibold text-background"
             >📝${category}</span
           >
-          <div class="text-lg font-semibold mt-[0.5625rem]">
+          <div  class="text-lg font-semibold mt-[0.5625rem]">
             <span class="boardContent-state text-secondary">모집중</span>
             <span class="boardContent-title">${title}</span>
           </div>
@@ -73,7 +83,11 @@ async function renderProduct() {
                 class="bg-Contents-contentSecondary w-[1.875rem] h-[1.875rem] rounded-7xl"
               >
                 <img
-                  src="/images/hello.png"
+                
+                  src="${getPbImageURL(
+                    productData.expand.SR_location,
+                    'avatar'
+                  )}"
                   class="boardContent-profile w-full h-full rounded-7xl object-cover"
                   alt="프로필"
                 />
@@ -82,7 +96,7 @@ async function renderProduct() {
                 <div class="flex justify-center items-center">
                   <span
                     class="boardContent-name whitespace-nowrap pr-[0.375rem]"
-                    >${expand.SR_location.username} </span
+                    >${expand.SR_location.username}</span
                   >
                   <img
                     src="/images/organizer.svg"
@@ -139,53 +153,107 @@ function handleBack() {
   window.location.href = '/src/pages/togetherBoard/';
 }
 
+function hiddenUpdateMenu() {
+  console.log('sdfsdf');
+
+  // 0.2초 뒤에 실행
+  setTimeout(() => {
+    removeClass('.boardContentsContainer', 'after:bg-opacity-50');
+    removeClass('.boardContentsContainer', 'after:bg-primary');
+    removeClass('.boardContentsContainer', 'after:absolute');
+    removeClass('.boardContentsContainer', 'after:inset-0');
+    '.boardContentsContainer', 'after:inset-0';
+    gsap.to('.updateMenu', {
+      y: '100%',
+      ease: 'power2.out',
+      duration: 0.5,
+    });
+  }, 200);
+}
+
 function handleMoreDropDown(event) {
-  dropdownMenu.classList.add('transform', 'opacity-0', 'scale-95');
+  // container.style.background = 'rgba(0, 0, 0, 0.8)';
+  addClass('.boardContentsContainer', 'after:bg-opacity-50');
+  addClass('.boardContentsContainer', 'after:bg-primary');
+  addClass('.boardContentsContainer', 'after:absolute');
+  addClass('.boardContentsContainer', 'after:inset-0');
 
-  const isClicked = this.classList.toggle('isClicked');
+  gsap.to('.updateMenu', {
+    y: '0%',
+    ease: 'power2.out',
+    duration: 0.5,
+  });
+}
 
-  if (isClicked) {
-    dropdownMenu.classList.remove('hidden');
-    dropdownMenu.classList.add(
-      'transition',
-      'ease-out',
-      'duration-100',
-      'transform',
-      'opacity-100',
-      'scale-100'
-    );
-  } else {
-    dropdownMenu.classList.remove(
-      'transition',
-      'ease-out',
-      'duration-100',
-      'transform',
-      'opacity-100',
-      'scale-100'
-    );
-    dropdownMenu.classList.add(
-      'transition',
-      'ease-in',
-      'duration-75',
-      'transform',
-      'opacity-0',
-      'scale-95'
-    );
+function handleChangeUpdateState(e) {
+  const datasetValue = this.getAttribute('data-sets');
+
+  if (datasetValue === 'recruiting') {
+    console.log('모집중 선택');
+  } else if (datasetValue === 'closedRecruitment') {
+    console.log('모집종료 선택');
+  } else if (datasetValue === 'modify') {
+    console.log('수정하기 선택');
+  } else if (datasetValue === 'delete') {
+    selectModificationType(datasetValue);
   }
 }
 
-async function handleDelete(event) {
+function selectModificationType(selectMenu) {
+  if (selectMenu === 'delete') {
+    handleDelete();
+    return;
+  }
+  console.log('삭제오류');
+}
+
+async function handleDelete() {
   const hash = window.location.hash.slice(1);
-  if (this.id === deleteMenu.id) {
-    const productId = await pocketbase.collection('community').getOne(hash);
-    console.log(productId);
-    await pocketbase.collection('community').delete(productId);
+  const productId = await pocketbase.collection('community').getOne(hash);
+
+  await pocketbase.collection('community').delete(productId.id);
+  handleBack();
+}
+
+async function handleUpdate() {
+  const hash = window.location.hash.slice(1);
+  if (this.id === updateMenu.id) {
+    const productData = await pocketbase.collection('community').getFullList({
+      expand: 'SR_location',
+    });
+
+    const nowData = productData.find((item) => {
+      if (item.id === hash) return true;
+    });
+    const element = getNode('.boardContent-title');
+
+    const data = {
+      SR_location: 'RELATION_RECORD_ID',
+      activity: 'test',
+      category: 'test',
+      date: '2022-01-01 10:00:00.123Z',
+      meetingLocation: 'test',
+      gender: 'test',
+      approve: true,
+      headcount: 123,
+      age: 'test',
+      title: 'test',
+      time: 'test',
+    };
+
+    // await pocketbase.collection('community').update('RECORD_ID', data);
+    // handleBack();
   }
 }
 
 renderProduct();
 
+updateList.forEach((item) => {
+  item.addEventListener('click', handleChangeUpdateState);
+});
+
 moveButton.addEventListener('click', handleBack);
-boardContentMore.addEventListener('click', handleDelete);
+// boardContentMore.addEventListener('click', handleDelete);
 button.addEventListener('click', handleMoreDropDown);
-deleteMenu.addEventListener('click', handleDelete);
+// deleteMenu.addEventListener('click', handleDelete);
+button.addEventListener('blur', hiddenUpdateMenu);
