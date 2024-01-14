@@ -17,12 +17,61 @@ setDocumentTitle('EUID / 상품정보');
 const back = getNode('.exchangeBoard-back');
 back.addEventListener('click', () => history.back());
 
+const optionButton = getNode('.exchangeBoard-more');
+function handleButton() {
+  const sideBar = getNode('.exchangeBoard-sidebar ul');
+  sideBar.classList.toggle('translate-x-full');
+}
+optionButton.addEventListener('click', handleButton);
+
+async function checkedOptions() {
+  const hash = window.location.hash.slice(1);
+  const productData = await pb.collection('products').getOne(hash);
+  const deleteLi = getNode('.delete');
+  const updateLi = getNode('.update');
+  const declarationLi = getNode('.declaration');
+
+  const nowUser = await getStorage('userId');
+
+  console.log(productData.userPost === nowUser);
+  if (productData.userPost === nowUser) {
+    deleteLi.classList.remove('hidden');
+    updateLi.classList.remove('hidden');
+    declarationLi.classList.add('hidden');
+  } else {
+    deleteLi.classList.add('hidden');
+    updateLi.classList.add('hidden');
+    declarationLi.classList.remove('hidden');
+  }
+
+  async function handleDelete() {
+    if (confirm('정말 삭제하시겠습니까?') == true) {
+      await pb.collection('products').delete(hash);
+      window.location.href = '/src/pages/exchange/';
+    } else {
+      return false;
+    }
+  }
+  deleteLi.addEventListener('click', handleDelete);
+  updateLi.addEventListener(
+    'click',
+    () =>
+      (window.location.href = `/src/pages/exchangeEdit/index.html#${productData.id}`)
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  rendering                                 */
+/* -------------------------------------------------------------------------- */
+
 async function getProductRender() {
   const hash = window.location.hash.slice(1);
   removeChild('.exchangeBoard-img');
   removeChild('.exchangeBoard-another');
 
-  const productData = await pb.collection('products').getOne(hash);
+  const productData = await pb.collection('products').getOne(hash, {
+    expand: 'userPost',
+  });
   const relatedList = await pb.collection('products').getList(1, 4);
 
   renderProduct(productData);
@@ -52,7 +101,7 @@ function renderProduct(productData) {
         <div class="flex-col ml-[0.375rem]">
         <span
         class="exchangeBoard-user block text-base font-semibold leading-normal"
-            >맥이뜸</span
+            >${productData.expand.userPost.username}</span
           >
           <span class="exchangeBoard-user-location text-sm font-normal"
           >응암동</span
@@ -234,14 +283,9 @@ async function updatedHeart() {
   const products = await pb.collection('products').getOne(hash);
   const productId = products.id;
 
-  console.log(productId);
-  console.log(likes);
-
   let selectedProduct = likes.find(
     (item) => item.product === productId && item.user === users
   );
-
-  console.log(selectedProduct);
 
   if (selectedProduct) {
     heartImage.src = fullHeartSrc;
@@ -251,6 +295,7 @@ async function updatedHeart() {
 }
 
 async function init() {
+  await checkedOptions();
   getProductRender().then(() => {
     updatedHeart();
     const heart = getNode('.exchangeBoard-heart');
@@ -261,16 +306,3 @@ async function init() {
 }
 
 init();
-
-// const test = await pb.collection('likes').getOne('islgq65qo1gqdoo', {
-//   expand: 'product, user',
-// });
-
-// console.log(test);
-
-// const data = {
-//   user: 'RELATION_RECORD_ID', // 현재 아이디
-//   product: 'RELATION_RECORD_ID', // 현재 접속중 물건
-// };
-
-// const record = await pb.collection('likes').create(data);
