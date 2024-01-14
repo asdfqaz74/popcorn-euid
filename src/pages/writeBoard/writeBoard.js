@@ -215,7 +215,7 @@ function insertTitleSecondpage(secondPageValue, inputValue) {
   return inputValue;
 }
 
-async function moveBoardContentPage(dataArray, writer) {
+async function moveBoardContentPage(dataArray) {
   const recordId = await renderProduct(dataArray);
 
   setTimeout(() => {
