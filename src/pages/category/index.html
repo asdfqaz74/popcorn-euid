@@ -50,14 +50,13 @@
       <form
         class="category-container flex justify-between flex-wrap"
         id="category-form"
-        action="#none"
         method="post"
       >
         <!-- 카테고리 아이템 -->
         <div class="w-[49%]">
           <label
             for="frontEnd"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">프로그래밍</p>
@@ -75,7 +74,7 @@
         <div class="w-[49%] category-item">
           <label
             for="backEnd"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">프로그래밍</p>
@@ -94,7 +93,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="react"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">프로그래밍</p>
@@ -113,7 +112,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="fullStack"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">프로그래밍</p>
@@ -132,7 +131,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="algorithm"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">프로그래밍</p>
@@ -151,7 +150,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="basicKnowledge"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">프로그래밍</p>
@@ -170,7 +169,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="uiDesign"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">디자인</p>
@@ -189,7 +188,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="uxDesign"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">디자인</p>
@@ -208,7 +207,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="uiuxDesign"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">디자인</p>
@@ -227,7 +226,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="dataAnalysis"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">데이터</p>
@@ -246,7 +245,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="statisticalAnalysis"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">데이터</p>
@@ -265,7 +264,7 @@
         <div class="w-[49%] category-item mt-3">
           <label
             for="visualization"
-            class="w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
+            class="category-label w-full flex justify-between items-center bg-gray-300 p-[0.75rem] rounded-2xl"
           >
             <div class="flex flex-col">
               <p class="category-item-textType">데이터</p>
@@ -283,9 +282,7 @@
       </form>
 
       <button
-        form="category-form"
         class="category-button-save block text-center w-full mt-[1.125rem] py-[0.5rem] bg-primary rounded-2xl border-primary text-background text-base font-bold leading-5"
-        href="/src/pages/signUp/index.html"
         aria-label="저장하기"
       >
         이대로 저장할래요

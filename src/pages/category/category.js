@@ -1,5 +1,6 @@
-import { getNode } from '/src/lib/';
+import { getNode, deleteStorage, addClass, getNodes } from '/src/lib/';
 import pocketbase from 'pocketbase';
+import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
 /*                      뒤로가기 버튼 클릭 시 이전 페이지로 이동                       */
@@ -21,7 +22,7 @@ function handleItemBg() {
   const label = this.closest('label');
   label.classList.toggle('category-button-selected');
   label.classList.toggle('bg-primary');
-  // console.log(e.target);
+  label.classList.toggle('is-checked');
 }
 
 categoryInputs.forEach(function (item) {
@@ -32,32 +33,33 @@ categoryInputs.forEach(function (item) {
 /*                      localStorage 에 선택된 값 저장하기                         */
 /* -------------------------------------------------------------------------- */
 
-function handleSaveToLocalStorage(event) {
-  const getItem = localStorage.getItem('interest');
-  const value = event.target.id;
+// function handleSaveToLocalStorage(event) {
+//   const getItem = localStorage.getItem('interest');
+//   const value = event.target.value;
+//   // console.log(value);
 
-  // 저장된 데이터가 있는 경우에는 파싱하여 배열로 변환
-  let interest = [];
-  if (getItem) {
-    interest = JSON.parse(getItem);
-  }
+//   // 저장된 데이터가 있는 경우에는 파싱하여 배열로 변환
+//   let interest = [];
+//   if (getItem) {
+//     interest = JSON.parse(getItem);
+//   }
 
-  // 클릭된 input 요소의 id 값을 저장하거나 제거
-  const index = interest.indexOf(value);
-  if (index === -1) {
-    interest.push(value);
-  } else {
-    interest.splice(index, 1);
-  }
+//   // 클릭된 input 요소의 id 값을 저장하거나 제거
+//   const index = interest.indexOf(value);
+//   if (index === -1) {
+//     interest.push(value);
+//   } else {
+//     interest.splice(index, 1);
+//   }
 
-  // 배열을 문자로 변환 후 로컬스토리지에 저장
-  const jsonString = JSON.stringify(interest);
-  localStorage.setItem('interest', jsonString);
-}
+//   // 배열을 문자로 변환 후 로컬스토리지에 저장
+//   const jsonString = JSON.stringify(interest);
+//   localStorage.setItem('interest', jsonString);
+// }
 
-categoryInputs.forEach(function (item) {
-  item.addEventListener('click', handleSaveToLocalStorage);
-});
+// categoryInputs.forEach(function (item) {
+//   item.addEventListener('click', handleSaveToLocalStorage);
+// });
 
 /* -------------------------------------------------------------------------- */
 /*                        검색하면 해당 값이 보이는 함수                             */
@@ -68,34 +70,33 @@ categoryInputs.forEach(function (item) {
 /* -------------------------------------------------------------------------- */
 /*                        저장 버튼 누르면 데이터로 전송                             */
 /* -------------------------------------------------------------------------- */
-// const saveButton = getNode('.category-button-save');
+const saveButton = getNode('.category-button-save');
 
-// function handlePostData(interests) {
-//   const pb = new pocketbase('https://popcorns.pockethost.io/');
+async function handleSaveButton() {
+  // localStorage 에 저장
+  const checkbox = getNodes('label.is-checked');
+  const checkList = Array.from(checkbox);
+  let interest = [];
+  checkList.forEach((item) => {
+    const forValue = item.getAttribute('for');
+    interest.push(forValue);
+  });
+  const interestJson = JSON.stringify(interest);
+  localStorage.setItem('interest', interestJson);
 
-//   // 서버로 전송할 데이터 객체 생성
-//   const categorySaveData = {
-//     interests: interests,
-//   };
+  // pb에 저장
+  const interestList = JSON.parse(localStorage.getItem('interest'));
+  const interestStr = interestList.toString();
+  console.log(interestStr);
+  const data = {
+    category: interestStr,
+    password: '12345678',
+    passwordConfirm: '12345678',
+  };
+  await pb.collection('users').create(data);
 
-//   // fetch를 사용하여 POST 요청 보내기
-//   fetch(pb, {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     body: JSON.stringify(categorySaveData),
-//   })
-//     .then((response) => {
-//       if (response.ok) {
-//         alert('데이터 전송 성공');
-//       } else {
-//         alert('데이터 전송 실패');
-//       }
-//     })
-//     .catch((error) => {
-//       alert('데이터 전송 중 에러 발생:', error);
-//     });
-// }
+  // 페이지 이동
+  window.location.href = '/src/pages/login/';
+}
 
-// saveButton.addEventListener('click', handlePostData);
+saveButton.addEventListener('click', handleSaveButton);
