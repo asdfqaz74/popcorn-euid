@@ -25,7 +25,7 @@ async function renderProduct() {
 
   communityData.forEach((item) => {
     const template = /* html */ `
-      <div class="board-container" onmouseover="changeBackground(this)">
+      <div class="board-container" >
         <a href="/src/pages/boardContent/index.html#${item.id}">
           <h1 class="hidden">게시판 글 목록</h1>
           <div class="text-sm border-t-[1px] p-3">
@@ -56,7 +56,17 @@ async function renderProduct() {
             </div>
             <div class="flex justify-between items-center">
               <div class="flex gap-[0.1875rem] items-center">
-                <div class="inline-block border w-5 h-5 rounded-full bg-Contents-contentSecondary"></div>
+
+              
+              <div
+              class="inline-block border w-5 h-5 rounded-full bg-Contents-contentSecondary"
+            >
+              <img
+                src="${getPbImageURL(item.expand.SR_location, 'avatar')}"
+                class="togetherBoard-profile w-full h-full rounded-7xl object-cover"
+                alt="프로필"
+              />
+            </div>
                 <span class="text-Contents-contentSecondary">${
                   item.headcount
                 }/10명</span>
@@ -78,10 +88,6 @@ async function renderProduct() {
     opacity: 0,
     stagger: 0.1,
   });
-
-  function changeBackground(element) {
-    element.style.backgroundColor = 'gray';
-  }
 }
 
 function handleMove() {
@@ -112,21 +118,63 @@ function handleClickOutside(event) {
   }
 }
 
+// function handleClickMenu() {
+//   const isClicked = this.classList.toggle('isClicked');
+//   Array.from(this.children).forEach((item) => {
+//     if (isClicked) {
+//       item.classList.add('text-secondary');
+//       item.classList.add('border-Blue-500');
+//     } else {
+//       item.classList.remove('text-secondary');
+//       item.classList.remove('border-Blue-500');
+//     }
+//   });
+//   const selectedItem = findSelectedItem();
+//   console.log('-------------');
+//   console.log(selectedItem);
+// }
+
+// function findSelectedItem() {
+//   const buttons = document.querySelectorAll('.togetherBoard');
+//   for (let i = 0; i < buttons.length; i++) {
+//     const button = buttons[i];
+//     if (button.classList.contains('isClicked')) {
+//       return button;
+//     }
+//   }
+//   return null;
+// }
+
 function handleClickMenu() {
+  const clickedItems = Array.from(document.getElementsByClassName('isClicked'));
+  console.log('clickedItems : ', clickedItems);
   const isClicked = this.classList.toggle('isClicked');
-  Array.from(this.children).forEach((item) => {
-    if (isClicked) {
+  const itemIndex = clickedItems.indexOf(this);
+  console.log('this : ', this);
+  console.log('isClicked : ', isClicked);
+  console.log('itemIndex : ', itemIndex);
+  if (isClicked) {
+    // isClicked가 true인 경우, 배열에 추가
+    if (itemIndex === -1) {
+      clickedItems.push(this);
+    }
+    Array.from(this.children).forEach((item) => {
       item.classList.add('text-secondary');
       item.classList.add('border-Blue-500');
-    } else {
+    });
+  } else {
+    // isClicked가 false인 경우, 배열에서 제거
+    if (itemIndex !== -1) {
+      clickedItems.splice(itemIndex, 1);
+    }
+    Array.from(this.children).forEach((item) => {
       item.classList.remove('text-secondary');
       item.classList.remove('border-Blue-500');
-    }
-  });
-}
+    });
+  }
 
-function handleMoveContent() {
-  window.location.href = '/src/pages/boardContent/';
+  console.log('-------------');
+  console.log(clickedItems);
 }
 
 togetherBoardButton.forEach((item) => {

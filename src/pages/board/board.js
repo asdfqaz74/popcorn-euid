@@ -21,8 +21,8 @@ async function renderProduct() {
     expand: 'SR_location',
   });
 
-  // console.log(responseCommunity);
   const communityData = responseCommunity.items;
+  console.log(communityData);
   communityData.forEach((item) => {
     console.log(item);
     const template = /* html */ `

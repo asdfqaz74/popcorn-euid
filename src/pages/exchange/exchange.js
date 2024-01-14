@@ -89,12 +89,14 @@ async function renderProduct(type) {
   } else {
     productData = await pb.collection('products').getFullList();
   }
+  const likes = await pb.collection('likes').getFullList();
 
   // section 안에 있는 자식 요소들 전부 지우기
   removeChild('section');
 
   // template 생성
   productData.forEach((item) => {
+    const likeCount = likes.filter((like) => like.product === item.id).length;
     const template = /* html */ `
     <div
         class="exchange-board border-t border-Contents-contentSecondary flex items-center py-3 pl-3"
@@ -145,7 +147,7 @@ async function renderProduct(type) {
               class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
               alt=""
             />
-            <span class="exchange-board-like text-sm sm:text-lg">4</span>
+            <span class="exchange-board-like text-sm sm:text-lg">${likeCount}</span>
           </div>
         </div>
       </div>

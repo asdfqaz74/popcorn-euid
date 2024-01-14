@@ -39,6 +39,10 @@
     @apply border rounded-6xl px-3 py-1 text-sm bg-background mx-auto
   }
 
+  .exchangeUpdate-li {
+    @apply border rounded-6xl px-3 py-1 text-sm bg-background mx-auto
+  }
+
 
 
   .category-item-textType {
