@@ -234,6 +234,27 @@ verifyButton.addEventListener('click', () => {
 /*                       인증번호 다시 받기 클릭 시 재전송                            */
 /* -------------------------------------------------------------------------- */
 
+// let remainingMinutesAgain = 0; // 남은 분
+// let remainingSecondsAgain = 10; // 남은 초
+
+// // 타이머를 표시할 span 태그를 가져옵니다.
+// const remainingMinAgain = document.getElementById('remaining__min');
+// const remainingSecAgain = document.getElementById('remaining__sec');
+
+// function updateTimerAgain() {
+//   // 남은 시간을 표시합니다.
+//   remainingMinAgain.textContent = remainingMinutesAgain.toString() + '분';
+//   remainingSecAgain.textContent = remainingSecondsAgain.toString() + '초';
+
+//   // 1초씩 감소시킵니다.
+//   if (remainingSecondsAgain > 0) {
+//     remainingSecondsAgain--;
+//   } else if (remainingMinutesAgain > 0) {
+//     remainingMinutesAgain--;
+//     remainingSecondsAgain = 59;
+//   }
+// }
+
 function resendVerifyNumber() {
   const reVerifyButtonValid =
     Array.from(reVerifyButton.classList).includes('bg-gray-500') &&
@@ -245,8 +266,6 @@ function resendVerifyNumber() {
     // 3. 일치하면 인증하기 버튼 활성화
     // 4. 타이머 다시 실행
     alert(getVerifyNumber);
-    clearInterval(updateTimer);
-    setInterval(updateTimer, 1000);
   }
 }
 reVerifyButton.addEventListener('click', resendVerifyNumber);
