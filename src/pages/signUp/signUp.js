@@ -199,7 +199,7 @@ agreeButton.addEventListener('click', allValidCheck);
 const reVerifyButton = getNode('.signUp-button-Reverify');
 
 // 타이머에 필요한 변수들을 초기화합니다.
-let remainingMinutes = 0; // 남은 분
+let remainingMinutes = 1; // 남은 분
 let remainingSeconds = 5; // 남은 초
 
 // 타이머를 표시할 span 태그를 가져옵니다.
@@ -233,27 +233,6 @@ verifyButton.addEventListener('click', () => {
 /* -------------------------------------------------------------------------- */
 /*                       인증번호 다시 받기 클릭 시 재전송                            */
 /* -------------------------------------------------------------------------- */
-
-// let remainingMinutesAgain = 0; // 남은 분
-// let remainingSecondsAgain = 10; // 남은 초
-
-// // 타이머를 표시할 span 태그를 가져옵니다.
-// const remainingMinAgain = document.getElementById('remaining__min');
-// const remainingSecAgain = document.getElementById('remaining__sec');
-
-// function updateTimerAgain() {
-//   // 남은 시간을 표시합니다.
-//   remainingMinAgain.textContent = remainingMinutesAgain.toString() + '분';
-//   remainingSecAgain.textContent = remainingSecondsAgain.toString() + '초';
-
-//   // 1초씩 감소시킵니다.
-//   if (remainingSecondsAgain > 0) {
-//     remainingSecondsAgain--;
-//   } else if (remainingMinutesAgain > 0) {
-//     remainingMinutesAgain--;
-//     remainingSecondsAgain = 59;
-//   }
-// }
 
 function resendVerifyNumber() {
   const reVerifyButtonValid =
