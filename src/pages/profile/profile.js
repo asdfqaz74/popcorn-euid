@@ -9,6 +9,8 @@ import {
   removeElement,
   rendering,
   renderingPhoto,
+  addClass,
+  timeAgo,
 } from '/src/lib/';
 import { gsap } from 'gsap';
 import pb from '/src/api/pocketbase';
@@ -49,9 +51,7 @@ profileList.forEach((item) => {
   item.addEventListener('click', listHandler);
 });
 
-commentMore.addEventListener('click', (e) => {
-  e.currentTarget.nextElementSibling.classList.toggle('hidden');
-});
+
 
 /* -------------------------------------------------------------------------- */
 /*                             pocketbase profile;                            */
@@ -137,14 +137,25 @@ async function likeCounting() {
       productCount++;
     }
   });
-  let likePercentage = Math.floor((likeCount / productCount) * 100);
-  const template = /*html*/ `
-  <p class=" text-base">받은 좋아요 ${likePercentage}%</p>
-  <p class=" text-base text-Contents-contentSecondary">
-    ${productCount}개 중 ${likeCount}명이 만족
-  </p>
-  `;
-  insertLast('.profile-like-Box', template);
+  if(productCount !== 0 ){
+
+    let likePercentage = Math.floor((likeCount / productCount) * 100);
+    const template = /*html*/ `
+    <p class=" text-base">받은 좋아요 ${likePercentage}%</p>
+    <p class=" text-base text-Contents-contentSecondary">
+      ${productCount}개 중 ${likeCount}명이 만족
+    </p>
+    `;
+    insertLast('.profile-like-Box', template);
+  }else{
+    const template = /*html*/ `
+    <p class=" text-base">받은 좋아요가 없어요...😢</p>
+    <p class=" text-base text-Contents-contentSecondary">
+      ${productCount}개 중 ${likeCount}명이 만족
+    </p>
+    `;
+    insertLast('.profile-like-Box', template);
+  }
 }
 
 likeCounting();
@@ -163,7 +174,7 @@ async function renderingMyProducts() {
   insertLast('.profile-myProductList', `판매상품${productCount}개`);
   myPostList.forEach((item) => {
     const template = /*html*/ `
-                <div class="flex gap-2 items-center relative">
+                <a href="/src/pages/exchangeBoard/index.html#${item.id}" class="flex gap-2 items-center relative">
                   <div class="w-12 h-12  rounded-lg overflow-hidden">
                     <img
                     class="w-full h-full object-center"
@@ -176,10 +187,19 @@ async function renderingMyProducts() {
                     class="profile-myProduct-state text-sm bg-gray-200 px-1.5 py-0.5 rounded-full absolute right-0"
                     >${item.state}</span
                   >
-                </div>
+                </a>
     `;
     insertLast('.profile-myPostList-container', template);
   });
+  if(productCount == 0){
+    const templateNone = /*html*/
+    `
+    <a href="/src/pages/exchangePost/ " >
+    <p class="text-base text-secondary ">상품을 등록해주세요</p>
+    </a>
+    `
+    insertLast('.profile-myPostList-container', templateNone)
+  }
 }
 renderingMyProducts();
 
@@ -202,6 +222,46 @@ function myProductState() {
 }
 
 myProductState();
+/* -------------------------------------------------------------------------- */
+/*                              Product reviews                              */
+/* -------------------------------------------------------------------------- */
+const reviews = await pb.collection('reviews').getFullList({
+  expand: 'user, post',});
+let reviewCount = 0;
+
+function reveiwerRendering(){
+  
+
+  reviews.forEach((item)=>{
+      const reviewer = item.expand.user
+      const review = item
+      const post = item.expand.post
+      const reviewLink = getNode('.profile-review-link')
+      const none = Array.from(getNodes('.reviewer-box'))
+      
+      if(post.userPost === userNow.id ){
+        reviewCount++;  
+        renderingPhoto('.reviewer-photo',reviewer)
+        rendering('.reviewer-box',reviewer)
+        rendering('.review-box',review)    
+        reviewLink.href = `/src/pages/exchangeBoard/index.html#${post.id}`
+        getNode(".review-time").textContent = timeAgo(review.created)
+      }
+      
+    
+  })
+  console.log(reviewCount)
+  if(reviewCount == 0){       
+   addClass('.review-textBox','hidden')
+   addClass(commentMore,'hidden')
+   getNode(".review-box-content").textContent = "남겨진 후기가 없어요"
+  }
+}
+reveiwerRendering()
+commentMore.addEventListener('click', (e) => {
+  e.currentTarget.nextElementSibling.classList.toggle('hidden');
+});
+
 
 /* -------------------------------------------------------------------------- */
 /*                                   logOut                                   */
@@ -210,6 +270,8 @@ myProductState();
 async function userLogOut() {
   deleteStorage('userId');
   deleteStorage('phoneNumber');
+  let isAuth = { isAuth: false };
+  setStorage('auth', isAuth)
   window.location.href = '/src/pages/';
 }
 
