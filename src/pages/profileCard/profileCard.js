@@ -7,6 +7,7 @@ import {
   addClass,
   removeClass,
   rendering,
+  renderingPhoto,
 } from '/src/lib/';
 import pb from '/src/api/pocketbase';
 import { insertLast, removeElement } from '../../lib/dom/insert';
@@ -37,8 +38,11 @@ const userRecords = await pb.collection('users').getFullList();
 const userValid = await getStorage('userId');
 let userNow = userRecords.find((item) => item.id === userValid);
 
-//랜더링 함수 설정
+//유저 정보 랜더링
 rendering('.rendering-box',userNow)
+
+//프로필 사진 랜더링
+renderingPhoto('.rendering-photo', userNow)
 
 //profile 유저네임 프라이버시
 function userNamePrivacy() {
@@ -88,7 +92,7 @@ function radioValue() {
 
 async function userInfoFormData() {
   const newData = new FormData();
-  newData.append('username', getNode('#username').value);
+  newData.append('nickName', getNode('#nickName').value);
   newData.append('gender', radioValue());
   newData.append('age', getNode('#age').value);
   newData.append('qualification', getNode('#qualification').value);

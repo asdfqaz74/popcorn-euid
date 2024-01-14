@@ -267,3 +267,4 @@ function resendVerifyNumber() {
   }
 }
 reVerifyButton.addEventListener('click', resendVerifyNumber);
+
