@@ -1,1 +1,0 @@
-import"./tailwind-OcZxPGwt.js";import{g as e}from"./delay-gbRF9a8W.js";const o=e(".profileDetails-button-close");e(".profileDetails-buttonWrap");function t(){history.back()}o.addEventListener("click",t);

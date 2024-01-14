@@ -1,13 +1,41 @@
-import { getNode, getNodes } from '/src/lib/';
+import {
+  getNode,
+  getNodes,
+  insertLast,
+  getStorage,
+  setStorage,
+} from '/src/lib/';
+import pb from '/src/api/pocketbase';
+import { removeElement } from '../../lib/dom/insert';
+import { deleteStorage } from '../../lib/utils/storage';
 
 const profileDetailsClose = getNode('.profileDetails-button-close');
 const profileToggleButtonWraps = getNodes('.profileDetails-buttonWrap');
 const profileActiveButton = getNodes('.profile-button-active');
+const profileClickEvent = getNode('.profileDetails-container');
 const agreeCheckbox = getNodes('.profileDtails-agreement-container input');
 const agreeSubmitButton = getNode('.profileDetails-button-submit');
+const agreeButtonCheckAll = getNode('.profileDetails-checkAll');
 const agreeModal = getNode('.agree-modal');
 const closeModal = getNode('.modal-close');
-//database
+/* -------------------------------------------------------------------------- */
+/*                                 //database                                 */
+/* -------------------------------------------------------------------------- */
+
+const jobData = [
+  '프론트엔드',
+  '백엔드',
+  '리액트',
+  '풀스택',
+  '알고리즘',
+  '기초지식',
+  'UI디자인',
+  'UX디자인',
+  'UI/UX',
+  '데이터분석',
+  '통계분석',
+  '시각화',
+];
 
 //profileDetails 닫힘 버튼
 
@@ -16,11 +44,13 @@ function closeHandler() {
 }
 profileDetailsClose.addEventListener('click', closeHandler);
 
-//jobButton
+/* -------------------------------------------------------------------------- */
+/*                                 //jobButton                                */
+/* -------------------------------------------------------------------------- */
 
 function activeHandler() {
-  const activeBox = this.closest('.profile-activeBox');
-  activeBox.classList.toggle('h-[88px]');
+  const activeBox = this.nextElementSibling;
+  activeBox.classList.toggle('hidden');
 }
 
 profileActiveButton.forEach((item) => {
@@ -55,7 +85,9 @@ profileToggleButtonWraps.forEach((item) => {
   item.addEventListener('click', toggleHandler);
 });
 
-//agree button group
+/* -------------------------------------------------------------------------- */
+/*                            //agree button group                            */
+/* -------------------------------------------------------------------------- */
 function agreeGroupValidation() {
   let agreeValid = 0;
   agreeCheckbox.forEach((item) => {
@@ -73,6 +105,23 @@ function agreeGroupValidation() {
 agreeCheckbox.forEach((item) => {
   item.addEventListener('change', agreeGroupValidation);
 });
+//agree button All
+
+function agreeCheckAll() {
+  if (agreeButtonCheckAll.checked) {
+    agreeCheckbox.forEach((item) => {
+      item.checked = true;
+    });
+    agreeSubmitButton.classList.add('profileDetails-buttonAgree-valid');
+  } else {
+    agreeCheckbox.forEach((item) => {
+      item.checked = false;
+    });
+    agreeSubmitButton.classList.remove('profileDetails-buttonAgree-valid');
+  }
+}
+
+agreeButtonCheckAll.addEventListener('change', agreeCheckAll);
 
 //agree modal 작업
 function sumitHandler(e) {
@@ -97,18 +146,52 @@ closeModal.addEventListener('click', () => {
   agreeModal.close();
 });
 
-//job api
-const url = `https://apis.data.go.kr/B490007/ncsJobBasCom/openapi25?serviceKey=9gWjghTB3CkqwuNqrdCnSrwDeZCbrgToaCbSyQnqaIujm0c0%2BtsQSSq5kR74LNSAGCAuY0W2rvgHaeB4uBnwDg%3D%3D&numOfRows=100&pageNo=1&returnType=xml&dutyCd=01010101`;
+/* -------------------------------------------------------------------------- */
+/*                                   하는 일 설정                                  */
+/* -------------------------------------------------------------------------- */
 
-var xmlChange = require('xml-js');
+//jobList 랜더링
 
-const response = await fetch(url);
-var options = {
-  compact: true,
-  ignoreComment: true,
-  ignoreDeclaration: true,
-};
+function jobListRendering() {
+  jobData.forEach((item) => {
+    const template = /*html*/ `
+              <button
+                class="job-category bg-Bluelight-200 text-base px-2 py-0.5 rounded-full"
+                value= ${item}
+              >
+                ${item}
+              </button>
+    `;
+    insertLast('.profileDetails-jobList-box', template);
+  });
+}
+jobListRendering();
 
-var json = xmlChange.xml2json(response, options);
+//jobList 선택
 
-console.log(json);
+async function jobSelected(e) {
+  let jobList = Array.from(getNodes('.job-category'));
+  let selectList = Array.from(getNodes('.job-selected'));
+  if (jobList.includes(e.target)) {
+    let jobRenderTemplate = /*html*/ `
+    <button
+  class="job-selected bg-secondary text-background text-base px-2 py-0.5 rounded-full bg-[url=] mt-1"
+  >
+  ${e.target.value}x
+  </button>
+    `;
+    insertLast('.profileDetails-job-selected', jobRenderTemplate);
+  } else if (selectList.includes(e.target)) {
+    removeElement('.job-selected');
+    deleteStorage('job');
+  }
+
+  let jobSelectTextGroup = selectList.map((item) => item.value);
+  console.log(selectList);
+  setStorage('job', jobSelectTextGroup);
+}
+
+profileClickEvent.addEventListener('click', jobSelected);
+
+//job Data 전송
+// const userRecords = await pb.collection('users').getFullList();

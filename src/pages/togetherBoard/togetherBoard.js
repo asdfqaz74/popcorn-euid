@@ -7,6 +7,7 @@ import {
   timeAgo,
   getNode,
   getNodes,
+  formattedDateShort,
 } from '/src/lib';
 
 const writeButton = getNode('.togetherBoard-write-off');
@@ -24,53 +25,68 @@ async function renderProduct() {
 
   communityData.forEach((item) => {
     const template = /* html */ `
-    <div class="board-container">
-    <a href="/src/pages/boardContent/index.html#${item.id}" >
-    <h1 class="hidden">게시판 글 목록</h1>
-    <div class="text-sm border-t-[1px] p-3">
-      <div>
-        <div class="text-bluegray-400 my-1">
-          <span>모집중</span>
-          <span>·</span>
-          <span> 스터디 </span>
-          <span>·</span>
-          <span> 연남동 </span>
-        </div>
-        <strong
-          class="togetherBoard-title my-1 text-base whitespace-nowrap text-ellipsis overflow-hidden text-Contents-contentPrimary"
-        >
-          ${item.title}
-        </strong>
+      <div class="board-container" >
+        <a href="/src/pages/boardContent/index.html#${item.id}">
+          <h1 class="hidden">게시판 글 목록</h1>
+          <div class="text-sm border-t-[1px] p-3">
+            <div>
+              <div class="text-bluegray-400 my-1">
+                <span class="text-secondary">모집중</span>
+                <span>·</span>
+                <span>${item.category}</span>
+                <span>·</span>
+                <span>${item.meetingLocation}</span>
+              </div>
+              <strong class="togetherBoard-title my-1 text-base whitespace-nowrap text-ellipsis overflow-hidden text-Contents-contentPrimary">
+                ${item.title}
+              </strong>
+              <div class="my-2 px-1">
+                <div class="flex">
+                  <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+                  <span class="togtherBoard-who">${item.age}, ${
+                    item.gender
+                  }</span>
+                </div>
+                <div class="mt-1 flex">
+                  <img src="/public/images/calender.svg" alt="날짜" />
+                  <span>${formattedDateShort(item.date)},</span>
+                  <span class="togtherBoard-time">${item.time}</span>
+                </div>
+              </div>
+            </div>
+            <div class="flex justify-between items-center">
+              <div class="flex gap-[0.1875rem] items-center">
 
-        <div class="my-2 px-1">
-          <div class="flex">
-            <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
-            <span class="togtherBoard-who"> ${item.created} </span>
+              
+              <div
+              class="inline-block border w-5 h-5 rounded-full bg-Contents-contentSecondary"
+            >
+              <img
+                src="${getPbImageURL(item.expand.SR_location, 'avatar')}"
+                class="togetherBoard-profile w-full h-full rounded-7xl object-cover"
+                alt="프로필"
+              />
+            </div>
+                <span class="text-Contents-contentSecondary">${
+                  item.headcount
+                }/10명</span>
+              </div>
+              <span class="togtherBoard-timeBefore px-2 text-bluegray-400">${timeAgo(
+                item.created
+              )}</span>
+            </div>
           </div>
-          <div class="mt-1 flex">
-            <img src="/public/images/calender.svg" alt="날짜" />
-            <span>내일,</span>
-            <span class="togtherBoard-time">오후 7:00</span>
-          </div>
-        </div>
+        </a>
       </div>
-      <div class="flex justify-between items-center">
-        <div class="flex gap-[0.1875rem] items-center">
-          <div
-            class="inline-block border w-5 h-5 rounded-full bg-Contents-contentSecondary"
-          ></div>
-          <span class="text-Contents-contentSecondary">1/4명</span>
-        </div>
-        <span class="togtherBoard-timeBefore px-2 text-bluegray-400"
-          > ${timeAgo(item.created)}</span
-        >
-      </div>
-    </div>
-    </a>
-  </div>
-
     `;
+
     insertLast('.template', template);
+  });
+
+  gsap.from('.board-container', {
+    y: 30,
+    opacity: 0,
+    stagger: 0.1,
   });
 }
 
@@ -102,21 +118,63 @@ function handleClickOutside(event) {
   }
 }
 
+// function handleClickMenu() {
+//   const isClicked = this.classList.toggle('isClicked');
+//   Array.from(this.children).forEach((item) => {
+//     if (isClicked) {
+//       item.classList.add('text-secondary');
+//       item.classList.add('border-Blue-500');
+//     } else {
+//       item.classList.remove('text-secondary');
+//       item.classList.remove('border-Blue-500');
+//     }
+//   });
+//   const selectedItem = findSelectedItem();
+//   console.log('-------------');
+//   console.log(selectedItem);
+// }
+
+// function findSelectedItem() {
+//   const buttons = document.querySelectorAll('.togetherBoard');
+//   for (let i = 0; i < buttons.length; i++) {
+//     const button = buttons[i];
+//     if (button.classList.contains('isClicked')) {
+//       return button;
+//     }
+//   }
+//   return null;
+// }
+
 function handleClickMenu() {
+  const clickedItems = Array.from(document.getElementsByClassName('isClicked'));
+  console.log('clickedItems : ', clickedItems);
   const isClicked = this.classList.toggle('isClicked');
-  Array.from(this.children).forEach((item) => {
-    if (isClicked) {
+  const itemIndex = clickedItems.indexOf(this);
+  console.log('this : ', this);
+  console.log('isClicked : ', isClicked);
+  console.log('itemIndex : ', itemIndex);
+  if (isClicked) {
+    // isClicked가 true인 경우, 배열에 추가
+    if (itemIndex === -1) {
+      clickedItems.push(this);
+    }
+    Array.from(this.children).forEach((item) => {
       item.classList.add('text-secondary');
       item.classList.add('border-Blue-500');
-    } else {
+    });
+  } else {
+    // isClicked가 false인 경우, 배열에서 제거
+    if (itemIndex !== -1) {
+      clickedItems.splice(itemIndex, 1);
+    }
+    Array.from(this.children).forEach((item) => {
       item.classList.remove('text-secondary');
       item.classList.remove('border-Blue-500');
-    }
-  });
-}
+    });
+  }
 
-function handleMoveContent() {
-  window.location.href = '/src/pages/boardContent/';
+  console.log('-------------');
+  console.log(clickedItems);
 }
 
 togetherBoardButton.forEach((item) => {

@@ -2,6 +2,7 @@ import {
   getNode,
   setDocumentTitle,
   getPbImageURL,
+  getStorage,
   comma,
   insertLast,
   timeAgo,
@@ -13,34 +14,71 @@ import { gsap } from 'gsap';
 import pb from '/src/api/pocketbase';
 
 setDocumentTitle('EUID / 상품정보');
-/* -------------------------------------------------------------------------- */
-/*                                history back                                */
-/* -------------------------------------------------------------------------- */
-
 const back = getNode('.exchangeBoard-back');
-
 back.addEventListener('click', () => history.back());
 
-/* -------------------------------------------------------------------------- */
-/*                                    post                                    */
-/* -------------------------------------------------------------------------- */
+const optionButton = getNode('.exchangeBoard-more');
+function handleButton() {
+  const sideBar = getNode('.exchangeBoard-sidebar ul');
+  sideBar.classList.toggle('translate-x-full');
+}
+optionButton.addEventListener('click', handleButton);
 
-async function renderProduct() {
+async function checkedOptions() {
   const hash = window.location.hash.slice(1);
+  const productData = await pb.collection('products').getOne(hash);
+  const deleteLi = getNode('.delete');
+  const updateLi = getNode('.update');
+  const declarationLi = getNode('.declaration');
 
+  const nowUser = await getStorage('userId');
+
+  if (productData.userPost === nowUser) {
+    deleteLi.classList.remove('hidden');
+    updateLi.classList.remove('hidden');
+    declarationLi.classList.add('hidden');
+  } else {
+    deleteLi.classList.add('hidden');
+    updateLi.classList.add('hidden');
+    declarationLi.classList.remove('hidden');
+  }
+
+  async function handleDelete() {
+    if (confirm('정말 삭제하시겠습니까?') == true) {
+      await pb.collection('products').delete(hash);
+      window.location.href = '/src/pages/exchange/';
+    } else {
+      return false;
+    }
+  }
+  deleteLi.addEventListener('click', handleDelete);
+  updateLi.addEventListener(
+    'click',
+    () =>
+      (window.location.href = `/src/pages/exchangeEdit/index.html#${productData.id}`)
+  );
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  rendering                                 */
+/* -------------------------------------------------------------------------- */
+
+async function getProductRender() {
+  const hash = window.location.hash.slice(1);
   removeChild('.exchangeBoard-img');
   removeChild('.exchangeBoard-another');
 
-  const productData = await pb.collection('products').getOne(hash);
-  const resultList = await pb.collection('products').getList(1, 4);
+  const productData = await pb.collection('products').getOne(hash, {
+    expand: 'userPost',
+  });
+  const relatedList = await pb.collection('products').getList(1, 4);
 
-  // const test = await pb.collection('likes').getOne('islgq65qo1gqdoo', {
-  //   expand: 'product, user',
-  // });
+  renderProduct(productData);
+  renderRelated(relatedList);
+}
 
-  // console.log(test);
-
-  const productInfo = /* html */ `
+function renderProduct(productData) {
+  const renderPage = /* html */ `
       <img
         src="${getPbImageURL(productData, 'images')}"
         class="w-full h-full object-cover"
@@ -62,10 +100,10 @@ async function renderProduct() {
         <div class="flex-col ml-[0.375rem]">
         <span
         class="exchangeBoard-user block text-base font-semibold leading-normal"
-            >맥이뜸</span
+            >${productData.expand.userPost.username}</span
           >
           <span class="exchangeBoard-user-location text-sm font-normal"
-          >응암동</span
+          >${productData.expand.userPost.locationFirst}</span
           >
           </div>
           </div>
@@ -74,7 +112,7 @@ async function renderProduct() {
           <div>
           <span
           class="exchangeBoard-degree text-base text-secondary font-semibold leading-normal"
-          >41.2<sup>&deg;</sup>C</span
+          >${productData.expand.userPost.mannerTemp}<sup>&deg;</sup>C</span
           >
           <span class="exchangeBoard-degree-state">😀</span>
           </div>
@@ -128,12 +166,13 @@ async function renderProduct() {
         >채팅하기</a
         >
         </div>
+  `;
+  insertLast('.exchangeBoard-img', renderPage);
+}
 
-        `;
-  insertLast('.exchangeBoard-img', productInfo);
-
-  resultList.items.forEach((item) => {
-    const withItem = /* html */ `
+function renderRelated(items) {
+  items.items.forEach((item) => {
+    const template = /* html */ `
     <figure
     class="exchangeBoard-another-item min-w-[7.5rem] w-[43.125%] pb-[20%] max-h-20 bg-gray-200 rounded-2xl mx-auto mb-20 sm:mb-32"
   >
@@ -154,19 +193,42 @@ async function renderProduct() {
     </figcaption>
   </figure>
     `;
-    insertLast('.exchangeBoard-another', withItem);
+    insertLast('.exchangeBoard-another', template);
   });
+}
 
-  const heart = getNode('.exchangeBoard-heart');
+const originSrc = heartSvg;
+const fullHeartSrc = fullHeartSvg;
+let heartImage;
 
-  function handleHeart(e) {
-    const heartImage = e.target;
+async function handleHeartClick(e) {
+  heartImage = e.target;
+  const currentSrc = heartImage.src;
 
-    const currentSrc = heartImage.src;
-    const originSrc = heartSvg;
-    const fullHeartSrc = fullHeartSvg;
+  const users = await getStorage('userId');
+  const likes = await pb.collection('likes').getFullList();
 
+  const hash = window.location.hash.slice(1);
+  const products = await pb.collection('products').getOne(hash);
+  const productId = products.id;
+
+  const selectedProduct = likes.find(
+    (item) => item.product === productId && item.user === users
+  );
+
+  let likesId;
+  if (selectedProduct) {
+    likesId = selectedProduct.id;
+  }
+
+  const data = {
+    user: users,
+    product: productId,
+  };
+
+  if (selectedProduct) {
     if (currentSrc.includes(originSrc)) {
+      await pb.collection('likes').create(data);
       gsap.from(heartImage, {
         scale: 0.6,
         duration: 0.2,
@@ -179,6 +241,7 @@ async function renderProduct() {
         },
       });
     } else {
+      await pb.collection('likes').delete(likesId);
       gsap.from(heartImage, {
         scale: 1.5,
         duration: 0.1,
@@ -191,11 +254,54 @@ async function renderProduct() {
         },
       });
     }
+  } else {
+    if (currentSrc.includes(originSrc)) {
+      await pb.collection('likes').create(data);
+      gsap.from(heartImage, {
+        scale: 0.6,
+        duration: 0.2,
+        onComplete: () => {
+          heartImage.src = fullHeartSrc;
+          gsap.to(heartImage, {
+            scale: 1,
+            duration: 0.1,
+          });
+        },
+      });
+    }
   }
-  heart.addEventListener('click', handleHeart);
 }
 
-renderProduct();
+async function updatedHeart() {
+  heartImage = getNode('.exchangeBoard-heart img');
 
-// 이 글과 함께 봤어요 쪽 링크 인식
-window.addEventListener('hashchange', renderProduct);
+  const users = await getStorage('userId');
+  const likes = await pb.collection('likes').getFullList();
+
+  const hash = window.location.hash.slice(1);
+  const products = await pb.collection('products').getOne(hash);
+  const productId = products.id;
+
+  let selectedProduct = likes.find(
+    (item) => item.product === productId && item.user === users
+  );
+
+  if (selectedProduct) {
+    heartImage.src = fullHeartSrc;
+  } else {
+    heartImage.src = originSrc;
+  }
+}
+
+async function init() {
+  await checkedOptions();
+  getProductRender().then(() => {
+    updatedHeart();
+    const heart = getNode('.exchangeBoard-heart');
+    heart.addEventListener('click', handleHeartClick);
+
+    window.addEventListener('hashchange', getProductRender);
+  });
+}
+
+init();

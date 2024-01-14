@@ -39,6 +39,10 @@
     @apply border rounded-6xl px-3 py-1 text-sm bg-background mx-auto
   }
 
+  .exchangeUpdate-li {
+    @apply border rounded-6xl px-3 py-1 text-sm bg-background mx-auto
+  }
+
 
 
   .category-item-textType {
@@ -92,7 +96,7 @@
   .profileDetails-button-valid {
     @apply border border-secondary rounded-lg bg-background text-secondary;
   }
-  .profileCard-form {
+  .profileCard-layout {
     @apply flex justify-between items-center px-3
       }
   .profileDetails-button-valid{

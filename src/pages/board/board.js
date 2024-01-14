@@ -1,5 +1,11 @@
 import pocketbase from 'pocketbase';
-import { insertLast, getPbImageURL, comma, timeAgo, getNode } from '/src/lib';
+import {
+  insertLast,
+  getPbImageURL,
+  timeAgo,
+  getNode,
+  formattedDateShort,
+} from '/src/lib';
 import { gsap } from 'gsap';
 
 const subjectMenuButton = getNode('.subjectMenu');
@@ -15,8 +21,8 @@ async function renderProduct() {
     expand: 'SR_location',
   });
 
-  // console.log(responseCommunity);
   const communityData = responseCommunity.items;
+  console.log(communityData);
   communityData.forEach((item) => {
     console.log(item);
     const template = /* html */ `
@@ -35,14 +41,14 @@ async function renderProduct() {
             >
             ${item.title}
             </strong>
-            <div class="my-1 flex">
+            <div class="my-1 flex gap-1">
               <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
-              <span class="board-people">  ${item.activity} </span>
+              <span class="board-people">  ${item.age}  </span>
             </div>
-            <div class="my-1 flex">
+            <div class="my-1 flex gap-1">
               <img src="/public/images/calender.svg" alt="날짜" />
-              <span class="board-when"> ${item.date}</span>
-              <span class="board-time">오후 7:00</span>
+              <span class="board-when"> ${formattedDateShort(item.date)}</span>
+              <span class="board-time">${item.time} </span>
             </div>
             <div class="my-1">
               <span class="board-location">  ${
@@ -62,8 +68,8 @@ async function renderProduct() {
             />
           </div>
           <div class="gap-1 items-center col-end-4 self-end justify-end flex">
-            <img src="/public/images/people.svg" alt="참가 인원수" />
-            <span class="board-joinPeople">${item.headcount}/3명</span>
+            <img src="/public/images/fullpeople.svg" alt="참가 인원수" />
+            <span class="board-joinPeople">${item.headcount}/10명</span>
           </div> 
           
               </div>
