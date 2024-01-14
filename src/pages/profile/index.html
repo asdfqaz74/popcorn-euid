@@ -16,7 +16,36 @@
           <img src="/public/images/close.svg" alt="뒤로가기 버튼" />
         </button>
         <h2 class="sr-only">나의 프로필</h2>
-        <div class="profile-section-start"></div>
+        <div class="profile-section-start">
+          <div class="w-full flex flex-col items-center gap-1">
+            <a href="/src/pages/profileCard/" class="relative block">
+              <div
+                class=" w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden shadow-sm"
+              >
+                <img
+                  class="rendering-photo w-full h-full object-center"
+                  data-field="avatar"
+                  src="${getPbImageURL(userNow, 'avatar')}"
+                  alt="프로필 사진"
+                />
+              </div>
+              <span
+                class="block bg-pencil w-5 h-5 absolute bottom-0 bg-no-repeat bg-contain right-0 bg-background rounded-full shadow-md"
+              ></span>
+            </a>
+            <div>
+              <span data-field="username" class="rendering-boxprofile-textPrivacy text-lg font-semibold" ></span>
+              <span data-field="company"
+                class="rendering-box text-sm text-secondary inline-block border border-secondary rounded-full px-1"
+                >미등록</span
+              >
+            </div>
+          </div>
+          <div class="text-center text-sm text-Contents-contentSecondary">
+            <a data-field="locationFirst" class="rendering-box"  href="/src/pages/board/"> 미등록  </a>
+          </div>
+
+        </div>
 
         <ul class="flex justify-between mt-[0.9375rem] text-sm font-semibold">
           <li>
