@@ -1,5 +1,5 @@
 import { addClass, removeClass } from '../../lib/dom/css';
-import { getNode, toggleClass, setStorage } from '/src/lib/';
+import { getNode, toggleClass, setStorage, getNodes } from '/src/lib/';
 import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
@@ -197,63 +197,61 @@ agreeButton.addEventListener('click', allValidCheck);
 /*                                 타이머 설정                                   */
 /* -------------------------------------------------------------------------- */
 const reVerifyButton = getNode('.signUp-button-Reverify');
-
-// 타이머에 필요한 변수들을 초기화합니다.
-let remainingMinutes = 0; // 남은 분
-let remainingSeconds = 5; // 남은 초
-
-// 타이머를 표시할 span 태그를 가져옵니다.
-const remainingMin = document.getElementById('remaining__min');
-const remainingSec = document.getElementById('remaining__sec');
+const timerButton = getNodes('.timer-button');
+let timer = null;
+let isRunning = false;
 
 // 타이머를 업데이트하는 함수를 정의합니다.
-function updateTimer() {
-  // 남은 시간을 표시합니다.
-  remainingMin.textContent = remainingMinutes.toString() + '분';
-  remainingSec.textContent = remainingSeconds.toString() + '초';
 
-  // 1초씩 감소시킵니다.
-  if (remainingSeconds > 0) {
-    remainingSeconds--;
-  } else if (remainingMinutes > 0) {
-    remainingMinutes--;
-    remainingSeconds = 59;
+function updateTimer() {
+  const display = getNode('.target__time');
+  // 유효시간 설정
+  const leftSec = 60;
+
+  // 버튼 클릭 시 시간 연장
+  if (isRunning) {
+    clearInterval(timer);
+    display.textContent = '';
+    startTimer(leftSec, display);
+    handelverifyNumber();
   } else {
-    reVerifyButton.style.display = 'block';
-    addClass(reVerifyButton, 'bg-gray-500');
-    addClass(reVerifyButton, 'text-background');
-    reVerifyButton.removeAttribute('disabled');
+    startTimer(leftSec, display);
   }
 }
 
-verifyButton.addEventListener('click', () => {
-  setInterval(updateTimer, 1000);
+// 타이머에 필요한 변수들을 초기화합니다.
+function startTimer(count, display) {
+  let minutes;
+  let seconds;
+  timer = setInterval(function () {
+    minutes = parseInt(count / 60, 10);
+    seconds = parseInt(count % 60, 10);
+
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    display.textContent = `${minutes} : ${seconds}`;
+
+    // 타이머 끝
+    if (--count < 0) {
+      clearInterval(timer);
+      addClass(reVerifyButton, 'bg-gray-500');
+      addClass(reVerifyButton, 'text-background');
+      alert('시간초과! 인증번호를 다시 받아주세요 ⏳');
+      isRunning = false;
+    }
+  }, 1000);
+  isRunning = true;
+}
+
+// 타이머를 표시할 span 태그를 가져옵니다.
+timerButton.forEach((item) => {
+  item.addEventListener('click', updateTimer);
 });
 
 /* -------------------------------------------------------------------------- */
 /*                       인증번호 다시 받기 클릭 시 재전송                            */
 /* -------------------------------------------------------------------------- */
-
-// let remainingMinutesAgain = 0; // 남은 분
-// let remainingSecondsAgain = 10; // 남은 초
-
-// // 타이머를 표시할 span 태그를 가져옵니다.
-// const remainingMinAgain = document.getElementById('remaining__min');
-// const remainingSecAgain = document.getElementById('remaining__sec');
-
-// function updateTimerAgain() {
-//   // 남은 시간을 표시합니다.
-//   remainingMinAgain.textContent = remainingMinutesAgain.toString() + '분';
-//   remainingSecAgain.textContent = remainingSecondsAgain.toString() + '초';
-
-//   // 1초씩 감소시킵니다.
-//   if (remainingSecondsAgain > 0) {
-//     remainingSecondsAgain--;
-//   } else if (remainingMinutesAgain > 0) {
-//     remainingMinutesAgain--;
-//     remainingSecondsAgain = 59;
-//   }
-// }
 
 function resendVerifyNumber() {
   const reVerifyButtonValid =
