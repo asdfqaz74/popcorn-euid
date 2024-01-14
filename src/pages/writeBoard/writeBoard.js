@@ -41,7 +41,9 @@ async function renderProduct(dataArray) {
   ] = dataArray;
 
   const resultCategory = category.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim();
-  const resultGender = gender.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim();
+  const resultGender = gender
+    ? gender.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim()
+    : '누구나';
   const resultAge = age.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim();
 
   const data = {
@@ -57,10 +59,9 @@ async function renderProduct(dataArray) {
     title: title,
     time: time,
   };
-  console.log(data);
-  const record = await pb.collection('community').create(data);
 
-  // console.log(record);
+  const record = await pb.collection('community').create(data);
+  return record.id;
 }
 
 /* -------------------------------------------------------------------------- */
@@ -77,8 +78,9 @@ async function handleNext(event) {
   event.preventDefault();
 
   const value = await getSeverUserId();
+  console.log('value    :', value);
   const nowUserId = await checkedUserId(value);
-
+  console.log('nowUserId   :', nowUserId);
   let result = warningText(inputValue, text);
   if (!result) return;
 
@@ -105,21 +107,21 @@ async function handleNext(event) {
     }
 
     if (currentIndex === 2) {
-      moveBoardContentPage(dataArray);
+      moveBoardContentPage(dataArray, dataArray[0]);
     }
   }
 }
 
 async function checkedUserId(serverPhoneNumber) {
   const key = 'phoneNumber';
-  const localvalue = await getStorage(key);
+  const localphoneNumber = await getStorage(key);
 
   const severValue = serverPhoneNumber.find((item) => {
-    if (item.phoneNumber === localvalue);
+    if (item.phoneNumber === localphoneNumber);
     return item.id;
   });
   // setStorage(key, severValue.id);
-
+  console.log('severValue.id     :', severValue.id);
   return severValue.id;
 }
 
@@ -213,10 +215,11 @@ function insertTitleSecondpage(secondPageValue, inputValue) {
   return inputValue;
 }
 
-function moveBoardContentPage(dataArray) {
-  renderProduct(dataArray);
+async function moveBoardContentPage(dataArray, writer) {
+  const recordId = await renderProduct(dataArray);
+
   setTimeout(() => {
-    window.location.href = '/src/pages/boardContent/index.html';
+    window.location.href = `/src/pages/boardContent/index.html#${recordId}`;
   }, '300');
 }
 
@@ -244,7 +247,6 @@ function handleBack() {
 
 function handleCategorySecondPageSubmenu() {
   const category = getNode('.selectCategory');
-
   if (category.textContent) {
     category.textContent = '';
   }

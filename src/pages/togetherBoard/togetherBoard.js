@@ -56,7 +56,17 @@ async function renderProduct() {
             </div>
             <div class="flex justify-between items-center">
               <div class="flex gap-[0.1875rem] items-center">
-                <div class="inline-block border w-5 h-5 rounded-full bg-Contents-contentSecondary"></div>
+
+              
+              <div
+              class="inline-block border w-5 h-5 rounded-full bg-Contents-contentSecondary"
+            >
+              <img
+                src="${getPbImageURL(item.expand.SR_location, 'avatar')}"
+                class="togetherBoard-profile w-full h-full rounded-7xl object-cover"
+                alt="프로필"
+              />
+            </div>
                 <span class="text-Contents-contentSecondary">${
                   item.headcount
                 }/10명</span>
