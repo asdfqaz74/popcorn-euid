@@ -44,20 +44,29 @@ async function sendMessage(userNow, chatBoxNowId) {
   text.value = '';
 }
 
-function renderMessage(userNow, nowChatting) {
-  if (userNow) {
+function renderMessage(message, userNow) {
+  const isUser = message.user === userNow;
+  if (isUser) {
     const me = /* html */ `
     <div class="chat-me flex mb-2 justify-end items-end gap-1">
-          <span class="chat-time text-sm text-Contents-contentSecondary"
-            >오후 9:16</span
-          >
-          <div
-            class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]"
-          >
-            <span class="chat-text">님, 전화받으삼</span>
-          </div>
-        </div>
+      <span class="chat-time text-sm text-Contents-contentSecondary">오후 9:16</span>
+      <div class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]">
+        <span class="chat-text">${message.chat}</span>
+      </div>
+    </div>
     `;
+    insertLast('.chat-contents-wrapper', me);
+  } else {
+    const you = /* html */ `
+    <div class="chat-you flex mb-2 items-end gap-1">
+      <div class="border-none px-[0.875rem] py-2 ml-3 rounded-6xl bg-bluegray-100 text-Contents-contentPrimary max-w-[15.5rem]">
+        <span class="chat-text"> ${message.chat}
+        </span>
+      </div>
+      <span class="chat-time text-sm text-Contents-contentSecondary">오후 7:14</span>
+    </div>
+    `;
+    insertLast('.chat-contents-wrapper', you);
   }
 }
 
@@ -70,6 +79,7 @@ async function init() {
   const sendButton = getNode('.chat-send-button');
   const userNow = await getStorage('userId');
   const chatBox = await pb.collection('chatBox').getFullList();
+
   const chatBoxNow = chatBox.filter(
     (item) => item.buyer === userNow && item.item === productData.id
   );
@@ -77,7 +87,15 @@ async function init() {
   const nowChatting = await pb.collection('chatting').getFullList({
     filter: `chatBox = "${chatBoxNowId}"`,
   });
-  console.log(nowChatting.filter((item) => item.user === userNow));
+  console.log(chatBoxNowId);
+
+  pb.collection('chatting').subscribe('*', function (e) {
+    renderMessage(e.record, userNow);
+  });
+
+  nowChatting.forEach((item) => {
+    renderMessage(item, userNow);
+  });
 
   rendering('.chat-rendering', sellerInfo);
   rendering('.chat-renderings', productData);
