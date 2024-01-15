@@ -31,9 +31,34 @@ const userRecords = await pb.collection('users').getFullList();
 const userValid = await getStorage('userId');
 let userNow = userRecords.find((item) => item.id === userValid);
 
+/* -------------------------------------------------------------------------- */
+/*                                  성별/연령 비공개                                 */
+/* -------------------------------------------------------------------------- */
+
+async function privacySetting() {
+  const genderPrivacy = await getStorage('genderPrivacy');
+  const agePrivacy = await getStorage('agePrivacy');
+  if (genderPrivacy === 'true') {
+    getNode('.profile-gender-privacy').textContent = '비공개';
+  }
+  if (agePrivacy === 'true') {
+    getNode('.profile-age-privacy').textContent = '비공개';
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                   랜더링 순서                                   */
+/* -------------------------------------------------------------------------- */
+
+async function renderingIndex() {
+  await rendering('.rendering-box', userNow);
+  privacySetting();
+}
+renderingIndex();
+
 //유저 정보 랜더링
 
-rendering('.rendering-box', userNow);
+// rendering('.rendering-box', userNow);
 
 //프로필 사진 랜더링
 renderingPhoto('.rendering-photo', userNow);
@@ -88,6 +113,27 @@ function inputImageRendering() {
 }
 profileImageInput.addEventListener('change', inputImageRendering);
 
+//form validation check
+
+const formInput = Array.from(getNodes('form input'));
+function formValidationCheck() {
+  let formValidCount = 0;
+  formInput.forEach((item) => {
+    if (item.value) {
+      formValidCount++;
+    }
+  });
+  if (formValidCount >= formInput.length - 1) {
+    profileCardEditSubmit.classList.add('profileDetails-buttonAgree-valid');
+    profileCardEditSubmit.classList.remove('bg-gray-100');
+  } else {
+    profileCardEditSubmit.classList.remove('profileDetails-buttonAgree-valid');
+    profileCardEditSubmit.classList.add('bg-gray-100');
+  }
+}
+formInput.forEach((item) => {
+  item.addEventListener('change', formValidationCheck);
+});
 
 //edit 정보 pocketbase 전송
 
@@ -96,8 +142,9 @@ async function userInfoUpdate() {
 
   try {
     const newData = new FormData();
-
-    newData.append('avatar', avatar.files[0]);
+    if (avatar.value) {
+      newData.append('avatar', avatar.files[0]);
+    }
     newData.append('username', getNode('#username').value);
     newData.append('nickName', getNode('#nickName').value);
     newData.append('gender', radioValue());

@@ -25,7 +25,9 @@
       <div
         class="profileDetails-container bg-background flex flex-col py-2 px-3"
       >
-        <div class="profile-button-active ease-in-out overflow-hidden">
+        <div
+          class="profile-button-active jobList-rendering ease-in-out overflow-hidden"
+        >
           <p>하는 일</p>
           <button
             class="mt-2 text-base flex w-full items-center justify-center gap-2 rounded-lg border border-gray-200 py-2.5 cursor-pointer"
@@ -35,10 +37,10 @@
             <span> 본인이 하는 일을 추가해보세요 </span>
           </button>
         </div>
-        <div class="profile-activeBox mt-3">
-          <div class="profileDetails-job-selected"></div>
-          <div class="py-3">
-            <div class="profileDetails-jobList-box flex flex-wrap gap-2"></div>
+        <div class="profile-activeBox hidden mt-3 relative -top-3">
+          <div class="profileDetails-jobList-box py-3 pl-2">
+            <div class="profileDetails-job-selected"></div>
+            <div class="flex flex-wrap gap-2"></div>
           </div>
         </div>
         <!-- <div class="profile-button-active overflow-hidden mt-5">
@@ -92,19 +94,27 @@
             정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.
           </p>
           <div
-            class="profileDetails-buttonWrap flex w-full rounded-lg bg-bluegray-300 mt-2 text-background"
+            data-field="gender"
+            class="profileDetails-buttonWrap profile-gender-privacy flex w-full rounded-lg bg-bluegray-300 mt-2 text-background"
           >
             <button
               type="button"
-              data-field="gender"
-              class="profile-privacy profileDetails-button-valid w-[50%] flex justify-center items-center gap-1 py-1.5"
-            >
-              <img src="/public/images/passwordDetails.svg" alt="" />비공개
-            </button>
-            <button
               class="w-[50%] flex justify-center items-center gap-1 py-1.5"
             >
-              <img src="" alt="" />전체공개
+              <img
+                class="hidden"
+                src="/public/images/passwordDetails.svg"
+                alt=""
+              />비공개
+            </button>
+            <button
+              class="profileDetails-button-valid w-[50%] flex justify-center items-center gap-1 py-1.5"
+            >
+              <img
+                class=""
+                src="/public/images/peoplePublic.svg"
+                alt=""
+              />전체공개
             </button>
           </div>
         </div>
@@ -114,23 +124,31 @@
             정보 공개 시, 내 답변 프로필 카드에 정보가 노출됩니다.
           </p>
           <div
-            class="profileDetails-buttonWrap flex w-full rounded-lg bg-bluegray-300 mt-2 text-background"
+            data-field="age"
+            class="profileDetails-buttonWrap profile-age-privacy flex w-full rounded-lg bg-bluegray-300 mt-2 text-background"
           >
             <button
               type="button"
-              data-field="age"
-              class="profile-privacy profileDetails-button-valid w-[50%] flex justify-center items-center gap-1 py-1.5"
-            >
-              <img src="/public/images/passwordDetails.svg" alt="" />비공개
-            </button>
-            <button
               class="w-[50%] flex justify-center items-center gap-1 py-1.5"
             >
-              <img src=" " alt="" />전체공개
+              <img
+                class="hidden"
+                src="/public/images/passwordDetails.svg"
+                alt=""
+              />비공개
+            </button>
+            <button
+              class="profileDetails-button-valid w-[50%] flex justify-center items-center gap-1 py-1.5"
+            >
+              <img
+                class=""
+                src="/public/images/peoplePublic.svg "
+                alt=""
+              />전체공개
             </button>
           </div>
         </div>
-        <div class="mt-5">
+        <!-- <div class="mt-5">
           <p>회사</p>
           <div class="flex w-full mt-2 gap-1.5">
             <button
@@ -147,7 +165,7 @@
               placeholder="직접 입력"
             />
           </div>
-        </div>
+        </div> -->
         <div>
           <p class="flex items-center gap-0.5 mt-5">
             취득자격
@@ -177,7 +195,7 @@
                 id="agree-all"
               />
             </div>
-            <span class="text-negative text-sm">필수동의</span>
+            <!-- <span class="text-negative text-sm">필수동의</span> -->
           </div>
           <div class="p-3 justify-between items-center">
             <div class="text-base font-semibold relative pl-7">
@@ -255,16 +273,15 @@
           </button>
         </form>
       </div>
-      <dialog class="agree-modal p-5 b;text-center bg-background rounded-3xl">
+      <dialog class="agree-modal p-5 text-center bg-background rounded-3xl">
         <p class="">저장 완료!</p>
         <p class="break-words py-5 text-sm text-Contents-contentSecondary">
-          내 질문&답변의 프로필 카드, 프로필 홈에서 변 경된 프로필 정보를 확인
-          할 수 있어요.
+          내 프로필 카드, 프로필 홈에서 변 경된 프로필 정보를 확인 할 수 있어요.
         </p>
         <button
           type="button"
           value="default"
-          class="modal-close bg-primary rounded-lg w-full py-2 text-background"
+          class="profileDetails-button-final modal-close bg-primary rounded-lg w-full py-2 text-background"
         >
           확인
         </button>
