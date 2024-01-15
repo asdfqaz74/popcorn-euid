@@ -125,10 +125,13 @@ async function checkedUserId(serverPhoneNumber) {
   const key = 'phoneNumber';
   const localphoneNumber = await getStorage(key);
 
+  // pb. community user.getFullList
   const severValue = serverPhoneNumber.find((item) => {
-    if (item.phoneNumber === localphoneNumber);
-    return item.id;
+    if (item.phoneNumber === localphoneNumber) {
+      return item.id;
+    }
   });
+
   // setStorage(key, severValue.id);
   return severValue.id;
 }
@@ -231,7 +234,6 @@ function insertTitleSecondpage(secondPageValue, inputValue) {
 
 async function moveBoardContentPage(dataArray) {
   const recordId = await renderProduct(dataArray);
-
   setTimeout(() => {
     window.location.href = `/src/pages/boardContent/index.html#${recordId}`;
   }, '300');

@@ -38,7 +38,7 @@ async function renderProduct() {
      <div class="col-start-1 row-start-1 row-end-3 col-end-3">
      <a href="/src/pages/boardContent/index.html#${item.id}" >
             <span
-              class="group-hover:text-background group-hover:bg-Blue-700 board-keyword p-1 border border-black rounded-default bg-bluegray-600 text-background"
+              class="group-hover:text-background group-hover:bg-Blue-700 board-keyword p-1 border  rounded-default   text-Contents-contentPrimary"
             >
               ${item.category}
             </span>

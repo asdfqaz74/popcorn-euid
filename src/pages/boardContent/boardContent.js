@@ -11,6 +11,7 @@ import {
 } from '/src/lib';
 import Pockbase from 'pocketbase';
 import gsap from 'gsap';
+import { getStorage } from '../../lib/utils';
 
 const pocketbase = new Pockbase(`${import.meta.env.VITE_PB_URL}`);
 
@@ -32,11 +33,7 @@ const productData = await pocketbase.collection('community').getOne(hash, {
 });
 
 async function renderProduct() {
-  // const hash = window.location.hash.slice(1);
-  // const productData = await pocketbase.collection('community').getOne(hash, {
-  //   expand: 'SR_location',
-  // });
-
+  const nowLoginId = await getStorage('userId');
   const {
     SR_location,
     activity,
@@ -53,14 +50,17 @@ async function renderProduct() {
     id,
     recruiting = '모집중',
   } = productData;
-  const defaultRecruiting = recruiting === '' ? '모집중' : recruiting;
+
+  if (productData.expand.SR_location.id != nowLoginId) {
+    hideShowMoreMenu();
+    console.log(productData.expand.SR_location.id, nowLoginId);
+  }
   console.log(productData);
+  const defaultRecruiting = recruiting === '' ? '모집중' : recruiting;
   const template = /* html */ `
 
         <h2 class="sr-only">최종 모임 작성 페이지</h2>
-
         <div class="boardContent-wrapper ">
-      
           <span
             class="boardContent-category border inline-block py-[0.3rem] px-4 mt-3 mx-3 bg-background rounded-sm text-[0.7rem] font-semibold border-Contents-contentPrimary"
             >${category}</span
@@ -155,6 +155,11 @@ async function renderProduct() {
     opacity: 1,
     stagger: 0.1, //
   });
+}
+
+//게시물 작성자인지 확인 후 더보기 버튼 생성,감추기
+function hideShowMoreMenu() {
+  addClass('.boardContent-more', 'hidden');
 }
 
 function checkMeetingVenue(nowLoginId, postCreationId) {
