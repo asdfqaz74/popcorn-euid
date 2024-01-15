@@ -34,13 +34,13 @@ async function renderProduct(dataArray) {
     const defaultRecruiting =
       item.recruiting === '' ? '모집중' : item.recruiting;
     const template = /* html */ `
-      <div class="board-container" >
+      <div class="board-container group hover:text-background hover:bg-tertiary" >
         <a href="/src/pages/boardContent/index.html#${item.id}">
           <h1 class="hidden">게시판 글 목록</h1>
           <div class="text-sm border-t-[1px] p-3">
             <div>
-              <div class="text-bluegray-400 my-1">
-                <span class="text-secondary">${defaultRecruiting}</span>
+              <div class="group-hover:text-background text-bluegray-600 my-1">
+                <span class="group-hover:text-background text-secondary">${defaultRecruiting}</span>
                 <span>·</span>
                 <span>${item.category}</span>
                 <span>·</span>
@@ -50,7 +50,7 @@ async function renderProduct(dataArray) {
                 ${item.title}
               </strong>
               <div class="my-2 px-1">
-                <div class="flex">
+                <div class="flex ">
                   <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
                   <span class="togtherBoard-who">${item.age}, ${
                     item.gender
@@ -75,11 +75,11 @@ async function renderProduct(dataArray) {
                 alt="프로필"
               />
             </div>
-                <span class="text-Contents-contentSecondary">${
+                <span class="group-hover:text-background text-Contents-contentSecondary">${
                   item.headcount
                 }/10명</span>
               </div>
-              <span class="togtherBoard-timeBefore px-2 text-bluegray-400">${timeAgo(
+              <span class="group-hover:text-background togtherBoard-timeBefore px-2 text-bluegray-400">${timeAgo(
                 item.created
               )}</span>
             </div>

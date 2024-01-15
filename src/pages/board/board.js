@@ -27,12 +27,12 @@ async function renderProduct() {
     console.log(item);
     const template = /* html */ `
     <div
-          class="board-container text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
+          class="group hover:bg-tertiary board-container text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
         >    
      <div class="col-start-1 row-start-1 row-end-3 col-end-3">
      <a href="/src/pages/boardContent/index.html#${item.id}" >
             <span
-              class="board-keyword p-1 border border-black rounded-default bg-bluegray-300 text-background"
+              class="group-hover:text-background group-hover:bg-Blue-700 board-keyword p-1 border border-black rounded-default bg-bluegray-600 text-background"
             >
               ${item.category}
             </span>
@@ -41,21 +41,29 @@ async function renderProduct() {
             >
             ${item.title}
             </strong>
-            <div class="my-1 flex gap-1">
+            <div class="my-1 flex gap-1 ">
               <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
-              <span class="board-people">  ${item.age}  </span>
+              <span class="group-hover:text-background board-people ">  ${
+                item.age
+              }  </span>
             </div>
             <div class="my-1 flex gap-1">
               <img src="/public/images/calender.svg" alt="날짜" />
-              <span class="board-when"> ${formattedDateShort(item.date)}</span>
-              <span class="board-time">${item.time} </span>
+              <span class="group-hover:text-background board-when"> ${formattedDateShort(
+                item.date
+              )}</span>
+              <span class="group-hover:text-background board-time">${
+                item.time
+              } </span>
             </div>
             <div class="my-1">
-              <span class="board-location">  ${
+              <span class="group-hover:text-background board-location">  ${
                 item.expand.SR_location.locationSecond
               }</span>
-              <span>·</span>
-              <span class="board-writeTime"> ${timeAgo(item.created)} </span>
+              <span class="group-hover:text-background">·</span>
+              <span class="group-hover:text-background board-writeTime"> ${timeAgo(
+                item.created
+              )} </span>
             </div>
             </a>
           </div>
@@ -67,7 +75,7 @@ async function renderProduct() {
               onerror="this.style.display='none';"
             />
           </div>
-          <div class="gap-1 items-center col-end-4 self-end justify-end flex">
+          <div class="group-hover:text-background gap-1 items-center col-end-4 self-end justify-end flex">
             <img src="/public/images/fullpeople.svg" alt="참가 인원수" />
             <span class="board-joinPeople">${item.headcount}/10명</span>
           </div> 
