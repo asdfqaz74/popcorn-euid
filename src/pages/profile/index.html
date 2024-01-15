@@ -20,7 +20,7 @@
           <div class="w-full flex flex-col items-center gap-1">
             <a href="/src/pages/profileCard/" class="relative block">
               <div
-                class=" w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden shadow-sm"
+                class="w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden shadow-sm"
               >
                 <img
                   class="rendering-photo w-full h-full object-center"
@@ -34,17 +34,27 @@
               ></span>
             </a>
             <div>
-              <span data-field="nickName" class="rendering-box text-lg font-semibold" >닉네임을 설정해주세요</span>
-              <span data-field="company"
+              <span
+                data-field="nickName"
+                class="rendering-box text-lg font-semibold"
+                >닉네임을 설정해주세요</span
+              >
+              <span
+                data-field="company"
                 class="rendering-box text-sm text-secondary inline-block border border-secondary rounded-full px-1"
                 >미등록</span
               >
             </div>
           </div>
           <div class="text-center text-sm text-Contents-contentSecondary">
-            <a data-field="locationFirst" class="rendering-box"  href="/src/pages/board/"> 미등록  </a>
+            <a
+              data-field="locationFirst"
+              class="rendering-box"
+              href="/src/pages/board/"
+            >
+              미등록
+            </a>
           </div>
-
         </div>
 
         <ul class="flex justify-between mt-[0.9375rem] text-sm font-semibold">
@@ -81,7 +91,9 @@
       <div class="px-3">
         <p class="text-base flex items-center gap-0.5">
           열정온도
-          <span title="이 사람이 이듬에서 얼마나 열정적이었는지 알려주는 정보입니다">
+          <span
+            title="이 사람이 이듬에서 얼마나 열정적이었는지 알려주는 정보입니다"
+          >
             <img src="/public/images/information.svg" alt="열정온도 정보" />
           </span>
         </p>
@@ -89,9 +101,7 @@
         <div class="flex items-start px-2 py-4">
           <div class="flex items-start gap-1 w-[50%]">
             <img src="/public/images/heart.svg" alt="" />
-            <div class="profile-like-Box">
-              
-            </div>
+            <div class="profile-like-Box"></div>
           </div>
           <div class="w-[50%] flex items-start gap-1">
             <img src="/public/images/chat.svg" alt="" />
@@ -108,31 +118,29 @@
         <ul>
           <li class="profile-listBox">
             <div class="profile-listBox-button">
-              <span class="font-semibold">활동배지 10개</span>
+              <span class="font-semibold"
+                >활동배지 <span class="badge-count"></span>개</span
+              >
               <button class="">
                 <img src="/public/images/direction.svg" alt="" />
               </button>
             </div>
-            <div class="profile-listBox-hiddenArea flex-row flex-wrap hidden">
-              <div class="w-10 h-10 rounded-full bg-secondary"></div>
-              <div class="w-10 h-10 rounded-full bg-secondary"></div>
-              <div class="w-10 h-10 rounded-full bg-secondary"></div>
-              <div class="w-10 h-10 rounded-full bg-secondary"></div>
-              <div class="w-10 h-10 rounded-full bg-secondary"></div>
-              <div class="w-10 h-10 rounded-full bg-secondary"></div>
-              <div class="w-10 h-10 rounded-full bg-secondary"></div>
-            </div>
+            <div
+              class="profile-listBox-hiddenArea text-base flex-row flex-wrap hidden"
+            ></div>
           </li>
           <li class="profile-listBox">
             <div class="profile-listBox-button">
-              <span class="profile-myProductList font-semibold"></span>
+              <span class="font-semibold"
+                >판매상품 <span class="profile-myProductList"></span>개</span
+              >
               <button>
                 <img src="/public/images/right.svg" alt="" />
               </button>
             </div>
-            <div class="profile-listBox-hiddenArea profile-myPostList-container hidden flex-col">
-             
-            </div>
+            <div
+              class="profile-listBox-hiddenArea profile-myPostList-container hidden flex-col"
+            ></div>
           </li>
           <li class="profile-listBox">
             <div class="profile-listBox-button">
@@ -141,20 +149,29 @@
                 <img src="/public/images/right.svg" alt="" />
               </button>
             </div>
-            <ul class="profile-listBox-hiddenArea hidden">
-              <li class="flex gap-2 items-start">
+            <ul class="profile-listBox-hiddenArea p-0 hidden relative">
+              <li class="absolute w-full h-full backdrop-blur-sm">
+                <div
+                  class="w-[70%] h-[70%] absolute bg-background flex flex-col justify-center items-center left-[50%] top-[50%] translate-x-[-50%] translate-y-[-50%] p-3 rounded-xl backdrop:bg-Contents-contentTertiary shadow-sm border border-gray-200"
+                >
+                  <p>😳</p>
+                  <p>아직 준비중인 기능이에요</p>
+                  <p>조금만 기다려 주세요</p>
+                </div>
+              </li>
+              <li class="flex gap-2 items-start p-2">
                 <img src="/public/images/people.svg" alt="" />
                 <span class="w-4">9</span>
                 <div class="profile-listBox-textBox">시간 약속을 잘 지켜요</div>
               </li>
-              <li class="flex gap-2 items-start">
+              <li class="flex gap-2 items-start p-2">
                 <img src="/public/images/people.svg" alt="" />
                 <span class="w-4">10</span>
                 <div class="profile-listBox-textBox">
                   친절하고 매너가 좋아요
                 </div>
               </li>
-              <li class="flex gap-2 items-start">
+              <li class="flex gap-2 items-start p-2">
                 <img src="/public/images/people.svg" alt="" />
                 <span class="w-4">8</span>
                 <div class="profile-listBox-textBox">
@@ -176,33 +193,49 @@
               <div
                 class="profile-review_user bg-background w-[1.75rem] h-[1.75rem] border rounded-full overflow-hidden"
               >
-              <img data-field="avatar" class="reviewer-photo"
-                src="/src/assets/popcorn.png"
-              />
-            </div>
+                <img
+                  data-field="avatar"
+                  class="reviewer-photo"
+                  src="/src/assets/popcorn.png"
+                />
+              </div>
               <div class="review-textBox">
-                <p data-field="nickName" class="reviewer-box text-base font-semibold">유저네임</p>
+                <p
+                  data-field="nickName"
+                  class="reviewer-box text-base font-semibold"
+                >
+                  유저네임
+                </p>
                 <p
                   class="text-base text-Contents-contentSecondary flex items-center gap-1"
                 >
-                  <span data-field="username"  class="reviewer-box">구매자 </span>
-                  <span
-                    class=" reviewer-box w-0.5 h-0.5  inline-block bg-Contents-contentSecondary"
-                  ></span>
-                  <span data-field="locationFirst" class="reviewer-box">사는 지역</span>
+                  <span data-field="username" class="reviewer-box"
+                    >구매자
+                  </span>
                   <span
                     class="reviewer-box w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
                   ></span>
-                  <span class="reviewer-box review-time" >시간</span>
+                  <span data-field="locationFirst" class="reviewer-box"
+                    >사는 지역</span
+                  >
+                  <span
+                    class="reviewer-box w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
+                  ></span>
+                  <span class="reviewer-box review-time">시간</span>
                 </p>
               </div>
-              <p data-field="textContent" class="review-box review-box-content">후기 내용</p>
+              <p
+                data-field="textContent"
+                class="review-box review-box-content text-base"
+              >
+                후기 내용
+              </p>
               <button
-                class=" profile-button-more reviewer-box  ml-auto"
+                class="profile-button-more reviewer-box ml-auto"
                 type="button"
                 aria-label="더보기"
               >
-                <img  src="/public/images/more.svg" alt="더보기" />
+                <img src="/public/images/more.svg" alt="더보기" />
               </button>
               <ul
                 class="hidden text-base absolute right-3 bg-background border border-gray-200 p-1 top-[21px]"
@@ -234,7 +267,11 @@
             <button class="profile-button-logOut text-negative">
               로그아웃
             </button>
-            <span data-field="username" class="rendering-box profile-textPrivacy text-Bluelight-500">userId</span>
+            <span
+              data-field="username"
+              class="rendering-box profile-textPrivacy text-Bluelight-500"
+              >userId</span
+            >
           </li>
           <li class="text-right text-base">
             <button class="profile-delete-button">탈퇴하기</button>
