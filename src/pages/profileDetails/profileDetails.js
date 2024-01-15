@@ -5,9 +5,9 @@ import {
   getStorage,
   setStorage,
 } from '/src/lib/';
-import pb from '/src/api/pocketbase';
 import { removeElement } from '../../lib/dom/insert';
 import { deleteStorage } from '../../lib/utils/storage';
+import pb from '/src/api/pocketbase';
 
 const profileDetailsClose = getNode('.profileDetails-button-close');
 const profileToggleButtonWraps = getNodes('.profileDetails-buttonWrap');
@@ -37,6 +37,15 @@ const jobData = [
   '시각화',
 ];
 
+/* -------------------------------------------------------------------------- */
+/*                                  유저정보 불러오기                                 */
+/* -------------------------------------------------------------------------- */
+
+//현재 로그인한 유저id
+const userRecords = await pb.collection('users').getFullList();
+const userValid = await getStorage('userId');
+let userNow = userRecords.find((item) => item.id === userValid);
+
 //profileDetails 닫힘 버튼
 
 function closeHandler() {
@@ -57,25 +66,30 @@ profileActiveButton.forEach((item) => {
   item.addEventListener('click', activeHandler);
 });
 
-//toggleButton
+/* -------------------------------------------------------------------------- */
+/*                                toggleButton                                */
+/* -------------------------------------------------------------------------- */
 
+//토글 기능
 let toggleBoolean = false;
-function toggleHandler() {
-  const buttonLeft = this.childNodes[1];
-  const buttonRight = this.childNodes[3];
-  const buttonImgL = buttonLeft.childNodes[1];
-  const buttonImgR = buttonRight.childNodes[1];
+function toggleHandler(e) {
+  const buttonPrivacy = this.childNodes[1];
+  const buttonPublic = this.childNodes[3];
+  const buttonImgL = buttonPrivacy.childNodes[1];
+  const buttonImgR = buttonPublic.childNodes[1];
+
+  // privacyOrPublic(e);
 
   if (!toggleBoolean) {
-    buttonLeft.classList.remove('profileDetails-button-valid');
+    buttonPrivacy.classList.remove('profileDetails-button-valid');
     buttonImgL.src = ' ';
-    buttonRight.classList.add('profileDetails-button-valid');
+    buttonPublic.classList.add('profileDetails-button-valid');
     buttonImgR.src = '/public/images/peoplePublic.svg';
     return (toggleBoolean = true);
   } else {
-    buttonLeft.classList.add('profileDetails-button-valid');
+    buttonPrivacy.classList.add('profileDetails-button-valid');
     buttonImgL.src = '/public/images/passwordDetails.svg';
-    buttonRight.classList.remove('profileDetails-button-valid');
+    buttonPublic.classList.remove('profileDetails-button-valid');
     buttonImgR.src = ' ';
     return (toggleBoolean = false);
   }
@@ -85,8 +99,21 @@ profileToggleButtonWraps.forEach((item) => {
   item.addEventListener('click', toggleHandler);
 });
 
+//토글 기능에 따른 공개여부
+// async function privacyOrPublic(e) {
+//   const classList = Array.from(e.target.classList);
+//   if (
+//     classList.includes('profileDetails-button-valid') &&
+//     classList.includes('profile-privacy')
+//   ) {
+//     const keyDataName = e.target.dataset.field;
+//     const dataPrivacy = { keyDataName: 'privacy' };
+//     await pb.collection('users').update(userNow.id, dataPrivacy);
+//   }
+// }
+
 /* -------------------------------------------------------------------------- */
-/*                            //agree button group                            */
+/*                            agree button group                            */
 /* -------------------------------------------------------------------------- */
 function agreeGroupValidation() {
   let agreeValid = 0;
