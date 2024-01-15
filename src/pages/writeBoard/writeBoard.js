@@ -16,7 +16,7 @@ const selectCategorySecondPage = getNodes('.writeBoardCategory');
 const titleSecondPage = document.querySelector('.writeBoardSecond-title');
 const peopleButton = getNodes('.writeBoardSecond-people-button');
 const locationButton = getNode('.writeBoardSecond-location-button');
-
+const categoryMenuNav = getNode('.writeBoard-category');
 const selectGenderbuttonMenu = getNode('.selectGenderMenuContainer');
 
 const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
@@ -245,6 +245,24 @@ function handleBack() {
   }
 }
 
+function handleCategoryNav() {
+  const isClicked = this.classList.toggle('isClicked');
+  const target = this.querySelector('.selectCategoryNav');
+  if (isClicked) {
+    target.classList.remove(
+      'group-focus-within:visible',
+      'group-focus-within:opacity-100',
+      'group-focus-within:translate-y-1'
+    );
+  } else {
+    target.classList.add(
+      'group-focus-within:visible',
+      'group-focus-within:opacity-100',
+      'group-focus-within:translate-y-1'
+    );
+  }
+}
+
 function handleCategorySecondPageSubmenu() {
   const category = getNode('.selectCategory');
   if (category.textContent) {
@@ -252,7 +270,6 @@ function handleCategorySecondPageSubmenu() {
   }
   insertLast('.selectCategory', this.textContent);
 }
-
 function handleCategorySecondPagePeople() {
   const content = getNode('.people');
   const plus = this.classList.contains('plus');
@@ -289,7 +306,7 @@ function handleOpenDaumPostcode() {
   }).open();
 }
 
-function handleSelectGenderMenu(e) {
+function handleSelectGenderMenu() {
   const isClicked = e.target.classList.toggle('isClicked');
   const genderValue = getNode('.genderValue');
   Array.from(this.children).forEach((item) => {
@@ -344,3 +361,4 @@ nextButton.addEventListener('click', handleNext);
 backButton.addEventListener('click', handleBack);
 locationButton.addEventListener('click', handleOpenDaumPostcode);
 selectGenderbuttonMenu.addEventListener('click', handleSelectGenderMenu);
+categoryMenuNav.addEventListener('click', handleCategoryNav);

@@ -61,20 +61,20 @@ async function renderProduct() {
 
         <div class="boardContent-wrapper  pb-[40%] pt-6 px-3 mb-[4.625rem]">
           <span
-            class="boardContent-category inline-block py-[0.125rem] px-2 border-none bg-bluegray-300 rounded-sm text-sm font-semibold text-background"
+            class="boardContent-category inline-block py-[0.3rem] px-3 border-none bg-gray-600 rounded-sm text-base font-semibold text-background"
             >📝${category}</span
           >
-          <div  class="flex flex-col text-lg font-semibold mt-[0.5625rem]">
+          <div  class="flex flex-col text-[1.5rem] font-semibold my-3">
             <span class="boardContent-state text-secondary">${defaultRecruiting}</span>
-            <span class="boardContent-title">${title}</span>
+            <span class="boardContent-title my-1">${title}</span>
           </div>
 
           <div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 py-2">
               <img src="/images/people.svg" alt="" />
               <span class="boardContent-condition">${gender} 참여 가능</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 ">
               <img src="/images/fullcalender.svg" alt="" />
               <span class="boardContent-date">${formattedDateShort(date)}</span>
             </div>
@@ -106,7 +106,7 @@ async function renderProduct() {
                 />
               </div>
               <div class="flex flex-col text-sm">
-                <div class="flex justify-center items-center">
+                <div class="flex justify-center items-center text-base">
                   <span
                     class="boardContent-name whitespace-nowrap pr-[0.375rem]"
                     >${expand.SR_location.username}</span
@@ -117,12 +117,12 @@ async function renderProduct() {
                     class="boardContent-user-state"
                   />
                   <span
-                    class="boardContent-user-grade whitespace-nowrap text-Contents-contentTertiary"
+                    class="boardContent-user-grade whitespace-nowrap text-gray-900 "
                     >${checkMeetingVenue(hash, id)}</span
                   >
                 </div>
                 <span
-                  class="boardContent-user-number text-Contents-contentTertiary"
+                  class="boardContent-user-number text-gray-700"
                   >${meetingLocation} 인증 4회</span
                 >
               </div>
