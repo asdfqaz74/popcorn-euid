@@ -80,7 +80,6 @@ categoryInputs.forEach(function (item) {
 const saveButton = getNode('.category-button-save');
 
 // get localStorage
-
 async function handleSaveButton() {
   // 카테고리 localStorage 에 저장
   const checkbox = getNodes('label.is-checked');
@@ -123,7 +122,7 @@ async function handleSaveButton() {
   setStorage('auth', isAuth);
 
   // 페이지 이동
-  // window.location.href = '/src/pages/profile/';
+  window.location.href = '/src/pages/profile/';
 }
 
 saveButton.addEventListener('click', handleSaveButton);

@@ -48,6 +48,9 @@
               maxlength="11"
               required
             />
+            <div
+              class="signUp-errorMsg text-error text-sm w-full hidden items-start justify-start"
+            ></div>
             <!-- valid 된 경우 : signUp-verify-valid 클래스 추가해주기 -->
             <button
               class="signUp-button-verify timer-button border-solid border-[0.5px] rounded-sm w-full h-[2.375rem] py-[0.5rem] text-base font-normal text-gray-500"
@@ -107,12 +110,15 @@
               maxlength="6"
               required
             />
+            <div
+              class="signUp-errorMsg-second w-full text-error text-sm hidden items-start justify-start"
+            ></div>
           </form>
           <p class="text-sm font-normal text-gray-500 mt-2">
             어떤 경우에도 타인에게 공유하지마세요!
           </p>
           <button
-            class="signUp-button-agree  border-solid border-[0.5px] border-gray-500 rounded-2xl w-full py-[0.75rem] bg-gray-500 text-background text-base font-bold my-[0.75rem]"
+            class="signUp-button-agree border-solid border-[0.5px] border-gray-500 rounded-2xl w-full py-[0.75rem] bg-gray-500 text-background text-base font-bold my-[0.75rem]"
             id="agree"
             type="submit"
             name="agree"
