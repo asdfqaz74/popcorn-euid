@@ -29,6 +29,7 @@ export default {
       tertiary: '#719cf7',
       negative: '#e11900',
       background: '#ffffff',
+      backdrop: 'rgba(0,0,0,0.1)',
       Contents: {
         contentPrimary: '#000000',
         contentSecondary: '#919191',
