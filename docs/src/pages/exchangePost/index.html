@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ko-KR">
+  <head>
+    <title>Vite - Tailwindcss</title>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" crossorigin src="/assets/exchangePost-5tvIeNck.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-75xaDfuL.js">
+    <link rel="modulepreload" crossorigin href="/assets/delay-g6vF19wW.js">
+    <link rel="modulepreload" crossorigin href="/assets/insert-vWB_d1l7.js">
+    <link rel="modulepreload" crossorigin href="/assets/storage-eNv634Ip.js">
+    <link rel="modulepreload" crossorigin href="/assets/setDocumentTitle-_OwlDZqT.js">
+    <link rel="modulepreload" crossorigin href="/assets/pocketbase-UOLpUAtS.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-N1_XQkTA.css">
+  </head>
+  <body>
+    <h1 class="sr-only">이듬 기기거래 작성페이지</h1>
+    <div class="flex gap-4 items-center mt-4 px-3 py-2">
+      <button type="button" class="exchangePost-back">
+        <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='20'%20height='21'%20viewBox='0%200%2020%2021'%20fill='none'%3e%3cpath%20d='M12.9422%2016.3078C13.0003%2016.3659%2013.0463%2016.4348%2013.0777%2016.5107C13.1092%2016.5865%2013.1254%2016.6679%2013.1254%2016.75C13.1254%2016.8321%2013.1092%2016.9134%2013.0777%2016.9893C13.0463%2017.0652%2013.0003%2017.1341%2012.9422%2017.1922C12.8841%2017.2502%2012.8152%2017.2963%2012.7393%2017.3277C12.6634%2017.3592%2012.5821%2017.3753%2012.5%2017.3753C12.4179%2017.3753%2012.3366%2017.3592%2012.2607%2017.3277C12.1848%2017.2963%2012.1159%2017.2502%2012.0578%2017.1922L5.80782%2010.9422C5.74971%2010.8841%205.70361%2010.8152%205.67215%2010.7393C5.6407%2010.6634%205.62451%2010.5821%205.62451%2010.5C5.62451%2010.4178%205.6407%2010.3365%205.67215%2010.2606C5.70361%2010.1848%205.74971%2010.1158%205.80782%2010.0578L12.0578%203.80779C12.1751%203.69052%2012.3342%203.62463%2012.5%203.62463C12.6659%203.62463%2012.8249%203.69052%2012.9422%203.80779C13.0595%203.92507%2013.1254%204.08413%2013.1254%204.24998C13.1254%204.41583%2013.0595%204.57489%2012.9422%204.69217L7.1336%2010.5L12.9422%2016.3078Z'%20fill='black'/%3e%3c/svg%3e" alt="뒤로가기" />
+      </button>
+      <span class="font-semibold">기기거래</span>
+    </div>
+
+    <div class="mt-3">
+      <div
+        class="exchangePost-img-container border rounded-sm mx-auto h-60 overflow-hidden relative"
+      >
+        <input type="file" id="imgField" class="sr-only" />
+        <div class="render w-full h-full"></div>
+        <label
+          class="flex flex-col items-center justify-center absolute top-0 left-0 w-full h-full text-base text-Contents-contentSecondary cursor-pointer"
+          for="imgField"
+        >
+          <img src="data:image/svg+xml,%3csvg%20width='14'%20height='14'%20viewBox='0%200%2014%2014'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cg%20id='camera-solid%201'%20clip-path='url(%23clip0_1608_5257)'%3e%3cpath%20id='Vector'%20d='M4.07695%201.77188L3.79258%202.625H1.75C0.784766%202.625%200%203.40977%200%204.375V11.375C0%2012.3402%200.784766%2013.125%201.75%2013.125H12.25C13.2152%2013.125%2014%2012.3402%2014%2011.375V4.375C14%203.40977%2013.2152%202.625%2012.25%202.625H10.2074L9.92305%201.77188C9.74531%201.23594%209.24492%200.875%208.67891%200.875H5.32109C4.75508%200.875%204.25469%201.23594%204.07695%201.77188ZM7%205.25C7.69619%205.25%208.36387%205.52656%208.85616%206.01884C9.34844%206.51113%209.625%207.17881%209.625%207.875C9.625%208.57119%209.34844%209.23887%208.85616%209.73116C8.36387%2010.2234%207.69619%2010.5%207%2010.5C6.30381%2010.5%205.63613%2010.2234%205.14384%209.73116C4.65156%209.23887%204.375%208.57119%204.375%207.875C4.375%207.17881%204.65156%206.51113%205.14384%206.01884C5.63613%205.52656%206.30381%205.25%207%205.25Z'%20fill='%239DA1B4'/%3e%3c/g%3e%3cdefs%3e%3cclipPath%20id='clip0_1608_5257'%3e%3crect%20width='14'%20height='14'%20fill='white'/%3e%3c/clipPath%3e%3c/defs%3e%3c/svg%3e" class="h-4 w-4 text-sm" alt="" />
+          이미지를 추가해주세요
+        </label>
+      </div>
+    </div>
+
+    <div class="flex flex-col mx-3 my-5 gap-2">
+      <label for="title" class="text-base font-semibold pl-2">제목</label>
+      <input type="text" id="title" class="border rounded-sm px-2 h-8" />
+    </div>
+
+    <div class="my-5">
+      <span class="mx-3 block mb-2 text-base font-semibold pl-2">거래품목</span>
+      <ul class="flex gap-1 px-1 whitespace-nowrap no-scrollbar">
+        <li class="exchangePost-li exchangePost-headset">
+          <button type="button">headset</button>
+        </li>
+        <li class="exchangePost-li exchangePost-keyboard">
+          <button type="button">keyboard</button>
+        </li>
+        <li class="exchangePost-li exchangePost-mouse">
+          <button type="button">mouse</button>
+        </li>
+        <li class="exchangePost-li exchangePost-computer">
+          <button type="button">computer</button>
+        </li>
+        <li class="exchangePost-li exchangePost-etc">
+          <button type="button">etc</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="flex flex-col mx-3 my-5 gap-2">
+      <label for="price" class="text-base font-semibold pl-2">가격</label>
+      <input
+        type="number"
+        id="price"
+        class="border rounded-sm px-2 h-8 text-sm"
+        placeholder="가격을 입력해주세요"
+      />
+    </div>
+
+    <div class="flex flex-col items-center p-3">
+      <label for="textField" class="mx-3 text-base font-semibold mr-auto"
+        >자세한 설명</label
+      >
+      <textarea
+        id="textField"
+        type="textarea"
+        cols="30"
+        rows="10"
+        class="border rounded-sm p-2 text-sm w-full"
+        placeholder="제품에 대한 설명을 적어주세요"
+      ></textarea>
+    </div>
+
+    <div class="flex flex-col mx-3 my-5 gap-2">
+      <label for="place" class="text-base font-semibold pl-2"
+        >거래 희망 장소</label
+      >
+      <select id="place" class="border h-8"></select>
+    </div>
+
+    <div class="flex justify-center">
+      <button
+        class="exchangePost-submit w-4/5 px-3 mb-4 text-center text-background rounded-3xl py-4 border bg-primary"
+        type="button"
+      >
+        작성완료
+      </button>
+    </div>
+  </body>
+</html>
