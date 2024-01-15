@@ -5,40 +5,85 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>togetherBoard</title>
+<<<<<<< HEAD
     <script type="module" crossorigin src="/assets/togetherBoard-XT0unAHA.js"></script>
     <link rel="modulepreload" crossorigin href="/assets/tailwind-75xaDfuL.js">
+=======
+    <script type="module" crossorigin src="/assets/togetherBoard-SUpGc2VD.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-ouJN7DSI.js">
+>>>>>>> upstream/develop
     <link rel="modulepreload" crossorigin href="/assets/index-35H_NU9g.js">
     <link rel="modulepreload" crossorigin href="/assets/delay-g6vF19wW.js">
     <link rel="modulepreload" crossorigin href="/assets/insert-vWB_d1l7.js">
     <link rel="modulepreload" crossorigin href="/assets/getPbImageURL-99Z79ldm.js">
     <link rel="modulepreload" crossorigin href="/assets/timeAgo-WbyvHha8.js">
     <link rel="modulepreload" crossorigin href="/assets/formattedDate-dxVwGQ40.js">
+<<<<<<< HEAD
     <link rel="stylesheet" crossorigin href="/assets/tailwind-N1_XQkTA.css">
+=======
+    <link rel="modulepreload" crossorigin href="/assets/calender-6jrPqTjm.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-UImssz52.css">
+>>>>>>> upstream/develop
   </head>
   <body>
     <div class="min-w-[17.5rem]">
       <div class="sticky top-0 bg-background z-10">
         <header class="relative px-3 py-2">
-          <a
-            class="absolute top-1/2 transform -translate-y-1/2"
-            href="/src/pages/board/index.html"
-            ><img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='20'%20height='21'%20viewBox='0%200%2020%2021'%20fill='none'%3e%3cpath%20d='M12.9422%2016.3078C13.0003%2016.3659%2013.0463%2016.4348%2013.0777%2016.5107C13.1092%2016.5865%2013.1254%2016.6679%2013.1254%2016.75C13.1254%2016.8321%2013.1092%2016.9134%2013.0777%2016.9893C13.0463%2017.0652%2013.0003%2017.1341%2012.9422%2017.1922C12.8841%2017.2502%2012.8152%2017.2963%2012.7393%2017.3277C12.6634%2017.3592%2012.5821%2017.3753%2012.5%2017.3753C12.4179%2017.3753%2012.3366%2017.3592%2012.2607%2017.3277C12.1848%2017.2963%2012.1159%2017.2502%2012.0578%2017.1922L5.80782%2010.9422C5.74971%2010.8841%205.70361%2010.8152%205.67215%2010.7393C5.6407%2010.6634%205.62451%2010.5821%205.62451%2010.5C5.62451%2010.4178%205.6407%2010.3365%205.67215%2010.2606C5.70361%2010.1848%205.74971%2010.1158%205.80782%2010.0578L12.0578%203.80779C12.1751%203.69052%2012.3342%203.62463%2012.5%203.62463C12.6659%203.62463%2012.8249%203.69052%2012.9422%203.80779C13.0595%203.92507%2013.1254%204.08413%2013.1254%204.24998C13.1254%204.41583%2013.0595%204.57489%2012.9422%204.69217L7.1336%2010.5L12.9422%2016.3078Z'%20fill='black'/%3e%3c/svg%3e" alt="뒤로가기"
-          /></a>
+          <div>
+            <button
+              class="hidden togetherBoard-write-on fixed bottom-28 right-5 p-3 bg-background rounded-full shadow-Contents-contentPrimary shadow-md"
+              type="button"
+            >
+              <img
+                src="data:image/svg+xml,%3csvg%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M22.1666%2015.1644H15.1666V22.1644H12.8333V15.1644H5.83325V12.8311H12.8333V5.83105H15.1666V12.8311H22.1666V15.1644Z'%20fill='black'/%3e%3c/svg%3e"
+                alt="작성하기 버튼이 닫혀있습니다."
+              />
+            </button>
+
+            <button
+              type="button"
+              class="togetherBoard-write-off fixed bottom-28 right-5 bg-primary p-3 rounded-full shadow-Contents-contentPrimary shadow-md"
+            >
+              <img
+                src="data:image/svg+xml,%3csvg%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M22.1668%2015.1644H15.1668V22.1644H12.8335V15.1644H5.8335V12.8311H12.8335V5.83105H15.1668V12.8311H22.1668V15.1644Z'%20fill='white'/%3e%3c/svg%3e"
+                alt="작성하기를 원하신다면 버튼을 눌러주세요"
+              />
+            </button>
+
+            <div class="hidden togetherBoard-plus-menu fixed bottom-44 right-5">
+              <ul>
+                <li
+                  class="write-button whitespace-nowrap bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal"
+                >
+                  <button type="button" aria-label="기타 품목만 정렬">
+                    📑 작성하기
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <button
+            type="button"
+            class="backButton absolute top-1/2 transform -translate-y-1/2"
+          >
+            <img src="data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='20'%20height='21'%20viewBox='0%200%2020%2021'%20fill='none'%3e%3cpath%20d='M12.9422%2016.3078C13.0003%2016.3659%2013.0463%2016.4348%2013.0777%2016.5107C13.1092%2016.5865%2013.1254%2016.6679%2013.1254%2016.75C13.1254%2016.8321%2013.1092%2016.9134%2013.0777%2016.9893C13.0463%2017.0652%2013.0003%2017.1341%2012.9422%2017.1922C12.8841%2017.2502%2012.8152%2017.2963%2012.7393%2017.3277C12.6634%2017.3592%2012.5821%2017.3753%2012.5%2017.3753C12.4179%2017.3753%2012.3366%2017.3592%2012.2607%2017.3277C12.1848%2017.2963%2012.1159%2017.2502%2012.0578%2017.1922L5.80782%2010.9422C5.74971%2010.8841%205.70361%2010.8152%205.67215%2010.7393C5.6407%2010.6634%205.62451%2010.5821%205.62451%2010.5C5.62451%2010.4178%205.6407%2010.3365%205.67215%2010.2606C5.70361%2010.1848%205.74971%2010.1158%205.80782%2010.0578L12.0578%203.80779C12.1751%203.69052%2012.3342%203.62463%2012.5%203.62463C12.6659%203.62463%2012.8249%203.69052%2012.9422%203.80779C13.0595%203.92507%2013.1254%204.08413%2013.1254%204.24998C13.1254%204.41583%2013.0595%204.57489%2012.9422%204.69217L7.1336%2010.5L12.9422%2016.3078Z'%20fill='black'/%3e%3c/svg%3e" alt="뒤로가기" />
+          </button>
           <strong class="text-center block">같이해요</strong>
         </header>
         <nav
           class="px-5 py-2 flex gap-3 font-semibold text-sm text-center overflow-x-scroll no-scrollbar"
         >
           <div class="group togetherBoard w-fit">
-            <div
+            <button
               class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              type="button    "
             >
               <img
                 class="pointer-events-none"
                 src="/assets/board-emogi-bkPhdjpb.svg"
                 alt="관심사 선택하기,전체"
               />
-            </div>
+            </button>
             <p class="togetherTitle mt-2 group-hover:text-secondary">전체</p>
           </div>
           <!-- <button class="togetherBoard w-fit" type="button">
@@ -54,56 +99,56 @@
             <p class="togetherTitle mt-2">전체</p>
           </button> -->
 
-          <div class="group togetherBoard w-fit">
-            <div
-              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          <div class="togetherBoard w-fit">
+            <button
+              class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              type="button    "
             >
               <img
                 class="pointer-events-none"
                 src="/assets/board-project-eJDVNsOF.svg"
                 alt="관심사 선택하기 프로젝트"
               />
-            </div>
-            <p class="togetherTitle mt-2 group-hover:text-secondary">
-              프로젝트
-            </p>
+            </button>
+            <p class="togetherTitle mt-2">프로젝트</p>
           </div>
           <div class="group togetherBoard w-fit">
-            <div
-              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+            <button
+              class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              type="button    "
             >
               <img
                 class="pointer-events-none"
                 src="/assets/board-study-a93vG-NK.svg"
                 alt="관심사 선택하기 스터디"
               />
-            </div>
-            <p class="togetherTitle mt-2 group-hover:text-secondary">스터디</p>
+            </button>
+            <p class="togetherTitle mt-2">스터디</p>
           </div>
-          <div class="group togetherBoard w-fit">
-            <div
-              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          <div class="togetherBoard w-fit">
+            <button
+              class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              type="button    "
             >
               <img
                 class="pointer-events-none"
                 src="/assets/board-offline-MhpHYWL9.svg"
                 alt="관심사 선택하기 오프라인"
               />
-            </div>
-            <p class="togetherTitle mt-2 group-hover:text-secondary">
-              오프라인
-            </p>
+            </button>
+            <p class="togetherTitle mt-2">오프라인</p>
           </div>
-          <div class="group togetherBoard w-fit">
-            <div
-              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+          <div class="togetherBoard w-fit">
+            <button
+              class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              type="button    "
             >
               <img
                 class="pointer-events-none"
                 src="/assets/board-contest-f0gTIC6v.svg"
                 alt="관심사 선택하기 공모전"
               />
-            </div>
+            </button>
             <p class="togetherTitle mt-2 group-hover:text-secondary">공모전</p>
           </div>
         </nav>
@@ -111,7 +156,7 @@
           <div class="relative text-left">
             <div class="togetherBoard-sort-button rounded-md">
               <button
-                class="inline-flex justify-center w-full px-3 py-[0.375rem] text-sm font-medium leading-5 bg-white border border-gray-300 rounded-full hover:text-background focus:outline-none focus:border-blue-300 hover:bg-primary active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+                class="inline-flex justify-center w-full px-3 py-[0.375rem] text-sm font-medium leading-5 bg-white border border-gray-300 rounded-full hover:text-background focus:border-blue-300 hover:bg-primary active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
                 type="button"
               >
                 <img
@@ -125,17 +170,17 @@
               class="absolute hidden bg-background right-0 mt-1 bg-white border border-gray-300 shadow-md"
             >
               <button
-                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out"
               >
                 최근 작성 순
               </button>
               <button
-                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out"
               >
                 오름차순
               </button>
               <button
-                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition duration-150 ease-in-out"
+                class="block px-4 py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:bg-gray-100 transition duration-150 ease-in-out"
               >
                 내림차순
               </button>
@@ -144,7 +189,7 @@
           <div class="rounded-md">
             <button
               type="button"
-              class="inline-flex justify-center w-full px-3 py-[0.375rem] text-sm font-medium leading-5 bg-white border border-gray-300 rounded-full hover:text-background focus:outline-none focus:border-blue-300 hover:bg-primary active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+              class="justify-center w-full px-3 py-[0.375rem] text-sm font-medium leading-5 bg-white border border-gray-300 rounded-full hover:text-background focus:border-blue-300 hover:bg-primary active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
             >
               모집 중인 글만
             </button>
@@ -155,40 +200,6 @@
       <section class="template mb-[60%]">
         <h2 class="sr-only">같이해요 게시판 리스트</h2>
       </section>
-
-      <button
-        class="hidden togetherBoard-write-on fixed bottom-28 right-5 p-3 bg-background rounded-full shadow-Contents-contentPrimary shadow-md"
-        type="button"
-      >
-        <img
-          class=""
-          src="data:image/svg+xml,%3csvg%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M22.1666%2015.1644H15.1666V22.1644H12.8333V15.1644H5.83325V12.8311H12.8333V5.83105H15.1666V12.8311H22.1666V15.1644Z'%20fill='black'/%3e%3c/svg%3e"
-          alt="작성하기 버튼이 닫혀있습니다."
-        />
-      </button>
-
-      <button
-        type="button"
-        class="togetherBoard-write-off fixed bottom-28 right-5 bg-primary p-3 rounded-full shadow-Contents-contentPrimary shadow-md"
-      >
-        <img
-          class=""
-          src="data:image/svg+xml,%3csvg%20width='28'%20height='28'%20viewBox='0%200%2028%2028'%20fill='none'%20xmlns='http://www.w3.org/2000/svg'%3e%3cpath%20d='M22.1668%2015.1644H15.1668V22.1644H12.8335V15.1644H5.8335V12.8311H12.8335V5.83105H15.1668V12.8311H22.1668V15.1644Z'%20fill='white'/%3e%3c/svg%3e"
-          alt="작성하기를 원하신다면 버튼을 눌러주세요"
-        />
-      </button>
-
-      <div class="hidden togetherBoard-plus-menu fixed bottom-44 right-5">
-        <ul>
-          <li
-            class="write-button whitespace-nowrap bg-primary rounded-4xl w-28 h-auto px-5 py-[0.625em] text-base font-pretendard text-background font-semibold leading-normal"
-          >
-            <button type="button" aria-label="기타 품목만 정렬">
-              📑 작성하기
-            </button>
-          </li>
-        </ul>
-      </div>
 
       <nav
         class="fixed h-[3.75rem] border-t-Contents-contentSecondary bottom-0 w-full px-3 pt-2 pb-2 bg-background"

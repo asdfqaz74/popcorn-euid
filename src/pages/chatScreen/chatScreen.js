@@ -1,6 +1,11 @@
 import { getNode, insertLast, formattedDateShort } from '/src/lib';
 import Pockbase from 'pocketbase';
 import gsap from 'gsap';
+import hamburger from '/public/images/hamburger.svg';
+import plusChatScreen from '/public/images/plusChatScreen.svg';
+import directionL from '/public/images/directionL.svg';
+import smile from '/public/images/smile.svg';
+import send from '/public/images/send.svg';
 
 const pocketbase = new Pockbase(`${import.meta.env.VITE_PB_URL}`);
 
@@ -33,7 +38,7 @@ async function renderProduct() {
   <div>
   <header class="flex justify-between p-2">
     <a class="top-1/2" href="/src/pages/board/index.html"
-      ><img src="/public/images/directionL.svg" alt="뒤로가기"
+      ><img src="${directionL}" alt="뒤로가기"
     /></a>
     <strong class="chatScreen-title text-center block"
       >${title}<span
@@ -41,13 +46,13 @@ async function renderProduct() {
         >1</span
       >
     </strong>
-    <img src="/public/images/hamburger.svg" alt="메뉴" />
+    <img src="${hamburger}" alt="메뉴" />
   </header>
   <div
       class="fixed text-base items-center flex gap-[0.375rem] w-full px-3 bottom-[2.125rem]"
     >
       <button class="chatScreen-option-button" type="button">
-        <img src="/public/images/plusChatScreen.svg" alt="추가옵션" />
+        <img src="${plusChatScreen}" alt="추가옵션" />
       </button>
       <form action="/submit" method="post" class="w-full">
         <label for="message" class="sr-only">메세지</label>
@@ -62,18 +67,15 @@ async function renderProduct() {
           class="chatScreen-emoji-button absolute inset-y-2 right-10"
           type="button"
         >
-          <img src="/public/images/smile.svg" alt="이모지 선택" />
+          <img src="${smile}" alt="이모지 선택" />
         </button>
       </form>
       <button class="chatScreen-send-button" type="button">
-        <img src="/public/images/send.svg" alt="메세지보내기버튼" />
+        <img src="${send}" alt="메세지보내기버튼" />
       </button>
     </div>
   
 </div>
-
-  
-        
     `;
 
   insertLast('.template', template);
