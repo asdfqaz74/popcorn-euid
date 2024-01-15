@@ -1,4 +1,11 @@
-import { getNode, deleteStorage, addClass, getNodes } from '/src/lib/';
+import {
+  getNode,
+  deleteStorage,
+  addClass,
+  getNodes,
+  setStorage,
+  getStorage,
+} from '/src/lib/';
 import pocketbase from 'pocketbase';
 import pb from '/src/api/pocketbase';
 
@@ -8,7 +15,7 @@ import pb from '/src/api/pocketbase';
 const goBack = getNode('.button-goback');
 
 function handleButton() {
-  window.location.href = '/src/pages/start/';
+  window.history.back;
 }
 
 goBack.addEventListener('click', handleButton);
@@ -72,8 +79,10 @@ categoryInputs.forEach(function (item) {
 /* -------------------------------------------------------------------------- */
 const saveButton = getNode('.category-button-save');
 
+// get localStorage
+
 async function handleSaveButton() {
-  // localStorage 에 저장
+  // 카테고리 localStorage 에 저장
   const checkbox = getNodes('label.is-checked');
   const checkList = Array.from(checkbox);
   let interest = [];
@@ -81,22 +90,40 @@ async function handleSaveButton() {
     const forValue = item.getAttribute('for');
     interest.push(forValue);
   });
-  const interestJson = JSON.stringify(interest);
-  localStorage.setItem('interest', interestJson);
+  setStorage('interest', interest);
 
-  // pb에 저장
+  // 폰번호, 유저네임 get localStorage
+  const userNamePromise = getStorage('userName');
+  const userName = await userNamePromise;
+  console.log(userName);
+
+  const phoneNumberPromise = getStorage('phoneNumber');
+  const phoneNumber = await phoneNumberPromise;
+  console.log(phoneNumber);
+
   const interestList = JSON.parse(localStorage.getItem('interest'));
   const interestStr = interestList.toString();
   console.log(interestStr);
+
+  // pb에 저장
   const data = {
+    username: userName,
+    phoneNumber: phoneNumber,
     category: interestStr,
     password: '12345678',
     passwordConfirm: '12345678',
   };
   await pb.collection('users').create(data);
 
+  // isAuth, user.id set localstorage
+  const records = await pb.collection('users').getFullList();
+  let isAuth = { isAuth: true };
+  let userNow = records.find((item) => item.phoneNumber === phoneNumber);
+  setStorage('userId', userNow.id);
+  setStorage('auth', isAuth);
+
   // 페이지 이동
-  window.location.href = '/src/pages/login/';
+  // window.location.href = '/src/pages/profile/';
 }
 
 saveButton.addEventListener('click', handleSaveButton);

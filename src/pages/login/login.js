@@ -148,7 +148,8 @@ async function allValidCheck() {
     );
     setStorage('userId', userNow.id);
     setStorage('auth', isAuth);
-
+    // 로그인 성공
+    alert('로그인 성공! 오늘도 힘차게 달려보아요 💪🏻');
     //story 페이지로 이동
     window.location.href = '/src/pages/story/';
   } else {
