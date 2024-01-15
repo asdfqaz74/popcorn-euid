@@ -20,8 +20,10 @@ export function rendering(className, obj){
       try {if(obj[keyName] !==''){
         item.src = getPbImageURL(obj, `${keyName}`)
       }
-    }catch{
-      throw new Error('rendering 함수의 인수는 문자 타입이어야 합니다, 두번째 인수는 객체여야 합니다')
+    } catch {
+      throw new Error(
+        'rendering 함수의 인수는 문자 타입이어야 합니다, 두번째 인수는 객체여야 합니다'
+      );
     }
-    })
-  }
+  });
+}
