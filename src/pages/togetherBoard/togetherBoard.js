@@ -26,13 +26,10 @@ async function renderProduct(dataArray) {
 
   if (dataArray) {
     renderingFilter(dataArray);
-    console.log('if문 안');
     return;
   } else {
-    console.log('else 문', dataArray);
   }
 
-  console.log('일반랜더링실시 ');
   communityData.forEach((item) => {
     const defaultRecruiting =
       item.recruiting === '' ? '모집중' : item.recruiting;
@@ -161,7 +158,14 @@ async function renderingFilter(dataArray) {
   </div>
 `;
 
-    insertLast('.template', template);
+    const resultContainer = document.querySelector('.template');
+    while (resultContainer.firstChild) {
+      resultContainer.removeChild(resultContainer.firstChild);
+    }
+
+    setTimeout(() => {
+      insertLast('.template', template);
+    }, 1000);
   }
 
   gsap.from('.board-container', {
