@@ -198,6 +198,7 @@ function sumitHandler(e) {
 agreeSubmitButton.addEventListener('click', sumitHandler);
 closeModal.addEventListener('click', () => {
   agreeModal.close();
+  window.location.href = '/src/pages/profile/';
 });
 
 /* -------------------------------------------------------------------------- */
@@ -247,8 +248,3 @@ jobSelectButtonWrap.addEventListener('click', jobSelected);
 
 //job Data 전송
 // const userRecords = await pb.collection('users').getFullList();
-
-//모달 창 확인 버튼
-getNode('.profileDetails-button-final').addEventListener('click', () => {
-  window.location.href = '/src/pages/profile/';
-});

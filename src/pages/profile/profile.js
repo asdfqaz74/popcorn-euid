@@ -257,7 +257,6 @@ function reveiwerRendering() {
     const review = item;
     const post = item.expand.post;
     const reviewLink = getNode('.profile-review-link');
-    const none = Array.from(getNodes('.reviewer-box'));
 
     if (post.userPost === userNow.id) {
       reviewCount++;
@@ -268,7 +267,7 @@ function reveiwerRendering() {
       getNode('.review-time').textContent = timeAgo(review.created);
     }
   });
-  if (reviewCount == 0) {
+  if (reviewCount === 0) {
     addClass('.review-textBox', 'hidden');
     addClass(commentMore, 'hidden');
     getNode('.review-box-content').textContent = '남겨진 후기가 없어요';
@@ -292,3 +291,20 @@ async function userLogOut() {
 }
 
 logOutButton.addEventListener('click', userLogOut);
+
+/* -------------------------------------------------------------------------- */
+/*                                    탈퇴하기                                    */
+/* -------------------------------------------------------------------------- */
+
+function deleteUser() {
+  getNode('.delete-modal').showModal();
+}
+getNode('.profile-delete-button').addEventListener('click', deleteUser);
+getNode('.profile-button-cancel').addEventListener('click', () => {
+  getNode('.delete-modal').close();
+});
+getNode('.profile-button-userDelete').addEventListener('click', async () => {
+  await pb.collection('users').delete(userNow.id);
+  deleteStorage();
+  window.location.href = '/src/pages/start/';
+});
