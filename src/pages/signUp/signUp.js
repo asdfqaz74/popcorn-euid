@@ -43,6 +43,7 @@ const phoneNumberInput = document.getElementById('phoneNumber');
 const verifyButton = getNode('.signUp-button-verify');
 const agreeButton = document.getElementById('agree');
 const regex = /^010\d{4}\d{4}$/;
+const error = getNode('.signUp-errorMsg');
 
 function validCheckPhoneNumber(e) {
   const phoneNumber = e.target.value;
@@ -53,9 +54,12 @@ function validCheckPhoneNumber(e) {
     removeClass(verifyButton, 'text-gray-500');
     addClass(verifyButton, 'signUp-verify-valid');
     verifyButton.removeAttribute('disabled');
+    error.style.display = 'none';
   } else {
     removeClass(verifyButton, 'signUp-verify-valid');
     verifyButton.setAttribute('disabled', '');
+    error.style.display = 'block';
+    error.textContent = '핸드폰 번호를 제대로 입력해주세요';
   }
 }
 
@@ -120,17 +124,19 @@ verifyButton.addEventListener('click', validPhoneNumber);
 /* -------------------------------------------------------------------------- */
 
 const verifyNumberInput = getNode('.signUp-input-verifyNumber');
+const errorSecond = getNode('.signUp-errorMsg-second');
 
 function ValidVerifyNumber(e) {
   const verifyNumber = e.target.value;
   console.log(verifyNumber);
 
   if (getVerifyNumber === verifyNumber) {
-    console.log('성공!');
+    errorSecond.style.display = 'none';
     removeClass(agreeButton, 'bg-gray-500');
     toggleClass(agreeButton, 'bg-tertiary');
   } else {
-    console.log('실패!');
+    errorSecond.style.display = 'block';
+    errorSecond.textContent = '인증번호를 제대로 입력해주세요';
     removeClass(agreeButton, 'bg-tertiary');
     addClass(agreeButton, 'bg-gray-500');
   }

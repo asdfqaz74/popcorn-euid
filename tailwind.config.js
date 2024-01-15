@@ -24,6 +24,7 @@ export default {
       tertiary: '#719cf7',
       negative: '#e11900',
       background: '#ffffff',
+      error: '#dc2626',
       Contents: {
         contentPrimary: '#000000',
         contentSecondary: '#919191',
