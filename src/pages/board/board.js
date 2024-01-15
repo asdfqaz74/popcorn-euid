@@ -112,7 +112,17 @@ async function renderProduct() {
   참여중
 </div>
 </div>
-
+<div class="p-3 flex justify-between">
+<div class="flex items-center gap-2">
+  <img class="h-[34px] w-[34px]" src="/public/images/life.svg" alt="" />
+  <strong class="board-subject-name no-wrap truncate">localStorage 아직</strong>
+</div>
+<div
+  class="board-participating py-1 text-secondary rounded-2xl px-5 border bg-bluegray-100 no-wrap"
+>
+  참여중
+</div>
+</div>
 
 `;
   insertLast('.templateSubjectContainer', templateSubjecMenu);

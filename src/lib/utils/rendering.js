@@ -15,7 +15,6 @@ export function rendering(className, obj) {
     }
   });
 }
-
 export function renderingPhoto(className, obj) {
   const renderBoxs = Array.from(getNodes(className));
   renderBoxs.forEach((item) => {
@@ -23,6 +22,7 @@ export function renderingPhoto(className, obj) {
     try {
       if (obj[keyName] !== '') {
         item.src = getPbImageURL(obj, `${keyName}`);
+
       }
     } catch {
       throw new Error(
