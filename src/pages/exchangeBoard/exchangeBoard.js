@@ -278,18 +278,15 @@ async function handleHeartClick(e) {
   }
 }
 
-async function updatedHeart() {
+async function updatedHeart(nowUser, products) {
   heartImage = getNode('.exchangeBoard-heart img');
 
-  const users = await getStorage('userId');
   const likes = await pb.collection('likes').getFullList();
 
-  const hash = window.location.hash.slice(1);
-  const products = await pb.collection('products').getOne(hash);
   const productId = products.id;
 
   let selectedProduct = likes.find(
-    (item) => item.product === productId && item.user === users
+    (item) => item.product === productId && item.user === nowUser
   );
 
   if (selectedProduct) {
@@ -299,14 +296,39 @@ async function updatedHeart() {
   }
 }
 
+async function handleChat(nowUser, products) {
+  const chatBox = await pb.collection('chatbox').getFullList();
+  const arrayUserSameBuyer = chatBox.filter((item) => item.buyer === nowUser);
+  const productDataId = products.id;
+  const checkedProductId = arrayUserSameBuyer.find(
+    (item) => item.item === productDataId
+  );
+
+  const initData = {
+    buyer: `${nowUser}`,
+    item: `${productDataId}`,
+  };
+
+  if (!arrayUserSameBuyer || !checkedProductId) {
+    await pb.collection('chatBox').create(initData);
+  }
+}
+
 async function init() {
   await checkedOptions();
 
-  getProductRender().then(() => {
-    updatedHeart();
+  getProductRender().then(async () => {
+    const chatButton = getNode('.exchangeBoard-chat-link');
+
+    const nowUser = await getStorage('userId');
+    const hash = window.location.hash.slice(1);
+    const products = await pb.collection('products').getOne(hash);
+
+    updatedHeart(nowUser, products);
     const heart = getNode('.exchangeBoard-heart');
     heart.addEventListener('click', handleHeartClick);
 
+    chatButton.addEventListener('click', handleChat(nowUser, products));
     window.addEventListener('hashchange', getProductRender);
   });
 }
