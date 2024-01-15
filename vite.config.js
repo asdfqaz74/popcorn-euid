@@ -25,7 +25,7 @@ export default defineConfig({
         start: resolve(__dirname, 'src/pages/start/index.html'),
         chat: resolve(__dirname, 'src/pages/chat/index.html'),
         category: resolve(__dirname, 'src/pages/category/index.html'),
-        signUP: resolve(__dirname, 'src/pages/signUp/index.html'),
+        signUp: resolve(__dirname, 'src/pages/signUp/index.html'),
         login: resolve(__dirname, 'src/pages/login/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
         profileCard: resolve(__dirname, 'src/pages/profileCard/index.html'),
