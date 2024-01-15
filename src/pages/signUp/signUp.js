@@ -79,7 +79,7 @@ function handelverifyNumber() {
 
   if (buttonValid) {
     alert(getVerifyNumber);
-    console.log(getVerifyNumber);
+    // console.log(getVerifyNumber);
   }
 }
 
@@ -92,13 +92,13 @@ function handelverifyNumber() {
 
 async function validPhoneNumber() {
   const phoneNumberValue = getNode('.signUp-input-phoneNumber').value;
-  console.log(phoneNumberValue);
+  // console.log(phoneNumberValue);
 
   const test = await pb.collection('users').getFullList('phoneNumber');
-  console.log(test);
+  // console.log(test);
   const ArrayPhoneNumber = test.map((row) => row.phoneNumber);
   const duplicatePhoneNumber = ArrayPhoneNumber.includes(phoneNumberValue);
-  console.log(duplicatePhoneNumber);
+  // console.log(duplicatePhoneNumber);
 
   if (duplicatePhoneNumber) {
     alert('이미 회원가입 된 번호입니다. 로그인 페이지로 이동합니다! 😃');
@@ -109,7 +109,7 @@ async function validPhoneNumber() {
 
     setStorage('userName', randomUserName);
     setStorage('phoneNumber', phoneNumberValue);
-    console.log('저장 완료');
+    // console.log('저장 완료');
 
     const showPhoneNumber = getNode('.signUp-input-after');
     const getPhoneNumber = localStorage.getItem('phoneNumber');
@@ -128,7 +128,7 @@ const errorSecond = getNode('.signUp-errorMsg-second');
 
 function ValidVerifyNumber(e) {
   const verifyNumber = e.target.value;
-  console.log(verifyNumber);
+  // console.log(verifyNumber);
 
   if (getVerifyNumber === verifyNumber) {
     errorSecond.style.display = 'none';

@@ -46,7 +46,7 @@ const regex = /^010\d{4}\d{4}$/;
 
 function validCheckPhoneNumber(e) {
   const phoneNumber = e.target.value;
-  console.log(phoneNumber);
+  // console.log(phoneNumber);
   const isValidPhoneNumber = regex.test(phoneNumber);
   const error = getNode('.login-errorMsg');
 
