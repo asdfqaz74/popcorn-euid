@@ -69,10 +69,10 @@ async function renderProduct(dataArray) {
                     item.gender
                   }</span>
                 </div>
-                <div class="mt-1 flex">
+                <div class="mt-1 flex text-Contents-contentPrimary text-base">
                   <img src="${calenderSvg}" alt="날짜" />
                   <span>${formattedDateShort(item.date)},</span>
-                  <span class="togtherBoard-time">${item.time}</span>
+                  <span class="togtherBoard-time  ">${item.time}</span>
                 </div>
               </div>
             </div>
@@ -144,7 +144,7 @@ async function renderingFilter(dataArray) {
               <img src="${fullpeopleSvg}" alt="참여인원 수" />
               <span class="togtherBoard-who">${item.age}, ${item.gender}</span>
             </div>
-            <div class="mt-1 flex">
+            <div class="mt-1 flex ">
               <img src="${calenderSvg}" alt="날짜" />
               <span>${formattedDateShort(item.date)},</span>
               <span class="togtherBoard-time">${item.time}</span>
