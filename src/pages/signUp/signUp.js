@@ -1,5 +1,11 @@
 import { addClass, removeClass } from '../../lib/dom/css';
-import { getNode, toggleClass, setStorage, getNodes } from '/src/lib/';
+import {
+  getNode,
+  toggleClass,
+  setStorage,
+  getNodes,
+  getStorage,
+} from '/src/lib/';
 import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
@@ -69,7 +75,6 @@ function handelverifyNumber() {
 
   if (buttonValid) {
     alert(getVerifyNumber);
-    // 인증번호 비교 위해 콘솔로 불러오기 -> 로컬이라 변수 설정 다시 하기!
     console.log(getVerifyNumber);
   }
 }
@@ -86,6 +91,7 @@ async function validPhoneNumber() {
   console.log(phoneNumberValue);
 
   const test = await pb.collection('users').getFullList('phoneNumber');
+  console.log(test);
   const ArrayPhoneNumber = test.map((row) => row.phoneNumber);
   const duplicatePhoneNumber = ArrayPhoneNumber.includes(phoneNumberValue);
   console.log(duplicatePhoneNumber);
@@ -95,9 +101,10 @@ async function validPhoneNumber() {
     window.location.href = '/src/pages/login/';
   } else {
     handelverifyNumber();
-    const sendPhoneNumber = JSON.stringify(phoneNumberValue);
+    const randomUserName = Math.floor(Math.random() * 9000) + 1000;
 
-    localStorage.setItem('phoneNumber', sendPhoneNumber);
+    setStorage('userName', randomUserName);
+    setStorage('phoneNumber', phoneNumberValue);
     console.log('저장 완료');
 
     const showPhoneNumber = getNode('.signUp-input-after');
@@ -139,32 +146,31 @@ async function allValidCheck() {
   const agreeButtonValid = Array.from(agreeButton.classList).includes(
     'bg-tertiary'
   );
-  const records = await pb.collection('users').getFullList();
 
   if (agreeButtonValid) {
-    const userName = Math.floor(Math.random() * 1000) + 1000;
-    const phoneNumber = JSON.parse(localStorage.getItem('phoneNumber'));
+    // const userName = Math.floor(Math.random() * 1000) + 1000;
+    // const phoneNumber = JSON.parse(localStorage.getItem('phoneNumber'));
 
-    const data = {
-      username: `${userName}`,
-      phoneNumber: `${phoneNumber}`,
-      password: `${phoneNumber}`,
-      passwordConfirm: `${phoneNumber}`,
-    };
+    // const data = {
+    //   username: `${userName}`,
+    //   phoneNumber: `${phoneNumber}`,
+    //   password: `${phoneNumber}`,
+    //   passwordConfirm: `${phoneNumber}`,
+    // };
 
-    await pb.collection('users').create(data);
+    // await pb.collection('users').create(data);
 
-    //pb 에서 로컬스토리지로 저장
-    let isAuth = { isAuth: true };
-    let userNow = records.find(
-      (item) => item.phoneNumber === phoneNumberInput.value
-    );
-    setStorage('userId', userNow.id);
-    setStorage('auth', isAuth);
-    //로그인 성공
-    alert('로그인 성공!');
+    // //pb 에서 로컬스토리지로 저장
+    // const records = await pb.collection('users').getFullList();
+    // let isAuth = { isAuth: true };
+    // let userNow = records.find(
+    //   (item) => item.phoneNumber === phoneNumberInput.value
+    // );
+    // setStorage('userId', userNow.id);
+    // setStorage('auth', isAuth);
+
     //story 페이지로 이동
-    window.location.href = '/src/pages/story/';
+    window.location.href = '/src/pages/category/';
   } else {
     alert('인증번호가 잘못되었습니다.');
   }
@@ -267,4 +273,3 @@ function resendVerifyNumber() {
   }
 }
 reVerifyButton.addEventListener('click', resendVerifyNumber);
-
