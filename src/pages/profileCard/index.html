@@ -22,28 +22,36 @@
       <div class="profileCard-container px-3 pt-2 mb-10">
         <h2 class="flex items-center gap-0.5">
           프로필카드
-          <span>
+          <span title="유저 정보란입니다">
             <img src="/public/images/information.svg" alt="정보" />
           </span>
         </h2>
         <div
           class="profileCard-user flex justify-between items-center bg-background my-3 p-3 rounded-lg"
         >
-      
-        <div class="">
-          <p data-field="username" class="rendering-box  profile-textPrivacy text-lg font-semibold"></p>
-          <p
-            data-field="company" class="rendering-box text-sm text-secondary inline-block border border-secondary rounded-full px-1"
+          <div class="">
+            <p
+              data-field="username"
+              class="rendering-box profile-textPrivacy text-lg font-semibold"
+            ></p>
+            <p
+              data-field="company"
+              class="rendering-box text-sm text-secondary inline-block border border-secondary rounded-full px-1"
+            >
+              미등록
+            </p>
+          </div>
+          <div
+            class="profileCard-user-profileImg w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden shadow-md border bodrer-gray-100"
           >
-            미등록
-          </p>
+            <img
+              class="rendering-photo"
+              data-field="avatar"
+              src="/src/assets/popcorn.png"
+              alt="프로필 사진"
+            />
+          </div>
         </div>
-        <div
-          class="profileCard-user-profileImg w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden"
-        >
-          
-        </div>  
-      </div>
         <div class="profileCard-info bg-background rounded-t-lg pb-3">
           <div class="profileCard-layout border-b p-3">
             <span>기본정보</span>
@@ -56,89 +64,124 @@
             <button class="profileCard-button-editClose hidden">
               <img src="/public/images/close.svg" alt="닫힘버튼" />
             </button>
-            
           </div>
           <div class="profileCard-area-info">
             <ul class="flex flex-col gap-4 pt-3">
               <li class="profileCard-layout flex justify-between pt-3">
-                <p data-field="username" class="rendering-box font-semibold">유저이름</p>
+                <p data-field="nickName" class="rendering-box font-extrabold">
+                  별명을 등록해주세요
+                </p>
                 <div
                   class="profile-user-avatar w-[1.5rem] h-[1.5rem] rounded-full overflow-hidden"
                 >
                   <img
-                    class=" w-full h-full object-cover"
-                    src="${getPbImageURL(userNow, 'avatar')}"
+                    class="rendering-photo w-full h-full object-cover border bodrer-gray-100"
+                    data-field="avatar"
+                    src="/src/assets/popcorn.png"
                     alt="프로필 사진"
                   />
                 </div>
               </li>
               <li class="profileCard-layout">
-                  <span class="font-semibold">이름(별명)</span>
-                  <span data-field="nickName" class="rendering-box text-base text-Contents-contentSecondary"
-                    >미입력</span
-                  >
-                </li>
+                <span class="font-semibold text-[14px]">아이디</span>
+                <span
+                  data-field="username"
+                  class="rendering-box text-base text-Contents-contentSecondary"
+                  >미입력</span
+                >
+              </li>
               <li class="profileCard-layout">
-                  <span class="font-semibold">하는 일</span>
-                  <span data-field="job" class="rendering-box text-base text-Contents-contentSecondary"
-                    >미입력</span
-                  >
-                </li>
-                <li class="profileCard-layout">
-                  <span class="font-semibold">성별</span>
-                  <span data-field="gender" class="rendering-box text-base text-Contents-contentSecondary"
-                    >미입력</span
-                  >
-                </li>
-                <li class="profileCard-layout">
-                  <span class="font-semibold">연령</span>
-                  <span data-field="age" class="rendering-box text-base text-Contents-contentSecondary"
-                    >미입력</span
-                  >
-                </li>
-                <li class="profileCard-layout">
-                  <span class="font-semibold">회사</span>
-                  <span data-field="company" class="rendering-box text-base text-Contents-contentSecondary"
-                    >미입력</span
-                  >
-                </li>
-                <li class="profileCard-layout">
-                  <span class="font-semibold">자격</span>
-                  <span data-field="qualification" class="rendering-box text-base text-Contents-contentSecondary"
-                    >미입력</span
-                  >
-                </li>
-                <li class="px-3" >
-                      <a
-                        href="/src/pages/profileDetails/"
-                        class="profileCard-button-details block justify-center border rounded-lg py-2 bg-gray-100 w-full text-center"
-                      >
-                        상세페이지 이동
-                      </a>
-                    </li>
-          
-          </ul>
-
+                <span class="font-semibold text-[14px]">하는 일</span>
+                <span
+                  data-field="job"
+                  class="rendering-box text-base text-Contents-contentSecondary"
+                  >미입력</span
+                >
+              </li>
+              <li class="profileCard-layout">
+                <span class="font-semibold text-[14px]">성별</span>
+                <span
+                  data-field="gender"
+                  class="rendering-box text-base text-Contents-contentSecondary"
+                  >미입력</span
+                >
+              </li>
+              <li class="profileCard-layout">
+                <span class="font-semibold text-[14px]">연령</span>
+                <span
+                  data-field="age"
+                  class="rendering-box text-base text-Contents-contentSecondary"
+                  >미입력</span
+                >
+              </li>
+              <li class="profileCard-layout">
+                <span class="font-semibold text-[14px]">회사</span>
+                <span
+                  data-field="company"
+                  class="rendering-box text-base text-Contents-contentSecondary"
+                  >미입력</span
+                >
+              </li>
+              <li class="profileCard-layout">
+                <span class="font-semibold text-[14px]">자격</span>
+                <span
+                  data-field="qualification"
+                  class="rendering-box text-base text-Contents-contentSecondary"
+                  >미입력</span
+                >
+              </li>
+              <li class="px-3">
+                <a
+                  href="/src/pages/profileDetails/"
+                  class="profileCard-button-details block justify-center border rounded-lg py-2 bg-gray-100 w-full text-center"
+                >
+                  상세페이지 이동
+                </a>
+              </li>
+            </ul>
           </div>
           <form
-            action=""
+            action="/"
             method="post"
             class="profileCard-area-edit hidden flex flex-col gap-4 pt-3"
           >
-            <div class="profileCard-layout flex justify-between pt-3">
-              <p class="font-semibold">유저이름</p>
-              <div
-                class="profileCard-user-profileImg w-[1.5rem] h-[1.5rem] rounded-full overflow-hidden"
+            <div class="profileCard-layout flex justify-between">
+              <label for="avatar" class="font-semibold text-[14px]"
+                >아바타</label
               >
-                <img
-                  class="w-full h-full object-cover"
-                  src="${getPbImageURL(userNow, 'avatar')}"
-                  alt="프로필 사진"
+              <div class="w-10 h-10 rounded-full relative">
+                <div class="w-10 h-10 rounded-full overflow-hidden relative">
+                  <img
+                    data-field="avatar"
+                    class="rendering-photo profile-preview z-10 absolute pointer-events-none bg-background"
+                    src="/src/assets/popcorn.png"
+                    alt="프로필 사진 추가"
+                  />
+                </div>
+                <input
+                  id="avatar"
+                  type="file"
+                  class="w-10 h-10 rounded-full bg-secondary absolute top-0 appearance-none z-0"
                 />
               </div>
             </div>
             <div class="profileCard-layout flex justify-between">
-              <label for="username" class="font-semibold">이름(별명)</label>
+              <label for="username" class="font-semibold text-[14px]"
+                >아이디</label
+              >
+              <input
+                id="username"
+                type="text"
+                maxlength="14"
+                minlength="6"
+                class="w-[30%] text-base border rounded-full p-1 text-center"
+                placeholder="미입력"
+              />
+            </div>
+            <div class="profileCard-layout flex justify-between">
+              <label for="nickName" class="font-semibold text-[14px]"
+                >닉네임</label
+              >
               <input
                 id="nickName"
                 type="text"
@@ -147,22 +190,36 @@
               />
             </div>
             <div class="profileCard-layout flex justify-between">
-              <span for="username" class="font-semibold">하는 일</span>
+              <span for="username" class="font-semibold text-[14px]"
+                >하는 일</span
+              >
               <span class="text-sm text-secondary pr-1">
                 상세 페이지에서 수정할 수 있어요
               </span>
             </div>
             <div class="profileCard-layout flex justify-between">
-              <span class="font-semibold">성별</span>
+              <span class="font-semibold text-[14px]">성별</span>
               <div class="text-base">
-                <input id="male" name="gender" value="male" type="radio" class="radio-gender" />
+                <input
+                  id="male"
+                  name="gender"
+                  value="male"
+                  type="radio"
+                  class="radio-gender"
+                />
                 <label for="male" class="mr-2">남자</label>
-                <input id="female" name="gender" value="female" type="radio" class="radio-gender" />
+                <input
+                  id="female"
+                  name="gender"
+                  value="female"
+                  type="radio"
+                  class="radio-gender"
+                />
                 <label for="female">여자</label>
               </div>
             </div>
             <div class="profileCard-layout flex justify-between">
-              <label for="age" class="font-semibold">연령</label>
+              <label for="age" class="font-semibold text-[14px]">연령</label>
               <input
                 id="age"
                 type="text"
@@ -171,13 +228,17 @@
               />
             </div>
             <div class="profileCard-layout flex justify-between">
-              <span for="username" class="font-semibold">하는 일</span>
+              <span for="username" class="font-semibold text-[14px]"
+                >하는 일</span
+              >
               <span class="text-sm text-secondary pr-1">
                 상세 페이지에서 수정할 수 있어요
               </span>
             </div>
             <div class="profileCard-layout flex justify-between">
-              <label for="qualification" class="font-semibold">자격</label>
+              <label for="qualification" class="font-semibold text-[14px]"
+                >자격</label
+              >
               <input
                 id="qualification"
                 type="text"
@@ -201,7 +262,7 @@
               <a class="text-base text-secondary pr-1" href="#none">수정하기</a>
             </li>
             <li class="profileCard-layout">
-              <span class="font-semibold">소개</span>
+              <span class="font-semibold text-[14px]">소개</span>
               <span class="text-base text-Contents-contentSecondary"
                 >미입력</span
               >

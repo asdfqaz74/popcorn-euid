@@ -1,8 +1,6 @@
 import {
   getNode,
   getStorage,
-  getPbImageURL,
-  debounce,
   getNodes,
   addClass,
   removeClass,
@@ -11,17 +9,13 @@ import {
 } from '/src/lib/';
 import pb from '/src/api/pocketbase';
 
-
-
 //profileCard 닫힘 버튼
 const profileCardClose = getNode('.profileCard-button-close');
-const profileAreaEditInput = Array.from(
-  getNodes('.profileCard-area-edit input')
-);
 const profileButtonEdit = getNode('.profileCard-button-edit');
 const profileCardEditSubmit = getNode('.profileCard-button-submit');
 const buttonMoveProfileDetails = getNode('.profileCard-button-details');
 const profileCardEditClose = getNode('.profileCard-button-editClose');
+const profileImageInput = getNode('#avatar');
 
 function closeHandler() {
   history.back();
@@ -37,13 +31,12 @@ const userRecords = await pb.collection('users').getFullList();
 const userValid = await getStorage('userId');
 let userNow = userRecords.find((item) => item.id === userValid);
 
-
 //유저 정보 랜더링
 
-rendering('.rendering-box',userNow)
+rendering('.rendering-box', userNow);
 
 //프로필 사진 랜더링
-renderingPhoto('.rendering-photo', userNow)
+renderingPhoto('.rendering-photo', userNow);
 
 //profile 유저네임 프라이버시
 function userNamePrivacy() {
@@ -79,21 +72,34 @@ profileCardEditClose.addEventListener('click', () => {
 //radio value 값 가져오기
 const radios = Array.from(getNodes('.radio-gender'));
 function radioValue() {
-  const radioChecked = radios.find((item)=> item.checked === true)
-  return radioChecked.value
+  const radioChecked = radios.find((item) => item.checked === true);
+  return radioChecked.value;
 }
+
+//profile image 받기
+function inputImageRendering() {
+  if (this.files && this.files[0]) {
+    let reader = new FileReader();
+    reader.onload = function (e) {
+      getNode('.profile-preview').src = e.target.result;
+    };
+    reader.readAsDataURL(this.files[0]);
+  }
+}
+profileImageInput.addEventListener('change', inputImageRendering);
+
 
 //edit 정보 pocketbase 전송
 
-async function userInfoFormData() {
-  const newData = new FormData();
-  newData.append('nickName', getNode('#nickName').value);
-  newData.append('gender', radioValue());
-  newData.append('age', getNode('#age').value);
-  newData.append('qualification', getNode('#qualification').value);
+async function userInfoUpdate() {
+  const avatar = getNode('#avatar');
+
   try {
     const newData = new FormData();
+
+    newData.append('avatar', avatar.files[0]);
     newData.append('username', getNode('#username').value);
+    newData.append('nickName', getNode('#nickName').value);
     newData.append('gender', radioValue());
     newData.append('age', getNode('#age').value);
     newData.append('qualification', getNode('#qualification').value);
@@ -105,7 +111,6 @@ async function userInfoFormData() {
   }
 }
 profileCardEditSubmit.addEventListener('click', userInfoUpdate);
-buttonMoveProfileDetails.addEventListener('click',()=>{
-  location.href = '/src/pages/profileDetails/'
-})
-
+buttonMoveProfileDetails.addEventListener('click', () => {
+  location.href = '/src/pages/profileDetails/';
+});
