@@ -1,5 +1,5 @@
 import { addClass, removeClass } from '../../lib/dom/css';
-import { getNode, toggleClass, setStorage } from '/src/lib/';
+import { getNode, toggleClass, setStorage, getNodes } from '/src/lib/';
 import pb from '/src/api/pocketbase';
 
 /* -------------------------------------------------------------------------- */
@@ -47,9 +47,11 @@ function validCheckPhoneNumber(e) {
     console.log('성공');
     removeClass(verifyButton, 'text-gray-500');
     toggleClass(verifyButton, 'signUp-verify-valid');
+    verifyButton.removeAttribute('disabled');
   } else {
     console.log('실패');
     removeClass(verifyButton, 'signUp-verify-valid');
+    verifyButton.setAttribute('disabled', '');
   }
 }
 
@@ -62,6 +64,17 @@ const randomNumber = Math.floor(Math.random() * 900000) + 100000;
 const setVerifyNumber = sessionStorage.setItem('verifyNumber', randomNumber);
 const getVerifyNumber = sessionStorage.getItem('verifyNumber');
 
+function handelverifyNumber() {
+  const buttonValid = Array.from(verifyButton.classList).includes(
+    'signUp-verify-valid'
+  );
+
+  if (buttonValid) {
+    alert(getVerifyNumber);
+    console.log(getVerifyNumber);
+  }
+}
+
 async function checkDuplicate() {
   const phoneNumberValue = getNode('.login-input-phoneNumber').value;
   console.log(phoneNumberValue);
@@ -72,8 +85,7 @@ async function checkDuplicate() {
   try {
     if (duplicatePhoneNumber) {
       // 인증번호 받아오기
-      alert(getVerifyNumber);
-      console.log(getVerifyNumber);
+      handelverifyNumber();
       // localStorage에 저장
       const sendPhoneNumber = JSON.stringify(phoneNumberValue);
       localStorage.setItem('phoneNumber', sendPhoneNumber);
@@ -145,3 +157,78 @@ async function allValidCheck() {
 }
 
 agreeButton.addEventListener('click', allValidCheck);
+
+/* -------------------------------------------------------------------------- */
+/*                                 타이머 설정                                   */
+/* -------------------------------------------------------------------------- */
+const reVerifyButton = getNode('.signUp-button-Reverify');
+const timerButton = getNodes('.timer-button');
+let timer = null;
+let isRunning = false;
+
+// 타이머를 업데이트하는 함수를 정의합니다.
+
+function updateTimer() {
+  const display = getNode('.target__time');
+  // 유효시간 설정
+  const leftSec = 60;
+
+  // 버튼 클릭 시 시간 연장
+  if (isRunning) {
+    clearInterval(timer);
+    display.textContent = '';
+    startTimer(leftSec, display);
+    handelverifyNumber();
+  } else {
+    startTimer(leftSec, display);
+  }
+}
+
+// 타이머에 필요한 변수들을 초기화합니다.
+function startTimer(count, display) {
+  let minutes;
+  let seconds;
+  timer = setInterval(function () {
+    minutes = parseInt(count / 60, 10);
+    seconds = parseInt(count % 60, 10);
+
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+
+    display.textContent = `${minutes} : ${seconds}`;
+
+    // 타이머 끝
+    if (--count < 0) {
+      clearInterval(timer);
+      addClass(reVerifyButton, 'bg-gray-500');
+      addClass(reVerifyButton, 'text-background');
+      alert('시간초과! 인증번호를 다시 받아주세요 ⏳');
+      isRunning = false;
+    }
+  }, 1000);
+  isRunning = true;
+}
+
+// 타이머를 표시할 span 태그를 가져옵니다.
+timerButton.forEach((item) => {
+  item.addEventListener('click', updateTimer);
+});
+
+/* -------------------------------------------------------------------------- */
+/*                       인증번호 다시 받기 클릭 시 재전송                            */
+/* -------------------------------------------------------------------------- */
+
+function resendVerifyNumber() {
+  const reVerifyButtonValid =
+    Array.from(reVerifyButton.classList).includes('bg-gray-500') &&
+    Array.from(reVerifyButton.classList).includes('text-background');
+
+  if (reVerifyButtonValid) {
+    // 1. 새로운 인증번호 전송 (session에서 새로운 인증번호 받고 보내주기)
+    // 2. 인증번호랑 Input값이랑 일치하는지 확인
+    // 3. 일치하면 인증하기 버튼 활성화
+    // 4. 타이머 다시 실행
+    alert(getVerifyNumber);
+  }
+}
+reVerifyButton.addEventListener('click', resendVerifyNumber);

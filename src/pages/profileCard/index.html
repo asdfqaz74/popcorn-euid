@@ -74,7 +74,7 @@
               </li>
               <li class="profileCard-layout">
                   <span class="font-semibold">이름(별명)</span>
-                  <span data-field="username" class="rendering-box text-base text-Contents-contentSecondary"
+                  <span data-field="nickName" class="rendering-box text-base text-Contents-contentSecondary"
                     >미입력</span
                   >
                 </li>
@@ -111,7 +111,7 @@
                 <li class="px-3" >
                       <a
                         href="/src/pages/profileDetails/"
-                        class="profileCard-button-submit block justify-center border rounded-lg py-2 bg-gray-100 w-full text-center"
+                        class="profileCard-button-details block justify-center border rounded-lg py-2 bg-gray-100 w-full text-center"
                       >
                         상세페이지 이동
                       </a>
@@ -140,7 +140,7 @@
             <div class="profileCard-layout flex justify-between">
               <label for="username" class="font-semibold">이름(별명)</label>
               <input
-                id="username"
+                id="nickName"
                 type="text"
                 class="w-[30%] text-base border rounded-full p-1 text-center"
                 placeholder="미입력"
@@ -155,9 +155,9 @@
             <div class="profileCard-layout flex justify-between">
               <span class="font-semibold">성별</span>
               <div class="text-base">
-                <input id="male" name="gender" value="male" type="radio" />
+                <input id="male" name="gender" value="male" type="radio" class="radio-gender" />
                 <label for="male" class="mr-2">남자</label>
-                <input id="female" name="gender" value="female" type="radio" />
+                <input id="female" name="gender" value="female" type="radio" class="radio-gender" />
                 <label for="female">여자</label>
               </div>
             </div>
@@ -186,7 +186,7 @@
               />
             </div>
             <button
-              type="submit"
+              type="button"
               class="profileCard-button-submit justify-center border mx-3 rounded-lg py-2 bg-gray-100"
             >
               저장 및 상세페이지 이동

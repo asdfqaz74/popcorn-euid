@@ -7,10 +7,9 @@ import {
   addClass,
   removeClass,
   rendering,
+  renderingPhoto,
 } from '/src/lib/';
 import pb from '/src/api/pocketbase';
-import { insertLast, removeElement } from '../../lib/dom/insert';
-
 
 
 
@@ -21,6 +20,7 @@ const profileAreaEditInput = Array.from(
 );
 const profileButtonEdit = getNode('.profileCard-button-edit');
 const profileCardEditSubmit = getNode('.profileCard-button-submit');
+const buttonMoveProfileDetails = getNode('.profileCard-button-details');
 const profileCardEditClose = getNode('.profileCard-button-editClose');
 
 function closeHandler() {
@@ -37,8 +37,13 @@ const userRecords = await pb.collection('users').getFullList();
 const userValid = await getStorage('userId');
 let userNow = userRecords.find((item) => item.id === userValid);
 
-//랜더링 함수 설정
+
+//유저 정보 랜더링
+
 rendering('.rendering-box',userNow)
+
+//프로필 사진 랜더링
+renderingPhoto('.rendering-photo', userNow)
 
 //profile 유저네임 프라이버시
 function userNamePrivacy() {
@@ -72,27 +77,26 @@ profileCardEditClose.addEventListener('click', () => {
 });
 
 //radio value 값 가져오기
+const radios = Array.from(getNodes('.radio-gender'));
 function radioValue() {
-  const radios = Array.from(document.getElementsByName('gender'));
-  let radio;
-  for (radio of radios) {
-    if (radio.checked) {
-      radio.value;
-    }
-  }
-  console.log(radio.value);
-  return radio.value;
+  const radioChecked = radios.find((item)=> item.checked === true)
+  return radioChecked.value
 }
 
-//edit 정보 formData화
+//edit 정보 pocketbase 전송
 
 async function userInfoFormData() {
   const newData = new FormData();
-  newData.append('username', getNode('#username').value);
+  newData.append('nickName', getNode('#nickName').value);
   newData.append('gender', radioValue());
   newData.append('age', getNode('#age').value);
   newData.append('qualification', getNode('#qualification').value);
   try {
+    const newData = new FormData();
+    newData.append('username', getNode('#username').value);
+    newData.append('gender', radioValue());
+    newData.append('age', getNode('#age').value);
+    newData.append('qualification', getNode('#qualification').value);
     await pb.collection('users').update(userNow.id, newData);
     alert('수정 완료');
     location.href = '/src/pages/profileDetails/';
@@ -100,21 +104,8 @@ async function userInfoFormData() {
     alert('정보를 올바르게 입력해주세요');
   }
 }
-profileCardEditSubmit.addEventListener('click', userInfoFormData);
+profileCardEditSubmit.addEventListener('click', userInfoUpdate);
+buttonMoveProfileDetails.addEventListener('click',()=>{
+  location.href = '/src/pages/profileDetails/'
+})
 
-//user기본정보 랜더링
-
-// async function userBasicRendering() {
-//   console.log(userNow.avatar === "")
-//   const key = 'avatar'
-//   const test = getNode(`.profile-user-${key}`)
-//   console.log(`.profile-user-${key}`)
-//   console.log(test.classList)
-// }
-
-// userBasicRendering();
-
-//각 span에 맞는 정보값 찾기
-
-
-// console.log(matchKey('.rendering-box'))

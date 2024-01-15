@@ -16,7 +16,36 @@
           <img src="/public/images/close.svg" alt="뒤로가기 버튼" />
         </button>
         <h2 class="sr-only">나의 프로필</h2>
-        <div class="profile-section-start"></div>
+        <div class="profile-section-start">
+          <div class="w-full flex flex-col items-center gap-1">
+            <a href="/src/pages/profileCard/" class="relative block">
+              <div
+                class=" w-[4.125rem] h-[4.125rem] rounded-full overflow-hidden shadow-sm"
+              >
+                <img
+                  class="rendering-photo w-full h-full object-center"
+                  data-field="avatar"
+                  src="/src/assets/popcorn.png"
+                  alt="프로필 사진"
+                />
+              </div>
+              <span
+                class="block bg-pencil w-5 h-5 absolute bottom-0 bg-no-repeat bg-contain right-0 bg-background rounded-full shadow-md"
+              ></span>
+            </a>
+            <div>
+              <span data-field="nickName" class="rendering-box text-lg font-semibold" >닉네임을 설정해주세요</span>
+              <span data-field="company"
+                class="rendering-box text-sm text-secondary inline-block border border-secondary rounded-full px-1"
+                >미등록</span
+              >
+            </div>
+          </div>
+          <div class="text-center text-sm text-Contents-contentSecondary">
+            <a data-field="locationFirst" class="rendering-box"  href="/src/pages/board/"> 미등록  </a>
+          </div>
+
+        </div>
 
         <ul class="flex justify-between mt-[0.9375rem] text-sm font-semibold">
           <li>
@@ -52,9 +81,9 @@
       <div class="px-3">
         <p class="text-base flex items-center gap-0.5">
           열정온도
-          <a href="#none">
+          <span title="이 사람이 이듬에서 얼마나 열정적이었는지 알려주는 정보입니다">
             <img src="/public/images/information.svg" alt="열정온도 정보" />
-          </a>
+          </span>
         </p>
         <div class="profile-temperatureBar-container py-3"></div>
         <div class="flex items-start px-2 py-4">
@@ -136,45 +165,49 @@
           </li>
           <li class="profile-listBox">
             <div class="profile-listBox-button">
-              <span class="font-semibold">받은 거래 후기 1개</span>
+              <span class="font-semibold">최근 거래 후기</span>
               <button>
                 <img src="/public/images/right.svg" alt="" />
               </button>
             </div>
             <div
-              class="profile-listBox-hiddenArea hidden flex-row items-start relative"
+              class="profile-listBox-hiddenArea profile-review-box hidden flex-row items-start relative"
             >
               <div
-                class="profile-review_user bg-Contents-contentSecondary w-[1.75rem] h-[1.75rem] rounded-full overflow-hidden"
-              ></div>
-              <div>
-                <p class="text-base font-semibold">유저네임</p>
+                class="profile-review_user bg-background w-[1.75rem] h-[1.75rem] border rounded-full overflow-hidden"
+              >
+              <img data-field="avatar" class="reviewer-photo"
+                src="/src/assets/popcorn.png"
+              />
+            </div>
+              <div class="review-textBox">
+                <p data-field="nickName" class="reviewer-box text-base font-semibold">유저네임</p>
                 <p
                   class="text-base text-Contents-contentSecondary flex items-center gap-1"
                 >
-                  <span class="">구매자 </span>
+                  <span data-field="username"  class="reviewer-box">구매자 </span>
                   <span
-                    class="w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
+                    class=" reviewer-box w-0.5 h-0.5  inline-block bg-Contents-contentSecondary"
                   ></span>
-                  <span>사는 지역</span>
+                  <span data-field="locationFirst" class="reviewer-box">사는 지역</span>
                   <span
-                    class="w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
+                    class="reviewer-box w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
                   ></span>
-                  <span>시간</span>
+                  <span class="reviewer-box review-time" >시간</span>
                 </p>
-                <p class="">후기 내용</p>
               </div>
+              <p data-field="textContent" class="review-box review-box-content">후기 내용</p>
               <button
-                class="profile-button-more ml-auto"
+                class=" profile-button-more reviewer-box  ml-auto"
                 type="button"
                 aria-label="더보기"
               >
-                <img src="/public/images/more.svg" alt="더보기" />
+                <img  src="/public/images/more.svg" alt="더보기" />
               </button>
               <ul
                 class="hidden text-base absolute right-3 bg-background border border-gray-200 p-1 top-[21px]"
               >
-                <li><a href="/">게시물 보기</a></li>
+                <li><a class="profile-review-link" href="/">게시물 보기</a></li>
               </ul>
             </div>
           </li>
@@ -201,7 +234,7 @@
             <button class="profile-button-logOut text-negative">
               로그아웃
             </button>
-            <span class="text-Bluelight-500">userId</span>
+            <span data-field="username" class="rendering-box profile-textPrivacy text-Bluelight-500">userId</span>
           </li>
           <li class="text-right text-base">
             <button class="profile-delete-button">탈퇴하기</button>
