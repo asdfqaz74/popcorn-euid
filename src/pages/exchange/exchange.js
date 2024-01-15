@@ -9,6 +9,7 @@ import {
 } from '/src/lib/';
 import plusTapSvg from '/public/images/plusTap.svg';
 import plusTapActiveSvg from '/public/images/plusTapActive.svg';
+import heartSvg from '/public/images/heart.svg';
 import { gsap } from 'gsap';
 import pb from '/src/api/pocketbase';
 
@@ -143,7 +144,7 @@ async function renderProduct(type) {
             class="exchange-board-heart flex flex-grow items-center justify-end self-end pr-3"
           >
             <img
-              src="/public/images/heart.svg"
+              src="${heartSvg}"
               class="w-[0.875rem] h-[0.875rem] sm:w-[1.25rem] sm:h-[1.25rem]"
               alt=""
             />
