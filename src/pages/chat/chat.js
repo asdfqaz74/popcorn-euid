@@ -3,41 +3,13 @@ import {
   rendering,
   renderingPhoto,
   insertFirst,
-  getStorage,
   insertLast,
+  getStorage,
 } from '/src/lib';
 import pb from '/src/api/pocketbase/';
 
-/* -------------------------------------------------------------------------- */
-/*                                history back                                */
-/* -------------------------------------------------------------------------- */
-
 const back = getNode('.chat-back');
-
 back.addEventListener('click', () => history.back());
-
-/* -------------------------------------------------------------------------- */
-/*                                  rendering                                 */
-/* -------------------------------------------------------------------------- */
-
-const hash = window.location.hash.slice(1);
-const productData = await pb.collection('products').getOne(hash, {
-  expand: 'userPost',
-});
-const sellerInfo = productData.expand.userPost;
-const sellerInfoId = sellerInfo.id;
-
-// console.log(salerInfo);
-// console.log(salerInfoId);
-// console.log(nowUser);
-
-rendering('.chat-rendering', sellerInfo);
-rendering('.chat-renderings', productData);
-renderingPhoto('.chat-renderingImg', productData);
-
-/* -------------------------------------------------------------------------- */
-/*                                    chat                                    */
-/* -------------------------------------------------------------------------- */
 
 function startMessage(saler) {
   const template = /* html */ `
@@ -57,4 +29,64 @@ function startMessage(saler) {
   insertFirst('.chat-wrapper', template);
 }
 
-startMessage(sellerInfo);
+async function sendMessage(userNow, chatBoxNowId) {
+  const text = getNode('.chat-input');
+  const textValue = text.value;
+  console.log(textValue);
+
+  const textData = {
+    user: userNow,
+    chat: textValue,
+    chatBox: chatBoxNowId,
+  };
+
+  await pb.collection('chatting').create(textData);
+  text.value = '';
+}
+
+function renderMessage(userNow, nowChatting) {
+  if (userNow) {
+    const me = /* html */ `
+    <div class="chat-me flex mb-2 justify-end items-end gap-1">
+          <span class="chat-time text-sm text-Contents-contentSecondary"
+            >오후 9:16</span
+          >
+          <div
+            class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]"
+          >
+            <span class="chat-text">님, 전화받으삼</span>
+          </div>
+        </div>
+    `;
+  }
+}
+
+async function init() {
+  const hash = window.location.hash.slice(1);
+  const productData = await pb.collection('products').getOne(hash, {
+    expand: 'userPost',
+  });
+  const sellerInfo = productData.expand.userPost;
+  const sendButton = getNode('.chat-send-button');
+  const userNow = await getStorage('userId');
+  const chatBox = await pb.collection('chatBox').getFullList();
+  const chatBoxNow = chatBox.filter(
+    (item) => item.buyer === userNow && item.item === productData.id
+  );
+  const chatBoxNowId = chatBoxNow.map((item) => item.id).toString();
+  const nowChatting = await pb.collection('chatting').getFullList({
+    filter: `chatBox = "${chatBoxNowId}"`,
+  });
+  console.log(nowChatting.filter((item) => item.user === userNow));
+
+  rendering('.chat-rendering', sellerInfo);
+  rendering('.chat-renderings', productData);
+  renderingPhoto('.chat-renderingImg', productData);
+
+  startMessage(sellerInfo);
+  sendButton.addEventListener('click', () =>
+    sendMessage(userNow, chatBoxNowId)
+  );
+}
+
+init();

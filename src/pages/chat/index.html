@@ -167,12 +167,13 @@
         <button class="chat-option" type="button">
           <img src="/public/images/plus.svg" alt="추가옵션" />
         </button>
-        <form action="#" method="post" class="w-full relative flex">
+
+        <div class="w-full relative flex">
           <label for="message" class="sr-only">메세지</label>
           <textarea
             class="chat-input h-10 relative text-nowrap rounded-full px-3 py-2.5 w-full bg-bluegray-100 resize-none no-scrollbar"
             id="message"
-            name="message"
+            type="textarea"
             placeholder="메시지 보내기"
           ></textarea>
           <button
@@ -181,10 +182,11 @@
           >
             <img src="/public/images/Group.svg" alt="이모지 선택" />
           </button>
-        </form>
+        </div>
+
         <button
           class="chat-send-button h-[1.875rem] w-[1.5625rem]"
-          type="submit"
+          type="button"
         >
           <img
             src="/public/images/send.svg"
