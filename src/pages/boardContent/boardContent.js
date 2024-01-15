@@ -62,7 +62,7 @@ async function renderProduct() {
         <div class="boardContent-wrapper  pb-[40%] pt-6 px-3 mb-[4.625rem]">
           <span
             class="boardContent-category inline-block py-[0.3rem] px-3 border-none bg-gray-600 rounded-sm text-base font-semibold text-background"
-            >📝${category}</span
+            >${category}</span
           >
           <div  class="flex flex-col text-[1.5rem] font-semibold my-3">
             <span class="boardContent-state text-secondary">${defaultRecruiting}</span>
@@ -163,17 +163,13 @@ function checkMeetingVenue(nowLoginId, postCreationId) {
 function handleBack(state, hash) {
   if (state === 'update') {
     window.location.href = `/src/pages/boardContent/#${hash}`;
-    // window.history.back;
-    console.log('안이야 hash :', hash);
+    window.location.reload();
     return;
   }
-  console.log('밖이야');
   window.location.href = '/src/pages/togetherBoard/';
 }
 
 function hiddenUpdateMenu() {
-  console.log('sdfsdf');
-
   // 0.2초 뒤에 실행
   setTimeout(() => {
     removeClass('.boardContentsContainer', 'after:bg-opacity-50');
@@ -192,8 +188,6 @@ function hiddenUpdateMenu() {
 //에딧화면 띄우기 또는 수정된 화면 띄우기
 function transitionEdit(value) {
   if (value === 'update') {
-    // removeClass('.board-container-info', 'hidden');
-    // addClass('.board-container-edit', 'hidden');
     return;
   }
   addClass('.board-container-info', 'hidden');
@@ -207,10 +201,10 @@ async function renderigEditPage() {
   const inputDate = document.getElementById('date');
   const inputBoardcontent = document.getElementById('board-content');
   const dateOnly = productData.date.split(' ')[0];
-  const title = inputTitle.value;
-  const age = inputAge.value;
-  const date = inputDate.value;
-  const boardcontent = inputBoardcontent.value;
+  // const title = inputTitle.value;
+  // const age = inputAge.value;
+  // const date = inputDate.value;
+  // const boardcontent = inputBoardcontent.value;
 
   inputBoardcontent.value = productData.activity;
   inputDate.value = dateOnly;
@@ -279,10 +273,7 @@ function toggleUpdatgeCategory() {
 // : 버튼 클릭 시 수정,삭제,모집중 메뉴 선택
 function handleChangeUpdateState() {
   const datasetValue = this.getAttribute('data-sets');
-
-  if (datasetValue === '모집중') {
-  } else if (datasetValue === '모집종료') {
-  } else if (datasetValue === 'modify') {
+  if (datasetValue === 'modify') {
     transitionEdit();
   } else if (datasetValue === 'delete') {
     handleDelete();
@@ -348,6 +339,7 @@ function getModifiedinformation() {
     recruiting: recruitmentStatus,
   };
 
+  console.log('data  :', data);
   return data;
 }
 
@@ -368,17 +360,21 @@ async function handleDelete() {
 }
 
 async function handleUpdate(dataObject) {
+  const hash = window.location.hash.slice(1);
+  const productData = await pocketbase.collection('community').getFullList({
+    expand: 'SR_location',
+  });
+
   const state = 'update';
-  // const hash = window.location.hash.slice(1);
-  // const productData = await pocketbase.collection('community').getFullList({
-  //   expand: 'SR_location',
-  // });
   const checkAuthor = productData.find((item) => {
-    if (item.id === hash) return true;
+    if (item.id === hash) {
+      console.log('if문 안    ');
+      return true;
+    }
   });
 
   console.log('checkAuthor    :', checkAuthor);
-  console.log(dataObject);
+  console.log('dataObject   :', dataObject);
   const data = {
     SR_location: checkAuthor.SR_location,
     activity: dataObject.activity,

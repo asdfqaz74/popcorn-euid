@@ -25,7 +25,19 @@
         <nav
           class="px-5 py-2 flex gap-3 font-semibold text-sm text-center overflow-x-scroll no-scrollbar"
         >
-          <button class="w-fit" type="button">
+          <div class="group togetherBoard w-fit">
+            <div
+              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+            >
+              <img
+                class="pointer-events-none"
+                src="/public/images/board-emogi.svg"
+                alt="관심사 선택하기,전체"
+              />
+            </div>
+            <p class="togetherTitle mt-2 group-hover:text-secondary">전체</p>
+          </div>
+          <!-- <button class="togetherBoard w-fit" type="button">
             <div
               class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
             >
@@ -36,11 +48,11 @@
               />
             </div>
             <p class="togetherTitle mt-2">전체</p>
-          </button>
+          </button> -->
 
-          <button class="togetherBoard w-fit" type="button">
+          <div class="group togetherBoard w-fit">
             <div
-              class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
             >
               <img
                 class="pointer-events-none"
@@ -48,11 +60,13 @@
                 alt="관심사 선택하기 프로젝트"
               />
             </div>
-            <p class="togetherTitle mt-2">프로젝트</p>
-          </button>
-          <button class="togetherBoard w-fit" type="button">
+            <p class="togetherTitle mt-2 group-hover:text-secondary">
+              프로젝트
+            </p>
+          </div>
+          <div class="group togetherBoard w-fit">
             <div
-              class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
             >
               <img
                 class="pointer-events-none"
@@ -60,11 +74,11 @@
                 alt="관심사 선택하기 스터디"
               />
             </div>
-            <p class="togetherTitle mt-2">스터디</p>
-          </button>
-          <button class="togetherBoard w-fit" type="button">
+            <p class="togetherTitle mt-2 group-hover:text-secondary">스터디</p>
+          </div>
+          <div class="group togetherBoard w-fit">
             <div
-              class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
             >
               <img
                 class="pointer-events-none"
@@ -72,11 +86,13 @@
                 alt="관심사 선택하기 오프라인"
               />
             </div>
-            <p class="togetherTitle mt-2">오프라인</p>
-          </button>
-          <button class="togetherBoard w-fit" type="button">
+            <p class="togetherTitle mt-2 group-hover:text-secondary">
+              오프라인
+            </p>
+          </div>
+          <div class="group togetherBoard w-fit">
             <div
-              class="togetherBoard-border border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
+              class="togetherBoard-border group-hover:border-secondary border flex items-center justify-center border-blue-500 bg-gray-100 rounded-full w-14 h-14"
             >
               <img
                 class="pointer-events-none"
@@ -84,14 +100,14 @@
                 alt="관심사 선택하기 공모전"
               />
             </div>
-            <p class="togetherTitle mt-2">공모전</p>
-          </button>
+            <p class="togetherTitle mt-2 group-hover:text-secondary">공모전</p>
+          </div>
         </nav>
         <div class="px-[0.875rem] py-3 flex gap-2">
           <div class="relative text-left">
             <div class="togetherBoard-sort-button rounded-md">
               <button
-                class="inline-flex justify-center w-full px-3 py-[0.375rem] text-sm font-medium leading-5 bg-white border border-gray-300 rounded-full hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+                class="inline-flex justify-center w-full px-3 py-[0.375rem] text-sm font-medium leading-5 bg-white border border-gray-300 rounded-full hover:text-background focus:outline-none focus:border-blue-300 hover:bg-primary active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
                 type="button"
               >
                 <img
@@ -124,27 +140,38 @@
           <div class="rounded-md">
             <button
               type="button"
-              class="inline-flex justify-center w-full px-3 py-[0.375rem] text-sm font-medium leading-5 bg-white border border-gray-300 rounded-full hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
+              class="inline-flex justify-center w-full px-3 py-[0.375rem] text-sm font-medium leading-5 bg-white border border-gray-300 rounded-full hover:text-background focus:outline-none focus:border-blue-300 hover:bg-primary active:bg-gray-50 active:text-gray-800 transition ease-in-out duration-150"
             >
               모집 중인 글만
             </button>
           </div>
         </div>
       </div>
-      <section class="template mb-[30%]"></section>
+      <!-- 랜더링 tempale -->
+      <section class="template mb-[60%]">
+        <h2 class="sr-only">같이해요 게시판 리스트</h2>
+      </section>
 
       <button
         class="hidden togetherBoard-write-on fixed bottom-28 right-5 p-3 bg-background rounded-full shadow-Contents-contentPrimary shadow-md"
         type="button"
       >
-        <img class="" src="/public/images/plusTapActive.svg" alt="" />
+        <img
+          class=""
+          src="/public/images/plusTapActive.svg"
+          alt="작성하기 버튼이 닫혀있습니다."
+        />
       </button>
 
       <button
         type="button"
         class="togetherBoard-write-off fixed bottom-28 right-5 bg-primary p-3 rounded-full shadow-Contents-contentPrimary shadow-md"
       >
-        <img class="" src="/public/images/plusTap.svg" alt="" />
+        <img
+          class=""
+          src="/public/images/plusTap.svg"
+          alt="작성하기를 원하신다면 버튼을 눌러주세요"
+        />
       </button>
 
       <div class="hidden togetherBoard-plus-menu fixed bottom-44 right-5">
@@ -165,7 +192,11 @@
         <div class="flex justify-around text-sm font-normal">
           <div class="flex-col text-center">
             <a href="/src/pages/story/index.html">
-              <img src="/public/images/home.svg" class="mx-auto mb-1" alt="" />
+              <img
+                src="/public/images/home.svg"
+                class="mx-auto mb-1"
+                alt="메인 홈이동 버튼"
+              />
               <span class>홈</span>
             </a>
           </div>
@@ -174,27 +205,39 @@
               <img
                 src="/public/images/fullFile.svg"
                 class="mx-auto mb-1"
-                alt=""
+                alt="게시글로 이동 버튼"
               />
               <span>게시판</span>
             </a>
           </div>
           <div class="flex-col items-center justify-center">
             <a href="#">
-              <img src="/public/images/map.svg" class="mx-auto mb-1" alt="" />
+              <img
+                src="/public/images/map.svg"
+                class="mx-auto mb-1"
+                alt="내 근처 컨텐츠 이동 버튼"
+              />
               <span>내 근처</span>
             </a>
           </div>
           <div class="flex-col items-center justify-center">
             <a href="#">
-              <img src="/public/images/chat.svg" class="mx-auto mb-1" alt="" />
+              <img
+                src="/public/images/chat.svg"
+                class="mx-auto mb-1"
+                alt="채팅 컨텐츠 이동 버튼"
+              />
               <span>채팅</span>
             </a>
           </div>
 
           <div class="flex-col items-center justify-center">
             <a href="/src/pages/profile/index.html">
-              <img src="/public/images/my.svg" class="mx-auto mb-1" alt="" />
+              <img
+                src="/public/images/my.svg"
+                class="mx-auto mb-1"
+                alt="나의 프로필 이동 버튼"
+              />
               <span>나의 이듬</span>
             </a>
           </div>
