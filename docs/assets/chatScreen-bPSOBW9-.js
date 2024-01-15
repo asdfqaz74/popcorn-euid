@@ -1,4 +1,4 @@
-import"./tailwind-LUp5vfds.js";import{i as n}from"./insert-yGrdL5nD.js";import{C as c}from"./delay-g6vF19wW.js";import{g as e}from"./index-35H_NU9g.js";const i=new c("https://popcorns.pockethost.io");async function r(){const a=window.location.hash.slice(1),t=await i.collection("community").getOne(a,{expand:"SR_location"});console.log(t);const{SR_location:l,activity:p,category:m,date:g,meetingLocation:u,gender:b,approve:d,headcount:h,age:f,title:o,time:y,expand:x,id:v}=t,s=`
+import"./tailwind-ouJN7DSI.js";import{i as n}from"./insert-yGrdL5nD.js";import{C as c}from"./delay-g6vF19wW.js";import{g as e}from"./index-35H_NU9g.js";const i=new c("https://popcorns.pockethost.io");async function r(){const a=window.location.hash.slice(1),t=await i.collection("community").getOne(a,{expand:"SR_location"});console.log(t);const{SR_location:l,activity:p,category:m,date:g,meetingLocation:u,gender:b,approve:d,headcount:h,age:f,title:o,time:y,expand:x,id:v}=t,s=`
      
   <div>
   <header class="flex justify-between p-2">

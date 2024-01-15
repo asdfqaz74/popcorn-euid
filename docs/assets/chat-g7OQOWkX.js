@@ -1,4 +1,4 @@
-import"./tailwind-LUp5vfds.js";import{g as i}from"./delay-g6vF19wW.js";import{a as h}from"./insert-yGrdL5nD.js";import{g}from"./storage-eNv634Ip.js";import{r as l,a as u}from"./rendering-oARfkKZz.js";import{p as s}from"./pocketbase-UOLpUAtS.js";import"./getPbImageURL-99Z79ldm.js";const p=i(".chat-back");p.addEventListener("click",()=>history.back());function m(o){const t=`
+import"./tailwind-ouJN7DSI.js";import{g as i}from"./delay-g6vF19wW.js";import{a as h}from"./insert-yGrdL5nD.js";import{g}from"./storage-eNv634Ip.js";import{r as l,a as u}from"./rendering-oARfkKZz.js";import{p as s}from"./pocketbase-UOLpUAtS.js";import"./getPbImageURL-99Z79ldm.js";const p=i(".chat-back");p.addEventListener("click",()=>history.back());function m(o){const t=`
   <div
   class="border-none rounded-3xl bg-Bluelight-400 text-background text-sm mx-[0.84375rem] py-3 px-4"
   >

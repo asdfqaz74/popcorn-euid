@@ -28,7 +28,7 @@
           <section class="w-screen min-w-[17.5rem]">
             <h2 class="writeBoard-title sr-only">모임 선택</h2>
             <div class="px-[1.6875rem] py-3 text-lg]">
-              <form action="#" class="flex flex-col gap-2 text-xl">
+              <form action="#" class="flex flex-col gap-2 text-[1.2rem]">
                 <label for="message">제목</label>
                 <input
                   class="writeBoard-input w-full"
@@ -40,7 +40,7 @@
                 <p class="warningText text-negative text-sm"></p>
               </form>
             </div>
-            <div class="px-3 py-4 text-sm">
+            <div class="px-3 py-4 text-base">
               <p><strong>남가과제2동 근처 인기활동</strong></p>
               <div class="pt-3 flex flex-wrap space-y-2 gap-[0.375rem]">
                 <div class="rounded-md mt-2">
@@ -271,66 +271,28 @@
               </div>
             </div>
             <div class="text-base p-3 flex justify-between">
-              <div class="flex gap-2">
+              <div class="flex gap-2 items-center">
                 <img src="/public/images/people.svg" alt="날짜" />
                 <span>나이</span>
               </div>
-              <div class="w-[60%] relative group">
-                <button class="writeboardThird-age" type="button">
-                  <span class="block felx">누구나</span>
-
-                  <nav
-                    tabindex="0"
-                    class="z-10 w-full border-2 bg-background invisible border-gray-800 rounded absolute left-0 top-full transition-all opacity-0 group-focus-within:visible group-focus-within:opacity-100 group-focus-within:translate-y-1"
-                  >
-                    <ul class="ageContainer py-1">
-                      <li class="ageInputFrom ageinputClass">
-                        <div class="block px-4 py-2 hover:bg-gray-100">
-                          <label for="ageInputFrom" class="sr-only"
-                            >몇 살부터</label
-                          >
-                          <input
-                            id="ageInputFrom"
-                            class="w-full text-center"
-                            type="text"
-                            placeholder="몇 살부터"
-                            autocomplete="off"
-                          />
-                        </div>
-                      </li>
-                      <li class="ageInputTo ageinputClass">
-                        <div class="block px-4 py-2 hover:bg-gray-100">
-                          <label for="ageInputTo" class="sr-only"
-                            >몇 살까지</label
-                          >
-                          <input
-                            id="ageInputTo"
-                            class="w-full text-center"
-                            type=" text"
-                            placeholder="몇 살까지"
-                            autocomplete="off"
-                          />
-                        </div>
-                      </li>
-                      <li class="ageFromToCheck ageinputClass">
-                        <div
-                          id="ageFromToCheck"
-                          class="m-auto border text-background bg-secondary border-Contents-contentPrimary block w-[80%] px-4 py-1 hover:bg-gray-100"
-                        >
-                          확인
-                        </div>
-                      </li>
-                      <li class="ageinputClass">
-                        <div
-                          id="ageAll"
-                          class="block px-4 py-2 hover:bg-gray-100"
-                        >
-                          누구나
-                        </div>
-                      </li>
-                    </ul>
-                  </nav>
-                </button>
+              <div class="w-[45%]">
+                <label
+                  for="ageAll"
+                  class="block text-sm font-medium text-gray-900 sr-only"
+                  >나이입력</label
+                >
+                <div class="relative mt-2 rounded-md shadow-sm">
+                  <div
+                    class="pointer-events-none absolute left-0 flex items-center pl-3"
+                  ></div>
+                  <input
+                    type="text"
+                    name="price"
+                    id="ageAll"
+                    class="block w-full rounded-md border-0 py-1.5 p-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                    placeholder="나이입력"
+                  />
+                </div>
               </div>
             </div>
             <div class="text-base p-3 flex justify-between">

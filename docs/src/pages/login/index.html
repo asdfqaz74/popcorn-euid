@@ -5,17 +5,17 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" crossorigin src="/assets/login-AzbmR2aN.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/tailwind-LUp5vfds.js">
+    <script type="module" crossorigin src="/assets/login-ExSID1t0.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-ouJN7DSI.js">
     <link rel="modulepreload" crossorigin href="/assets/delay-g6vF19wW.js">
     <link rel="modulepreload" crossorigin href="/assets/css-LUmow4Y_.js">
     <link rel="modulepreload" crossorigin href="/assets/storage-eNv634Ip.js">
     <link rel="modulepreload" crossorigin href="/assets/pocketbase-UOLpUAtS.js">
-    <link rel="stylesheet" crossorigin href="/assets/tailwind-84VPJYjL.css">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-UImssz52.css">
   </head>
   <body>
     <h1 class="sr-only">이듬 로그인</h1>
-    <div class="login-display w-screen h-screen overflow-hidden relative">
+    <div class="login-display w-screen h-screen relative">
       <!-- 콘테이너 클래스를 js로 transform(-x)로 왼쪽으로 옮기면 됨 -->
       <div class="login-container flex whitespace-nowrap absolute top-0 left-0">
         <!-- 인증번호 받기 전 -->
@@ -51,6 +51,9 @@
               maxlength="11"
               required
             />
+            <div
+              class="login-errorMsg text-error text-sm w-full hidden items-start justify-start"
+            ></div>
             <!-- valid 된 경우 : login-verify-valid 클래스 추가해주기 -->
             <button
               class="login-button-verify timer-button border-solid border-[0.5px] rounded-sm w-full h-[2.375rem] py-[0.5rem] text-base font-normal text-gray-500"
@@ -111,8 +114,11 @@
               maxlength="6"
               required
             />
+            <div
+              class="login-errorMsg-second w-full text-error text-sm hidden items-start justify-start"
+            ></div>
           </form>
-          <p class="text-sm font-normal text-gray-500 mt-2">
+          <p class="text-sm font-normal text-gray-500 mt-3">
             어떤 경우에도 타인에게 공유하지마세요!
           </p>
           <button
