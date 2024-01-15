@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="ko-KR">
   <head>
-    <title>EnterEuid</title>
+    <title>강냉이박조</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
@@ -43,11 +43,12 @@
             <ul class="flex gap-1">
               <li class="board-subject-button flex-shrink-0">
                 <button
-                  class="subjectMenu text-xs py-1 px-2 rounded-full border border-black flex items-center"
+                  class="subjectMenu text-xs py-1 px-2 rounded-full border flex items-center border-gray-500 font-semibold hover:bg-tertiary hover:text-base"
                   type="button"
                 >
                   <div>
                     <img
+                      class
                       src="/public/images/board-hamburger.svg"
                       alt="주제 메뉴 버튼"
                     />
@@ -57,7 +58,7 @@
               </li>
               <li class="board-popular-button flex-shrink-0">
                 <a
-                  class="text-xs py-1.5 px-2 rounded-full border border-black"
+                  class="text-xs py-1.5 px-2 rounded-full font-semibold border-gray-500 border border-black"
                   href="#none"
                 >
                   인기글</a
@@ -65,7 +66,7 @@
               </li>
               <li class="board-together-button flex-shrink-0">
                 <a
-                  class="text-xs py-1.5 px-2 rounded-full border border-black"
+                  class="hover:bg-tertiary hover:text-base board-container font-semibold text-xs py-1.5 px-2 rounded-full border border-gray-500"
                   href="/src/pages/togetherBoard/"
                 >
                   같이해요</a
@@ -73,7 +74,7 @@
               </li>
               <li class="board-question-button flex-shrink-0">
                 <a
-                  class="text-xs py-1.5 px-2 rounded-full border border-black"
+                  class="text-xs py-1.5 px-2 rounded-full font-semibold border-gray-500 border border-black"
                   href="#none"
                 >
                   질의응답</a
@@ -81,7 +82,7 @@
               </li>
               <li class="board-freeboard-button flex-shrink-0">
                 <a
-                  class="text-xs py-1.5 px-2 rounded-full border border-black"
+                  class="text-xs py-1.5 px-2 rounded-full font-semibold border-gray-500 border border-black"
                   href="#none"
                 >
                   자유게시판</a

@@ -12,7 +12,7 @@
     ></script>
   </head>
   <body>
-    <div class="boardContentsContainer relative h-screen">
+    <div class="board-container-info boardContentsContainer relative h-screen">
       <nav class="flex justify-between items-center py-2 px-3">
         <button
           type="button"
@@ -65,17 +65,17 @@
                   >Delete</a
                 >
 
-                <!-- <form method="POST" action="#" role="none">
-                <button
-                  type="submit"
-                  class="text-gray-700 block w-full px-4 py-2 text-left text-sm"
-                  role="menuitem"
-                  tabindex="-1"
-                  id="menu-item-3"
-                >
-                  Sign out
-                </button>
-              </form> -->
+                <form method="POST" action="#" role="none">
+                  <button
+                    type="submit"
+                    class="text-gray-700 block w-full px-4 py-2 text-left text-sm"
+                    role="menuitem"
+                    tabindex="-1"
+                    id="menu-item-3"
+                  >
+                    Sign out
+                  </button>
+                </form>
               </div>
             </div>
           </div>
@@ -85,24 +85,10 @@
       <section
         class="z-10 updateMenu translate-y-[100%] subject-menu-container bg-primary text-background text-base w-full rounded-t-2xl fixed bottom-0"
       >
-        <div class="flex flex-col gap-3 py-4 justify-center">
-          <button
-            data-sets="recruiting"
-            class="recruiting py-5 update-button text-background font-bold"
-            type="button"
-          >
-            모집중
-          </button>
-          <button
-            data-sets="closedRecruitment"
-            class="closedRecruitment py-5 update-button text-background font-bold"
-            type="button"
-          >
-            모집종료
-          </button>
+        <nav class="selectNavMenu flex flex-col gap-3 py-4 justify-center">
           <button
             data-sets="modify"
-            class="modify py-5 update-button text-background font-bold"
+            class="hover:bg-tertiary modify py-5 update-button text-background font-bold"
             type="button"
           >
             게시글 수정
@@ -110,93 +96,129 @@
 
           <button
             data-sets="delete"
-            class="delete py-5 update-button text-negative font-bold"
+            class="hover:bg-tertiary delete py-5 update-button text-negative font-bold"
             type="button"
           >
             삭제
           </button>
-        </div>
+        </nav>
       </section>
     </div>
+    <nav class="flex justify-between items-center py-2 px-3">
+      <button
+        type="button"
+        aria-label="뒤로가기 버튼"
+        class="boardContent-back-edit h-[1.125rem]"
+      >
+        <img src="/images/directionL.svg" alt="뒤로가기" />
+      </button>
+    </nav>
+    <div class="hidden board-container-edit w-screen min-w-[17.5rem] px-2">
+      <div class="w-fulltemplate relative h-screen">
+        <h2 class="sr-only">수정페이지</h2>
 
-    <!-- <div class="board-container template min-w-[17.5rem] relative">
-      <h2 class="sr-only">최종 모임 작성 페이지</h2>
-
-      <div class="boardContent-wrapper pt-6 px-3 mb-[4.625rem]">
-        <span
-          class="boardContent-category inline-block py-[0.125rem] px-2 border-none bg-bluegray-300 rounded-sm text-sm font-semibold text-background"
-          >📝${category}</span
+        <div
+          class="boardContent-wrapper w-full pt-6 overflow-x-scroll no-scrollbar"
         >
-        <div class="text-lg font-semibold mt-[0.5625rem]">
-          <span class="boardContent-state text-secondary">모집중</span>
-          <span class="boardContent-title">${title}</span>
-        </div>
-
-        <div>
-          <div class="flex items-center gap-2">
-            <img src="/images/people.svg" alt="" />
-            <span class="boardContent-condition">${gender} 참여 가능</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <img src="/images/fullcalender.svg" alt="" />
-            <span class="boardContent-date">${formattedDateShort(date)}</span>
-          </div>
-          <div>
-            <p class="boardContent-content mt-2 mb-8">${activity}</p>
-          </div>
-          <div class="flex gap-1 font-semibold mb-[0.96875rem]">
-            <span id="label">참여중인 이웃</span>
-            <div aria-labelledby="label" class="flex">
-              <span class="boardContent-number-front text-secondary"
-                >${headcount}</span
-              >
-              <span class="boardContent-number-back">/10</span>
-            </div>
-          </div>
-
-          <div class="flex items-center gap-[0.625rem]">
-            <div
-              class="bg-Contents-contentSecondary w-[1.875rem] h-[1.875rem] rounded-7xl"
+          <nav class="block whitespace-nowrap overflow-x-scroll no-scrollbar">
+            <span
+              data-sets="📝프로젝트"
+              class="boardContent-category inline-block p-2 border-none bg-bluegray-700 rounded-sm text-base font-semibold text-background"
+              tabindex="0"
+              >📝프로젝트</span
             >
-              <img
-                src="/images/hello.png"
-                class="boardContent-profile w-full h-full rounded-7xl object-cover"
-                alt="프로필"
+            <span
+              data-sets="💻스터디"
+              class="boardContent-category inline-block p-2 border-none bg-bluegray-700 rounded-sm text-base font-semibold text-background"
+              tabindex="0"
+              >💻스터디</span
+            >
+            <span
+              data-sets="💘오프라인"
+              class="boardContent-category inline-block p-2 border-none bg-bluegray-700 rounded-sm text-base font-semibold text-background"
+              tabindex="0"
+              >💘오프라인</span
+            >
+            <span
+              data-sets="✨공모전"
+              class="boardContent-category inline-block p-2 border-none bg-bluegray-700 rounded-sm text-base font-semibold text-background"
+              tabindex="0"
+              >✨공모전</span
+            >
+          </nav>
+          <div class="flex flex-col gap-1 py-2">
+            <label for="title">제목</label>
+            <input
+              id="title"
+              class="boardContent-title border border-bluegray-800 rounded-xl"
+              value=""
+            />
+          </div>
+
+          <div class="text-lg font-semibold mt-[0.5625rem] py-3">
+            <span
+              data-sets="모집중"
+              class="isClicked boardContent-state p-2 rounded-4xl bg-Blue-700 text-background"
+              >모집중</span
+            >
+            <span
+              data-sets="모집종료"
+              class="boardContent-state p-2 rounded-4xl text-secondary"
+              >모집종료</span
+            >
+          </div>
+
+          <div>
+            <div class="flex flex-col gap-1 py-2">
+              <label for="age">나이제한</label>
+              <input
+                id="age"
+                class="boardContent-age border border-bluegray-800 rounded-xl"
+                value=""
+                placeholder="우선 (누구나)로만 해주세요"
               />
             </div>
-            <div class="flex flex-col text-sm">
-              <div class="flex justify-center items-center">
-                <span class="boardContent-name whitespace-nowrap pr-[0.375rem]"
-                  >${expand.SR_location.username}
-                </span>
-                <img
-                  src="/images/organizer.svg"
-                  alt="모임설립자 뱃지"
-                  class="boardContent-user-state"
-                />
-                <span
-                  class="boardContent-user-grade whitespace-nowrap text-Contents-contentTertiary"
-                  >${checkMeetingVenue(hash, id)}</span
-                >
-              </div>
-              <span
-                class="boardContent-user-number text-Contents-contentTertiary"
-                >${meetingLocation} 인증 4회</span
-              >
+
+            <!-- <div class="flex flex-col gap-1 py-2">
+              <label for="gender">성별</label>
+              <input
+                id="gender"
+                class="boardContent-gender border border-bluegray-800 rounded-xl"
+                value=""
+                placeholder=""
+              />
+            </div> -->
+
+            <div class="flex flex-col gap-1 py-2">
+              <label for="date">날짜</label>
+              <input
+                id="date"
+                class="boardContent-date border border-bluegray-800 rounded-xl"
+                value=""
+                type="date"
+              />
+            </div>
+            <div class="flex flex-col gap-1 py-2">
+              <form action="/submit" method="post">
+                <label for="board-content"></label>
+                <textarea
+                  class="writeBoardSecond-content w-full h-24 resize-none border p-2"
+                  id="board-content"
+                  name="board-content"
+                  placeholder="활동내용을 입력해주세요"
+                ></textarea>
+              </form>
             </div>
           </div>
+
+          <button
+            type="button"
+            class="absolute bottom-4 completeUpdateButton border bg-Bluelight-600 text-background w-full py-3 rounded-xl"
+          >
+            수정완료
+          </button>
         </div>
       </div>
-
-      <div class="fixed w-full px-3 bottom-[2.125rem]">
-        <a
-          class="writeBoardSecond-next-button block text-center text-nowrap text-background rounded-3xl py-4 border bg-primary"
-          href="/src/pages/chatScreen/#${id}"
-          aria-label="채팅방으로 이동"
-        >
-          채팅방으로 이동
-        </a>
-      </div>
-    </div> -->
+    </div>
   </body>
 </html>

@@ -3,6 +3,11 @@ export default {
   content: ['./index.html', './src/**/*.html', './src/**/*.js'],
   theme: {
     extend: {
+      variants: {
+        extend: {
+          display: ['hover'],
+        },
+      },
       backgroundImage: {
         categoryPlus: "url('/public/images/plus.svg')",
         categoryCheck: "url('/public/images/checked.svg')",
@@ -25,6 +30,7 @@ export default {
       negative: '#e11900',
       background: '#ffffff',
       error: '#dc2626',
+      backdrop: 'rgba(0,0,0,0.1)',
       Contents: {
         contentPrimary: '#000000',
         contentSecondary: '#919191',

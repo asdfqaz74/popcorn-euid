@@ -71,13 +71,19 @@ async function getProductRender() {
   const productData = await pb.collection('products').getOne(hash, {
     expand: 'userPost',
   });
-  const relatedList = await pb.collection('products').getList(1, 4);
+  const relatedList = await pb.collection('products').getList(1, 4, {
+    sort: '@random',
+  });
 
-  renderProduct(productData);
+  const users = await pb
+    .collection('users')
+    .getFirstListItem(`id="${productData.userPost}"`);
+
+  renderProduct(productData, users);
   renderRelated(relatedList);
 }
 
-function renderProduct(productData) {
+async function renderProduct(productData, users) {
   const renderPage = /* html */ `
       <img
         src="${getPbImageURL(productData, 'images')}"
@@ -92,7 +98,7 @@ function renderProduct(productData) {
         class="exchangeBoard-profile-wrapper w-[2.5rem] h-[2.5rem] relative bg-Contents-contentSecondary rounded-7xl"
         >
           <img
-            src="/public/images/macbook20.png"
+            src="${getPbImageURL(users, 'avatar')}"
             class="exchangeBoard-profile overflow-hidden absolute top-0 left-0 w-full h-full object-cover rounded-7xl"
             alt="프로필"
           />
@@ -161,7 +167,7 @@ function renderProduct(productData) {
         
         <div>
         <a
-        href="/src/pages/chat/"
+        href="${`/src/pages/chat/index.html#${productData.id}`}"
         class="exchangeBoard-chat-link w-[4.8125rem] h-[2.3125rem] bg-secondary px-[0.875rem] py-2 rounded-2xl text-background text-base font-semibold"
         >채팅하기</a
         >
@@ -272,18 +278,15 @@ async function handleHeartClick(e) {
   }
 }
 
-async function updatedHeart() {
+async function updatedHeart(nowUser, products) {
   heartImage = getNode('.exchangeBoard-heart img');
 
-  const users = await getStorage('userId');
   const likes = await pb.collection('likes').getFullList();
 
-  const hash = window.location.hash.slice(1);
-  const products = await pb.collection('products').getOne(hash);
   const productId = products.id;
 
   let selectedProduct = likes.find(
-    (item) => item.product === productId && item.user === users
+    (item) => item.product === productId && item.user === nowUser
   );
 
   if (selectedProduct) {
@@ -293,13 +296,39 @@ async function updatedHeart() {
   }
 }
 
+async function handleChat(nowUser, products) {
+  const chatBox = await pb.collection('chatbox').getFullList();
+  const arrayUserSameBuyer = chatBox.filter((item) => item.buyer === nowUser);
+  const productDataId = products.id;
+  const checkedProductId = arrayUserSameBuyer.find(
+    (item) => item.item === productDataId
+  );
+
+  const initData = {
+    buyer: `${nowUser}`,
+    item: `${productDataId}`,
+  };
+
+  if (!arrayUserSameBuyer || !checkedProductId) {
+    await pb.collection('chatBox').create(initData);
+  }
+}
+
 async function init() {
   await checkedOptions();
-  getProductRender().then(() => {
-    updatedHeart();
+
+  getProductRender().then(async () => {
+    const chatButton = getNode('.exchangeBoard-chat-link');
+
+    const nowUser = await getStorage('userId');
+    const hash = window.location.hash.slice(1);
+    const products = await pb.collection('products').getOne(hash);
+
+    updatedHeart(nowUser, products);
     const heart = getNode('.exchangeBoard-heart');
     heart.addEventListener('click', handleHeartClick);
 
+    chatButton.addEventListener('click', handleChat(nowUser, products));
     window.addEventListener('hashchange', getProductRender);
   });
 }

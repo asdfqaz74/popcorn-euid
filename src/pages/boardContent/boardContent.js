@@ -6,6 +6,8 @@ import {
   removeClass,
   getNodes,
   getPbImageURL,
+  formattedDate,
+  formattedTime,
 } from '/src/lib';
 import Pockbase from 'pocketbase';
 import gsap from 'gsap';
@@ -15,16 +17,25 @@ const pocketbase = new Pockbase(`${import.meta.env.VITE_PB_URL}`);
 const container = getNode('.boardContentsContainer');
 const boardContentMore = getNode('.boardContent-more');
 const moveButton = getNode('.boardContent-back');
+const moveeditButton = getNode('.boardContent-back-edit');
 const button = document.getElementById('menu-button');
 const updateMenu = getNode('.updateMenu');
 const updateList = getNodes('.update-button');
+const boardContainerInfo = getNode('board-container-info');
+const completeUpdateButton = getNode('.completeUpdateButton');
+const updatgeCategory = getNodes('.boardContent-category');
+const updateState = getNodes('.boardContent-state');
+
+const hash = window.location.hash.slice(1);
+const productData = await pocketbase.collection('community').getOne(hash, {
+  expand: 'SR_location',
+});
 
 async function renderProduct() {
-  const hash = window.location.hash.slice(1);
-
-  const productData = await pocketbase.collection('community').getOne(hash, {
-    expand: 'SR_location',
-  });
+  // const hash = window.location.hash.slice(1);
+  // const productData = await pocketbase.collection('community').getOne(hash, {
+  //   expand: 'SR_location',
+  // });
 
   const {
     SR_location,
@@ -40,28 +51,30 @@ async function renderProduct() {
     time,
     expand,
     id,
+    recruiting = '모집중',
   } = productData;
+  const defaultRecruiting = recruiting === '' ? '모집중' : recruiting;
   console.log(productData);
   const template = /* html */ `
 
         <h2 class="sr-only">최종 모임 작성 페이지</h2>
 
-        <div class="boardContent-wrapper pt-6 px-3 mb-[4.625rem]">
+        <div class="boardContent-wrapper  pb-[40%] pt-6 px-3 mb-[4.625rem]">
           <span
-            class="boardContent-category inline-block py-[0.125rem] px-2 border-none bg-bluegray-300 rounded-sm text-sm font-semibold text-background"
-            >📝${category}</span
+            class="boardContent-category inline-block py-[0.3rem] px-3 border-none bg-gray-600 rounded-sm text-base font-semibold text-background"
+            >${category}</span
           >
-          <div  class="text-lg font-semibold mt-[0.5625rem]">
-            <span class="boardContent-state text-secondary">모집중</span>
-            <span class="boardContent-title">${title}</span>
+          <div  class="flex flex-col text-[1.5rem] font-semibold my-3">
+            <span class="boardContent-state text-secondary">${defaultRecruiting}</span>
+            <span class="boardContent-title my-1">${title}</span>
           </div>
 
           <div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 py-2">
               <img src="/images/people.svg" alt="" />
               <span class="boardContent-condition">${gender} 참여 가능</span>
             </div>
-            <div class="flex items-center gap-2">
+            <div class="flex items-center gap-2 ">
               <img src="/images/fullcalender.svg" alt="" />
               <span class="boardContent-date">${formattedDateShort(date)}</span>
             </div>
@@ -93,7 +106,7 @@ async function renderProduct() {
                 />
               </div>
               <div class="flex flex-col text-sm">
-                <div class="flex justify-center items-center">
+                <div class="flex justify-center items-center text-base">
                   <span
                     class="boardContent-name whitespace-nowrap pr-[0.375rem]"
                     >${expand.SR_location.username}</span
@@ -104,12 +117,12 @@ async function renderProduct() {
                     class="boardContent-user-state"
                   />
                   <span
-                    class="boardContent-user-grade whitespace-nowrap text-Contents-contentTertiary"
+                    class="boardContent-user-grade whitespace-nowrap text-gray-900 "
                     >${checkMeetingVenue(hash, id)}</span
                   >
                 </div>
                 <span
-                  class="boardContent-user-number text-Contents-contentTertiary"
+                  class="boardContent-user-number text-gray-700"
                   >${meetingLocation} 인증 4회</span
                 >
               </div>
@@ -126,8 +139,6 @@ async function renderProduct() {
           채팅방으로 이동
         </a>
       </div>
-  
-      
   `;
 
   insertLast('.template', template);
@@ -149,13 +160,16 @@ function checkMeetingVenue(nowLoginId, postCreationId) {
   return '이웃';
 }
 
-function handleBack() {
+function handleBack(state, hash) {
+  if (state === 'update') {
+    window.location.href = `/src/pages/boardContent/#${hash}`;
+    window.location.reload();
+    return;
+  }
   window.location.href = '/src/pages/togetherBoard/';
 }
 
 function hiddenUpdateMenu() {
-  console.log('sdfsdf');
-
   // 0.2초 뒤에 실행
   setTimeout(() => {
     removeClass('.boardContentsContainer', 'after:bg-opacity-50');
@@ -171,10 +185,37 @@ function hiddenUpdateMenu() {
   }, 200);
 }
 
-function handleMoreDropDown(event) {
+//에딧화면 띄우기 또는 수정된 화면 띄우기
+function transitionEdit(value) {
+  if (value === 'update') {
+    return;
+  }
+  addClass('.board-container-info', 'hidden');
+  removeClass('.board-container-edit', 'hidden');
+  renderigEditPage();
+}
+
+async function renderigEditPage() {
+  const inputTitle = document.getElementById('title');
+  const inputAge = document.getElementById('age');
+  const inputDate = document.getElementById('date');
+  const inputBoardcontent = document.getElementById('board-content');
+  const dateOnly = productData.date.split(' ')[0];
+  // const title = inputTitle.value;
+  // const age = inputAge.value;
+  // const date = inputDate.value;
+  // const boardcontent = inputBoardcontent.value;
+
+  inputBoardcontent.value = productData.activity;
+  inputDate.value = dateOnly;
+  inputAge.value = productData.age;
+  inputTitle.value = productData.title;
+}
+
+function handleMoreDropDown() {
   // container.style.background = 'rgba(0, 0, 0, 0.8)';
-  addClass('.boardContentsContainer', 'after:bg-opacity-50');
-  addClass('.boardContentsContainer', 'after:bg-primary');
+  addClass('.boardContentsContainer', 'after:bg-opacity-90');
+  addClass('.boardContentsContainer', 'after:bg-Contents-contentPrimary');
   addClass('.boardContentsContainer', 'after:absolute');
   addClass('.boardContentsContainer', 'after:inset-0');
 
@@ -184,76 +225,191 @@ function handleMoreDropDown(event) {
     duration: 0.5,
   });
 }
+// 수정 모집중,모집종료 toggle
+function toggleupdateState() {
+  const prevClickedElement = document.querySelector(
+    '.boardContent-state.isClicked'
+  );
+  const isClicked = this.classList.toggle('isClicked');
 
-function handleChangeUpdateState(e) {
-  const datasetValue = this.getAttribute('data-sets');
-
-  if (datasetValue === 'recruiting') {
-    console.log('모집중 선택');
-  } else if (datasetValue === 'closedRecruitment') {
-    console.log('모집종료 선택');
-  } else if (datasetValue === 'modify') {
-    console.log('수정하기 선택');
-  } else if (datasetValue === 'delete') {
-    selectModificationType(datasetValue);
+  if (isClicked) {
+    if (prevClickedElement) {
+      prevClickedElement.classList.remove('isClicked');
+      prevClickedElement.classList.add('text-secondary');
+      prevClickedElement.classList.remove('text-background');
+      prevClickedElement.classList.remove('bg-Blue-700');
+    }
+    this.classList.remove('text-secondary');
+    this.classList.add('text-background');
+    this.classList.add('bg-Blue-700');
+  } else {
+    this.classList.add('text-secondary');
+    this.classList.remove('bg-Blue-700');
+    this.classList.remove('text-background');
   }
 }
 
-function selectModificationType(selectMenu) {
-  if (selectMenu === 'delete') {
-    handleDelete();
-    return;
+// 수정 카테고리 toggle
+function toggleUpdatgeCategory() {
+  const prevClickedElement = document.querySelector(
+    '.boardContent-category.isClicked'
+  );
+  const isClicked = this.classList.toggle('isClicked');
+
+  if (isClicked) {
+    if (prevClickedElement) {
+      prevClickedElement.classList.remove('isClicked');
+      prevClickedElement.classList.add('bg-bluegray-700');
+      prevClickedElement.classList.remove('bg-secondary');
+    }
+    this.classList.remove('bg-bluegray-700');
+    this.classList.add('bg-secondary');
+  } else {
+    this.classList.add('bg-bluegray-700');
+    this.classList.remove('bg-secondary');
   }
-  console.log('삭제오류');
+}
+
+// : 버튼 클릭 시 수정,삭제,모집중 메뉴 선택
+function handleChangeUpdateState() {
+  const datasetValue = this.getAttribute('data-sets');
+  if (datasetValue === 'modify') {
+    transitionEdit();
+  } else if (datasetValue === 'delete') {
+    handleDelete();
+  }
+}
+
+// 수정하기위한 선택된 카테고리 값
+function getChangedCategoryValue() {
+  const elements = document.querySelectorAll('.boardContent-category');
+  let foundElement = null;
+
+  for (const element of elements) {
+    if (element.classList.contains('isClicked')) {
+      foundElement = element;
+      break;
+    }
+  }
+
+  return foundElement.getAttribute('data-sets');
+}
+
+function getChangedrecruitmentStatuse() {
+  const elements = document.querySelectorAll('.boardContent-state');
+  let foundElement = null;
+
+  for (const element of elements) {
+    if (element.classList.contains('isClicked')) {
+      foundElement = element;
+      break;
+    }
+  }
+
+  return foundElement.getAttribute('data-sets');
+}
+
+function getModifiedinformation() {
+  const inputTitle = document.getElementById('title');
+  const inputAge = document.getElementById('age');
+  const inputDate = document.getElementById('date');
+  const inputBoardcontent = document.getElementById('board-content');
+
+  const title = inputTitle.value;
+  const age = inputAge.value;
+  const date = inputDate.value;
+  const boardcontent = inputBoardcontent.value;
+  const recruitmentStatus = getChangedrecruitmentStatuse();
+  const category = getChangedCategoryValue();
+
+  console.log('title  : ', title);
+  console.log('age  : ', age);
+  console.log('date  : ', date);
+  console.log('category  : ', category);
+  console.log('boardcontent  : ', boardcontent);
+  console.log('recruitmentStatus  : ', recruitmentStatus);
+
+  const data = {
+    activity: boardcontent,
+    category: category,
+    date: date,
+    meetingLocation: 'test',
+    age: age,
+    title: title,
+    recruiting: recruitmentStatus,
+  };
+
+  console.log('data  :', data);
+  return data;
+}
+
+//수정완료 버튼
+function handleUpdateCompleteButton() {
+  const value = 'update';
+  const modifieddata = getModifiedinformation();
+  handleUpdate(modifieddata);
+  transitionEdit(value);
 }
 
 async function handleDelete() {
-  const hash = window.location.hash.slice(1);
-  const productId = await pocketbase.collection('community').getOne(hash);
+  // const hash = window.location.hash.slice(1);
+  // const productId = await pocketbase.collection('community').getOne(hash);
 
-  await pocketbase.collection('community').delete(productId.id);
+  await pocketbase.collection('community').delete(productData.id);
   handleBack();
 }
 
-async function handleUpdate() {
+async function handleUpdate(dataObject) {
   const hash = window.location.hash.slice(1);
-  if (this.id === updateMenu.id) {
-    const productData = await pocketbase.collection('community').getFullList({
-      expand: 'SR_location',
-    });
+  const productData = await pocketbase.collection('community').getFullList({
+    expand: 'SR_location',
+  });
 
-    const nowData = productData.find((item) => {
-      if (item.id === hash) return true;
-    });
-    const element = getNode('.boardContent-title');
+  const state = 'update';
+  const checkAuthor = productData.find((item) => {
+    if (item.id === hash) {
+      console.log('if문 안    ');
+      return true;
+    }
+  });
 
-    const data = {
-      SR_location: 'RELATION_RECORD_ID',
-      activity: 'test',
-      category: 'test',
-      date: '2022-01-01 10:00:00.123Z',
-      meetingLocation: 'test',
-      gender: 'test',
-      approve: true,
-      headcount: 123,
-      age: 'test',
-      title: 'test',
-      time: 'test',
-    };
-
-    // await pocketbase.collection('community').update('RECORD_ID', data);
-    // handleBack();
-  }
+  console.log('checkAuthor    :', checkAuthor);
+  console.log('dataObject   :', dataObject);
+  const data = {
+    SR_location: checkAuthor.SR_location,
+    activity: dataObject.activity,
+    category: dataObject.category,
+    date: formattedDate(dataObject.date),
+    meetingLocation: checkAuthor.meetingLocation,
+    gender: checkAuthor.gender,
+    approve: checkAuthor.approve,
+    headcount: checkAuthor.headcount,
+    age: dataObject.age,
+    title: dataObject.title,
+    time: checkAuthor.time,
+    recruiting: dataObject.recruiting,
+  };
+  console.log(data);
+  await pocketbase.collection('community').update(checkAuthor.id, data);
+  handleBack(state, hash);
 }
 
 renderProduct();
 
+updateState.forEach((item) => {
+  item.addEventListener('click', toggleupdateState);
+});
+updatgeCategory.forEach((item) => {
+  item.addEventListener('click', toggleUpdatgeCategory);
+});
 updateList.forEach((item) => {
   item.addEventListener('click', handleChangeUpdateState);
 });
 
+moveeditButton.addEventListener('click', handleBack);
 moveButton.addEventListener('click', handleBack);
 // boardContentMore.addEventListener('click', handleDelete);
 button.addEventListener('click', handleMoreDropDown);
 // deleteMenu.addEventListener('click', handleDelete);
 button.addEventListener('blur', hiddenUpdateMenu);
+completeUpdateButton.addEventListener('click', handleUpdateCompleteButton);

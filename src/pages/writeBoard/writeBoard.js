@@ -16,13 +16,13 @@ const selectCategorySecondPage = getNodes('.writeBoardCategory');
 const titleSecondPage = document.querySelector('.writeBoardSecond-title');
 const peopleButton = getNodes('.writeBoardSecond-people-button');
 const locationButton = getNode('.writeBoardSecond-location-button');
-
+const categoryMenuNav = getNode('.writeBoard-category');
 const selectGenderbuttonMenu = getNode('.selectGenderMenuContainer');
 
 const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
 
 /* -------------------------------------------------------------------------- */
-/*                             pocketbase post 작성                             */
+/*                             랜더링 작성                             */
 /* -------------------------------------------------------------------------- */
 
 async function renderProduct(dataArray) {
@@ -66,6 +66,11 @@ async function renderProduct(dataArray) {
 
 /* -------------------------------------------------------------------------- */
 
+/**
+ * 입력한 데이터 각 요소에서 받아와  dataArray 배열에 넣고, 화면이동
+ * @param {*} event 다음 버튼 클릭 이벤트
+ * @returns
+ */
 async function handleNext(event) {
   const text = getNode('.warningText');
   const screens = document.querySelectorAll('.w-screen');
@@ -112,6 +117,11 @@ async function handleNext(event) {
   }
 }
 
+/**
+ * 현재 로그인한
+ * @param {*} serverPhoneNumber 현제 로그인한 localStorage에 PhoneNumber 가져오기
+ * @returns
+ */
 async function checkedUserId(serverPhoneNumber) {
   const key = 'phoneNumber';
   const localphoneNumber = await getStorage(key);
@@ -121,7 +131,6 @@ async function checkedUserId(serverPhoneNumber) {
     return item.id;
   });
   // setStorage(key, severValue.id);
-  console.log('severValue.id     :', severValue.id);
   return severValue.id;
 }
 
@@ -215,7 +224,7 @@ function insertTitleSecondpage(secondPageValue, inputValue) {
   return inputValue;
 }
 
-async function moveBoardContentPage(dataArray, writer) {
+async function moveBoardContentPage(dataArray) {
   const recordId = await renderProduct(dataArray);
 
   setTimeout(() => {
@@ -223,6 +232,9 @@ async function moveBoardContentPage(dataArray, writer) {
   }, '300');
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                   뒤로가기버튼                                   */
+/* -------------------------------------------------------------------------- */
 function handleBack() {
   const screens = document.querySelectorAll('.w-screen');
   const currentScreen = document.querySelector('.w-screen:not(.hidden)');
@@ -244,7 +256,30 @@ function handleBack() {
     return;
   }
 }
+/* -------------------------------------------------------------------------- */
+/*                               카테고리 선택의 부모 태그                               */
+/* -------------------------------------------------------------------------- */
+function handleCategoryNav() {
+  const isClicked = this.classList.toggle('isClicked');
+  const target = this.querySelector('.selectCategoryNav');
+  if (isClicked) {
+    target.classList.remove(
+      'group-focus-within:visible',
+      'group-focus-within:opacity-100',
+      'group-focus-within:translate-y-1'
+    );
+  } else {
+    target.classList.add(
+      'group-focus-within:visible',
+      'group-focus-within:opacity-100',
+      'group-focus-within:translate-y-1'
+    );
+  }
+}
 
+/* -------------------------------------------------------------------------- */
+/*                               카테고리 선택의 item들                               */
+/* -------------------------------------------------------------------------- */
 function handleCategorySecondPageSubmenu() {
   const category = getNode('.selectCategory');
   if (category.textContent) {
@@ -253,6 +288,9 @@ function handleCategorySecondPageSubmenu() {
   insertLast('.selectCategory', this.textContent);
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                    참가인원수                                   */
+/* -------------------------------------------------------------------------- *수
 function handleCategorySecondPagePeople() {
   const content = getNode('.people');
   const plus = this.classList.contains('plus');
@@ -272,14 +310,16 @@ function handleCategorySecondPagePeople() {
     content.textContent = '';
     insertLast('.people', number + '명');
   }
-  // content.innerText = number + '명';
   return;
 }
+
+/* -------------------------------------------------------------------------- */
+/*                         다음 주소api 사용                                   */
+/* -------------------------------------------------------------------------- */
 function handleOpenDaumPostcode() {
   new daum.Postcode({
     oncomplete: function (data) {
       const content = getNode('.locationValue');
-      // 우선 다음 주소api 사용 js 로 구현
       // 여기에 팝업에서 검색결과 항목을 클릭했을 때 실행할 코드를 작성합니다.
       if (content) {
         content.textContent = '';
@@ -289,6 +329,9 @@ function handleOpenDaumPostcode() {
   }).open();
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                    성별 선택                                   */
+/* -------------------------------------------------------------------------- */
 function handleSelectGenderMenu(e) {
   const isClicked = e.target.classList.toggle('isClicked');
   const genderValue = getNode('.genderValue');
@@ -312,6 +355,9 @@ function handleSelectGenderMenu(e) {
   return;
 }
 
+/* -------------------------------------------------------------------------- */
+/*                               나이 제한 선택 아직 미구현                              */
+/* -------------------------------------------------------------------------- */
 // function handleAgeSelect(e) {
 //   const elementFrom = getNode('.ageInputFrom');
 //   const elementTo = getNode('.ageInputTo');
@@ -344,3 +390,4 @@ nextButton.addEventListener('click', handleNext);
 backButton.addEventListener('click', handleBack);
 locationButton.addEventListener('click', handleOpenDaumPostcode);
 selectGenderbuttonMenu.addEventListener('click', handleSelectGenderMenu);
+categoryMenuNav.addEventListener('click', handleCategoryNav);
