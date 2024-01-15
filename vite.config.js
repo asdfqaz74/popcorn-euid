@@ -29,10 +29,7 @@ export default defineConfig({
         login: resolve(__dirname, 'src/pages/login/index.html'),
         profile: resolve(__dirname, 'src/pages/profile/index.html'),
         profileCard: resolve(__dirname, 'src/pages/profileCard/index.html'),
-        profileDetails: resolve(
-          __dirname,
-          'src/pages/profileDetails/index.html'
-        ),
+        profileDetails: resolve( __dirname, 'src/pages/profileDetails/index.html' ),
         board: resolve(__dirname, 'src/pages/board/index.html'),
         boardContet: resolve(__dirname, 'src/pages/boardContent/index.html'),
         chatScreen: resolve(__dirname, 'src/pages/chatScreen/index.html'),

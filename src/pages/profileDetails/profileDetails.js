@@ -11,6 +11,7 @@ import pb from '/src/api/pocketbase';
 
 const profileDetailsClose = getNode('.profileDetails-button-close');
 const profileToggleButtonWraps = getNodes('.profileDetails-buttonWrap');
+const jobSelectButtonWrap = getNode('.profileDetails-jobList-box');
 const profileActiveButton = getNodes('.profile-button-active');
 const profileClickEvent = getNode('.profileDetails-container');
 const agreeCheckbox = getNodes('.profileDtails-agreement-container input');
@@ -71,46 +72,72 @@ profileActiveButton.forEach((item) => {
 /* -------------------------------------------------------------------------- */
 
 //토글 기능
-let toggleBoolean = false;
+
 function toggleHandler(e) {
-  const buttonPrivacy = this.childNodes[1];
-  const buttonPublic = this.childNodes[3];
-  const buttonImgL = buttonPrivacy.childNodes[1];
-  const buttonImgR = buttonPublic.childNodes[1];
+  const buttonList = Array.from(e.currentTarget.children);
 
-  // privacyOrPublic(e);
+  buttonList.forEach((item) => {
+    item.classList.toggle('profileDetails-button-valid');
+    item.firstElementChild.classList.toggle('hidden');
+  });
 
-  if (!toggleBoolean) {
-    buttonPrivacy.classList.remove('profileDetails-button-valid');
-    buttonImgL.src = ' ';
-    buttonPublic.classList.add('profileDetails-button-valid');
-    buttonImgR.src = '/public/images/peoplePublic.svg';
-    return (toggleBoolean = true);
-  } else {
-    buttonPrivacy.classList.add('profileDetails-button-valid');
-    buttonImgL.src = '/public/images/passwordDetails.svg';
-    buttonPublic.classList.remove('profileDetails-button-valid');
-    buttonImgR.src = ' ';
-    return (toggleBoolean = false);
-  }
+  privacyOrPublic(e);
 }
-
 profileToggleButtonWraps.forEach((item) => {
   item.addEventListener('click', toggleHandler);
 });
 
 //토글 기능에 따른 공개여부
-// async function privacyOrPublic(e) {
-//   const classList = Array.from(e.target.classList);
-//   if (
-//     classList.includes('profileDetails-button-valid') &&
-//     classList.includes('profile-privacy')
-//   ) {
-//     const keyDataName = e.target.dataset.field;
-//     const dataPrivacy = { keyDataName: 'privacy' };
-//     await pb.collection('users').update(userNow.id, dataPrivacy);
-//   }
-// }
+async function privacyOrPublic(e) {
+  const buttonList = Array.from(e.currentTarget.children);
+  const buttonPrivacy = Array.from(buttonList[0].classList).includes(
+    'profileDetails-button-valid'
+  );
+  const keyName = e.currentTarget.dataset.field;
+  if (buttonPrivacy && keyName === 'gender') {
+    setStorage('genderPrivacy', 'true');
+  }
+  if (buttonPrivacy && keyName === 'age') {
+    setStorage('agePrivacy', 'true');
+  } else if (keyName === 'gender' && !buttonPrivacy) {
+    setStorage('genderPrivacy', 'false');
+  } else if (keyName === 'age' && !buttonPrivacy) {
+    setStorage('agePrivacy', 'false');
+  }
+}
+
+//토글 초기 세팅
+async function toggleSetting() {
+  const genderPrivacy = await getStorage('genderPrivacy');
+  const agePrivacy = await getStorage('agePrivacy');
+
+  const genderButtonList = Array.from(profileToggleButtonWraps[0].children);
+  const ageButtonList = Array.from(profileToggleButtonWraps[1].children);
+
+  if (genderPrivacy === 'true') {
+    genderButtonList[0].classList.add('profileDetails-button-valid');
+    genderButtonList[0].firstElementChild.classList.remove('hidden');
+    genderButtonList[1].classList.remove('profileDetails-button-valid');
+    genderButtonList[1].firstElementChild.classList.add('hidden');
+  } else {
+    genderButtonList[0].classList.remove('profileDetails-button-valid');
+    genderButtonList[0].firstElementChild.classList.add('hidden');
+    genderButtonList[1].classList.add('profileDetails-button-valid');
+    genderButtonList[1].firstElementChild.classList.remove('hidden');
+  }
+  if (agePrivacy === 'true') {
+    ageButtonList[0].classList.add('profileDetails-button-valid');
+    ageButtonList[0].firstElementChild.classList.remove('hidden');
+    ageButtonList[1].classList.remove('profileDetails-button-valid');
+    ageButtonList[1].firstElementChild.classList.add('hidden');
+  } else {
+    ageButtonList[0].classList.remove('profileDetails-button-valid');
+    ageButtonList[0].firstElementChild.classList.add('hidden');
+    ageButtonList[1].classList.add('profileDetails-button-valid');
+    ageButtonList[1].firstElementChild.classList.remove('hidden');
+  }
+}
+toggleSetting();
 
 /* -------------------------------------------------------------------------- */
 /*                            agree button group                            */
@@ -183,7 +210,7 @@ function jobListRendering() {
   jobData.forEach((item) => {
     const template = /*html*/ `
               <button
-                class="job-category bg-Bluelight-200 text-base px-2 py-0.5 rounded-full"
+                class="job-category my-1 bg-Bluelight-200 text-base px-2 py-0.5 rounded-full"
                 value= ${item}
               >
                 ${item}
@@ -192,33 +219,36 @@ function jobListRendering() {
     insertLast('.profileDetails-jobList-box', template);
   });
 }
-jobListRendering();
-
+getNode('.jobList-rendering').addEventListener('click', jobListRendering);
 //jobList 선택
-
 async function jobSelected(e) {
+  e.target.classList.add('job-data');
   let jobList = Array.from(getNodes('.job-category'));
   let selectList = Array.from(getNodes('.job-selected'));
   if (jobList.includes(e.target)) {
     let jobRenderTemplate = /*html*/ `
     <button
-  class="job-selected bg-secondary text-background text-base px-2 py-0.5 rounded-full bg-[url=] mt-1"
+  class="job-selected bg-secondary my-1 text-background text-base px-2 py-0.5 rounded-full bg-[url=] mt-1"
   >
   ${e.target.value}x
   </button>
     `;
-    insertLast('.profileDetails-job-selected', jobRenderTemplate);
+    await insertLast('.profileDetails-job-selected', jobRenderTemplate);
   } else if (selectList.includes(e.target)) {
-    removeElement('.job-selected');
+    e.target.remove(e.target);
     deleteStorage('job');
   }
-
-  let jobSelectTextGroup = selectList.map((item) => item.value);
-  console.log(selectList);
-  setStorage('job', jobSelectTextGroup);
+  const jobDataList = Array.from(getNodes('.job-data'));
+  const jobSelectedValue = jobDataList.map((item) => item.value);
+  setStorage('job', jobSelectedValue);
 }
 
-profileClickEvent.addEventListener('click', jobSelected);
+jobSelectButtonWrap.addEventListener('click', jobSelected);
 
 //job Data 전송
 // const userRecords = await pb.collection('users').getFullList();
+
+//모달 창 확인 버튼
+getNode('.profileDetails-button-final').addEventListener('click', () => {
+  window.location.href = '/src/pages/profile/';
+});
