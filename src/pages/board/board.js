@@ -7,6 +7,7 @@ import {
   formattedDateShort,
 } from '/src/lib';
 import { gsap } from 'gsap';
+import { getStorage } from '../../lib/utils';
 
 const subjectMenuButton = getNode('.subjectMenu');
 const subjectMenutoggle = getNode('.subject-menu-container');
@@ -14,15 +15,16 @@ const closedSubjectMenu = getNode('.board-closedSubjectMenu-button');
 
 const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
 
+/* -------------------------------------------------------------------------- */
+/*                                 이미지 랜더링 함수                           */
+/* -------------------------------------------------------------------------- */
 async function renderProduct() {
-  const arraySubjectValue = funcLocalStorage();
-
   const responseCommunity = await pb.collection('community').getList(1, 50, {
     expand: 'SR_location',
   });
 
   const communityData = responseCommunity.items;
-  console.log(communityData);
+
   communityData.forEach((item) => {
     console.log(item);
     const template = /* html */ `
@@ -142,13 +144,9 @@ async function renderProduct() {
   });
 }
 
-function funcLocalStorage() {
-  const items = localStorage.getItem('interest');
-  const result = JSON.parse(items);
-
-  return result;
-}
-
+/* -------------------------------------------------------------------------- */
+/*                                   주제목록 토글                                 */
+/* -------------------------------------------------------------------------- */
 function handleSubjectToggle() {
   const isClicked = this.classList.toggle('click');
 
@@ -169,6 +167,11 @@ function handleSubjectToggle() {
   gsap.to(subjectMenutoggle, { y: '100%', ease: 'power2.out', duration: 0.5 });
 }
 
+/**
+ * 주제 nav 와 주제 드롭다운 메뉴의 x 버튼을 제외한 다른 곳 클릭 시
+ * @param {} event 클릭이벤트
+ * @returns
+ */
 function handleClickOutside(event) {
   if (
     event.target.closest('.subject-menu-container') ||
@@ -179,6 +182,14 @@ function handleClickOutside(event) {
   gsap.to(subjectMenutoggle, { y: '100%', ease: 'power2.out', duration: 0.5 });
   subjectMenuButton.classList.remove('click');
 }
+
+/* -------------------------------------------------------------------------- */
+/*                             로그인 기능 관심사 들어오면 구현                */
+/* -------------------------------------------------------------------------- */
+// function funcLocalStorage() {
+//   const items = getStorage('interest');
+//   return items;
+// }
 
 renderProduct();
 

@@ -18,16 +18,23 @@ const writeBoard = getNode('.write-button');
 const togetherBoardButton = getNodes('.togetherBoard');
 const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
 
+/* -------------------------------------------------------------------------- */
+/*                                   랜더링 함수                                   */
+/* -------------------------------------------------------------------------- */
+/**
+ * @param {*} dataArray - undifined라면 첫화면 랜더링, 값이 있다면 filteringRendering
+ * @returns
+ */
 async function renderProduct(dataArray) {
   const responseCommunity = await pb.collection('community').getList(1, 50, {
     expand: 'SR_location',
   });
   const communityData = responseCommunity.items;
 
+  // 첫화면 랜더링, 필터링 랜더링 확인
   if (dataArray) {
     renderingFilter(dataArray);
     return;
-  } else {
   }
 
   communityData.forEach((item) => {
@@ -98,8 +105,14 @@ async function renderProduct(dataArray) {
   });
 }
 
+/* -------------------------------------------------------------------------- */
+/*                                 필터링 랜더링 함수                                 */
+/* -------------------------------------------------------------------------- */
+/**
+ * @param {} dataArray -필터링 위한 전체,프로젝트,스터디,오프라인,공모전 값이 들어있는 배열
+ * 기존에 랜더링된 요소들 제거 후 필터링 랜더링
+ */
 async function renderingFilter(dataArray) {
-  // console.log(dataArray.items[0]);
   for (const item of dataArray.items) {
     const defaultRecruiting =
       item.recruiting === '' ? '모집중' : item.recruiting;
@@ -158,11 +171,13 @@ async function renderingFilter(dataArray) {
   </div>
 `;
 
+    //기존에 랜더링된 요소들 제거 후 필터링 랜더링
     const resultContainer = document.querySelector('.template');
     while (resultContainer.firstChild) {
       resultContainer.removeChild(resultContainer.firstChild);
     }
 
+    // 기존 요소 제거되는 시간 필요
     setTimeout(() => {
       insertLast('.template', template);
     }, 1000);
@@ -175,6 +190,7 @@ async function renderingFilter(dataArray) {
   });
 }
 
+// 게시글 작성하기 이동
 function handleMove() {
   window.location.href = '/src/pages/writeBoard/index.html';
 }
@@ -194,22 +210,27 @@ function toggleMenu() {
     stagger: 0.1,
   });
 }
+
+/**
+ * @param {} event  버튼과 메뉴 이외의 영역을 클릭했을 때
+ */
 function handleClickOutside(event) {
   if (!writeButton.contains(event.target) && !plusMenu.contains(event.target)) {
-    // 버튼과 메뉴 이외의 영역을 클릭했을 때
     writeButton.style.display = 'block';
     writeOnButton.style.display = 'none';
     plusMenu.style.display = 'none';
   }
 }
 
+/* -------------------------------------------------------------------------- */
+/*                               // 작성하기 + 버튼 토글                              */
+/* -------------------------------------------------------------------------- */
 function handleClickMenu() {
   const clickedItems = Array.from(document.getElementsByClassName('isClicked'));
   const isClicked = this.classList.toggle('isClicked');
   const itemIndex = clickedItems.indexOf(this);
 
   if (isClicked) {
-    // isClicked가 true인 경우, 배열에 추가
     if (itemIndex === -1) {
       clickedItems.push(this);
     }
@@ -218,7 +239,6 @@ function handleClickMenu() {
       item.classList.add('border-Blue-500');
     });
   } else {
-    // isClicked가 false인 경우, 배열에서 제거
     if (itemIndex !== -1) {
       clickedItems.splice(itemIndex, 1);
     }
@@ -228,11 +248,13 @@ function handleClickMenu() {
     });
   }
 
-  // console.log('-------------');
-  // console.log(clickedItems);
   filterRendering(clickedItems);
 }
 
+/**
+ * 필터링 랜더링, 배열에 필터조건 담고, 조건문 사이에 || 추가
+ * @param {} clickedItems 클릭한 요소
+ */
 async function filterRendering(clickedItems) {
   let filter = '';
 

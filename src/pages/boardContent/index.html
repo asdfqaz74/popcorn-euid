@@ -86,20 +86,6 @@
         class="z-10 updateMenu translate-y-[100%] subject-menu-container bg-primary text-background text-base w-full rounded-t-2xl fixed bottom-0"
       >
         <nav class="selectNavMenu flex flex-col gap-3 py-4 justify-center">
-          <!-- <button
-            data-sets="recruiting"
-            class="recruiting py-5 update-button text-background font-bold"
-            type="button"
-          >
-            모집중
-          </button>
-          <button
-            data-sets="closedRecruitment"
-            class="closedRecruitment py-5 update-button text-background font-bold"
-            type="button"
-          >
-            모집종료
-          </button> -->
           <button
             data-sets="modify"
             class="hover:bg-tertiary modify py-5 update-button text-background font-bold"
@@ -118,17 +104,16 @@
         </nav>
       </section>
     </div>
+    <nav class="flex justify-between items-center py-2 px-3">
+      <button
+        type="button"
+        aria-label="뒤로가기 버튼"
+        class="boardContent-back-edit h-[1.125rem]"
+      >
+        <img src="/images/directionL.svg" alt="뒤로가기" />
+      </button>
+    </nav>
     <div class="hidden board-container-edit w-screen min-w-[17.5rem] px-2">
-      <nav class="flex justify-between items-center py-2 px-3">
-        <button
-          type="button"
-          aria-label="뒤로가기 버튼"
-          class="boardContent-back-edit h-[1.125rem]"
-        >
-          <img src="/images/directionL.svg" alt="뒤로가기" />
-        </button>
-      </nav>
-
       <div class="w-fulltemplate relative h-screen">
         <h2 class="sr-only">수정페이지</h2>
 
