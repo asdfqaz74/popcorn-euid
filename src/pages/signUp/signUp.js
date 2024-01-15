@@ -47,7 +47,7 @@ const error = getNode('.signUp-errorMsg');
 
 function validCheckPhoneNumber(e) {
   const phoneNumber = e.target.value;
-  console.log(phoneNumber);
+  // console.log(phoneNumber);
   const isValidPhoneNumber = regex.test(phoneNumber);
 
   if (isValidPhoneNumber) {
