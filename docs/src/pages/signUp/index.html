@@ -4,20 +4,14 @@
     <title>회원가입</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <script type="module" crossorigin src="/assets/signUP-IKtetDoE.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/tailwind-LUp5vfds.js" />
-    <link rel="modulepreload" crossorigin href="/assets/delay-g6vF19wW.js" />
-    <link rel="modulepreload" crossorigin href="/assets/css-LUmow4Y_.js" />
-    <link rel="modulepreload" crossorigin href="/assets/storage-eNv634Ip.js" />
-    <link
-      rel="modulepreload"
-      crossorigin
-      href="/assets/pocketbase-UOLpUAtS.js"
-    />
-    <link rel="stylesheet" crossorigin href="/assets/tailwind-84VPJYjL.css" />
+    <script type="module" crossorigin src="/assets/signUp-IYggWhfS.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-A-Exv5E6.js">
+    <link rel="modulepreload" crossorigin href="/assets/delay-g6vF19wW.js">
+    <link rel="modulepreload" crossorigin href="/assets/css-LUmow4Y_.js">
+    <link rel="modulepreload" crossorigin href="/assets/storage-eNv634Ip.js">
+    <link rel="modulepreload" crossorigin href="/assets/pocketbase-UOLpUAtS.js">
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-sq45W1C0.css">
   </head>
   <body>
     <h1 class="sr-only">이듬 회원가입</h1>
@@ -59,6 +53,9 @@
               maxlength="11"
               required
             />
+            <div
+              class="signUp-errorMsg text-error text-sm w-full hidden items-start justify-start"
+            ></div>
             <!-- valid 된 경우 : signUp-verify-valid 클래스 추가해주기 -->
             <button
               class="signUp-button-verify timer-button border-solid border-[0.5px] rounded-sm w-full h-[2.375rem] py-[0.5rem] text-base font-normal text-gray-500"
@@ -118,6 +115,9 @@
               maxlength="6"
               required
             />
+            <div
+              class="signUp-errorMsg-second w-full text-error text-sm hidden items-start justify-start"
+            ></div>
           </form>
           <p class="text-sm font-normal text-gray-500 mt-2">
             어떤 경우에도 타인에게 공유하지마세요!
