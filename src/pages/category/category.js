@@ -80,7 +80,6 @@ categoryInputs.forEach(function (item) {
 const saveButton = getNode('.category-button-save');
 
 // get localStorage
-
 async function handleSaveButton() {
   // 카테고리 localStorage 에 저장
   const checkbox = getNodes('label.is-checked');
