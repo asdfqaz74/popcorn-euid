@@ -5,9 +5,13 @@ import {
   timeAgo,
   getNode,
   formattedDateShort,
+  getStorage,
 } from '/src/lib';
 import { gsap } from 'gsap';
-import { getStorage } from '../../lib/utils';
+
+import fullpeopleSvg from '/public/images/fullpeople.svg';
+import lifeSvg from '/public/images/life.svg';
+import calenderSvg from '/public/images/calender.svg';
 
 const subjectMenuButton = getNode('.subjectMenu');
 const subjectMenutoggle = getNode('.subject-menu-container');
@@ -44,13 +48,13 @@ async function renderProduct() {
             ${item.title}
             </strong>
             <div class="my-1 flex gap-1 ">
-              <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+              <img src="${fullpeopleSvg}" alt="참여인원 수" />
               <span class="group-hover:text-background board-people ">  ${
                 item.age
               }  </span>
             </div>
             <div class="my-1 flex gap-1">
-              <img src="/public/images/calender.svg" alt="날짜" />
+              <img src="${calenderSvg}" alt="날짜" />
               <span class="group-hover:text-background board-when"> ${formattedDateShort(
                 item.date
               )}</span>
@@ -78,7 +82,7 @@ async function renderProduct() {
             />
           </div>
           <div class="group-hover:text-background gap-1 items-center col-end-4 self-end justify-end flex">
-            <img src="/public/images/fullpeople.svg" alt="참가 인원수" />
+            <img src="${fullpeopleSvg}" alt="참가 인원수" />
             <span class="board-joinPeople">${item.headcount}/10명</span>
           </div> 
           
@@ -96,7 +100,7 @@ async function renderProduct() {
   //     const templateSubjecMenu = /* html */ `
   //   <div class="p-3 flex justify-between">
   //   <div class="flex items-center gap-2">
-  //     <img class="h-[34px] w-[34px]" src="/public/images/life.svg" alt="" />
+  //     <img class="h-[34px] w-[34px]" src="${lifeSvg}" alt="" />
   //     <strong class="board-subject-name no-wrap truncate">${item}</strong>
   //   </div>
   //   <div
@@ -113,7 +117,7 @@ async function renderProduct() {
   const templateSubjecMenu = /* html */ `
 <div class="p-3 flex justify-between">
 <div class="flex items-center gap-2">
-  <img class="h-[34px] w-[34px]" src="/public/images/life.svg" alt="" />
+  <img class="h-[34px] w-[34px]" src="${lifeSvg}" alt="" />
   <strong class="board-subject-name no-wrap truncate">localStorage 아직</strong>
 </div>
 <div
@@ -124,7 +128,7 @@ async function renderProduct() {
 </div>
 <div class="p-3 flex justify-between">
 <div class="flex items-center gap-2">
-  <img class="h-[34px] w-[34px]" src="/public/images/life.svg" alt="" />
+  <img class="h-[34px] w-[34px]" src="${lifeSvg}" alt="" />
   <strong class="board-subject-name no-wrap truncate">localStorage 아직</strong>
 </div>
 <div

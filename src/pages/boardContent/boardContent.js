@@ -59,17 +59,18 @@ async function renderProduct() {
 
         <h2 class="sr-only">최종 모임 작성 페이지</h2>
 
-        <div class="boardContent-wrapper  pb-[40%] pt-6 px-3 mb-[4.625rem]">
+        <div class="boardContent-wrapper ">
+      
           <span
-            class="boardContent-category inline-block py-[0.3rem] px-3 border-none bg-gray-600 rounded-sm text-base font-semibold text-background"
+            class="boardContent-category border inline-block py-[0.3rem] px-4 mt-3 mx-3 bg-background rounded-sm text-[0.7rem] font-semibold border-Contents-contentPrimary"
             >${category}</span
           >
-          <div  class="flex flex-col text-[1.5rem] font-semibold my-3">
+          <div  class="flex flex-col text-[1.3rem] font-semibold my-3 px-3">
             <span class="boardContent-state text-secondary">${defaultRecruiting}</span>
             <span class="boardContent-title my-1">${title}</span>
           </div>
 
-          <div>
+          <div class="text-[1rem] px-5">
             <div class="flex items-center gap-2 py-2">
               <img src="/images/people.svg" alt="" />
               <span class="boardContent-condition">${gender} 참여 가능</span>
@@ -128,17 +129,18 @@ async function renderProduct() {
               </div>
             </div>
           </div>
+          <div class="fixed w-full px-3 bottom-[2.125rem]">
+          <a
+            class="writeBoardSecond-next-button block text-center text-nowrap text-background rounded-3xl py-4 border bg-primary"
+            href="/src/pages/chatScreen/#${id}"
+            aria-label="채팅방으로 이동"
+          >
+            채팅방으로 이동
+          </a>
+        </div>
         </div>
    
-        <div class="fixed w-full px-3 bottom-[2.125rem]">
-        <a
-          class="writeBoardSecond-next-button block text-center text-nowrap text-background rounded-3xl py-4 border bg-primary"
-          href="/src/pages/chatScreen/#${id}"
-          aria-label="채팅방으로 이동"
-        >
-          채팅방으로 이동
-        </a>
-      </div>
+     
   `;
 
   insertLast('.template', template);
@@ -166,7 +168,7 @@ function handleBack(state, hash) {
     window.location.reload();
     return;
   }
-  window.location.href = '/src/pages/togetherBoard/';
+  window.history.back();
 }
 
 function hiddenUpdateMenu() {
@@ -259,14 +261,17 @@ function toggleUpdatgeCategory() {
   if (isClicked) {
     if (prevClickedElement) {
       prevClickedElement.classList.remove('isClicked');
-      prevClickedElement.classList.add('bg-bluegray-700');
-      prevClickedElement.classList.remove('bg-secondary');
+      prevClickedElement.classList.add('text-gray-800');
+      prevClickedElement.classList.remove('text-background');
+      prevClickedElement.classList.remove('bg-tertiary');
     }
-    this.classList.remove('bg-bluegray-700');
-    this.classList.add('bg-secondary');
+    this.classList.remove('text-secondary');
+    this.classList.add('text-background');
+    this.classList.add('bg-tertiary');
   } else {
-    this.classList.add('bg-bluegray-700');
-    this.classList.remove('bg-secondary');
+    this.classList.add('text-secondary');
+    this.classList.remove('bg-tertiary');
+    this.classList.remove('text-background');
   }
 }
 
@@ -280,6 +285,20 @@ function handleChangeUpdateState() {
   }
 }
 
+function removeEmoji(text) {
+  return text.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
+}
+
+function extractContestText(value) {
+  const textWithoutEmoji = removeEmoji(value);
+  const regex = /공모전/g;
+  const matches = textWithoutEmoji.match(regex);
+  if (matches) {
+    return matches.join(' ');
+  } else {
+    return '';
+  }
+}
 // 수정하기위한 선택된 카테고리 값
 function getChangedCategoryValue() {
   const elements = document.querySelectorAll('.boardContent-category');
@@ -320,7 +339,8 @@ function getModifiedinformation() {
   const date = inputDate.value;
   const boardcontent = inputBoardcontent.value;
   const recruitmentStatus = getChangedrecruitmentStatuse();
-  const category = getChangedCategoryValue();
+  const categoryValue = getChangedCategoryValue();
+  const category = extractContestText(categoryValue);
 
   console.log('title  : ', title);
   console.log('age  : ', age);
@@ -352,9 +372,6 @@ function handleUpdateCompleteButton() {
 }
 
 async function handleDelete() {
-  // const hash = window.location.hash.slice(1);
-  // const productId = await pocketbase.collection('community').getOne(hash);
-
   await pocketbase.collection('community').delete(productData.id);
   handleBack();
 }
@@ -408,8 +425,6 @@ updateList.forEach((item) => {
 
 moveeditButton.addEventListener('click', handleBack);
 moveButton.addEventListener('click', handleBack);
-// boardContentMore.addEventListener('click', handleDelete);
 button.addEventListener('click', handleMoreDropDown);
-// deleteMenu.addEventListener('click', handleDelete);
 button.addEventListener('blur', hiddenUpdateMenu);
 completeUpdateButton.addEventListener('click', handleUpdateCompleteButton);

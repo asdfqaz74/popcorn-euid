@@ -44,7 +44,6 @@ async function renderProduct(dataArray) {
   const resultGender = gender
     ? gender.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim()
     : '누구나';
-  const resultAge = age.replace(/[^a-zA-Z가-힣0-9\s]/g, '').trim();
 
   const data = {
     SR_location: SR_location,
@@ -55,11 +54,11 @@ async function renderProduct(dataArray) {
     gender: resultGender,
     approve: approve,
     headcount: headcount,
-    age: resultAge,
+    age: age,
     title: title,
     time: time,
   };
-
+  console.log(data);
   const record = await pb.collection('community').create(data);
   return record.id;
 }
@@ -147,7 +146,7 @@ function getDataApprove() {
 
 function getDataAge() {
   const getDataAge = document.getElementById('ageAll');
-  const text = getDataAge.textContent;
+  const text = getDataAge.value;
   return text;
 }
 function getDataGender() {
@@ -192,14 +191,20 @@ function getDataHeadcount() {
 function getDataCategory() {
   const category = getNode('.selectCategory');
   const text = category.textContent;
-
-  return text;
+  const value = removeEmoji(text);
+  console.log('이모지 제거 한거 :', value);
+  return value;
 }
 
 function getDataActivity() {
   const textarea = document.getElementById('board-content');
   const text = textarea.value;
   return text;
+}
+
+// 이모지를 제거하는 함수
+function removeEmoji(value) {
+  return value.replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, '');
 }
 
 function warningText(inputValue, text) {
@@ -290,7 +295,8 @@ function handleCategorySecondPageSubmenu() {
 
 /* -------------------------------------------------------------------------- */
 /*                                    참가인원수                                   */
-/* -------------------------------------------------------------------------- *수
+/* -------------------------------------------------------------------------- */
+
 function handleCategorySecondPagePeople() {
   const content = getNode('.people');
   const plus = this.classList.contains('plus');
@@ -358,25 +364,6 @@ function handleSelectGenderMenu(e) {
 /* -------------------------------------------------------------------------- */
 /*                               나이 제한 선택 아직 미구현                              */
 /* -------------------------------------------------------------------------- */
-// function handleAgeSelect(e) {
-//   const elementFrom = getNode('.ageInputFrom');
-//   const elementTo = getNode('.ageInputTo');
-//   const elementCheck = getNode('.ageFromToCheck');
-//   let valueFrom = '';
-//   let valueTo = '';
-
-//   elementFrom.addEventListener('input', (event) => {
-//     valueFrom = event.target.value;
-//   });
-
-//   elementTo.addEventListener('input', (event) => {
-//     valueTo = event.target.value;
-//   });
-
-//   elementCheck.addEventListener('click', (event) => {
-//     console.log(valueFrom, valueTo);
-//   });
-// }
 
 peopleButton.forEach((item) => {
   item.addEventListener('click', handleCategorySecondPagePeople);

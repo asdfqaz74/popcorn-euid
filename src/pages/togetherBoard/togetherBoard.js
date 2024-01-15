@@ -11,12 +11,16 @@ import {
   removeElement,
 } from '/src/lib';
 
+import fullpeopleSvg from '/public/images/fullpeople.svg';
+import calenderSvg from '/public/images/calender.svg';
+
 const writeButton = getNode('.togetherBoard-write-off');
 const writeOnButton = getNode('.togetherBoard-write-on');
 const plusMenu = getNode('.togetherBoard-plus-menu');
 const writeBoard = getNode('.write-button');
 const togetherBoardButton = getNodes('.togetherBoard');
 const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
+const backButton = new getNode('.backButton');
 
 /* -------------------------------------------------------------------------- */
 /*                                   랜더링 함수                                   */
@@ -26,28 +30,30 @@ const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
  * @returns
  */
 async function renderProduct(dataArray) {
-  const responseCommunity = await pb.collection('community').getList(1, 50, {
-    expand: 'SR_location',
-  });
-  const communityData = responseCommunity.items;
-
-  // 첫화면 랜더링, 필터링 랜더링 확인
   if (dataArray) {
     renderingFilter(dataArray);
     return;
   }
+  const responseCommunity = await pb.collection('community').getList(1, 50, {
+    expand: 'SR_location',
+    sort: '-created',
+  });
+  const communityData = responseCommunity.items;
 
+  // 첫화면 랜더링, 필터링 랜더링 확인
+
+  console.log(communityData);
   communityData.forEach((item) => {
     const defaultRecruiting =
       item.recruiting === '' ? '모집중' : item.recruiting;
     const template = /* html */ `
-      <div class="board-container group hover:text-background hover:bg-tertiary" >
+      <div class="board-container" >
         <a href="/src/pages/boardContent/index.html#${item.id}">
           <h1 class="hidden">게시판 글 목록</h1>
           <div class="text-sm border-t-[1px] p-3">
             <div>
-              <div class="group-hover:text-background text-bluegray-600 my-1">
-                <span class="group-hover:text-background text-secondary">${defaultRecruiting}</span>
+              <div class=" text-bluegray-600 my-1">
+                <span class=" text-secondary">${defaultRecruiting}</span>
                 <span>·</span>
                 <span>${item.category}</span>
                 <span>·</span>
@@ -58,13 +64,13 @@ async function renderProduct(dataArray) {
               </strong>
               <div class="my-2 px-1">
                 <div class="flex ">
-                  <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+                  <img src="${fullpeopleSvg}" alt="참여인원 수" />
                   <span class="togtherBoard-who">${item.age}, ${
                     item.gender
                   }</span>
                 </div>
                 <div class="mt-1 flex">
-                  <img src="/public/images/calender.svg" alt="날짜" />
+                  <img src="${calenderSvg}" alt="날짜" />
                   <span>${formattedDateShort(item.date)},</span>
                   <span class="togtherBoard-time">${item.time}</span>
                 </div>
@@ -82,11 +88,11 @@ async function renderProduct(dataArray) {
                 alt="프로필"
               />
             </div>
-                <span class="group-hover:text-background text-Contents-contentSecondary">${
+                <span class=" text-Contents-contentSecondary">${
                   item.headcount
                 }/10명</span>
               </div>
-              <span class="group-hover:text-background togtherBoard-timeBefore px-2 text-bluegray-400">${timeAgo(
+              <span class=" togtherBoard-timeBefore px-2 text-bluegray-400">${timeAgo(
                 item.created
               )}</span>
             </div>
@@ -135,11 +141,11 @@ async function renderingFilter(dataArray) {
           </strong>
           <div class="my-2 px-1">
             <div class="flex">
-              <img src="/public/images/fullpeople.svg" alt="참여인원 수" />
+              <img src="${fullpeopleSvg}" alt="참여인원 수" />
               <span class="togtherBoard-who">${item.age}, ${item.gender}</span>
             </div>
             <div class="mt-1 flex">
-              <img src="/public/images/calender.svg" alt="날짜" />
+              <img src="${calenderSvg}" alt="날짜" />
               <span>${formattedDateShort(item.date)},</span>
               <span class="togtherBoard-time">${item.time}</span>
             </div>
@@ -153,7 +159,7 @@ async function renderingFilter(dataArray) {
           class="inline-block border w-5 h-5 rounded-full bg-Contents-contentSecondary"
         >
           <img
-            src=""
+            src="${getPbImageURL(item.expand.SR_location, 'avatar')}"
             class="togetherBoard-profile w-full h-full rounded-7xl object-cover"
             alt="프로필"
           />
@@ -188,6 +194,10 @@ async function renderingFilter(dataArray) {
     opacity: 0,
     stagger: 0.1,
   });
+}
+
+function handleBackbutton() {
+  window.history.back();
 }
 
 // 게시글 작성하기 이동
@@ -257,6 +267,7 @@ function handleClickMenu() {
  */
 async function filterRendering(clickedItems) {
   let filter = '';
+  let isAllClicked = false; // 전체 버튼이 클릭되었는지 여부를 저장하는 변수
 
   for (const item of clickedItems) {
     const togetherTitleElement = item.querySelector('.togetherTitle');
@@ -275,11 +286,14 @@ async function filterRendering(clickedItems) {
       case '공모전':
         filter += 'category = "공모전"';
         break;
+      case '전체':
+        isAllClicked = true; // 전체 버튼이 클릭되었음을 표시
+        break;
       default:
         break;
     }
 
-    if (filter !== '') {
+    if (filter !== '' && !isAllClicked) {
       filter += ' || ';
     }
   }
@@ -287,11 +301,14 @@ async function filterRendering(clickedItems) {
     filter = filter.slice(0, -4);
   }
 
-  // ex) filter: 'category = "프로젝트"'
+  // 이모지 들어가면 filter 못 할 수 있습니다.
+  // ex) filter: 'category = "프로젝트" || category = "스터디"'
   const resultList = await pb.collection('community').getList(1, 50, {
     filter,
+    expand: 'SR_location',
+    sort: '-created',
   });
-
+  console.log(resultList);
   renderProduct(resultList);
 }
 
@@ -304,3 +321,4 @@ renderProduct();
 writeButton.addEventListener('click', handleWrite);
 writeBoard.addEventListener('click', handleMove);
 document.addEventListener('click', handleClickOutside);
+backButton.addEventListener('click', handleBackbutton);
