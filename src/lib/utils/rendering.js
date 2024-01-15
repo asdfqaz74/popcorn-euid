@@ -14,7 +14,7 @@ export function rendering(className, obj){
   }
 
  export function renderingPhoto(className, obj){
-    const renderBoxs = Array.from(getNodes('.rendering-photo'))
+    const renderBoxs = Array.from(getNodes(className))
     renderBoxs.forEach((item)=>{
       let keyName = item.dataset.field
       try {if(obj[keyName] !==''){
