@@ -1,0 +1,1 @@
+import{g as r}from"./delay-g6vF19wW.js";function e(t,i){typeof t=="string"&&(t=r(t)),t.insertAdjacentHTML("afterbegin",i)}function f(t,i){typeof t=="string"&&(t=r(t)),t.insertAdjacentHTML("beforeend",i)}export{e as a,f as i};
