@@ -15,7 +15,7 @@ import pb from '/src/api/pocketbase';
 const goBack = getNode('.button-goback');
 
 function handleButton() {
-  window.history.back;
+  window.history.back();
 }
 
 goBack.addEventListener('click', handleButton);

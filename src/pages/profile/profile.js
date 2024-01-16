@@ -115,6 +115,8 @@ async function temperatureBar() {
   insertLast(temperatureBox, template);
   const bar = getNode('.profile-temperture-bar');
   bar.style.width = `${myTemperature}%`;
+  const data = { mannerTemp: `${myTemperature}` };
+  await pb.collection('users').update(userNow.id, data);
 }
 
 temperatureBar();
@@ -283,8 +285,7 @@ commentMore.addEventListener('click', (e) => {
 /* -------------------------------------------------------------------------- */
 
 async function userLogOut() {
-  deleteStorage('userId');
-  deleteStorage('phoneNumber');
+  deleteStorage();
   let isAuth = { isAuth: false };
   setStorage('auth', isAuth);
   window.location.href = '/src/pages/';
