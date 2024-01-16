@@ -297,6 +297,9 @@ function removeEmoji(text) {
 function extractContestText(value) {
   const textWithoutEmoji = removeEmoji(value);
   const regex = /공모전/g;
+
+  
+
   const matches = textWithoutEmoji.match(regex);
   if (matches) {
     return matches.join(' ');
@@ -304,6 +307,7 @@ function extractContestText(value) {
     return '';
   }
 }
+
 // 수정하기위한 선택된 카테고리 값
 function getChangedCategoryValue() {
   const elements = document.querySelectorAll('.boardContent-category');
@@ -345,18 +349,19 @@ function getModifiedinformation() {
   const boardcontent = inputBoardcontent.value;
   const recruitmentStatus = getChangedrecruitmentStatuse();
   const categoryValue = getChangedCategoryValue();
-  const category = extractContestText(categoryValue);
+  // const category = extractContestText(categoryValue);
 
-  console.log('title  : ', title);
-  console.log('age  : ', age);
-  console.log('date  : ', date);
-  console.log('category  : ', category);
-  console.log('boardcontent  : ', boardcontent);
-  console.log('recruitmentStatus  : ', recruitmentStatus);
+  
+  // console.log('title  : ', title);
+  // console.log('age  : ', age);
+  // console.log('date  : ', date);
+  // console.log('category  : ', categoryValue);
+  // console.log('boardcontent  : ', boardcontent);
+  // console.log('recruitmentStatus  : ', recruitmentStatus);
 
   const data = {
     activity: boardcontent,
-    category: category,
+    category: categoryValue,
     date: date,
     meetingLocation: 'test',
     age: age,
