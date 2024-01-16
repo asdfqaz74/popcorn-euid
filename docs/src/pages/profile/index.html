@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>euid profile</title>
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-<<<<<<< HEAD
-    <script type="module" crossorigin src="/assets/profile-OFSyjZwC.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/tailwind-75xaDfuL.js">
-=======
-    <script type="module" crossorigin src="/assets/profile-sv1xXMGL.js"></script>
-    <link rel="modulepreload" crossorigin href="/assets/tailwind-ouJN7DSI.js">
->>>>>>> upstream/develop
+    <script type="module" crossorigin src="/assets/profile--GOGUBM6.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/tailwind-NE021wVL.js">
     <link rel="modulepreload" crossorigin href="/assets/delay-g6vF19wW.js">
     <link rel="modulepreload" crossorigin href="/assets/css-LUmow4Y_.js">
     <link rel="modulepreload" crossorigin href="/assets/insert-vWB_d1l7.js">
@@ -20,11 +15,7 @@
     <link rel="modulepreload" crossorigin href="/assets/rendering-oARfkKZz.js">
     <link rel="modulepreload" crossorigin href="/assets/timeAgo-WbyvHha8.js">
     <link rel="modulepreload" crossorigin href="/assets/pocketbase-UOLpUAtS.js">
-<<<<<<< HEAD
-    <link rel="stylesheet" crossorigin href="/assets/tailwind-N1_XQkTA.css">
-=======
-    <link rel="stylesheet" crossorigin href="/assets/tailwind-UImssz52.css">
->>>>>>> upstream/develop
+    <link rel="stylesheet" crossorigin href="/assets/tailwind-eBiU1eRm.css">
   </head>
   <body class="min-w-[280px]">
     <h1 class="sr-only">이듬엔터 프로필</h1>
@@ -58,8 +49,8 @@
                 >닉네임을 설정해주세요</span
               >
               <span
-                data-field="company"
-                class="rendering-box text-sm text-secondary inline-block border border-secondary rounded-full px-1"
+                data-field="job"
+                class="rendering-box text-sm text-secondary inline-block border border-secondary rounded-full px-0.5 pt-0.5"
                 >미등록</span
               >
             </div>
@@ -215,41 +206,44 @@
                   data-field="avatar"
                   class="reviewer-photo"
                   src="/assets/popcorn-bcFykdSp.png"
+                  alt="프로필사진"
                 />
               </div>
-              <div class="review-textBox">
-                <p
-                  data-field="nickName"
-                  class="reviewer-box text-base font-semibold"
-                >
-                  유저네임
-                </p>
-                <p
-                  class="text-base text-Contents-contentSecondary flex items-center gap-1"
-                >
-                  <span data-field="username" class="reviewer-box"
-                    >구매자
-                  </span>
-                  <span
-                    class="reviewer-box w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
-                  ></span>
-                  <span data-field="locationFirst" class="reviewer-box"
-                    >사는 지역</span
+              <div>
+                <div class="review-textBox">
+                  <p
+                    data-field="nickName"
+                    class="reviewer-box text-base font-semibold"
                   >
-                  <span
-                    class="reviewer-box w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
-                  ></span>
-                  <span class="reviewer-box review-time">시간</span>
+                    유저네임
+                  </p>
+                  <p
+                    class="text-base text-Contents-contentSecondary flex items-center gap-1"
+                  >
+                    <span data-field="username" class="reviewer-box"
+                      >구매자
+                    </span>
+                    <span
+                      class="reviewer-box w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
+                    ></span>
+                    <span data-field="locationFirst" class="reviewer-box"
+                      >사는 지역</span
+                    >
+                    <span
+                      class="reviewer-box w-0.5 h-0.5 inline-block bg-Contents-contentSecondary"
+                    ></span>
+                    <span class="reviewer-box review-time">시간</span>
+                  </p>
+                </div>
+                <p
+                  data-field="textContent"
+                  class="review-box review-box-content text-base"
+                >
+                  후기 내용
                 </p>
               </div>
-              <p
-                data-field="textContent"
-                class="review-box review-box-content text-base"
-              >
-                후기 내용
-              </p>
               <button
-                class="profile-button-more reviewer-box ml-auto"
+                class="profile-button-more ml-auto"
                 type="button"
                 aria-label="더보기"
               >
@@ -292,9 +286,30 @@
             >
           </li>
           <li class="text-right text-base">
-            <button class="profile-delete-button">탈퇴하기</button>
+            <button type="button" class="profile-delete-button">
+              탈퇴하기
+            </button>
           </li>
         </ul>
+        <dialog class="delete-modal p-5 text-center bg-background rounded-3xl">
+          <p class="text-xl font-semibold">정말 떠나실건가요?😳</p>
+          <p class="break-words py-5 text-base text-Contents-contentSecondary">
+            이듬은 앞으로도 회원님을 기다리고 있을 거예요
+          </p>
+          <button
+            type="button"
+            value="default"
+            class="profile-button-userDelete modal-close bg-Contents-contentTertiary rounded-lg w-full py-2 text-background"
+          >
+            확인</button
+          ><button
+            type="button"
+            value="cancel"
+            class="profile-button-cancel modal-close bg-tertiary rounded-lg w-full py-2 text-background mt-2"
+          >
+            취소
+          </button>
+        </dialog>
       </div>
     </div>
     <nav
