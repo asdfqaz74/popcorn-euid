@@ -288,7 +288,7 @@ async function userLogOut() {
   deleteStorage();
   let isAuth = { isAuth: false };
   setStorage('auth', isAuth);
-  window.location.href = '/src/pages/';
+  window.location.href = '/';
 }
 
 logOutButton.addEventListener('click', userLogOut);
