@@ -1,17 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko-KR">
   <head>
     <title>Vite - Tailwindcss</title>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="/src/pages/homeNav/homeNav.js"></script>
+    <script type="module" src="/src/pages/chatRoom/chatRoom.js"></script>
   </head>
   <body>
-    <!-- 사용시 주의점 -->
-    <!-- nav 전의 box 에 mb-[3.75rem] class 꼭 추가! -->
-    <!-- img 바꿔주기 -->
+    <div role="group" class="p-4 flex justify-between">
+      <p class="text-lg font-semibold">기기거래 채팅</p>
+      <button>
+        <img src="/images/alramBell.svg" alt="알림" class="w-5 h-5" />
+      </button>
+    </div>
+
+    <div class="chatRoom-box mb-[3.75rem]">
+      <!-- <div role="group" class="p-3 flex justify-between border-b items-center">
+        <div class="flex gap-3" role="group">
+          <div class="rounded-7xl bg-Contents-contentSecondary w-11 h-11"></div>
+          <div role="group">
+            <span class="font-semibold text-base">이드미</span>
+            <span class="text-Contents-contentSecondary text-sm">며칠 전</span>
+            <div
+              class="w-[8.875rem] whitespace-nowrap text-ellipsis overflow-hidden"
+              role="group"
+            >
+              <span class="text-base w-full"
+                >채팅내용채팅내용채팅채팅내용채팅내용</span
+              >
+            </div>
+          </div>
+        </div>
+        <div class="rounded-xl bg-Contents-contentSecondary w-9 h-9"></div>
+      </div> -->
+    </div>
+
     <nav
       class="fixed h-[3.75rem] border-t border-t-Contents-contentSecondary bottom-0 w-full px-3 pt-2 pb-2 bg-background"
     >
