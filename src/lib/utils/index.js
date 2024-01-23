@@ -15,3 +15,4 @@ export * from './timeAgo.js';
 export * from './removeChild.js';
 export * from './formattedDate.js';
 export * from './formattedTime.js';
+export * from './utcToKtc.js';

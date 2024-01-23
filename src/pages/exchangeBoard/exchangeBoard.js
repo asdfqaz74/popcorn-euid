@@ -167,7 +167,7 @@ async function renderProduct(productData, users) {
         
         <div>
         <a
-        href="${`/src/pages/chat/index.html#${productData.id}`}"
+        href="/src/pages/chat/"
         class="exchangeBoard-chat-link w-[4.8125rem] h-[2.3125rem] bg-secondary px-[0.875rem] py-2 rounded-2xl text-background text-base font-semibold"
         >채팅하기</a
         >
@@ -308,10 +308,15 @@ async function handleChat(nowUser, products) {
     buyer: `${nowUser}`,
     item: `${productDataId}`,
   };
+  let chatBoxId;
 
   if (!arrayUserSameBuyer || !checkedProductId) {
-    await pb.collection('chatBox').create(initData);
+    const newChatBox = await pb.collection('chatBox').create(initData);
+    chatBoxId = newChatBox.id;
+  } else {
+    chatBoxId = checkedProductId.id;
   }
+  return chatBoxId;
 }
 
 async function init() {
@@ -328,7 +333,12 @@ async function init() {
     const heart = getNode('.exchangeBoard-heart');
     heart.addEventListener('click', handleHeartClick);
 
-    chatButton.addEventListener('click', handleChat(nowUser, products));
+    chatButton.addEventListener('click', async (e) => {
+      e.preventDefault();
+      const chatBoxId = await handleChat(nowUser, products);
+      chatButton.href = `/src/pages/chat/index.html#${chatBoxId}`;
+      window.location.href = chatButton.href;
+    });
     window.addEventListener('hashchange', getProductRender);
   });
 }
