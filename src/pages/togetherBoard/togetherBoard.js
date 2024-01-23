@@ -42,7 +42,6 @@ async function renderProduct(dataArray) {
 
   // 첫화면 랜더링, 필터링 랜더링 확인
 
-  console.log(communityData);
   communityData.forEach((item) => {
     const defaultRecruiting =
       item.recruiting === '' ? '모집중' : item.recruiting;
@@ -236,67 +235,67 @@ function handleClickOutside(event) {
 /*                               // 작성하기 + 버튼 토글                              */
 /* -------------------------------------------------------------------------- */
 function handleClickMenu() {
-  const clickedItems = Array.from(document.getElementsByClassName('isClicked'));
-  const isClicked = this.classList.toggle('isClicked');
-  const itemIndex = clickedItems.indexOf(this);
+  const togetherCategoryNav = document.querySelector('.togetherCategoryNav');
 
-  if (isClicked) {
-    if (itemIndex === -1) {
-      clickedItems.push(this);
-    }
+  if (Array.from(this.classList).includes('isClicked')) {
+    Array.from(togetherCategoryNav.children).forEach((item) => {
+      item.classList.remove('isClicked');
+      Array.from(item.children).forEach((item2) => {
+        item2.classList.remove('text-secondary');
+        item2.classList.remove('border-Blue-500');
+      });
+    });
+  } else {
+    Array.from(togetherCategoryNav.children).forEach((item) => {
+      item.classList.remove('isClicked');
+      Array.from(item.children).forEach((item2) => {
+        item2.classList.remove('text-secondary');
+        item2.classList.remove('border-Blue-500');
+      });
+    });
+
+    this.classList.add('isClicked');
+
     Array.from(this.children).forEach((item) => {
       item.classList.add('text-secondary');
       item.classList.add('border-Blue-500');
     });
-  } else {
-    if (itemIndex !== -1) {
-      clickedItems.splice(itemIndex, 1);
-    }
-    Array.from(this.children).forEach((item) => {
-      item.classList.remove('text-secondary');
-      item.classList.remove('border-Blue-500');
-    });
   }
 
-  filterRendering(clickedItems);
+  filterRendering(this);
 }
 
-/**
- * 필터링 랜더링, 배열에 필터조건 담고, 조건문 사이에 || 추가
- * @param {} clickedItems 클릭한 요소
- */
 async function filterRendering(clickedItems) {
   let filter = '';
   let isAllClicked = false; // 전체 버튼이 클릭되었는지 여부를 저장하는 변수
 
-  for (const item of clickedItems) {
-    const togetherTitleElement = item.querySelector('.togetherTitle');
-    const togetherTitleText = togetherTitleElement.textContent;
+  const togetherTitleElement = clickedItems.querySelector('.togetherTitle');
+  const togetherTitleText = togetherTitleElement.textContent.trim();
 
-    switch (togetherTitleText) {
-      case '프로젝트':
-        filter += 'category = "프로젝트"';
-        break;
-      case '스터디':
-        filter += 'category = "스터디"';
-        break;
-      case '오프라인':
-        filter += 'category = "오프라인"';
-        break;
-      case '공모전':
-        filter += 'category = "공모전"';
-        break;
-      case '전체':
-        isAllClicked = true; // 전체 버튼이 클릭되었음을 표시
-        break;
-      default:
-        break;
-    }
-
-    if (filter !== '' && !isAllClicked) {
-      filter += ' || ';
-    }
+  switch (togetherTitleText) {
+    case '프로젝트':
+      filter += 'category = "프로젝트"';
+      break;
+    case '스터디':
+      filter += 'category = "스터디"';
+      break;
+    case '오프라인':
+      filter += 'category = "오프라인"';
+      break;
+    case '공모전':
+      filter += 'category = "공모전"';
+      break;
+    case '전체':
+      isAllClicked = true; // 전체 버튼이 클릭되었음을 표시
+      break;
+    default:
+      break;
   }
+
+  if (filter !== '' && !isAllClicked) {
+    filter += ' || ';
+  }
+
   if (filter.endsWith(' || ')) {
     filter = filter.slice(0, -4);
   }
