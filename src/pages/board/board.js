@@ -9,6 +9,7 @@ import {
 } from '/src/lib';
 import { gsap } from 'gsap';
 
+import front from '/public/images/front.svg';
 import fullpeopleSvg from '/public/images/fullpeople.svg';
 import lifeSvg from '/public/images/life.svg';
 import calenderSvg from '/public/images/calender.svg';
@@ -18,19 +19,18 @@ const subjectMenutoggle = getNode('.subject-menu-container');
 const closedSubjectMenu = getNode('.board-closedSubjectMenu-button');
 
 const pb = new pocketbase(`${import.meta.env.VITE_PB_URL}`);
+const responseCommunity = await pb.collection('community').getList(1, 50, {
+  expand: 'SR_location',
+});
+const communityData = responseCommunity.items;
 
 /* -------------------------------------------------------------------------- */
 /*                                 이미지 랜더링 함수                           */
 /* -------------------------------------------------------------------------- */
 async function renderProduct() {
-  const responseCommunity = await pb.collection('community').getList(1, 50, {
-    expand: 'SR_location',
-  });
-
-  const communityData = responseCommunity.items;
+  const userId = await getStorage('userId');
 
   communityData.forEach((item) => {
-    console.log(item);
     const template = /* html */ `
     <div
           class="group hover:bg-tertiary board-container text-bluegray-400 text-sm border-t-[1px] p-3 grid grid-cols-2"
@@ -91,60 +91,38 @@ async function renderProduct() {
 
     insertLast('.template', template);
   });
-
-  /* -------------------------------------------------------------------------- */
-  /*    주제목록 랜더링은 User의 localStorage에 저장이 구현되면 불러와서 구현        */
-  /* -------------------------------------------------------------------------- */
-
-  //   arraySubjectValue.forEach((item) => {
-  //     const templateSubjecMenu = /* html */ `
-  //   <div class="p-3 flex justify-between">
-  //   <div class="flex items-center gap-2">
-  //     <img class="h-[34px] w-[34px]" src="${lifeSvg}" alt="" />
-  //     <strong class="board-subject-name no-wrap truncate">${item}</strong>
-  //   </div>
-  //   <div
-  //     class="board-participating py-1 text-secondary rounded-2xl px-5 border bg-bluegray-100 no-wrap"
-  //   >
-  //     참여중
-  //   </div>
-  // </div>
-
-  //   `;
-  //     insertLast('.templateSubjectContainer', templateSubjecMenu);
-  //   });
-
-  const templateSubjecMenu = /* html */ `
-<div class="p-3 flex justify-between">
-<div class="flex items-center gap-2">
-  <img class="h-[34px] w-[34px]" src="${lifeSvg}" alt="" />
-  <strong class="board-subject-name no-wrap truncate">localStorage 아직</strong>
-</div>
-<div
-  class="board-participating py-1 text-secondary rounded-2xl px-5 border bg-bluegray-100 no-wrap"
->
-  참여중
-</div>
-</div>
-<div class="p-3 flex justify-between">
-<div class="flex items-center gap-2">
-  <img class="h-[34px] w-[34px]" src="${lifeSvg}" alt="" />
-  <strong class="board-subject-name no-wrap truncate">localStorage 아직</strong>
-</div>
-<div
-  class="board-participating py-1 text-secondary rounded-2xl px-5 border bg-bluegray-100 no-wrap"
->
-  참여중
-</div>
-</div>
-
-`;
-  insertLast('.templateSubjectContainer', templateSubjecMenu);
-
   gsap.from('.board-container', {
     y: 30,
     opacity: 0,
     stagger: 0.1,
+  });
+
+  /* -------------------------------------------------------------------------- */
+  /*    주제목록 랜더링
+  /* -------------------------------------------------------------------------- */
+
+  communityData.forEach((item) => {
+    if (item.expand.SR_location.id === userId) {
+      const categoryArray = item.expand.SR_location.category.split(',');
+
+      categoryArray.forEach((item) => {
+        const templateSubjecMenu = /* html */ `
+        <div class="p-3 flex justify-between">
+        <div class="flex items-center gap-2">
+          <img class="h-[34px] w-[34px]" src="${front}" alt="" />
+          <strong class="board-subject-name no-wrap truncate">${item}</strong>
+        </div>
+        <div
+          class="board-participating py-1 text-secondary rounded-2xl px-5 border bg-bluegray-100 no-wrap"
+        >
+          참여중
+        </div>
+        </div>
+
+        `;
+        insertLast('.templateSubjectContainer', templateSubjecMenu);
+      });
+    }
   });
 }
 
@@ -186,14 +164,6 @@ function handleClickOutside(event) {
   gsap.to(subjectMenutoggle, { y: '100%', ease: 'power2.out', duration: 0.5 });
   subjectMenuButton.classList.remove('click');
 }
-
-/* -------------------------------------------------------------------------- */
-/*                             로그인 기능 관심사 들어오면 구현                */
-/* -------------------------------------------------------------------------- */
-// function funcLocalStorage() {
-//   const items = getStorage('interest');
-//   return items;
-// }
 
 renderProduct();
 
