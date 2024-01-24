@@ -178,7 +178,7 @@ function agreeCheckAll() {
 agreeButtonCheckAll.addEventListener('change', agreeCheckAll);
 
 //agree modal 작업
-function sumitHandler(e) {
+async function sumitHandler(e) {
   const submitClassList = Array.from(agreeSubmitButton.classList);
   const form = this.closest('form');
   let submitValid = submitClassList.includes(
@@ -191,7 +191,12 @@ function sumitHandler(e) {
     alert('필수항목에 동의 해주셔야 합니다');
   } else {
     e.preventDefault();
+    const jobData = await getStorage('job');
+    const data = {
+      job: jobData[0],
+    };
     agreeModal.showModal();
+    await pb.collection('users').update(userNow.id, data);
   }
 }
 
@@ -226,6 +231,7 @@ async function jobSelected(e) {
   e.target.classList.add('job-data');
   let jobList = Array.from(getNodes('.job-category'));
   let selectList = Array.from(getNodes('.job-selected'));
+  removeElement('.profileDetails-job-selected');
   if (jobList.includes(e.target)) {
     let jobRenderTemplate = /*html*/ `
     <button
@@ -237,7 +243,7 @@ async function jobSelected(e) {
     await insertLast('.profileDetails-job-selected', jobRenderTemplate);
   } else if (selectList.includes(e.target)) {
     e.target.remove(e.target);
-    deleteStorage('job');
+    console.log(e.target.textContent.length);
   }
   const jobDataList = Array.from(getNodes('.job-data'));
   const jobSelectedValue = jobDataList.map((item) => item.value);
