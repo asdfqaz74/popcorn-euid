@@ -6,7 +6,7 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="/src/styles/tailwind.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script type="module" src="/src/pages/signUp/signUp.js"></script>
+    <script type="module" src="/src/pages/signUp/signUp copy.js"></script>
   </head>
   <body>
     <h1 class="sr-only">이듬 회원가입</h1>
@@ -17,7 +17,7 @@
       >
         <!-- 인증번호 받기 전 -->
         <section class="py-[0.5rem] px-[0.75rem] w-screen">
-          <h2 class="sr-only">인증번호 받기</h2>
+          <h2 class="sr-only">이듬 회원가입</h2>
           <button>
             <img
               src="/public/images/directionL.svg"
@@ -25,16 +25,54 @@
               class="button-goBack w-[1.25rem] h-[1.25rem]"
             />
           </button>
-          <div class="signUp-text py-[0.75rem]">
+
+          <div class="signUp-text py-[0.75rem] mb-3">
             <p class="text-lg font-semibold">안녕하세요!</p>
-            <p class="text-lg font-semibold">휴대폰 번호로 가입해주세요</p>
+            <p class="text-lg font-semibold">회원가입을 진행해주세요</p>
             <p class="text-xs">
-              휴대폰 번호는 안전하게 보관되며 서로에게 공개되지 않아요.
+              환영합니다! 이듬 회원이 되어 다양한 혜택을 누려보세요.
             </p>
           </div>
+
           <form
             class="signUp-form-before flex flex-col justify-center items-center gap-3 mb-[0.75rem]"
           >
+            <!-- 아이디 입력 -->
+            <label for="email" class="signUp-label-id sr-only"
+              >이메일 입력</label
+            >
+            <input
+              class="signUp-input-id border-solid border-[0.5px] border-gray-900 rounded-sm w-full h-[2.375rem] py-[0.5rem] px-[0.75rem] placeholder:text-base font-normal"
+              type="email"
+              id="email"
+              name="email"
+              pattern=".+@example\.com"
+              placeholder="이메일 주소"
+              required
+              autocomplete="off"
+            />
+            <div
+              class="signUp-errorMsg-id text-error text-sm w-full hidden items-start justify-start"
+            ></div>
+
+            <!-- 비밀번호 입력 -->
+            <label for="password" class="signUp-label-phoneNumber sr-only"
+              >휴대폰 번호 입력</label
+            >
+            <input
+              class="signUp-input-password border-solid border-[0.5px] border-gray-900 rounded-sm w-full h-[2.375rem] py-[0.5rem] px-[0.75rem] placeholder:text-base font-normal"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="비밀번호"
+              required
+              autocomplete="off"
+            />
+            <div
+              class="signUp-errorMsg-pw text-error text-sm w-full hidden items-start justify-start"
+            ></div>
+
+            <!-- 휴대폰 번호 입력 -->
             <label for="phoneNumber" class="signUp-label-phoneNumber sr-only"
               >휴대폰 번호 입력</label
             >
