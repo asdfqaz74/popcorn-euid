@@ -1,4 +1,8 @@
-import { getNode, insertLast, formattedDateShort } from '/src/lib';
+/**
+ * TODO: 사용하지 않는 import 는 신경써서 지우는 것이 좋습니다.
+ * 사용하지 않는 함수나 변수가 결과물에 섞일 수 있기 때문입니다.
+ */
+import { insertLast } from '/src/lib';
 import Pockbase from 'pocketbase';
 import gsap from 'gsap';
 import hamburger from '/public/images/hamburger.svg';
@@ -17,21 +21,7 @@ async function renderProduct() {
 
   console.log(productData);
 
-  const {
-    SR_location,
-    activity,
-    category,
-    date,
-    meetingLocation,
-    gender,
-    approve,
-    headcount,
-    age,
-    title,
-    time,
-    expand,
-    id,
-  } = productData;
+  const { title } = productData;
 
   const template = /* html */ `
      

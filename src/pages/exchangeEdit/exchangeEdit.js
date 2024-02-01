@@ -38,6 +38,10 @@ async function render() {
 
       this.closest('li').classList.add('active', 'bg-secondary');
 
+      /**
+       * TODO: 화면을 렌더하면서 초깃값을 설정하기 위해 handleModify 함수가 이 안에 선언이 되어 버렸군요!
+       * 이런 코드는 매우 위험합니다. handleModify 를 밖으로 꺼내야 하는데 제가 시간이 없군요.
+       */
       selectedType = this.textContent;
     });
   });

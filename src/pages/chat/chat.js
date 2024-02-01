@@ -43,8 +43,57 @@ async function sendMessage(userNow, chatBoxNowId) {
   text.value = '';
 }
 
-async function init() {
+/**
+ * TODO: 함수 안에서 함수를 선언하는 상황은 되도록 피하는 것이 좋습니다.
+ * 함수 바깥 함수를 참조하는 상황이 가장 나쁩니다.
+ * 입력값에 따라 출력이 결정되는 순수함수를 만들면 예외를 줄일 수 있습니다.
+ * @param message
+ * @param userNow
+ */
+function renderMessage(message, userNow) {
   let lastDate = null;
+  const messageDate = utcTime(message.created);
+  if (lastDate !== messageDate) {
+    const dateDisplay = /* html */ `
+      <div class="text-center my-3 text-sm text-Contents-contentSecondary">
+        <span class="chat-date mx-auto">${messageDate}</span>
+      </div>
+      `;
+    insertLast('.chat-contents-wrapper', dateDisplay);
+    lastDate = messageDate;
+  }
+  const isUser = message.user === userNow;
+  if (isUser) {
+    const me = /* html */ `
+      <div class="chat-me flex mb-2 justify-end items-end gap-1">
+        <span class="chat-time text-sm text-Contents-contentSecondary">${utcToKtc(
+        message.created
+    )}
+        </span>
+        <div class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]">
+          <span class="chat-text">${message.chat}</span>
+        </div>
+      </div>
+      `;
+    insertLast('.chat-contents-wrapper', me);
+  } else {
+    const you = /* html */ `
+      <div class="chat-you flex mb-2 items-end gap-1">
+        <div class="border-none px-[0.875rem] py-2 ml-3 rounded-6xl bg-bluegray-100 text-Contents-contentPrimary max-w-[15.5rem]">
+          <span class="chat-text"> ${message.chat}
+          </span>
+        </div>
+        <span class="chat-time text-sm text-Contents-contentSecondary">${utcToKtc(
+        message.created
+    )}</span>
+      </div>
+      `;
+    insertLast('.chat-contents-wrapper', you);
+  }
+  lastDate = messageDate;
+}
+
+async function init() {
   const back = getNode('.chat-back');
   const hash = window.location.hash.slice(1);
   const product = await pb.collection('chatBox').getOne(hash);
@@ -73,48 +122,6 @@ async function init() {
   nowChatting.forEach((item) => {
     renderMessage(item, userNow);
   });
-
-  function renderMessage(message, userNow) {
-    const messageDate = utcTime(message.created);
-    if (lastDate !== messageDate) {
-      const dateDisplay = /* html */ `
-      <div class="text-center my-3 text-sm text-Contents-contentSecondary">
-        <span class="chat-date mx-auto">${messageDate}</span>
-      </div>
-      `;
-      insertLast('.chat-contents-wrapper', dateDisplay);
-      lastDate = messageDate;
-    }
-    const isUser = message.user === userNow;
-    if (isUser) {
-      const me = /* html */ `
-      <div class="chat-me flex mb-2 justify-end items-end gap-1">
-        <span class="chat-time text-sm text-Contents-contentSecondary">${utcToKtc(
-          message.created
-        )}
-        </span>
-        <div class="border-none px-[0.875rem] py-2 mr-3 rounded-6xl bg-Bluelight-400 text-background max-w-[15.5rem]">
-          <span class="chat-text">${message.chat}</span>
-        </div>
-      </div>
-      `;
-      insertLast('.chat-contents-wrapper', me);
-    } else {
-      const you = /* html */ `
-      <div class="chat-you flex mb-2 items-end gap-1">
-        <div class="border-none px-[0.875rem] py-2 ml-3 rounded-6xl bg-bluegray-100 text-Contents-contentPrimary max-w-[15.5rem]">
-          <span class="chat-text"> ${message.chat}
-          </span>
-        </div>
-        <span class="chat-time text-sm text-Contents-contentSecondary">${utcToKtc(
-          message.created
-        )}</span>
-      </div>
-      `;
-      insertLast('.chat-contents-wrapper', you);
-    }
-    lastDate = messageDate;
-  }
 
   rendering('.chat-rendering', sellerInfo);
   rendering('.chat-renderings', productData);

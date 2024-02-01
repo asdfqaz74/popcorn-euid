@@ -34,7 +34,12 @@ function handleButton(e) {
     image.src = plusImg;
   }
 
-  if (button.classList.contains('exchange-button-no')) {
+  /**
+   * TODO: 맥락이 복잡한 코드는 결과값을 유의미한 이름을 가진 변수에 할당하고 사용해보세요.
+   * 변수가 논리 도구로 변신하게 됩니다.
+   */
+  const is뭔진모르겠지만_이게_켜지면 = button.classList.contains('exchange-button-no');
+  if (is뭔진모르겠지만_이게_켜지면) {
     gsap.to(button, {
       background: 'rgb(255 255 255)',
       duration: 0.3,
@@ -79,24 +84,28 @@ writeButton.addEventListener(
 /*                                     get                                    */
 /* -------------------------------------------------------------------------- */
 
-async function renderProduct(type) {
-  let productData;
-
+/**
+ * TODO: let 과 else 조합은 함수 안에서 여러가지 일을 하고 있다는 강력한 신호입니다.
+ */
+const getProductData = async (type) => {
   // 매개변수에 type이 있는지
   if (type) {
-    productData = await pb.collection('products').getFullList({
+    return await pb.collection('products').getFullList({
       filter: `type="${type}"`,
     });
-  } else {
-    productData = await pb.collection('products').getFullList();
   }
+
+  return await pb.collection('products').getFullList();
+}
+
+async function renderProduct(type) {
   const likes = await pb.collection('likes').getFullList();
 
   // section 안에 있는 자식 요소들 전부 지우기
   removeChild('section');
 
   // template 생성
-  productData.forEach((item) => {
+  getProductData(type).forEach((item) => {
     const likeCount = likes.filter((like) => like.product === item.id).length;
     const template = /* html */ `
     <div
