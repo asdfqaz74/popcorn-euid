@@ -69,6 +69,7 @@ async function post() {
 
       this.closest('li').classList.add('active', 'bg-secondary');
 
+      // TODO: 여기도 그렇네요. 이것은 폼을 잘 다루면 해결할 수 있는 문제입니다.
       selectedType = this.textContent;
     });
   });

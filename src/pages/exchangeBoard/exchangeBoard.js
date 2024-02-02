@@ -232,6 +232,10 @@ async function handleHeartClick(e) {
     product: productId,
   };
 
+  /**
+   * TODO: 중첩 if 문은 함수를 분리하라는 강력한 신호입니다.
+   * 실무에서 높은 평가를 받기 어렵습니다.
+   */
   if (selectedProduct) {
     if (currentSrc.includes(originSrc)) {
       await pb.collection('likes').create(data);
